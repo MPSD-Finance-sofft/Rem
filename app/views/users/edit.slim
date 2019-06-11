@@ -1,0 +1,69 @@
+h1
+	| Uprava uživatele
+= form_with(model: @user, local: true) do |f|
+	- if @user.errors.any?
+		#error_explanation
+			h2
+				= pluralize(@user.errors.count, "error")
+				| prohibited this accord from being saved:
+			ul
+				- @user.errors.full_messages.each do |message|
+						li= message
+	.form-group
+		= f.label :avatar
+		= f.file_field :avatar, class: "form-control"
+	- f.object.build_permission if f.object.permission.blank?
+	= f.fields_for :permission do |f|
+		.form-group
+			= f.label :kind
+			= f.select :kind, Permission.kinds.keys.map{|a| [a,a]},{include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true"}
+	.form-group
+		= f.label :superior_id
+		= f.select :superior_id, User.select([:id,:name, :last_name]).map{|a| [a.all_name,a.id]},{include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true"}
+	.form-group
+		= f.label :title_before
+		= f.text_field :title_before, class: "form-control"
+	.form-group
+		= f.label :name, "Jméno"
+		= f.text_field :name, class: "form-control"
+	.form-group
+		= f.label :last_name, "Přijmení"
+		= f.text_field :last_name, class: "form-control"
+	.form-group
+		= f.label :title_last
+		= f.text_field :title_last, class: "form-control"
+	.form-group
+		= f.label :short_name
+		= f.text_field :short_name, class: "form-control"
+	.form-group
+		= f.label :mobile, "Mobil"
+		= f.text_field :mobile, class: "form-control"
+	.form-group
+		= f.label :email, "Email"
+		= f.text_field :email, class: "form-control"
+	.form-group
+		= f.label :name_company
+		= f.text_field :name_company, class: "form-control"
+	.form-group
+		= f.label :identity_card_number
+		= f.text_field :identity_card_number, class: "form-control"
+	.form-group
+		= f.label :identity_company_number
+		= f.text_field :identity_company_number, class: "form-control"
+	.form-group
+		= f.label :date_of_cooperation
+		= f.text_field :date_of_cooperation, class: "form-control"
+	.form-group
+		= f.label :web
+		= f.text_field :web, class: "form-control"
+	.form-group
+		= f.label :account_number
+		= f.text_field :account_number, class: "form-control"
+	.form-group
+		= f.label :bank_code
+		= f.text_field :bank_code, class: "form-control"
+	.action
+	    = f.submit "Odešli" , class: "btn btn-default", type: "submit"
+
+
+= link_to 'Back', root_path

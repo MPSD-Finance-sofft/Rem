@@ -1,0 +1,22 @@
+div.container-fluid
+  ol.breadcrumb
+    li.breadcrumb-item
+      b
+        | Přihlášení
+    li.breadcrumb-item
+div.col-md-12
+  div class="panel-group smart-accordion-default" 
+    div class="panel panel-default"
+      div class="panel-heading"
+        h4 class="panel-title"
+            | Login
+      div id="collaplast" class="panel-collapse"
+        div.panel-body.no-padding
+          = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| 
+            div class="form-group"
+              = f.input :username,required: false,autofocus: true,input_html: { autocomplete: "username" }
+              = f.input :password,required: false,input_html: { autocomplete: "current-password" } 
+              = f.input :remember_me, as: :boolean if devise_mapping.rememberable? 
+            div class="form-actions"
+              = f.button :submit, "Log in" 
+          = render "users/shared/links" 

@@ -1,0 +1,70 @@
+div.container-fluid
+  ol.breadcrumb
+    li.breadcrumb-item
+      b
+        = link_to 'Žádosti', accords_path() 
+    li.breadcrumb-item
+    	| úprava žádosti č.
+    	= link_to @accord.number, accord_path(@accord)
+    	|  ,klienta 
+    	= @accord.first_client_full_name
+div.col-md-12
+	div class="panel-group smart-accordion-default" 
+	  	div class="panel panel-default"
+		    div class="panel-heading"
+		      h4 class="panel-title"
+		        a data-toggle="collapse" data-parent="#accordion" href="#collaplast" aria-expanded="true" aria-controls="collaplast"
+		          i class="fa fa-lg fa-angle-down pull-right"
+		          i class="fa fa-lg fa-angle-up pull-right"
+		          | Žádost
+		    div id="collaplast" class="panel-collapse"
+		      div.panel-body.no-padding
+		        = form_with(model: @accord, local: true) do |f|
+					- if @accord.errors.any?
+						#error_explanation
+						h2
+				    		= pluralize(@accord.errors.count, "error")
+				    		| prohibited this accord from being saved:
+						ul
+				    		- @accord.errors.full_messages.each do |message|
+				      			li= message
+					.form-group
+				    	= f.label :number, "Číslo"
+						= f.text_field :number, class: "form-control"
+					.form-group
+				    	= f.label :kind, "Druh žádosti"
+						= f.select :kind, f.object.select_kind,{selected: f.object.object_kind},{class: "selectpicker form-control", "data-live-search" => "true"}
+					.form-group
+				    	= f.label :state, "Stav"
+						= f.select :state, f.object.select_state,{selected: f.object.object_state},{class: "selectpicker form-control", "data-live-search" => "true", disabled:true}
+					.form-group
+				    	
+					.form-group
+				    	= f.label :contract_number, "Číslo smlouvy"
+						= f.text_field :contract_number, class: "form-control"
+					.form-group
+				    	= f.label :date_of_signature, "Datum podpisu"
+						= f.text_field :date_of_signature, class: "form-control"
+					.form-group
+				    	= f.label :date_of_ownership, "Datum vlastnictví"
+						= f.text_field :date_of_ownership, class: "form-control"
+					.form-group
+				    	= f.label :date_of_transfer, "Datum předání"
+						= f.text_field :date_of_transfer, class: "form-control"
+					.form-group
+						= f.label :transfer_protocol, "Předávací protokol"
+						= f.check_box :transfer_protocol, class: "form-control"
+					.form-group
+					   = render partial: "accords_realities", locals: {f: f}
+					.form-group
+					   = render partial: "accords_expert_evidence", locals: {f: f}
+					.form-group
+					    = render partial: "accords_clients", locals: {f: f}
+					.form-group
+					    = render partial: "accords_commitments", locals: {f: f}
+					.form-group
+					    = render partial: "accords_expense", locals: {f: f}
+					.form-group
+					    = render partial: "accords_energy", locals: {f: f}
+					.action
+					    = f.submit "Odešli" , class: "btn btn-default", type: "submit"

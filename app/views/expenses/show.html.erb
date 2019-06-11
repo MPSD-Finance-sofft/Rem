@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date of excepted payment:</strong>
+  <%= @expense.date_of_excepted_payment %>
+</p>
+
+<p>
+  <strong>Payout day:</strong>
+  <%= @expense.payout_day %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @expense.description %>
+</p>
+
+<p>
+  <strong>Accord:</strong>
+  <%= @expense.accord_id %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @expense.amount %>
+</p>
+
+<p>
+  <strong>Real amount:</strong>
+  <%= @expense.real_amount %>
+</p>
+
+<p>
+  <strong>Expense type:</strong>
+  <%= @expense.expense_type_id %>
+</p>
+
+<%= link_to 'Edit', edit_expense_path(@expense) %> |
+<%= link_to 'Back', expenses_path %>

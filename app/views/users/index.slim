@@ -1,0 +1,27 @@
+p id="notice"
+  = notice
+div.container-fluid
+  ol.breadcrumb
+    li.breadcrumb-item
+      b
+        | Uživatelé
+    li.breadcrumb-item
+      | Přehled uživatelů
+div.col-md-12
+	div class="panel-group smart-accordion-default" 
+		div class="panel panel-default"
+			div class="panel-heading"
+				h4 class="panel-title"
+				| Přehled uživatelů
+			div id="collaplast" class="panel-collapse"
+				table.table
+					thead
+						tr
+						th Username
+						th Jméno
+						th Přijmení
+					tbody
+						- @users.each do |user|
+							tr
+								td=user.username
+				

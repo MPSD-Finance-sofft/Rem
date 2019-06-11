@@ -1,0 +1,38 @@
+div id="collapseFirth" class="panel-collapse"
+  div.panel-body.no-padding
+  	div class="panel-group smart-accordion-default" 
+	  div class="panel panel-default"
+	    div class="panel-heading"
+	      h4 class="panel-title"
+	          | Změny 
+	          = description
+	    div id="collapseFirth" class="panel-collapse"
+	    	table.table
+	    		tr
+	    			th Kdy
+	    			th Co
+	    			th Z čeho
+	    			th Na co
+	    			th Kdo
+	    		- if f.is_a?(ActiveRecord::Base)
+		    		- f.versions.each do |version|
+		    			- a = User.where(id:version.whodunnit).last
+		    			- version.changeset.each do |change|
+		    				tr
+		    					td =version.created_at
+		    					td =change.first
+		    					td =change.last.first
+		    					td =change.last.last
+		    					td = a.try(:username)
+		    	- else
+		    		- f.each do |object|
+		    			- object.versions.each do |version|
+			    			- a = User.find version.whodunnit
+			    			- version.changeset.each do |change|
+			    				tr
+			    					td =version.created_at
+			    					td =change.first
+		    						td =change.last.first
+		    						td =change.last.last
+			    					td = a.username
+

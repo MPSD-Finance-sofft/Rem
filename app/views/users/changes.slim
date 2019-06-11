@@ -1,0 +1,18 @@
+div.container-fluid
+  ol.breadcrumb
+    li.breadcrumb-item
+      b
+        | Uživatel 
+    li.breadcrumb-item
+        | Uživatel č.
+        = @user.id
+  div class="panel-group smart-accordion-default" 
+    div class="panel panel-default"
+      div class="panel-heading"
+    		h4 class="panel-title"
+          	a data-toggle="collapse" data-parent="#accordion" href="#collapseChanges" aria-expanded="true" class="collapse" 
+            	i class="fa fa-lg fa-angle-down pull-right"
+            	i class="fa fa-lg fa-angle-up pull-right"
+            	|  Změny
+      div id="collapseChanges" class="panel-collapse"
+        = render partial: "layouts/changes",locals:{f: @user, description: "Uživatel"}

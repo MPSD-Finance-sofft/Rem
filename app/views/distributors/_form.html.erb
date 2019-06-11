@@ -1,0 +1,27 @@
+<%= form_with(model: distributor, local: true) do |form| %>
+  <% if distributor.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(distributor.errors.count, "error") %> prohibited this distributor from being saved:</h2>
+
+      <ul>
+      <% distributor.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

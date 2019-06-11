@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Commitments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Date of excepted payment</th>
+      <th>Payout day</th>
+      <th>Commitment type</th>
+      <th>Description</th>
+      <th>Accord</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @commitments.each do |commitment| %>
+      <tr>
+        <td><%= commitment.date_of_excepted_payment %></td>
+        <td><%= commitment.payout_day %></td>
+        <td><%= commitment.commitment_type_id %></td>
+        <td><%= commitment.description %></td>
+        <td><%= commitment.accord_id %></td>
+        <td><%= link_to 'Show', commitment %></td>
+        <td><%= link_to 'Edit', edit_commitment_path(commitment) %></td>
+        <td><%= link_to 'Destroy', commitment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Commitment', new_commitment_path %>

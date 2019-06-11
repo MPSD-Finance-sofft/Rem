@@ -1,0 +1,23 @@
+nav.navbar.navbar-inverse.navbar-fixed-top
+  = link_to 'Home', root_path, {class: 'navbar-brand' ,type: 'button'}
+  div class="collapse navbar-collapse" id="navbarNavDropdown"
+    ul class="navbar-nav"
+      li.nav-item
+        = link_to 'Žádosti', accords_path, class: 'navbar-brand'
+      li.nav-item
+        | Agenti
+      li.nav-item.dropdown
+        a class="nav-link dropdown-toggle navbar-brand" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+          | Nastavení
+        div.dropdown-menu aria-labelledby="navbarDropdownMenuLink"
+          = link_to 'Typy nemovitostí', realty_types_path, class: 'dropdown-item' 
+          br
+          = link_to 'Typy závazků', commitment_types_path, class: 'dropdown-item'
+          br
+          = link_to 'Typy nákladů', expense_types_path, class: 'dropdown-item'
+          br
+          = link_to 'Distributoři', distributors_path, class: 'dropdown-item'
+          br
+          = link_to 'Uživatelé', users_path, class: 'dropdown-item'
+      li.nav-item
+        = link_to "Sign out", destroy_user_session_path(), :method => :delete , class: 'navbar-brand'

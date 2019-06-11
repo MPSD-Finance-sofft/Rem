@@ -1,0 +1,47 @@
+<%= form_with(model: expert_evidence, local: true) do |form| %>
+  <% if expert_evidence.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(expert_evidence.errors.count, "error") %> prohibited this expert_evidence from being saved:</h2>
+
+      <ul>
+      <% expert_evidence.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :of_date %>
+    <%= form.date_select :of_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :number %>
+    <%= form.number_field :number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :market_price %>
+    <%= form.text_field :market_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :accord_id %>
+    <%= form.number_field :accord_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

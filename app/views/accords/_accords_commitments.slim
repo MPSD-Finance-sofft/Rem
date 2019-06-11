@@ -1,0 +1,57 @@
+div class="panel-group smart-accordion-default" 
+  div class="panel panel-default"
+    div class="panel-heading"
+      h4 class="panel-title"
+        a data-toggle="collapse" data-parent="#accordion" href="#collapseFirth" aria-expanded="false" class="collapsed" 
+          i class="fa fa-lg fa-angle-down pull-right"
+          i class="fa fa-lg fa-angle-up pull-right"
+          | Závazky
+    div id="collapseFirth" class="panel-collapse"
+      div.panel-body.no-padding
+        .links
+          = link_to_add_association('Přidej závazek', f, :commitments, :"data-association-insertion-node" => "tbody#nested_commitments",:"data-association-insertion-method" => "append",  class: 'btn btn-primary btn-success') 
+        table id="commitments_table" class="table table-hover table-bordered"
+          tr
+              th
+                | commitment_type_id
+              th
+                | amount
+              th
+                | real amount
+              th
+                | date_of_excepted_payment
+              th
+                | payout_day
+              th
+                | description
+              th
+          tbody id="nested_commitments"
+            = f.fields_for :commitments do |commitments|
+              = render 'commitment_fields', f: commitments
+          tr
+            th 
+              | Výsledek
+            th.text-right id="sum_amount"
+            th.text-right id="sum_real_amount"
+            th
+            th
+            th
+
+javascript:
+  var spocitej_castku;
+  $(document).ready(function() {
+    $(document).on('change', '.amount', function(evt) {
+      return $("#sum_amount").text(spocitej_castku(".amount") + " Kč");
+    });
+    $(document).on('change', '.real_amount', function(evt) {
+      return $("#sum_real_amount").text(spocitej_castku(".real_amount") + " Kč");
+    });
+  });
+
+  spocitej_castku = function(selector){
+    var sum = 0;
+      $(selector).each(function() {
+          sum += Number($(this).val());
+      });
+      return sum;
+  };

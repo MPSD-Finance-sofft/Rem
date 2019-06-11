@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Expenses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Date of excepted payment</th>
+      <th>Payout day</th>
+      <th>Description</th>
+      <th>Accord</th>
+      <th>Amount</th>
+      <th>Real amount</th>
+      <th>Expense type</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @expenses.each do |expense| %>
+      <tr>
+        <td><%= expense.date_of_excepted_payment %></td>
+        <td><%= expense.payout_day %></td>
+        <td><%= expense.description %></td>
+        <td><%= expense.accord_id %></td>
+        <td><%= expense.amount %></td>
+        <td><%= expense.real_amount %></td>
+        <td><%= expense.expense_type_id %></td>
+        <td><%= link_to 'Show', expense %></td>
+        <td><%= link_to 'Edit', edit_expense_path(expense) %></td>
+        <td><%= link_to 'Destroy', expense, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Expense', new_expense_path %>

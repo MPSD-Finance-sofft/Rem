@@ -1,0 +1,25 @@
+div class="panel-group smart-accordion-default" 
+  div class="panel panel-default"
+    div class="panel-heading"
+      h4 class="panel-title"
+        a data-toggle="collapse" data-parent="#accordion" href="#collapseThirth" aria-expanded="false" class="collapsed" 
+          i class="fa fa-lg fa-angle-down pull-right"
+          i class="fa fa-lg fa-angle-up pull-right"
+          | Znalecký posudek
+    div id="collapseThirth" class="panel-collapse"
+		div.panel-body.no-padding
+			.links
+			  = link_to_add_association('Přidej znalecký posudek', f, :expert_evidences, :"data-association-insertion-node" => "tbody#nested_expert_evidences",:"data-association-insertion-method" => "append",  class: 'btn btn-primary btn-success') 
+			table id="expert_evidences_table" class="table table-hover table-bordered"
+			  tr
+			      th
+			        | Zp ze dne
+			      th
+			        | Číslo znaleckého posudku
+			      th
+			        | Cena nemovitosti
+			      th
+			        | Cena tržní
+			  tbody id="nested_expert_evidences"
+			    = f.fields_for :expert_evidences do |expert_evidence|
+			      = render 'expert_evidence_fields', f: expert_evidence

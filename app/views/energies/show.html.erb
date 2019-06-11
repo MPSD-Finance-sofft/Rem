@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @energy.type %>
+</p>
+
+<p>
+  <strong>Date of:</strong>
+  <%= @energy.date_of %>
+</p>
+
+<p>
+  <strong>Distributor:</strong>
+  <%= @energy.distributor_id %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @energy.price %>
+</p>
+
+<p>
+  <strong>Payment day:</strong>
+  <%= @energy.payment_day %>
+</p>
+
+<%= link_to 'Edit', edit_energy_path(@energy) %> |
+<%= link_to 'Back', energies_path %>

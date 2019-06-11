@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Of date:</strong>
+  <%= @expert_evidence.of_date %>
+</p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @expert_evidence.number %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @expert_evidence.user_id %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @expert_evidence.price %>
+</p>
+
+<p>
+  <strong>Market price:</strong>
+  <%= @expert_evidence.market_price %>
+</p>
+
+<p>
+  <strong>Accord:</strong>
+  <%= @expert_evidence.accord_id %>
+</p>
+
+<%= link_to 'Edit', edit_expert_evidence_path(@expert_evidence) %> |
+<%= link_to 'Back', expert_evidences_path %>

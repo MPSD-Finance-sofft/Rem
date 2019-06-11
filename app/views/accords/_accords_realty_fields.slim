@@ -1,0 +1,46 @@
+.nested-fields.col-md-2
+	.field.form-group
+		- f.object.build_realty unless f.object.realty
+		= f.fields_for :realty do |f| 
+			- f.object = f.object.decorate
+			.form-group
+				= f.label :realty_type_id
+				= f.select :realty_type_id, RealtyType.select([:id,:name]).map{|a| [a.name,a.id]},{},{class: "selectpicker form-control", "data-live-search" => "true"}
+			.form-group
+				= f.label :type_ownership
+				= f.select :type_ownership, f.object.select_type_ownership,{},{class: "selectpicker form-control", "data-live-search" => "true"}
+			.form-group
+				= f.label :record_on_lv
+				= f.text_field :record_on_lv, class: "form-control"
+			.form-group
+				= f.label :price_estimation
+				= f.text_field :price_estimation, class: "form-control"
+			.form-group
+				= f.label :property_sheet
+				= f.text_field :property_sheet, class: "form-control"
+			.form-group
+				= f.label :purchase_price
+				= f.text_field :purchase_price, class: "form-control"
+			.form-group
+				= f.label :location
+				= f.text_field :location, class: "form-control"
+			.form-group
+				= f.label :build_up_area
+				= f.text_field :build_up_area, class: "form-control"
+			.form-group
+				= f.label :land_plot
+				= f.text_field :land_plot, class: "form-control"
+			.form-group
+				= f.label :catastral_territory
+				= f.text_field :catastral_territory, class: "form-control"
+			.form-group
+				| Město
+				= text_field_tag "address[village]", nil,{class: "form-control vilage_find", data: {village: "#{}"}}
+			.form-group
+				| Ulice
+				= text_field_tag "address[street]",nil ,class: "form-control street_find"
+			.form-group
+				| Číslo
+				= text_field_tag "address[number]",nil, class: "form-control number_find"
+
+	= link_to_remove_association "remove task", f

@@ -1,0 +1,50 @@
+p id="notice"
+  = notice
+div.container-fluid
+  ol.breadcrumb
+    li.breadcrumb-item
+      b
+        | Žádosti
+    li.breadcrumb-item
+      | Přehled žádostí
+  = link_to 'Nová žádost', new_accord_path
+div.col-md-8
+div.col-md-4
+  table.table
+    - Accord.states.keys.each do |state|
+      tr class="#{state}"
+        td= AccordDecorator.new(Accord.new).state_to_text(state)
+
+div.col-md-12
+  div class="panel-group smart-accordion-default" 
+    div class="panel panel-default"
+      div class="panel-heading"
+        h4 class="panel-title"
+            | Přehled žádostí
+      div id="collaplast" class="panel-collapse"
+        table.table
+          thead
+            tr
+              th Číslo
+              th Stav
+              th Datum Vytvoření
+              th Výkupní cena
+              th Klient
+              th Adresa nemovitosti
+              th Agent
+              th Vytvořil 
+              th colspan="3" 
+          tbody
+            - @accords.each do |accord|
+              tr class="#{accord.object_state}"
+                td= accord.number
+                td= accord.state
+                td= accord.created_at
+                td
+                td= accord.first_client_full_name
+                td
+                td agent
+                td= accord.creator_name
+                td= link_to 'Show', accord
+                td= link_to 'Edit', edit_accord_path(accord)
+                td= link_to 'Destroy', accord, method: :delete, data: {confirm: 'Are you sure?'}  

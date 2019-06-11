@@ -1,0 +1,2 @@
+class CommitmentType < ApplicationRecord
+end

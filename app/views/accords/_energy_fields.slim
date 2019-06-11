@@ -1,0 +1,16 @@
+- f.object = f.object.decorate
+tr
+	= f.hidden_field :accord_id, value: @accord.id
+	td
+		= f.select :kind, f.object.select_kind_energy, {selected: f.object.object_kind},{class: "selectpicker form-control kind_energy", "data-live-search" => "true"}
+	td
+		= f.text_field :date_of, class: "form-control  text-right"
+	td
+		= f.select :distributor_id, Distributor.select([:id,:name]).map{|a| [a.name,a.id]},{},{class: "selectpicker form-control", "data-live-search" => "true"}
+	td	
+		= f.text_field :price, class: "form-control"
+	td				
+		= f.text_field :payment_day, class: "form-control"
+	td
+		= link_to_remove_association "Odstranění energie", f, class: 'btn btn-primary btn-danger'
+ 

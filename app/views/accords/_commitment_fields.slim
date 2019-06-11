@@ -1,0 +1,17 @@
+tr
+	= f.hidden_field :accord_id, value: @accord.id
+	td
+		= f.select :commitment_type_id, CommitmentType.select([:id,:description]).map{|a| [a.description,a.id]},{},{class: "selectpicker form-control", "data-live-search" => "true"}
+	td
+		= f.text_field :amount, class: "form-control amount text-right"
+	td
+		= f.text_field :real_amount, class: "form-control real_amount text-right"
+	td
+		= f.text_field :date_of_excepted_payment, class: "form-control"
+	td	
+		= f.text_field :payout_day, class: "form-control"
+	td				
+		= f.text_field :description, class: "form-control"
+	td
+		= link_to_remove_association "Odstranění závazku", f, class: 'btn btn-primary btn-danger'
+ 

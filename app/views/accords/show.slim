@@ -1,0 +1,45 @@
+div class="#{@accord.object_state}"
+  div.container-fluid
+    ol.breadcrumb
+      li.breadcrumb-item
+        b
+          = link_to 'Žádosti', accords_path()  
+      li.breadcrumb-item
+          | žádost č.
+          = @accord.id
+          |  ,klienta 
+          = @accord.first_client_full_name
+          | ,ve stavu 
+          = @accord.state
+          | , v péči uživatele 
+          = @accord.owner_name
+  div.col-md-12 class="#{@accord.object_state}"
+    div class="panel-group smart-accordion-default" 
+      div.panel-body.no-padding
+        = render partial: "accords/show/accord_action"
+        = render partial: "accords/show/accord_data"
+        = render partial: "accords/show/accord_realities"
+        = render partial: "accords/show/accords_expert_evidence"
+        = render partial: "accords/show/accords_clients"
+        = render partial: "accords/show/accords_commitments"
+        = render partial: "accords/show/accords_expense"
+        = render partial: "accords/show/accords_energy"
+        = render partial: "accords/show/accords_note"
+        = render partial: "accords/show/accords_upload"
+
+javascript:
+  var spocitej_castku;
+  $(document).ready(function() {
+      $("#sum_amount").text(spocitej_castku(".amount") + " Kč");
+      $("#sum_real_amount").text(spocitej_castku(".real_amount") + " Kč");
+      $("#expense_sum_amount").text(spocitej_castku(".expense_amount") + " Kč");
+      $("#expense_sum_real_amount").text(spocitej_castku(".expense_real_amount") + " Kč");
+    });
+
+  spocitej_castku = function(selector){
+    var sum = 0;
+      $(selector).each(function() {
+          sum += Number($(this).text());
+      });
+      return sum;
+  };

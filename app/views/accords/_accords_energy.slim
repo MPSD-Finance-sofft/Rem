@@ -1,0 +1,47 @@
+div class="panel-group smart-accordion-default" 
+  div class="panel panel-default"
+    div class="panel-heading"
+      h4 class="panel-title"
+        a data-toggle="collapse" data-parent="#accordion" href="#collapseThirth" aria-expanded="false" class="collapsed" 
+          i class="fa fa-lg fa-angle-down pull-right"
+          i class="fa fa-lg fa-angle-up pull-right"
+          | Přepis energií
+    div id="collapseThirth" class="panel-collapse"
+		div.panel-body.no-padding
+			.links
+  				= link_to_add_association('Přidej energie', f, :energies, :"data-association-insertion-node" => "tbody#nested_energies",:"data-association-insertion-method" => "append",  class: 'btn btn-primary btn-success') 
+				= link_to_add_association 'Přidej energie elektřina', f, :energies,:"data-association-insertion-node" => "table#energies_table",:"data-association-insertion-method" => "append",  class: 'btn btn-primary btn-success eletricity'
+    			= link_to_add_association 'Přidej energie plyn', f, :energies,:"data-association-insertion-node" => "table#energies_table",:"data-association-insertion-method" => "append",  class: 'btn btn-primary btn-success gas'
+			table id="energies_table" class="table table-hover table-bordered"
+		  		tr
+					th
+						| Typ
+					th
+						| Datum žádosti
+					th
+						| Distributor
+					th
+						| Výše zálohy
+					th
+						| Datum úhrady
+				tbody id="nested_energies"
+					= f.fields_for :energies do |energies|
+						= render 'energy_fields', f: energies
+
+javascript:
+  var zmen_plyn,zmen_elektrina;
+  $(document).ready(function() {
+    $(document).on('click', '.gas', function(evt) {
+        zmen_plyn();
+        });
+    $(document).on('click', '.eletricity', function(evt) {
+        zmen_elektrina();
+        });
+    });
+
+  zmen_plyn = function(){
+    $(".kind_energy").first().val("gas")
+  }
+  zmen_elektrina = function(){
+    $(".kind_energy").first().val("electricity")
+  }

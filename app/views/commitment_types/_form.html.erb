@@ -1,0 +1,22 @@
+<%= form_with(model: commitment_type, local: true) do |form| %>
+  <% if commitment_type.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(commitment_type.errors.count, "error") %> prohibited this commitment_type from being saved:</h2>
+
+      <ul>
+      <% commitment_type.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

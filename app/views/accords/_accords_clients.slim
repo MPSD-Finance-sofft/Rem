@@ -1,0 +1,15 @@
+div class="panel-group smart-accordion-default" 
+  div class="panel panel-default"
+    div class="panel-heading"
+      h4 class="panel-title"
+        a data-toggle="collapse" data-parent="#accordion" href="#collapseThirth" aria-expanded="false" class="collapsed" 
+          i class="fa fa-lg fa-angle-down pull-right"
+          i class="fa fa-lg fa-angle-up pull-right"
+          | Klient
+    div id="collapseThirth" class="panel-collapse"
+      div.panel-body.no-padding
+        .links
+          = link_to_add_association('přidej klienta', f, :accords_clients, :"data-association-insertion-method" => "after") 
+      	.accords_clients
+          = f.fields_for :accords_clients do |accords_clients|
+            = render 'accords_client_fields', f: accords_clients

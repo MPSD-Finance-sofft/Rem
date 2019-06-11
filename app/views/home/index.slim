@@ -1,0 +1,68 @@
+div.col-md-12
+	p id="notice"
+  			= notice
+	div.container-fluid
+			ol.breadcrumb
+				li.breadcrumb-item
+					b
+					| Uživatelé
+					li.breadcrumb-item
+						= current_user.username
+	div class="col-md-6"
+		div class="panel-group smart-accordion-default" 
+			div class="panel panel-default"
+				div.panel-heading
+					div.col-md-6.nopadding.panel-title
+						| Přehled uživatele
+					div.col-md-2.nopadding.text-right.panel-title
+						=link_to "Upravit", edit_user_path(current_user)
+					div.col-md-2.nopadding.text-right.panel-title
+						=link_to "Změny", changes_users_path(id: current_user.id)
+					br
+				div.panel-body
+					div.col-md-6
+						= image_tag current_user.avatar.url
+					div.col-md-4
+						table.table
+							tr
+								th Jméno
+								td=current_user.all_name
+							tr
+								th Mobil
+								td=current_user.mobile
+							tr
+								th Zkratka("accord_id")
+								td=current_user.short_name
+							tr
+								th Rodné číslo
+								td=current_user.identity_card_number
+							tr
+								th E-mail
+								td=current_user.email
+							tr
+								th Ičo
+								td=current_user.identity_company_number
+							tr
+								th Název společnosti
+								td=current_user.name_company
+							tr
+								th Datum spolupráce
+								td=current_user.date_of_cooperation
+							tr
+								th Nadřízený
+								td=current_user.superior.try(:all_name)
+							tr
+								th Web
+								td=current_user.web
+							tr
+								th Číslo účtu
+								td
+									=current_user.account_number
+									|  / 
+									=current_user.bank_code 	
+							tr
+								th Role
+								td
+									=current_user.permission.try(:kind)			
+	div class="calendar col-md-4"
+

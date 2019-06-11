@@ -1,0 +1,25 @@
+div class="panel-group smart-accordion-default" 
+  div class="panel panel-default"
+    div class="panel-heading"
+      h4 class="panel-title"
+        a data-toggle="collapse" data-parent="#accordion" href="#collapseFirth" aria-expanded="true" class="collapsed" 
+          i class="fa fa-lg fa-angle-down pull-right"
+          i class="fa fa-lg fa-angle-up pull-right"
+          | Znalecké posudky
+    div id="collapseFirth" class="panel-collapse"
+      div.panel-body.no-padding
+      	table.table
+      		tr
+      			th | Zp ze dne
+      			th | Číslo znaleckého posudku
+      			th | Cena nemovitosti
+      			th | Cena tržní
+      			th | Vypracoval
+      		tr
+      			- @accord.expert_evidences.decorate.each do |expert_evidence|
+      				tr
+      					td=expert_evidence.of_date
+      					td=expert_evidence.number
+      					td=expert_evidence.price
+      					td=expert_evidence.market_price
+      					td=expert_evidence.user

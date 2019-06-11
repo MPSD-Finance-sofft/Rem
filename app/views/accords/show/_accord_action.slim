@@ -1,0 +1,58 @@
+div class="panel-group smart-accordion-default" 
+  div class="panel panel-default"
+    div class="panel-heading"
+      h4 class="panel-title"
+        a data-toggle="collapse" data-parent="#accordion" href="#collapseFirth" aria-expanded="true" class="collapsed" 
+          i class="fa fa-lg fa-angle-down pull-right"
+          i class="fa fa-lg fa-angle-up pull-right"
+          | Akce
+    div id="collapseFirth" class="panel-collapse"
+      div.panel-body
+      	= link_to "Úprava", edit_accord_path(@accord.id),{class: 'btn btn-info', type: 'buttom'}
+        = link_to "Rozpracovat", accord_path(@accord, accord: {state: 'state_eleboration', user_id: current_user.id}) , {:method=> :put, class: 'btn btn-info', type: 'buttom'}
+        = link_to "K podepsání", accord_path(@accord, accord: {state: 'to_sign'}) , {:method=> :put, class: 'btn btn-info', type: 'buttom'}
+        = link_to "Smlouva", accord_path(@accord, accord: {state: 'contract'}) , {:method=> :put, class: 'btn btn-info', type: 'buttom'}
+        = link_to "Zamítnout", accord_path(@accord, accord: {state: 'refuse'}) , {:method=> :put, class: 'btn btn-info', type: 'buttom'}
+        = link_to "Stažená", accord_path(@accord, accord: {state: 'dowload'}) , {:method=> :put, class: 'btn btn-info', type: 'buttom'}
+        br
+        button.btn.btn-primary data-target="#exampleModalCenter" data-toggle="modal" type="button" 
+          | Přidej poznámku 
+        button.btn.btn-primary data-target="#uploadModalCenter" data-toggle="modal" type="button" 
+          | Přidej přílohy
+        br
+        = link_to "Zobraz změny", changes_accords_path(id: @accord.id) , { class: 'btn btn-info', type: 'buttom'}
+
+/! Modal
+#exampleModalCenter.modal.fade aria-hidden="true" aria-labelledby="exampleModalCenterTitle" role="dialog" tabindex="-1" 
+  .modal-dialog.modal-dialog-centered role="document" 
+    .modal-content
+      .modal-header
+        h5#exampleModalLongTitle.modal-title Přidání poznámky
+        button.close aria-label="Close" data-dismiss="modal" type="button" 
+          span aria-hidden="true"  &times;
+      .modal-body
+        = form_with(model: Note.new.decorate, local: true) do |f|
+          = f.hidden_field :accord_id, value: @accord.id
+          = f.text_area :description, class: "form-control"
+          = f.select :color,  f.object.select_color,{include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true"}
+          .modal-footer
+            button.btn.btn-secondary data-dismiss="modal" type="button"  Close
+            button.btn.btn-primary type="submit"  Odešli
+
+
+/! Modal
+#uploadModalCenter.modal.fade aria-hidden="true" aria-labelledby="exampleModalCenterTitle" role="dialog" tabindex="-1" 
+  .modal-dialog.modal-dialog-centered role="document" 
+    .modal-content
+      .modal-header
+        h5#exampleModalLongTitle.modal-title Přidání poznámky
+        button.close aria-label="Close" data-dismiss="modal" type="button" 
+          span aria-hidden="true"  &times;
+      .modal-body
+        = form_with(model: Upload.new, local: true, html: {multipart:true}) do |f| 
+          = f.hidden_field :accord_id, value: @accord.id 
+          = f.file_field :file 
+          .modal-footer
+            button.btn.btn-secondary data-dismiss="modal" type="button"  Close
+            button.btn.btn-primary type="submit"  Odešli
+

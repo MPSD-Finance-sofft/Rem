@@ -1,0 +1,16 @@
+tr
+	= f.hidden_field :accord_id, value: @accord.id
+	td
+		= f.select :expense_type_id, ExpenseType.select([:id,:name]).map{|a| [a.name,a.id]},{},{class: "selectpicker form-control", "data-live-search" => "true"}
+	td
+		= f.text_field :amount, class: "form-control expense_amount text-right"
+	td
+		= f.text_field :real_amount, class: "form-control expense_real_amount text-right"
+	td
+		= f.text_field :date_of_excepted_payment, class: "form-control"
+	td	
+		= f.text_field :payout_day, class: "form-control"
+	td				
+		= f.text_field :description, class: "form-control"
+	td
+		= link_to_remove_association "Odstranění nákladu", f, class: 'btn btn-primary btn-danger'
