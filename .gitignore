@@ -19,7 +19,6 @@
 /config/database.yml
 /tmp
 /coverage
-/public
 /code_metrics
 /db/schema_orig.rb
 /db/schema.rb
@@ -28,3 +27,5 @@
 /ladici_log.txt
 npm-debug.log
 /test
+/public/prilohy
+/public/system
