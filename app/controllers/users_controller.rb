@@ -25,6 +25,17 @@ class UsersController < ApplicationController
  	def changes
  	end
 
+ 	def impersonate
+    	user = User.find(params[:id])
+    	impersonate_user(user)
+    	redirect_to root_path
+  	end
+
+  	def stop_impersonating
+    	stop_impersonating_user
+    	redirect_to root_path
+  	end
+
  	private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -35,4 +46,5 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(User.new.attributes.keys, :avatar ,permission_attributes: [Permission.new.attributes.keys])
     end
+
 end
