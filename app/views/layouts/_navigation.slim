@@ -1,11 +1,13 @@
 nav.navbar.navbar-inverse.navbar-fixed-top
-  = link_to 'Home', root_path, {class: 'navbar-brand' ,type: 'button'}
-  div class="collapse navbar-collapse" id="navbarNavDropdown"
+  div.col-sm-1
+    div.col-md-6
+      = link_to (image_tag current_user.avatar.url), root_path
+  div class="collapse navbar-collapse col-md-6" id="navbarNavDropdown"
     ul class="navbar-nav"
       li.nav-item
         = link_to 'Žádosti', accords_path, class: 'navbar-brand'
       li.nav-item
-        | Agenti
+         = link_to 'Agenti', users_path, class: 'navbar-brand'
       li.nav-item.dropdown
         a class="nav-link dropdown-toggle navbar-brand" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
           | Nastavení
