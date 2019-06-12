@@ -1,11 +1,11 @@
 		div class="panel-group smart-accordion-default" 
 			div class="panel panel-default"
 				div.panel-heading
-					div.col-md-6.nopadding.panel-title
+					div.col-md-8.nopadding.panel-title
 						| Přehled uživatele
-					div.col-md-2.nopadding.text-right.panel-title
+					div.col-md-2.nopadding.panel-title
 						=link_to "Upravit", edit_user_path(user)
-					div.col-md-2.nopadding.text-right.panel-title
+					div.col-md-2.nopadding.panel-title
 						=link_to "Změny", changes_users_path(id: user.id)
 					br
 				div.panel-body

@@ -20,6 +20,7 @@ div.col-md-12
 				table.table
 					thead
 						tr
+							th Username
 							th Celé jméno
 							th 
 							th 
@@ -27,6 +28,7 @@ div.col-md-12
 						- @users.each do |user|
 							tr
 								td= link_to user.all_name, card_user_path(user)
+								td= link_to user.username, card_user_path(user)
 								td= link_to "Přihlášení na", masquerade_path(user)
 								td= link_to "edit", edit_user_path(user)
 								td
