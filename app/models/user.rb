@@ -3,7 +3,7 @@ class User < ApplicationRecord
   	# Include default devise modules. Others available are:
   	# :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   	devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable,  authentication_keys: [:username]
+         :recoverable, :rememberable, :validatable, :masqueradable, authentication_keys: [:username]
 	has_attached_file :avatar
   	do_not_validate_attachment_file_type :avatar
 	has_many :messages, :dependent => :destroy
@@ -15,5 +15,17 @@ class User < ApplicationRecord
 
 	def all_name
 		self.name.to_s + ' ' + self.last_name.to_s
+	end
+
+	def admin?
+		self.permission.try(:kind) == "admin" 
+	end
+
+	def user?
+
+	end
+
+	def agent?
+
 	end
 end

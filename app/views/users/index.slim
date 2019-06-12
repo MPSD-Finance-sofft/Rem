@@ -24,4 +24,5 @@ div.col-md-12
 						- @users.each do |user|
 							tr
 								td=user.name
+								td= link_to "Login As", masquerade_path(user)
 				

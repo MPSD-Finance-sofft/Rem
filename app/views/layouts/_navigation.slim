@@ -1,7 +1,7 @@
 - unless current_user.blank?
   nav.navbar.navbar-inverse.navbar-fixed-top
     div.col-sm-1
-      div.col-md-6
+      div.col-md-8
         = link_to (image_tag current_user.avatar.url), root_path
     div class="collapse navbar-collapse col-md-6" id="navbarNavDropdown"
       ul class="navbar-nav"
@@ -23,4 +23,7 @@
             br
             = link_to 'Uživatelé', users_path, class: 'dropdown-item'
         li.nav-item
-          = link_to "Sign out", destroy_user_session_path(), :method => :delete , class: 'navbar-brand'
+          - if user_masquerade?
+            = link_to "Přihlášení na sebe ", back_masquerade_path(current_user), class: 'navbar-brand'
+          - else
+            = link_to "Odhlášení", destroy_user_session_path(), :method => :delete , class: 'navbar-brand'

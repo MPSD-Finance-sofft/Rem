@@ -29,6 +29,8 @@ gem 'draper'
 gem "cocoon"
 gem 'paper_trail'
 gem 'wicked_pdf'
+gem "pundit"
+gem 'devise_masquerade'
 
 
 group :development, :test do
