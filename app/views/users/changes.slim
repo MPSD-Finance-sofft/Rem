@@ -2,7 +2,7 @@ div.container-fluid
   ol.breadcrumb
     li.breadcrumb-item
       b
-        | Uživatel 
+        = link_to 'Uživatelé', users_path
     li.breadcrumb-item
         | Uživatel č.
         = @user.id

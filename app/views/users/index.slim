@@ -10,19 +10,23 @@ div.container-fluid
 div.col-md-12
 	div class="panel-group smart-accordion-default" 
 		div class="panel panel-default"
-			div class="panel-heading"
-				h4 class="panel-title"
-				| Přehled uživatelů
+			div.panel-heading
+					div.col-md-6.nopadding.panel-title
+						| Přehled uživatelů
+					div.col-md-2.nopadding.text-right.panel-title
+						= link_to "Nový uživatel", new_user_users_path()
+					br
 			div id="collaplast" class="panel-collapse"
 				table.table
 					thead
 						tr
-						th Username
-						th Jméno
-						th Přijmení
+							th Celé jméno
+							th 
+							th 
 					tbody
 						- @users.each do |user|
 							tr
-								td=user.name
-								td= link_to "Login As", masquerade_path(user)
-				
+								td= link_to user.all_name, card_user_path(user)
+								td= link_to "Přihlášení na", masquerade_path(user)
+								td= link_to "edit", edit_user_path(user)
+								td

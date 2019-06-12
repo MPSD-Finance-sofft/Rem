@@ -1,0 +1,9 @@
+div.col-md-12
+	div.container-fluid
+		ol.breadcrumb
+			li.breadcrumb-item
+				b
+				| Karta uživatele
+				li.breadcrumb-item
+					= current_user.username
+		= render partial: "card", locals:{user: @user}

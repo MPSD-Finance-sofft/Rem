@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	before_action :set_user, only: [:show, :edit, :update, :changes]
+	before_action :set_user, only: [:card, :edit, :update, :changes]
 	
 	def index
 		@users = policy_scope(User)
@@ -7,12 +7,14 @@ class UsersController < ApplicationController
 	end
 
 	def edit
-
+		authorize @user
 	end
+
 	def update
+		authorize @user
 		respond_to do |format|
 	      if @user.update(user_params)
-	        format.html { redirect_to root_path, notice: 'Accord was successfully updated.' }
+	        format.html { redirect_to card_user_path(@user), notice: 'Accord was successfully updated.' }
 	        format.json { render :show, status: :ok, location: @user }
 	      else
 	        format.html { render :edit }
@@ -21,22 +23,37 @@ class UsersController < ApplicationController
     	end
 	end
 
+	def show
+	end
+
 	def destroy
+		authorize @users
 	end
 
  	def changes
  	end
 
- 	def impersonate
-    	user = User.find(params[:id])
-    	impersonate_user(user)
-    	redirect_to root_path
-  	end
+ 	def card
+ 	end
 
-  	def stop_impersonating
-    	stop_impersonating_user
-    	redirect_to root_path
-  	end
+ 	def new_user
+ 		@user = User.new
+ 	end
+
+ 	def create_user
+ 		binding.pry
+ 		@user = User.new(user_params)
+		respond_to do |format|
+	      if @user.save
+	        format.html { redirect_to card_user_path(@user), notice: 'Uživatel úspěšně založen' }
+	        format.json { render :show, status: :ok, location: @user }
+	      else
+	        format.html { render :new_user }
+	        format.json { render json: @user.errors, status: :unprocessable_entity }
+	      end
+    	end
+ 	end
+
 
  	private
     # Use callbacks to share common setup or constraints between actions.
@@ -46,7 +63,13 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(User.new.attributes.keys, :avatar ,permission_attributes: [Permission.new.attributes.keys])
+      params.require(:user).permit(User.new.attributes.keys, :avatar ,:password,:email,permission_attributes: [Permission.new.attributes.keys])
     end
+
+    def configure_permitted_parameters
+  		devise_parameter_sanitizer.permit(:sign_in) do |user_params|
+    		user_params.permit(:username, :email, :password, :password_confirmation)
+  		end
+	end
 
 end

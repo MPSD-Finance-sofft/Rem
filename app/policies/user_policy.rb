@@ -1,13 +1,12 @@
 class UserPolicy < ApplicationPolicy
 	
 	def index?
-		@record = nil
 		user.admin?
 	end
 
-	 def update?
-    	false
-  	end
+  def update?
+    user.admin? || user.user?
+  end
 
  	class Scope < Scope
    

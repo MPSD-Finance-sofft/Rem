@@ -2,8 +2,7 @@ class User < ApplicationRecord
 	has_paper_trail ignore: [:updated_at, :id, :encrypted_password]
   	# Include default devise modules. Others available are:
   	# :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  	devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :masqueradable, authentication_keys: [:username]
+  	devise :database_authenticatable, :recoverable, :rememberable, :validatable, :masqueradable, authentication_keys: [:username]
 	has_attached_file :avatar
   	do_not_validate_attachment_file_type :avatar
 	has_many :messages, :dependent => :destroy
@@ -22,10 +21,10 @@ class User < ApplicationRecord
 	end
 
 	def user?
-
+		self.permission.try(:kind) == "user" 
 	end
 
 	def agent?
-
+		self.permission.try(:kind) == "agent" 
 	end
 end

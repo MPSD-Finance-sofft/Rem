@@ -13,9 +13,14 @@ Rails.application.routes.draw do
   resources :clients
   resources :realties
   resources :realty_types
-  resources :users, only: [:index,:edit,:update]  do
+  resources :users, only: [:index,:edit,:update, :card, :new_user, :create_user]  do
     collection do
       get :changes
+      get :new_user
+      post :create_user
+    end
+    member do 
+      get :card
     end
   end
   resources :accords do
