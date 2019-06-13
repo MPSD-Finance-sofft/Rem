@@ -1,0 +1,2 @@
+class AccordPolicy < ApplicationPolicy
+end

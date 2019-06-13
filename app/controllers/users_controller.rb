@@ -41,7 +41,6 @@ class UsersController < ApplicationController
  	end
 
  	def create_user
- 		binding.pry
  		@user = User.new(user_params)
 		respond_to do |format|
 	      if @user.save

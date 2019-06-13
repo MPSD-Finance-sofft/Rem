@@ -22,29 +22,6 @@ div.col-md-12
         h4 class="panel-title"
             | Přehled žádostí
       div id="collaplast" class="panel-collapse"
-        table.table
-          thead
-            tr
-              th Číslo
-              th Stav
-              th Datum Vytvoření
-              th Výkupní cena
-              th Klient
-              th Adresa nemovitosti
-              th Agent
-              th Vytvořil 
-              th colspan="3" 
-          tbody
-            - @accords.each do |accord|
-              tr class="#{accord.object_state}"
-                td= accord.number
-                td= accord.state
-                td= accord.created_at
-                td
-                td= accord.first_client_full_name
-                td
-                td agent
-                td= accord.creator_name
-                td= link_to 'Show', accord
-                td= link_to 'Edit', edit_accord_path(accord)
-                td= link_to 'Destroy', accord, method: :delete, data: {confirm: 'Are you sure?'}  
+        table.table id="accords-datatable" data-source="accords" style="width:100%"
+         
+              

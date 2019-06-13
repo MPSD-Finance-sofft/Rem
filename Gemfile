@@ -31,6 +31,8 @@ gem 'paper_trail'
 gem 'wicked_pdf'
 gem "pundit"
 gem 'devise_masquerade'
+gem 'jquery-datatables'
+gem 'ajax-datatables-rails'
 
 
 group :development, :test do

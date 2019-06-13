@@ -4,7 +4,10 @@ class AccordsController < ApplicationController
   # GET /accords
   # GET /accords.json
   def index
-    @accords = Accord.all.decorate
+    respond_to do |format|
+      format.html
+      format.json { render json: AccordDatatable.new(params) }
+    end
   end
 
   # GET /accords/1

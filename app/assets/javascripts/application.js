@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require datatables
 //= require bootstrap
 //= require moment
 //= require fullcalendar
