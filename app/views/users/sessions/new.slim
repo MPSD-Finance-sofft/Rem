@@ -18,5 +18,4 @@ div.col-md-12
               = f.input :password,required: false,input_html: { autocomplete: "current-password" } 
               = f.input :remember_me, as: :boolean if devise_mapping.rememberable? 
             div class="form-actions"
-              = f.button :submit, "Log in" 
-          = render "users/shared/links" 
+              = f.button :submit, "Log in"  
