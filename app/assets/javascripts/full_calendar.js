@@ -3,6 +3,7 @@ initialize_calendar = function() {
   $('.calendar').each(function(){
     var calendar = $(this);
     calendar.fullCalendar({
+      lang: 'cs',
       header: {
         left: 'prev,next today',
         center: 'title',
