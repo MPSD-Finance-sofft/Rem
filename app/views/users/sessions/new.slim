@@ -3,16 +3,13 @@ div.container-fluid
     li.breadcrumb-item
       b
         | Přihlášení
-    li.breadcrumb-item
-div.col-md-12
-  div class="panel-group smart-accordion-default" 
-    div class="panel panel-default"
-      div class="panel-heading"
-        h4 class="panel-title"
-            | Login
-      div id="collaplast" class="panel-collapse"
-        div.panel-body.no-padding
-          = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| 
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary Přihlášení
+    .card-body
+      .chart-area
+        = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| 
             div class="form-group"
               = f.input :username,required: false,autofocus: true,input_html: { autocomplete: "username" }
               = f.input :password,required: false,input_html: { autocomplete: "current-password" } 
