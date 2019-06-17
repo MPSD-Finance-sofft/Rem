@@ -14,11 +14,11 @@ div.container-fluid
     .card-body
       .chart-area
         table.table
-          thead
-            tr
-              th Jméno
-          tbody
-            - @commitment_types.each do |commitment_types|
-              tr
-                td= link_to commitment_types.description, edit_commitment_type_path(commitment_types)
+      		thead
+	            tr
+	              th Jméno
+      		tbody
+	            - @commitment_types.each do |commitment_types|
+	              tr
+	                td= link_to commitment_types.description, edit_commitment_type_path(commitment_types)
         br

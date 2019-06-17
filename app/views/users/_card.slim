@@ -10,7 +10,7 @@
 			.chart-area
 				div.col-md-5
 					= image_tag user.avatar.url
-				div.col-md-4
+				div.col-md-7
 					table.table
 						tr
 							th Uživatelské jméno
@@ -52,6 +52,18 @@
 								|  / 
 								=user.bank_code 	
 						tr
-							th Role
+							th Beží výpověd
+							td 
+								=user.runing_notice	
+						tr
+							th Aktivní
 							td
-								=user.permission.try(:kind)			
+								=user.active	
+						tr
+							th Muže se přihlásit
+							td
+								=user.can_sign_in		
+						tr
+							th Kompletní dokumentace
+							td
+								=user.complate_documentation		

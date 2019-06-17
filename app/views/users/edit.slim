@@ -72,6 +72,18 @@ hr
 	.form-group
 		= f.label :bank_code
 		= f.text_field :bank_code, class: "form-control"
+	.form-group
+		= f.label :runing_notice, "Beží výpověd"
+		= f.check_box :runing_notice, class: "form-control"
+	.form-group
+		= f.label :active, "Aktivní"
+		= f.check_box :active, class: "form-control"
+	.form-group
+		= f.label :can_sign_in, "Muže se přihlásit"
+		= f.check_box :can_sign_in, class: "form-control"
+	.form-group
+		= f.label :complate_documentation, "Kompletní dokumentace"
+		= f.check_box :complate_documentation, class: "form-control"
 	.action
 	    = f.submit "Odešli" , class: "btn btn-default", type: "submit"
 	    = link_to 'Zpět', root_path, class: "btn btn-default"

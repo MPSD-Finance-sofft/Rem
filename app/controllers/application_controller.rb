@@ -4,10 +4,19 @@ class ApplicationController < ActionController::Base
  	include Pundit
 	protect_from_forgery with: :exception
 	before_action :set_paper_trail_whodunnit
-
+	before_action :current_user_can_sign_in?
 	rescue_from Pundit::NotAuthorizedError , with: :deny_access
 
 	def deny_access
 		redirect_to root_path, alert: "Nemáte potřebná oprávnění"
 	end
+
+	def current_user_can_sign_in?
+		unless current_user.nil? 
+			unless User.find_by_username(current_user.username).try(:can_sign_in)
+				sign_out current_user 
+				redirect_to root_path, alert: "Nemáte potřebná oprávnění"
+			end
+		end
+	end 
 end

@@ -1,4 +1,4 @@
-class UserValidator < ActiveModel::Validator
+class ::UserValidator < ActiveModel::Validator
 
 	def validate(record)
 		agent_validate(record)
