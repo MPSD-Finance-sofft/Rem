@@ -1,12 +1,23 @@
-div.col-md-12
-	div.container-fluid
-			ol.breadcrumb
-				li.breadcrumb-item
-					b
-					| Uživatelé
-					li.breadcrumb-item
-						= current_user.username
-	div class="col-md-6"
-		= render partial: "users/card", locals:{user: current_user}		
-	div class="calendar col-md-4"
+.col-xl-7.col-lg-6
+  .card.shadow.mb-4
+    /! Card Header - Dropdown
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary Novinky Aplikace
+    .card-body
+      .chart-area
+.col-xl-7.col-lg-6
+  .card.shadow.mb-4
+    /! Card Header - Dropdown
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary Nástěnka
+    .card-body
+      .chart-area
 
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    /! Card Header - Dropdown
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary Kalendář
+    .card-body
+      .chart-area
+  	   	div class="calendar"

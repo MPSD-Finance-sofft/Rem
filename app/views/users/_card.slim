@@ -1,58 +1,57 @@
-		div class="panel-group smart-accordion-default" 
-			div class="panel panel-default"
-				div.panel-heading
-					div.col-md-8.nopadding.panel-title
-						| Přehled uživatele
-					div.col-md-2.nopadding.panel-title
-						=link_to "Upravit", edit_user_path(user)
-					div.col-md-2.nopadding.panel-title
-						=link_to "Změny", changes_users_path(id: user.id)
-					br
-				div.panel-body
-					div.col-md-5
-						= image_tag user.avatar.url
-					div.col-md-4
-						table.table
-							tr
-								th Uživatelské jméno
-								td=user.username
-							tr
-								th Jméno
-								td=user.all_name
-							tr
-								th Mobil
-								td=user.mobile
-							tr
-								th Zkratka("accord_id")
-								td=user.short_name
-							tr
-								th Rodné číslo
-								td=user.identity_card_number
-							tr
-								th E-mail
-								td=user.email
-							tr
-								th Ičo
-								td=user.identity_company_number
-							tr
-								th Název společnosti
-								td=user.name_company
-							tr
-								th Datum spolupráce
-								td=user.date_of_cooperation
-							tr
-								th Nadřízený
-								td=user.superior.try(:all_name)
-							tr
-								th Web
-								td=user.web
-							tr
-								th Číslo účtu
-								td
-									=user.account_number
-									|  / 
-									=user.bank_code 	
-							tr
-								th Role
-								td
-									=user.permission.try(:kind)			
+.col-xl-12.col-lg-12
+	.card.shadow.mb-4
+		.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+			h6.m-0.font-weight-bold.text-primary Karta uživatele
+			div.col-md-2.nopadding.text-right.panel-title
+				=link_to "Upravit", edit_user_path(user)
+			div.col-md-2.nopadding.text-right.panel-title
+				=link_to "Změny", changes_users_path(id: user.id)
+		.card-body
+			.chart-area
+				div.col-md-5
+					= image_tag user.avatar.url
+				div.col-md-4
+					table.table
+						tr
+							th Uživatelské jméno
+							td=user.username
+						tr
+							th Jméno
+							td=user.all_name
+						tr
+							th Mobil
+							td=user.mobile
+						tr
+							th Zkratka("accord_id")
+							td=user.short_name
+						tr
+							th Rodné číslo
+							td=user.identity_card_number
+						tr
+							th E-mail
+							td=user.email
+						tr
+							th Ičo
+							td=user.identity_company_number
+						tr
+							th Název společnosti
+							td=user.name_company
+						tr
+							th Datum spolupráce
+							td=user.date_of_cooperation
+						tr
+							th Nadřízený
+							td=user.superior.try(:all_name)
+						tr
+							th Web
+							td=user.web
+						tr
+							th Číslo účtu
+							td
+								=user.account_number
+								|  / 
+								=user.bank_code 	
+						tr
+							th Role
+							td
+								=user.permission.try(:kind)			

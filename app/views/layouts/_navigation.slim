@@ -1,29 +1,36 @@
 - unless current_user.blank?
-  nav.navbar.navbar-inverse.navbar-fixed-top
-    div.col-sm-1
-      div.col-md-8
-        = link_to (image_tag current_user.avatar.url), root_path
-    div class="collapse navbar-collapse col-md-6" id="navbarNavDropdown"
-      ul class="navbar-nav"
-        li.nav-item
-          = link_to 'Žádosti', accords_path, class: 'navbar-brand'
-        li.nav-item
-           = link_to 'Agenti', users_path, class: 'navbar-brand'
-        li.nav-item.dropdown
-          a class="nav-link dropdown-toggle navbar-brand" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-            | Nastavení
-          div.dropdown-menu aria-labelledby="navbarDropdownMenuLink"
-            = link_to 'Typy nemovitostí', realty_types_path, class: 'dropdown-item' 
-            br
-            = link_to 'Typy závazků', commitment_types_path, class: 'dropdown-item'
-            br
-            = link_to 'Typy nákladů', expense_types_path, class: 'dropdown-item'
-            br
-            = link_to 'Distributoři', distributors_path, class: 'dropdown-item'
-            br
-            = link_to 'Uživatelé', users_path, class: 'dropdown-item'
-        li.nav-item
-          - if user_masquerade?
-            = link_to "Přihlášení na sebe ", back_masquerade_path(current_user), class: 'navbar-brand'
-          - else
-            = link_to "Odhlášení", destroy_user_session_path(), :method => :delete , class: 'navbar-brand'
+  ul#accordionSidebar.navbar-nav.bg-gradient-primary.sidebar.sidebar-dark.accordion
+    /! Sidebar - Brand
+    a.sidebar-brand.d-flex.align-items-center.justify-content-center href="/" 
+      .sidebar-brand-text.mx-3
+        | Rem
+    /! Divider
+    hr.sidebar-divider.my-0/
+    /! Heading
+    .sidebar-heading
+      | Interface
+    /! Nav Item - Pages Collapse Menu
+    li.nav-item
+      a.nav-link href="/accords" 
+        i.fas.fa-fw.fa-table
+        span Žádosti
+      a.nav-link href="/users" 
+        i.fas.fa-fw.fa-table
+        span Agenti
+    /! Nav Item - Utilities Collapse Menu
+    li.nav-item
+      a.nav-link.collapsed aria-controls="collapseUtilities" aria-expanded="true" data-target="#collapseUtilities" data-toggle="collapse" href="#" data-remote="true"
+        i.fas.fa-fw.fa-wrench
+        span Nastavení
+      #collapseUtilities.collapse aria-labelledby="headingUtilities" data-parent="#accordionSidebar" 
+        .bg-white.py-2.collapse-inner.rounded
+          h6.collapse-header Nastavení aplikace:
+          a.collapse-item href="/realty_types"  Typy nemovitostí
+          a.collapse-item href="/commitment_types"  Typy závazků
+          a.collapse-item href="/expense_types"  Animations
+          a.collapse-item href="/distributors"  Distributoři
+    /! Divider
+    hr.sidebar-divider/
+    .text-center.d-none.d-md-inline
+      button#sidebarToggle.rounded-circle.border-0
+

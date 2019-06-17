@@ -7,28 +7,26 @@ div.container-fluid
         | Uživatelé
     li.breadcrumb-item
       | Přehled uživatelů
-div.col-md-12
-	div class="panel-group smart-accordion-default" 
-		div class="panel panel-default"
-			div.panel-heading
-					div.col-md-6.nopadding.panel-title
-						| Přehled uživatelů
-					div.col-md-2.nopadding.text-right.panel-title
-						= link_to "Nový uživatel", new_user_users_path()
-					br
-			div id="collaplast" class="panel-collapse"
-				table.table
-					thead
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+		h6.m-0.font-weight-bold.text-primary Přehled uživatelů
+		div.col-md-2.nopadding.text-right.panel-title
+			= link_to "Nový uživatel", new_user_users_path()
+	.card-body
+		.chart-area
+			table.table
+				thead
+					tr
+						th Username
+						th Celé jméno
+						th 
+						th 
+				tbody
+					- @users.each do |user|
 						tr
-							th Username
-							th Celé jméno
-							th 
-							th 
-					tbody
-						- @users.each do |user|
-							tr
-								td= link_to user.all_name, card_user_path(user)
-								td= link_to user.username, card_user_path(user)
-								td= link_to "Přihlášení na", masquerade_path(user)
-								td= link_to "edit", edit_user_path(user)
-								td
+							td= link_to user.all_name, card_user_path(user)
+							td= link_to user.username, card_user_path(user)
+							td= link_to "Přihlášení na", masquerade_path(user)
+							td= link_to "edit", edit_user_path(user)
+							td

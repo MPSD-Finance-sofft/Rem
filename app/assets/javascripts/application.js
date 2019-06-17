@@ -20,6 +20,8 @@
 //= require daterangepicker
 //= require cocoon
 //= require jquery-ui
+//= require sb-admin-2
+//= require sb-admin-2.min
 //= require_tree .
 
 
