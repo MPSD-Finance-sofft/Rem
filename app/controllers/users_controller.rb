@@ -12,6 +12,7 @@ class UsersController < ApplicationController
 
 	def update
 		authorize @user
+		@user.current_user = current_user
 		respond_to do |format|
 	      if @user.update(user_params)
 	        format.html { redirect_to card_user_path(@user), notice: 'Accord was successfully updated.' }
@@ -42,6 +43,7 @@ class UsersController < ApplicationController
 
  	def create_user
  		@user = User.new(user_params)
+ 		@user.current_user = current_user
 		respond_to do |format|
 	      if @user.save
 	        format.html { redirect_to card_user_path(@user), notice: 'Uživatel úspěšně založen' }

@@ -13,8 +13,6 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
         <%= render 'layouts/navigation' %>
-        <%= render 'layouts/messages' %>
-        <%#= yield %>
     <!-- Content Wrapper -->
     <% unless current_user.blank? %>
     <div id="content-wrapper" class="d-flex flex-column">
@@ -63,6 +61,7 @@
         <!-- Begin Page Content -->
         <% end %>
         <div class="container-fluid">
+           <%= render 'layouts/messages' %>
            <%= yield %>
     </div>
     <!-- End of Content Wrapper -->

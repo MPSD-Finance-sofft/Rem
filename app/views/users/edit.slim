@@ -1,5 +1,6 @@
-h1
-	| Uprava uživatele
+h1 class="h3 mb-0 text-gray-800"
+	| Úprava uživatele
+hr
 = form_with(model: @user, local: true) do |f|
 	- if @user.errors.any?
 		#error_explanation
@@ -12,37 +13,46 @@ h1
 	.form-group
 		= f.label :avatar
 		= f.file_field :avatar, class: "form-control"
+	.form-group
+		= f.label :username, "Přihlašovací jméno"
+		= f.text_field :username, {class: "form-control",  required: true}
 	- f.object.build_permission if f.object.permission.blank?
 	= f.fields_for :permission do |f|
 		.form-group
-			= f.label :kind
-			= f.select :kind, Permission.kinds.keys.map{|a| [a,a]},{include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true"}
+			= f.label :kind, "Role"
+			= f.select :kind, Permission.kinds.keys.map{|a| [a,a]},{include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true",  required: true}
 	.form-group
-		= f.label :superior_id
+		= f.label :email, "Email"
+		= f.text_field :email, {class: "form-control", type:"email", required: true}
+	.form-group
+		//= f.label :password, "Heslo"
+		//////= f.text_field :password, {class: "form-control " ,autocomplete: "new-password", type:"password",  required: true}
+	.form-group
+		//= f.label :password_confirmation
+		//= f.text_field :password_confirmation, {class: "form-control " ,autocomplete: "new-password", type:"password"}
+	.form-group
+		= f.label :superior_id, "Nadřízený"
 		= f.select :superior_id, User.select([:id,:name, :last_name]).map{|a| [a.all_name,a.id]},{include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true"}
 	.form-group
-		= f.label :title_before
+		= f.label :title_before, "Titul před"
 		= f.text_field :title_before, class: "form-control"
 	.form-group
 		= f.label :name, "Jméno"
-		= f.text_field :name, class: "form-control"
+		= f.text_field :name, {class: "form-control", required: true}
 	.form-group
 		= f.label :last_name, "Přijmení"
-		= f.text_field :last_name, class: "form-control"
+		= f.text_field :last_name,  {class: "form-control", required: true}
 	.form-group
-		= f.label :title_last
+		= f.label :title_last, "Titul za"
 		= f.text_field :title_last, class: "form-control"
 	.form-group
-		= f.label :short_name
+		= f.label :short_name, "Zkrácenina"
 		= f.text_field :short_name, class: "form-control"
 	.form-group
 		= f.label :mobile, "Mobil"
-		= f.text_field :mobile, class: "form-control"
+		= f.text_field :mobile,  {class: "form-control", required: true}
 	.form-group
-		= f.label :email, "Email"
-		= f.text_field :email, class: "form-control"
-	.form-group
-		= f.label :name_company
+		= f.label :name_company, "Jméno společnosti"
 		= f.text_field :name_company, class: "form-control"
 	.form-group
 		= f.label :identity_card_number
@@ -54,7 +64,7 @@ h1
 		= f.label :date_of_cooperation
 		= f.text_field :date_of_cooperation, class: "form-control"
 	.form-group
-		= f.label :web
+		= f.label :web, "Web"
 		= f.text_field :web, class: "form-control"
 	.form-group
 		= f.label :account_number
@@ -64,6 +74,4 @@ h1
 		= f.text_field :bank_code, class: "form-control"
 	.action
 	    = f.submit "Odešli" , class: "btn btn-default", type: "submit"
-
-
-= link_to 'Back', root_path
+	    = link_to 'Zpět', root_path, class: "btn btn-default"

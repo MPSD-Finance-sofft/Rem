@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+	attr_accessor :current_user
 	has_paper_trail ignore: [:updated_at, :id, :encrypted_password]
   	# Include default devise modules. Others available are:
   	# :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -13,12 +14,18 @@ class User < ApplicationRecord
 
 	accepts_nested_attributes_for :permission,  reject_if: :all_blank, allow_destroy: true
 
+	validates_with UserValidator
+
 	def all_name
 		self.name.to_s + ' ' + self.last_name.to_s
 	end
 
 	def admin?
 		self.permission.try(:kind) == "admin" 
+	end
+	
+	def not_admin?
+		self.permission.try(:kind) != "admin" 
 	end
 
 	def user?
