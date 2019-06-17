@@ -1,0 +1,24 @@
+div.container-fluid
+  ol.breadcrumb
+    li.breadcrumb-item
+      b
+        | 
+    li.breadcrumb-item
+      | Přehled typů nemovitostí
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary Přehled typů nemovitostí
+      div.col-md-2.nopadding.text-right.panel-title
+        = link_to 'Nový typ nemovitosti', new_realty_type_path
+    .card-body
+      .chart-area
+        table.table
+          thead
+            tr
+              th Jméno
+          tbody
+            - @realty_types.each do |realty_type|
+              tr
+                td= link_to realty_type.name, edit_realty_type_path(realty_type)
+        br

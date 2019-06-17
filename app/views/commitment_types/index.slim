@@ -1,0 +1,24 @@
+div.container-fluid
+  ol.breadcrumb
+    li.breadcrumb-item
+      b
+        | 
+    li.breadcrumb-item
+      | Přehled typů závazků
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary Přehled typů závazků
+      div.col-md-2.nopadding.text-right.panel-title
+        = link_to 'Nový typ závazku', new_commitment_type_path
+    .card-body
+      .chart-area
+        table.table
+          thead
+            tr
+              th Jméno
+          tbody
+            - @commitment_types.each do |commitment_types|
+              tr
+                td= link_to commitment_types.description, edit_commitment_type_path(commitment_types)
+        br
