@@ -1,0 +1,17 @@
+<h1>Repayments</h1>
+
+<table class="responsive nowrap table table-hover" id="dttb-repayments" data-sort="true" data-source="<%= url_for(format: :json)%>">
+  <thead>
+    <tr>
+      <th data-data="amount">Amount</th>
+      <th data-data="repayment_date">Repayment date</th>
+      <th data-data="leasing_contract_id">Leasing contract</th>
+      <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
+    </tr>
+  </thead>
+
+</table>
+
+<br>
+
+<%= link_to 'New Repayment', new_repayment_path %>

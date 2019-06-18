@@ -1,0 +1,24 @@
+div.container-fluid
+  ol.breadcrumb
+    li.breadcrumb-item
+      b
+        | Nájemní smlouvy
+    li.breadcrumb-item
+      | Přehled nájemních smluv
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary Přehled žádostí
+      div.col-md-2.nopadding.text-right.panel-title
+        = link_to 'Nová nájemní smlouva', new_leasing_contract_path
+    .card-body
+      table#dttb-leasing_contracts.responsive.nowrap.table.table-hover data-sort="true" data-source=("#{url_for(format: :json)}") 
+        thead
+          tr
+            th data-data="state"  State
+            th data-data="expected_date_of_signature"  Expected date of signature
+            th data-data="rent_from"  Rent from
+            th data-data="rent_to"  Rent to
+            th data-data="payment_day"  Payment day
+            th data-data="monthly_rent"  Monthly rent
+            th.skip-export data-class-name="all" data-data="url" data-orderable="false" data-searchable="false" width="100px" 

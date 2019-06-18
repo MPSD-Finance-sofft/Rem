@@ -12,19 +12,18 @@ div.container-fluid
 		div.col-md-2.nopadding.text-right.panel-title
 			= link_to "Nový uživatel", new_user_users_path()
 	.card-body
-		.chart-area
-			table.table
-				thead
+		table.table
+			thead
+				tr
+					th Username
+					th Celé jméno
+					th 
+					th 
+			tbody
+				- @users.each do |user|
 					tr
-						th Username
-						th Celé jméno
-						th 
-						th 
-				tbody
-					- @users.each do |user|
-						tr
-							td= link_to user.all_name, card_user_path(user)
-							td= link_to user.username, card_user_path(user)
-							td= link_to "Přihlášení na", masquerade_path(user)
-							td= link_to "edit", edit_user_path(user)
-							td
+						td= link_to user.all_name, card_user_path(user)
+						td= link_to user.username, card_user_path(user)
+						td= link_to "Přihlášení na", masquerade_path(user)
+						td= link_to "edit", edit_user_path(user)
+						td

@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :repayments
+  resources :payments
+  resources :leasing_contracts
   resources :permissions
   resources :addresses
   resources :distributors

@@ -22,6 +22,7 @@
 //= require jquery-ui
 //= require sb-admin-2
 //= require sb-admin-2.min
+//= require bootstrap-datepicker
 //= require_tree .
 
 

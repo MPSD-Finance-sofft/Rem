@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @repayment.amount %>
+</p>
+
+<p>
+  <strong>Repayment date:</strong>
+  <%= @repayment.repayment_date %>
+</p>
+
+<p>
+  <strong>Leasing contract:</strong>
+  <%= @repayment.leasing_contract_id %>
+</p>
+
+<%= link_to 'Edit', edit_repayment_path(@repayment) %> |
+<%= link_to 'Back', repayments_path %>

@@ -1,0 +1,17 @@
+div class="#{@leasing_contract.object_state}"
+  div.container-fluid
+    ol.breadcrumb
+      li.breadcrumb-item
+        b
+          = link_to 'Nájemní smlouva', accords_path()  
+      li.breadcrumb-item
+          | Nájemní smlouva č.
+          = @leasing_contract.id
+= render partial: "leasing_contracts/show/action"
+= render partial: "leasing_contracts/show/data"
+= render partial: "leasing_contracts/show/repayment"
+= render partial: "leasing_contracts/show/payment"
+= render partial: "leasing_contracts/show/client"
+= render partial: "leasing_contracts/show/realty"
+= render partial: "leasing_contracts/show/notice"
+= render partial: "leasing_contracts/show/uploads"

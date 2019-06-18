@@ -33,6 +33,7 @@ gem "pundit"
 gem 'devise_masquerade'
 gem 'jquery-datatables'
 gem 'ajax-datatables-rails'
+gem 'bootstrap-datepicker-rails'
 
 
 group :development, :test do

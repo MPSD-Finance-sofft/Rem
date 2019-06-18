@@ -1,0 +1,22 @@
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    /! Card Header - Dropdown
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary Data
+    .card-body
+    	table.table
+    		tr
+    			th Stav
+    			th Předpokládané datum podpisu
+    			th Nájem od
+    			th Nájem do
+    			th Den platby
+    			th Měsíční nájemné
+    		tr
+    			td =@leasing_contract.state
+    			td =@leasing_contract.expected_date_of_signature
+    			td =@leasing_contract.rent_from
+    			td =@leasing_contract.rent_to
+    			td =@leasing_contract.payment_day
+    			td =@leasing_contract.monthly_rent
+    	
