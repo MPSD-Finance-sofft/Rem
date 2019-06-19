@@ -17,7 +17,7 @@ class User < ApplicationRecord
 
 
 	def all_name
-		self.name.to_s + ' ' + self.last_name.to_s
+		 self.last_name.to_s + ' ' +  self.name.to_s 
 	end
 
 	def admin?
@@ -34,6 +34,10 @@ class User < ApplicationRecord
 
 	def agent?
 		self.permission.try(:kind) == "agent" 
+	end
+
+	def can_login?
+		self.can_sign_in
 	end
 
 	scope :subordinates,   ->(user){ where(superior_id: user.id) }

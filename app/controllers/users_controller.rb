@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 	def index
 		@users = policy_scope(User)
 		authorize @users
+		@users = UserDecorator.decorate_collection(@users)
 	end
 
 	def edit

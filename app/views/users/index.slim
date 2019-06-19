@@ -15,15 +15,34 @@ div.container-fluid
 		table.table
 			thead
 				tr
+					th Role
+					th
 					th Username
 					th Celé jméno
-					th 
-					th 
+					th Společnost Agenta
+					th Nadřízený
+					th Aktivní
+					th Počet žádostí
+					th Počet smluv
+
+					
 			tbody
 				- @users.each do |user|
 					tr
-						td= link_to user.all_name, card_user_path(user)
-						td= link_to user.username, card_user_path(user)
-						td= link_to "Přihlášení na", masquerade_path(user)
-						td= link_to "edit", edit_user_path(user)
+						td =user.permission
+						td
+							- if user.can_login?
+								= link_to masquerade_path(user) do 
+									i class="fa fa-unlock" style="color:green"
+							- else
+									i class="fa fa-lock " style="color:red"
+							=link_to edit_user_path(user) do
+								i class="fas fa-user-edit"
+						td.font-weight-bold
+							= link_to user.username, card_user_path(user)
+						td = link_to user.all_name, card_user_path(user)
+						td.font-weight-bold=user.name_company
+						td.font-weight-bold=user.superior
+						td.font-weight-bold
+						td
 						td
