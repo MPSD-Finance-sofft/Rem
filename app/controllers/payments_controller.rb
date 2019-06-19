@@ -1,6 +1,6 @@
 class PaymentsController < ApplicationController
   before_action :set_payment, only: [:show, :edit, :update, :destroy]
-  before_action :set_leasing_contract, only: [:show, :edit, :update, :destroy]
+  before_action :set_leasing_contract, only: [:show, :edit, :update, :destroy, :create]
 
   # GET /payments
   # GET /payments.json
