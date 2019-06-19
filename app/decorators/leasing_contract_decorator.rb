@@ -1,6 +1,7 @@
 class LeasingContractDecorator < ApplicationDecorator
-  delegate_all
-	
+  	delegate_all
+  	decorates_association :repayment
+
 	def object_state
   		object.state
   	end
@@ -30,4 +31,16 @@ class LeasingContractDecorator < ApplicationDecorator
  		LeasingContract.states.keys.map{|a| [state_to_text(a), a]}
  	end
 
+
+ 	def rent_from
+ 		format_date(object.rent_from)
+ 	end
+
+ 	def rent_to
+ 		format_date(object.rent_to)
+ 	end
+ 	
+ 	def expected_date_of_signature
+ 		format_date(object.expected_date_of_signature)
+ 	end
 end

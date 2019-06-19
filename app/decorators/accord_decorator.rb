@@ -23,7 +23,7 @@ class AccordDecorator < ApplicationDecorator
  			when 'contract'
  				'Smouva'
  			when 'refuse'
- 				'Odmítnuto'
+ 				'Zamítnutá'
  			when 'dowload'
  				'Stažená'
  			else

@@ -1,0 +1,24 @@
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    /! Card Header - Dropdown
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary Splátky
+    .card-body
+	    #repayments
+	    	.links
+				= link_to_add_association('Přidej Splátku', f, :repayments, :"data-association-insertion-node" => "tbody#nested_repayments",:"data-association-insertion-method" => "append",  class: 'btn btn-primary btn-success') 
+	    	table id="repayments_table" class="table table-hover table-bordered"
+				tr
+					th Datum splatnosti
+					th Částka
+				tbody id="nested_repayments"
+					= f.fields_for :repayments do |repayments|
+						= render 'repayment_fields', f: repayments
+
+javascript: 
+	$('#repayments').on('cocoon:after-insert', function() {
+	  $('input').datepicker({
+	    language: "cs"
+	  });
+	});
+			

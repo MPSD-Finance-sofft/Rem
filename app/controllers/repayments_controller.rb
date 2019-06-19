@@ -1,5 +1,6 @@
 class RepaymentsController < ApplicationController
   before_action :set_repayment, only: [:show, :edit, :update, :destroy]
+  before_action :set_leasing_contract, only: [:show, :edit, :update, :destroy, :bulk_create]
 
   # GET /repayments
   # GET /repayments.json
@@ -36,6 +37,19 @@ class RepaymentsController < ApplicationController
       end
     end
   end
+  
+  def bulk_create
+    @leasing_contract.generate_repayments
+    respond_to do |format|
+      if @leasing_contract.save
+        format.html { redirect_to @leasing_contract, notice: 'Repayment was successfully created.' }
+        format.json { render :show, status: :created, location: @leasing_contract }
+      else
+        format.html { render :new }
+        format.json { render json: @leasing_contract.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
   # PATCH/PUT /repayments/1
   # PATCH/PUT /repayments/1.json
@@ -65,6 +79,10 @@ class RepaymentsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_repayment
       @repayment = Repayment.find(params[:id])
+    end 
+
+    def set_leasing_contract
+      @leasing_contract = LeasingContract.find(params[:leasing_contract_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

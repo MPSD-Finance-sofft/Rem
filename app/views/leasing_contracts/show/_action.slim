@@ -4,4 +4,5 @@
     .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
       h6.m-0.font-weight-bold.text-primary Akce
     .card-body
-    	= link_to "Úprava", edit_leasing_contract_path(@leasing_contract.id),{class: 'btn btn-info', type: 'buttom'}
+    	= link_to "Úprava", edit_leasing_contract_path(@leasing_contract.id),{class: 'btn btn-info ', type: 'buttom'}
+    	= link_to "Generování splátek", bulk_create_leasing_contract_repayments_path(leasing_contract_id: @leasing_contract.id),{class: 'btn btn-info', type: 'buttom'}

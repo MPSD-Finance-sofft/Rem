@@ -1,0 +1,47 @@
+div class="#{@leasing_contract.object_state}"
+  div.container-fluid
+    ol.breadcrumb
+      li.breadcrumb-item
+        b
+          = link_to 'Nájemní smlouva', leasing_contracts_path()  
+      li.breadcrumb-item
+          | Nájemní smlouva č.
+          = @leasing_contract.id
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    /! Card Header - Dropdown
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary Úprava nájemní smlouvy
+    .card-body
+		= form_with(model: @leasing_contract.decorate, local: true) do |form|
+			- if @leasing_contract.errors.any?
+				#error_explanation
+				h2
+					= pluralize(@leasing_contract.errors.count, "error")
+					| prohibited this leasing_contract from being saved:
+				ul
+					- @leasing_contract.errors.full_messages.each do |message|
+						li= message
+			.form-group
+				= form.label :state, "Stav"
+				= form.select :state, form.object.select_state,{},{class: "selectpicker form-control", "data-live-search" => "true"}
+			.form-group
+				= form.label :expected_date_of_signature, "Předpokládané datum podpisu"
+				= form.text_field :expected_date_of_signature,{class: "form-control datapicker", required: true}
+			.form-group
+				= form.label :rent_from, "Nájem od"
+				= form.text_field :rent_from,{class: "form-control datapicker", required: true}
+			.form-group
+				= form.label :rent_to, "Nájem do"
+				= form.text_field :rent_to,{class: "form-control datapicker", required: true}
+			.form-group
+				= form.label :payment_day, "Den platby"
+				= form.number_field :payment_day, {class: "form-control", required: true}
+			.form-group
+				= form.label :monthly_rent, "Měsíční nájemné"
+				= form.text_field :monthly_rent, {class: "form-control", required: true}
+			.form-group
+				= render 'repayments_fields', f: form
+			.actions
+				= form.submit
+= link_to 'Zpět', leasing_contract_path(@leasing_contract)
