@@ -1,5 +1,6 @@
 class PaymentsController < ApplicationController
   before_action :set_payment, only: [:show, :edit, :update, :destroy]
+  before_action :set_leasing_contract, only: [:show, :edit, :update, :destroy]
 
   # GET /payments
   # GET /payments.json
@@ -28,11 +29,11 @@ class PaymentsController < ApplicationController
 
     respond_to do |format|
       if @payment.save
-        format.html { redirect_to @payment, notice: 'Payment was successfully created.' }
-        format.json { render :show, status: :created, location: @payment }
+        format.html { redirect_to @leasing_contract, notice: 'Payment was successfully created.' }
+        format.json { render :show, status: :created, location: @leasing_contract }
       else
         format.html { render :new }
-        format.json { render json: @payment.errors, status: :unprocessable_entity }
+        format.json { render json: @leasing_contract.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -67,6 +68,9 @@ class PaymentsController < ApplicationController
       @payment = Payment.find(params[:id])
     end
 
+    def set_leasing_contract
+      @leasing_contract = LeasingContract.find(params[:leasing_contract_id])
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def payment_params
       params.require(:payment).permit(:amount, :payment_date, :leasing_contract_id)

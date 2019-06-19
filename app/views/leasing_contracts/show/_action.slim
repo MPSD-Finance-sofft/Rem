@@ -6,3 +6,27 @@
     .card-body
     	= link_to "Úprava", edit_leasing_contract_path(@leasing_contract.id),{class: 'btn btn-info ', type: 'buttom'}
     	= link_to "Generování splátek", bulk_create_leasing_contract_repayments_path(leasing_contract_id: @leasing_contract.id),{class: 'btn btn-info', type: 'buttom'}
+    	button.btn.btn-primary data-target="#paymentModal" data-toggle="modal" type="button" 
+    		| Přidej úhradu
+
+
+/! Modal
+#paymentModal.modal.fade aria-hidden="true" aria-labelledby="exampleModalCenterTitle" role="dialog" tabindex="-1" 
+  .modal-dialog.modal-dialog-centered role="document" 
+    .modal-content
+      .modal-header
+        h5#exampleModalLongTitle.modal-title Přidání úhrady
+        button.close aria-label="Close" data-dismiss="modal" type="button" 
+          span aria-hidden="true"  &times;
+      .modal-body
+        = form_with(model: [@leasing_contract,Payment.new.decorate], local: true) do |f|
+          = f.hidden_field :leasing_contract_id, value: @leasing_contract.id
+          .form-group
+          	= f.label :amount, 'Částka'
+          	= f.text_field :amount, class: "form-control"
+          .form-group
+          	= f.label :amount, "Datum platby"
+          	= f.text_field :payment_date, class: "form-control datapicker"
+          .modal-footer
+            button.btn.btn-secondary data-dismiss="modal" type="button"  Close
+            button.btn.btn-primary type="submit"  Odešli
