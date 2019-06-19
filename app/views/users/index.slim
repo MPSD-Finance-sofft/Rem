@@ -38,6 +38,8 @@ div.container-fluid
 									i class="fa fa-lock " style="color:red"
 							=link_to edit_user_path(user) do
 								i class="fas fa-user-edit"
+							a href="mailto:#{user.email}"
+								i class="fas fa-at"
 						td.font-weight-bold
 							= link_to user.username, card_user_path(user)
 						td = link_to user.all_name, card_user_path(user)
