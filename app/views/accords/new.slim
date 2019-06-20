@@ -29,6 +29,18 @@ div.col-md-12
 			    	= f.label :state, "Stav"
 					= f.select :state, f.object.select_state,{},{class: "selectpicker form-control", "data-live-search" => "true"}
 				.form-group
+			    	= f.label :kind, "Typ žádosti"
+					= f.select :kind, f.object.select_kind,{},{class: "selectpicker form-control", "data-live-search" => "true"}
+				.form-group
+			    	= f.label :agency_commission, "Zprostředkovatelská provize"
+					= f.text_field :agency_commission,{class: "form-control"}
+				.form-group
+			    	= f.label :purchase_price, "Předpokládaná výkupní cena"
+					= f.text_field :purchase_price,{class: "form-control"}
+				.form-group
+			    	= f.label :agent_id, "Agent"
+					= f.text_field :agent_id, User.agents.map{|a| [a.id,a.all_name]}{class: "form-control"}
+				.form-group
 				.form-group
 				   = render partial: "accords_realities", locals: {f: f}
 				.form-group

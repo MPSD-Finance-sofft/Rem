@@ -1,0 +1,28 @@
+div.container-fluid
+  ol.breadcrumb
+    li.breadcrumb-item
+      b
+        | Provize
+    li.breadcrumb-item
+      | Přehled provizi
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary Přehled provizi
+    .card-body
+      table.table
+        tr
+          th Žádost
+          th Agent
+          th Zprostředkovatelská provize
+          th Provize za smlouvu
+          th Datum faktury
+          th Datum vyplaceni
+        - @rewards.each do |reward|
+          tr
+            td=link_to reward.accord, accord_path(reward.accord)
+            td=link_to reward.agent, card_user_path(reward.user_id)
+            td=reward.agency_commission
+            td=reward.commission_for_the_contract
+            td=reward.invoice_date
+            td=reward.payout_date

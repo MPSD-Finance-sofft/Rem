@@ -1,32 +1,27 @@
-div class="panel-group smart-accordion-default" 
-  div class="panel panel-default"
-    div class="panel-heading"
-      h4 class="panel-title"
-        a data-toggle="collapse" data-parent="#accordion" href="#collapseFirth" aria-expanded="true" class="collapsed" 
-          i class="fa fa-lg fa-angle-down pull-right"
-          i class="fa fa-lg fa-angle-up pull-right"
-          | Data
-    div id="collapseFirth" class="panel-collapse"
-      div.panel-body.no-padding
-        table.table
-            tr
-              th | Typ žádosti
-              th | Číslo žádosti
-              th | ČÍslo smlouvy
-              th | Datum podpisu
-              th | Datum vlastnictví
-              th | Datum předání
-              th | Vytvořil
-              th | V péči
-            tr
-              td=@accord.kind
-              td=@accord.number
-              td=@accord.contract_number
-              td=@accord.date_of_signature
-              td=@accord.date_of_ownership
-              td=@accord.date_of_transfer
-              td=@accord.creator_name
-              td=@accord.owner_name
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary Data
+    .card-body
+      table.table
+        tr
+          th | Typ žádosti
+          th | Číslo žádosti
+          th | Číslo smlouvy
+          th | Datum podpisu
+          th | Datum vlastnictví
+          th | Datum předání
+          th | Vytvořil
+          th | V péči
+        tr
+          td=@accord.kind
+          td=@accord.number
+          td=@accord.contract_number
+          td=@accord.date_of_signature
+          td=@accord.date_of_ownership
+          td=@accord.date_of_transfer
+          td=@accord.creator_name
+          td=@accord.owner_name
 
 
 

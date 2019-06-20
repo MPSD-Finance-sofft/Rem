@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Accord:</strong>
+  <%= @reward.accord_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @reward.user_id %>
+</p>
+
+<p>
+  <strong>Agency commission:</strong>
+  <%= @reward.agency_commission %>
+</p>
+
+<p>
+  <strong>Commission for the contract:</strong>
+  <%= @reward.commission_for_the_contract %>
+</p>
+
+<p>
+  <strong>Invoice date:</strong>
+  <%= @reward.invoice_date %>
+</p>
+
+<p>
+  <strong>Payout date:</strong>
+  <%= @reward.payout_date %>
+</p>
+
+<%= link_to 'Edit', edit_reward_path(@reward) %> |
+<%= link_to 'Back', rewards_path %>

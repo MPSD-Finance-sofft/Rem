@@ -1,40 +1,35 @@
-div class="panel-group smart-accordion-default" 
-  div class="panel panel-default"
-    div class="panel-heading"
-      h4 class="panel-title"
-        a data-toggle="collapse" data-parent="#accordion" href="#collapseFirth" aria-expanded="true" class="collapsed" 
-          i class="fa fa-lg fa-angle-down pull-right"
-          i class="fa fa-lg fa-angle-up pull-right"
-          | Nemovitosti
-    div id="collapseFirth" class="panel-collapse"
-      div.panel-body.no-padding
-      	table.table.table-responsive
-      		tr 
-      			th | Typ
-      			th | Typ vlastnictví
-      			th | Záznam na LV
-      			th | Odhadovaná cena 
-      			th | List vlastnictví 
-      			th | Výkupní cena 
-      			th | Lokalita
-      			th | Zastavěná plocha
-      			th | Plocha pozemku
-      			th | Katastrální území
-            - @accord.realty.each do |realty|
-              tr
-                td=realty.realty_type
-                td=realty.type_ownership
-                td=realty.record_on_lv
-                td=realty.price_estimation
-                td=realty.property_sheet
-                td=realty.purchase_price
-                td=realty.location
-                td=realty.build_up_area
-                td=realty.land_plot
-                td=realty.catastral_territory
-                td
-                  =realty.address_village
-                  br
-                  =realty.address_street
-                  br
-                  =realty.address_number
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary Nemovitosti
+    .card-body
+      table.table.table-responsive
+        tr 
+          th | Typ
+          th | Typ vlastnictví
+          th | Záznam na LV
+          th | Odhadovaná cena 
+          th | List vlastnictví 
+          th | Výkupní cena 
+          th | Lokalita
+          th | Zastavěná plocha
+          th | Plocha pozemku
+          th | Katastrální území
+        - @accord.realty.each do |realty|
+          tr
+            td=realty.realty_type
+            td=realty.type_ownership
+            td=realty.record_on_lv
+            td=realty.price_estimation
+            td=realty.property_sheet
+            td=realty.purchase_price
+            td=realty.location
+            td=realty.build_up_area
+            td=realty.land_plot
+            td=realty.catastral_territory
+            td
+            =realty.address_village
+            br
+            =realty.address_street
+            br
+            =realty.address_number

@@ -1,16 +1,11 @@
-div class="panel-group smart-accordion-default" 
-  div class="panel panel-default"
-    div class="panel-heading"
-  		h4 class="panel-title"
-	        a data-toggle="collapse" data-parent="#accordion" href="#collapseFirth" aria-expanded="true" class="collapsed" 
-	          i class="fa fa-lg fa-angle-down pull-right"
-	          i class="fa fa-lg fa-angle-up pull-right"
-	          | Přílohy
-	div id="collapseFirth" class="panel-collapse"
-      div.panel-body.no-padding
-      	table.table
-      		tr
-      			th | Přílohy
-      		- @accord.uploads.each do |upload|
-      			tr
-      				td = link_to 'Show', upload
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary Přílohy
+    .card-body
+    	table.table
+    		tr
+    			th | Přílohy
+    		- @accord.uploads.each do |upload|
+    			tr
+    				td = link_to 'Show', upload

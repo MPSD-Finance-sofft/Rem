@@ -74,8 +74,12 @@ class AccordDecorator < ApplicationDecorator
  	end
 
  	def owner_name 
- 		object.creator.try(:all_name)
+ 		object.owner.try(:all_name)
  	end
+
+  def agent_name
+    object.agent.try(:all_name)
+  end
 
  	def state_to_color(state)
  		case state
@@ -88,4 +92,19 @@ class AccordDecorator < ApplicationDecorator
  		end
  	end
 
+  def agency_commission
+    object.agency_commission.to_s + "%"
+  end
+
+  def purchase_price
+    object.purchase_price.to_s + " Kč"
+  end
+
+  def agency_commission_price
+    object.agency_commission_price.to_s + " Kč"
+  end
+
+  def commission_for_the_contract
+    object.commission_for_the_contract.to_s + " Kč"
+  end
 end

@@ -1,0 +1,18 @@
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+		h6.m-0.font-weight-bold.text-primary Provize
+	.card-body
+        table.table
+            tr
+                th Výkupní cena
+                th Provize za smlouvu
+                th Zprostředkovatelská provize
+                th Zprostředkovatelská provize částka
+                th Agent
+            tr
+                td=@accord.purchase_price 
+                td=@accord.commission_for_the_contract 
+                td=@accord.agency_commission 
+                td=@accord.agency_commission_price 
+                td=@accord.agent_name 

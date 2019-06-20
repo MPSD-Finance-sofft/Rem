@@ -1,23 +1,18 @@
-div class="panel-group smart-accordion-default" 
-  div class="panel panel-default"
-    div class="panel-heading"
-  		h4 class="panel-title"
-	        a data-toggle="collapse" data-parent="#accordion" href="#collapseFirth" aria-expanded="true" class="collapsed" 
-	          i class="fa fa-lg fa-angle-down pull-right"
-	          i class="fa fa-lg fa-angle-up pull-right"
-	          | Poznámky
-	div id="collapseFirth" class="panel-collapse"
-      div.panel-body.no-padding
-      	table.table
-      		tr
-      			th | Čas
-      			th | Text
-      			th | Autor
-      		- @accord.notes.each do |note|
-      			tr class="#{note.attributes["color"]} color"
-      				td = note.created_at
-      				td = note.description
-      				td = note.autor
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary Poznámky
+    .card-body
+    	table.table
+    		tr
+    			th | Čas
+    			th | Text
+    			th | Autor
+    		- @accord.notes.each do |note|
+    			tr class="#{note.attributes["color"]} color"
+    				td = note.created_at
+    				td = note.description
+    				td = note.autor
       			 
 javascript: 
   $(document).ready(function() {

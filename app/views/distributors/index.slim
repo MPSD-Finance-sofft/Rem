@@ -1,0 +1,25 @@
+div.container-fluid
+  ol.breadcrumb
+    li.breadcrumb-item
+      b
+        | 
+    li.breadcrumb-item
+      | Přehled distributorů
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary Přehled distributorů
+      div.col-md-2.nopadding.text-right.panel-title
+        = link_to 'Nový distributor', new_distributor_path
+    .card-body
+      .chart-area
+        table.table
+          thead
+            tr
+              th Jméno
+              th Adresa
+          tbody
+            -  @distributors.each do |distributor|
+              tr
+                td= distributor.name
+                td= distributor.address

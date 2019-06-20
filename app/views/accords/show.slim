@@ -13,19 +13,18 @@ div class="#{@accord.object_state}"
           = @accord.state
           | , v péči uživatele 
           = @accord.owner_name
-  div.col-md-12 class="#{@accord.object_state}"
-    div class="panel-group smart-accordion-default" 
-      div.panel-body.no-padding
-        = render partial: "accords/show/accord_action"
-        = render partial: "accords/show/accord_data"
-        = render partial: "accords/show/accord_realities"
-        = render partial: "accords/show/accords_expert_evidence"
-        = render partial: "accords/show/accords_clients"
-        = render partial: "accords/show/accords_commitments"
-        = render partial: "accords/show/accords_expense"
-        = render partial: "accords/show/accords_energy"
-        = render partial: "accords/show/accords_note"
-        = render partial: "accords/show/accords_upload"
+  div.col-xl-12
+    = render partial: "accords/show/accord_action"
+    = render partial: "accords/show/accord_data"
+    = render partial: "accords/show/reward"
+    = render partial: "accords/show/accord_realities"
+    = render partial: "accords/show/accords_expert_evidence"
+    = render partial: "accords/show/accords_clients"
+    = render partial: "accords/show/accords_commitments"
+    = render partial: "accords/show/accords_expense"
+    = render partial: "accords/show/accords_energy"
+    = render partial: "accords/show/accords_note"
+    = render partial: "accords/show/accords_upload"
 
 javascript:
   var spocitej_castku;
@@ -34,6 +33,7 @@ javascript:
       $("#sum_real_amount").text(spocitej_castku(".real_amount") + " Kč");
       $("#expense_sum_amount").text(spocitej_castku(".expense_amount") + " Kč");
       $("#expense_sum_real_amount").text(spocitej_castku(".expense_real_amount") + " Kč");
+      $(".container-fluid").addClass("#{@accord.object_state}");
     });
 
   spocitej_castku = function(selector){

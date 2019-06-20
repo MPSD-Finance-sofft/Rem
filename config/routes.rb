@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :rewards
   resources :leasing_contracts do 
     resources :repayments do 
       collection do 
