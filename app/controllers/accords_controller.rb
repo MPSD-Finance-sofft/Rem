@@ -18,6 +18,7 @@ class AccordsController < ApplicationController
   # GET /accords/new
   def new
     @accord = Accord.new.decorate
+    @accord.current_user = current_user
   end
 
   # GET /accords/1/edit
@@ -28,6 +29,7 @@ class AccordsController < ApplicationController
   # POST /accords.json
   def create
     @accord = Accord.new(accord_params).decorate
+    @accord.current_user = current_user
     @accord.creator = current_user
     respond_to do |format|
       if @accord.save
@@ -72,6 +74,7 @@ class AccordsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_accord
       @accord = Accord.find(params[:id]).decorate
+      @accord.current_user = current_user
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

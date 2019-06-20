@@ -30,11 +30,11 @@ class RewardsController < ApplicationController
 
     respond_to do |format|
       if @reward.save
-        format.html { redirect_to @reward, notice: 'Reward was successfully created.' }
-        format.json { render :show, status: :created, location: @reward }
+        format.html { redirect_to @accord, notice: 'Reward was successfully created.' }
+        format.json { render :show, status: :created, location: @accord }
       else
         format.html { render :new }
-        format.json { render json: @reward.errors, status: :unprocessable_entity }
+        format.json { render json: @accord.errors, status: :unprocessable_entity }
       end
     end
   end

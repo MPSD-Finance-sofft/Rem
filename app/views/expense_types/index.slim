@@ -14,6 +14,8 @@ div.container-fluid
     .card-body
       .chart-area
         table.table
+          tr
+            th Popis
           - @expense_types.each do |expense_type|
             tr
               td= expense_type.name 

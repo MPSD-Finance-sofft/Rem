@@ -19,12 +19,12 @@ div.col-md-12
 	        = form_with(model: @accord, local: true) do |f|
 				- if @accord.errors.any?
 					#error_explanation
-					h2
-			    		= pluralize(@accord.errors.count, "error")
-			    		| prohibited this accord from being saved:
-					ul
-			    		- @accord.errors.full_messages.each do |message|
-			      			li= message
+						h2
+				    		= @accord.errors.count
+				    		|  chyby ,zabraňující odeslání formuláře:
+						ul
+				    		- @accord.errors.messages.each do |attributes,message|
+				      			li= message.first
 				.form-group
 			    	= f.label :state, "Stav"
 					= f.select :state, f.object.select_state,{},{class: "selectpicker form-control", "data-live-search" => "true"}
@@ -39,7 +39,7 @@ div.col-md-12
 					= f.text_field :purchase_price,{class: "form-control"}
 				.form-group
 			    	= f.label :agent_id, "Agent"
-					= f.text_field :agent_id, User.agents.map{|a| [a.id,a.all_name]}{class: "form-control"}
+					= f.select :agent_id, User.agents.map{|a| [a.all_name,a.id]},{include_blank: true},{class: "form-control"}
 				.form-group
 				.form-group
 				   = render partial: "accords_realities", locals: {f: f}

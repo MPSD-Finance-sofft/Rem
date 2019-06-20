@@ -2,6 +2,7 @@ class Accord < ApplicationRecord
 	has_paper_trail ignore: [:updated_at, :id]
 	include AccordsEnum
 	validates_with AccordValidator
+	attr_accessor :current_user
 	
 	has_many :accords_realty, :dependent => :destroy
 	has_many :accords_clients, :dependent => :destroy

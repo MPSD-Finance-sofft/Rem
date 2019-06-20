@@ -28,7 +28,7 @@ div class="#{@accord.object_state}"
 
 javascript:
   var spocitej_castku;
-  $(document).ready(function() {
+  $(document).on('turbolinks:load', function() {
       $("#sum_amount").text(spocitej_castku(".amount") + " Kč");
       $("#sum_real_amount").text(spocitej_castku(".real_amount") + " Kč");
       $("#expense_sum_amount").text(spocitej_castku(".expense_amount") + " Kč");
