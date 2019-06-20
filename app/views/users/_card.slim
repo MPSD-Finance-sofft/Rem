@@ -4,66 +4,119 @@
 			h6.m-0.font-weight-bold.text-primary Karta uživatele
 			div.col-md-2.nopadding.text-right.panel-title
 				=link_to "Upravit", edit_user_path(user)
-			div.col-md-2.nopadding.text-right.panel-title
+				button.btn.btn-primary data-target="#of_notice" data-toggle="modal" type="button" 
+        			| Výpověd
 				=link_to "Změny", changes_users_path(id: user.id)
 		.card-body
-			.chart-area
-				div.col-md-5
-					= image_tag user.avatar.url
-				div.col-md-7
-					table.table
-						tr
-							th Uživatelské jméno
-							td=user.username
-						tr
-							th Jméno
-							td=user.all_name
-						tr
-							th Mobil
-							td=user.mobile
-						tr
-							th Zkratka("accord_id")
-							td=user.short_name
-						tr
-							th Rodné číslo
-							td=user.identity_card_number
-						tr
-							th E-mail
-							td=user.email
-						tr
-							th Ičo
-							td=user.identity_company_number
-						tr
-							th Název společnosti
-							td=user.name_company
-						tr
-							th Datum spolupráce
-							td=user.date_of_cooperation
-						tr
-							th Nadřízený
-							td=user.superior.try(:all_name)
-						tr
-							th Web
-							td=user.web
-						tr
-							th Číslo účtu
-							td
-								=user.account_number
-								|  / 
-								=user.bank_code 	
-						tr
-							th Beží výpověd
-							td 
-								=user.runing_notice	
-						tr
-							th Aktivní
-							td
-								=user.active	
-						tr
-							th Muže se přihlásit
-							td
-								=user.can_sign_in		
-						tr
-							th Kompletní dokumentace
-							td
-								=user.complate_documentation		
+			div.col-md-5
+				= image_tag user.avatar.url
+			div.col-md-7
+				table.table
+					tr
+						th Uživatelské jméno
+						td=user.username
+					tr
+						th Jméno
+						td=user.all_name
+					tr
+						th Mobil
+						td=user.mobile
+					tr
+						th Zkratka("accord_id")
+						td=user.short_name
+					tr
+						th Rodné číslo
+						td=user.identity_card_number
+					tr
+						th E-mail
+						td=user.email
+					tr
+						th Ičo
+						td=user.identity_company_number
+					tr
+						th Název společnosti
+						td=user.name_company
+					tr
+						th Datum spolupráce
+						td=user.date_of_cooperation
+					tr
+						th Nadřízený
+						td=user.superior.try(:all_name)
+					tr
+						th Web
+						td=user.web
+					tr
+						th Číslo účtu
+						td
+							=user.account_number
+							|  / 
+							=user.bank_code 	
+					tr
+						th Beží výpověd
+						td 
+							=user.runing_notice	
+					tr
+						th Aktivní
+						td
+							=user.active	
+					tr
+						th Muže se přihlásit
+						td
+							=user.can_sign_in		
+					tr
+						th Kompletní dokumentace
+						td
+							=user.complate_documentation		
+
+.col-xl-12.col-lg-12
+	.card.shadow.mb-4
+		.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+			h6.m-0.font-weight-bold.text-primary Historie
+		.card-body
+			table.table
+				tr
+					th Datum výpovědi
+					th Počet dní
+					th Typ výpovědi
+					th Na žádost
+					th Poznámka
+				- user.cooperations.decorate.each do |cooperate|
+					tr
+						td=cooperate.date_of_notice
+						td=cooperate.day_count
+						td=cooperate.type_of_notice
+						td=cooperate.or_request
+						td=cooperate.notice
+						
+
+
+
+#of_notice.modal.fade aria-hidden="true" aria-labelledby="exampleModalCenterTitle" role="dialog" tabindex="-1" 
+	.modal-dialog.modal-dialog-centered role="document" 
+		.modal-content
+			.modal-header
+		        h5#exampleModalLongTitle.modal-title Deaktivace agenta
+		        button.close aria-label="Close" data-dismiss="modal" type="button" 
+				span aria-hidden="true"  &times;
+			.modal-body
+				= form_with(model: Cooperation.new, local: true, html: {multipart:true}) do |f| 
+					= f.hidden_field :agent_id, value: user.id 
+					= f.hidden_field :user_id, value: current_user.id 
+					.form-group
+						= f.label :date_of_notice , "Datum výpovědi"
+						= f.text_field :date_of_notice , class: "form-control datapicker"
+					.form-group
+						= f.label :day_count , "Počet dní"
+						= f.text_field :day_count , class: "form-control"
+					.form-group
+						= f.label :type_of_notice_id , "Typ výpovědi"
+						= f.select :type_of_notice_id , TypeOfNotice.all.map{|a| [a.name,a.id]},{},class: "form-control"
+					.form-group
+						= f.label :or_request_id , "Na žádost"
+						= f.select :or_request_id , User.all.map{|a| [a.name,a.id]},{},class: "form-control"
+					.form-group
+						= f.label :notice , "Poznámka"
+						= f.text_field :notice ,class: "form-control"
+					.modal-footer
+			            button.btn.btn-secondary data-dismiss="modal" type="button"  Close
+			            button.btn.btn-primary type="submit"  Deaktivovat agenta

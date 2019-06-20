@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :cooperations
+  resources :type_of_notices
   resources :rewards
   resources :leasing_contracts do 
     resources :repayments do 

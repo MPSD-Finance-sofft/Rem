@@ -1,0 +1,52 @@
+<%= form_with(model: cooperation, local: true) do |form| %>
+  <% if cooperation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(cooperation.errors.count, "error") %> prohibited this cooperation from being saved:</h2>
+
+      <ul>
+      <% cooperation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :agent_id %>
+    <%= form.number_field :agent_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date_of_notice %>
+    <%= form.date_select :date_of_notice %>
+  </div>
+
+  <div class="field">
+    <%= form.label :day_count %>
+    <%= form.number_field :day_count %>
+  </div>
+
+  <div class="field">
+    <%= form.label :type_of_notice_id %>
+    <%= form.number_field :type_of_notice_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :or_request_id %>
+    <%= form.number_field :or_request_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :notice %>
+    <%= form.text_area :notice %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

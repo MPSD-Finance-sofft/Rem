@@ -1,0 +1,2 @@
+module TypeOfNoticesHelper
+end

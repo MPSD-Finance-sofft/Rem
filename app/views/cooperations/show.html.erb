@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Agent:</strong>
+  <%= @cooperation.agent_id %>
+</p>
+
+<p>
+  <strong>Date of notice:</strong>
+  <%= @cooperation.date_of_notice %>
+</p>
+
+<p>
+  <strong>Day count:</strong>
+  <%= @cooperation.day_count %>
+</p>
+
+<p>
+  <strong>Type of notice:</strong>
+  <%= @cooperation.type_of_notice_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @cooperation.user_id %>
+</p>
+
+<p>
+  <strong>Or request:</strong>
+  <%= @cooperation.or_request_id %>
+</p>
+
+<p>
+  <strong>Notice:</strong>
+  <%= @cooperation.notice %>
+</p>
+
+<%= link_to 'Edit', edit_cooperation_path(@cooperation) %> |
+<%= link_to 'Back', cooperations_path %>

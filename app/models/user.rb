@@ -9,6 +9,7 @@ class User < ApplicationRecord
   	do_not_validate_attachment_file_type :avatar
 	has_many :messages, :dependent => :destroy
 	has_many :conversations, foreign_key: :sender_id, :dependent => :destroy
+	has_many :cooperations, foreign_key: :agent_id , :dependent => :destroy
 	has_one :permission, :dependent => :destroy
 	belongs_to :superior, class_name: "User", foreign_key: "superior_id", required: false
 	has_one :subordinate, class_name: "User", foreign_key: "superior_id"
