@@ -1,6 +1,6 @@
 module UserAddressEnum extend ActiveSupport::Concern
 	
 	included do 
-		enum kind: [:permanent, :mailing, :billing]
+		enum kind: [ :billing, :mailing, :permanent]
 	end
 end

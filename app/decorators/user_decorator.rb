@@ -16,5 +16,4 @@ class UserDecorator < ApplicationDecorator
  	def object_superior
  		object.superior
  	end
-
 end

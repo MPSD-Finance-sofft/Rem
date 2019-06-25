@@ -1,7 +1,7 @@
 - f.object = f.object.decorate
 .form-group
 	= f.label :kind, "Typ adresy"
-	= f.select :kind, f.object.select_kind,{},{class: "selectpicker form-control", "data-live-search" => "true"}
+	= f.select :kind, f.object.select_kind,{selected: f.object.object_kind},{class: "selectpicker form-control", "data-live-search" => "true"}
 - f.object.build_address unless f.object.address
 = f.fields_for :address do |f| 
 	.row.form-group

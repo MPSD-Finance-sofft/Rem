@@ -13,13 +13,17 @@ class UserAddressDecorator < ApplicationDecorator
  	def kind_to_text(kind)
  		case kind
  			when 'permanent'
- 					"Trvalá"
+ 					"Trvalého bydliště"
  			when 'mailing'
- 					"Poštovní"
+ 					"Korespondenční"
  			when 'billing'
  					"Fakturační"
  			else
  					"nedefinovaný typ addresy"
 		end
+ 	end
+
+ 	def object_kind
+ 		object.kind
  	end
 end
