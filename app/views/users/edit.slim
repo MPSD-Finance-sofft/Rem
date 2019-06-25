@@ -15,11 +15,11 @@ hr
 	    /! Card Header - Dropdown
 	    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
 	      h6.m-0.font-weight-bold.text-primary Detail účtu
-	    .card-body
-			.form-group
+	    .card-body.row
+			.form-group.col-xl-5.col-lg-5
 				= f.label :avatar
 				= f.file_field :avatar, class: "form-control"
-			.form-group
+			.form-group.col-xl-5.col-lg-5
 				= f.label :username, "Přihlašovací jméno"
 				= f.text_field :username, {class: "form-control",  required: true}
 			.form-group
@@ -30,10 +30,10 @@ hr
 				//= f.text_field :password_confirmation, {class: "form-control " ,autocomplete: "new-password", type:"password"}
 			- f.object.build_permission if f.object.permission.blank?
 			= f.fields_for :permission do |f|
-				.form-group
+				.form-group.col-xl-5.col-lg-5
 					= f.label :kind, "Role"
 					= f.select :kind, Permission.kinds.keys.map{|a| [a,a]},{include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true",  required: true}
-			.form-group
+			.form-group.col-xl-5.col-lg-5
 				= f.label :superior_id, "Nadřízený"
 				= f.select :superior_id, User.select([:id,:name, :last_name, :username]).map{|a| [a.all_name,a.id]},{include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true"}
 			.form-group
@@ -48,16 +48,16 @@ hr
 	    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
 	      h6.m-0.font-weight-bold.text-primary Osobní údaje
 	    .card-body
-	    	.form-group
+	    	.form-group.col-xl-5.col-lg-5
 				= f.label :title_before, "Titul před"
 				= f.text_field :title_before, class: "form-control"
-			.form-group
+			.form-group.col-xl-5.col-lg-5
 				= f.label :name, "Jméno"
 				= f.text_field :name, {class: "form-control", required: true}
-			.form-group
+			.form-group.col-xl-5.col-lg-5
 				= f.label :last_name, "Přijmení"
 				= f.text_field :last_name,  {class: "form-control", required: true}
-			.form-group
+			.form-group.col-xl-5.col-lg-5
 				= f.label :title_last, "Titul za"
 				= f.text_field :title_last, class: "form-control"
 	.col-xl-6.col-lg-6
@@ -66,13 +66,13 @@ hr
 	    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
 	      h6.m-0.font-weight-bold.text-primary Firemní údaje
 	    .card-body
-	    	.form-group
+	    	.form-group.col-xl-5.col-lg-5
 				= f.label :name_company, "Jméno společnosti"
 				= f.text_field :name_company, class: "form-control"
-			.form-group
+			.form-group.col-xl-5.col-lg-5
 				= f.label :identity_company_number, "Ičo"
 				= f.text_field :identity_company_number, class: "form-control"
-			.form-group
+			.form-group.col-xl-5.col-lg-5
 				= f.label :date_of_cooperation, "Datum spolupráce"
 				= f.text_field :date_of_cooperation, class: "form-control datapicker"
 	.col-xl-6.col-lg-6
@@ -84,13 +84,12 @@ hr
 	    	.form-group
 	    		= link_to_add_association('Přidej mobil', f, :user_mobile, :"data-association-insertion-method" => "after")
 	    		br
-	    		- f.object.user_mobile.build if f.object.user_mobile.blank?
             	= f.fields_for :user_mobile do |user_mobile|
               		= render 'user_mobile_fields', f: user_mobile
-			.form-group
+			.form-group.col-xl-5.col-lg-5
 				= f.label :email, "Email"
 				= f.text_field :email, {class: "form-control", type:"email", required: true}
-			.form-group
+			.form-group.col-xl-5.col-lg-5
 				= f.label :web, "Web"
 				= f.text_field :web, class: "form-control"
 			.row.form-group
@@ -111,19 +110,18 @@ hr
 		    		- f.object.user_address.build if f.object.user_address.blank?
 	            	= f.fields_for :user_address do |user_address|
 	              		= render 'user_address_fields', f: user_address
-
 	.col-xl-6.col-lg-6
 		.card.shadow.mb-4
 			.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
 				h6.m-0.font-weight-bold.text-primary Systémové údaje
 			.card-body
-				.form-group
+				.form-group.col-xl-4.col-lg-4
 					= f.label :active, "Aktivní"
 					= f.check_box :active, class: "form-control"
-				.form-group
+				.form-group.col-xl-4.col-lg-4
 					= f.label :can_sign_in, "Muže se přihlásit"
 					= f.check_box :can_sign_in, class: "form-control"
-				.form-group
+				.form-group.col-xl-4.col-lg-4
 					= f.label :complate_documentation, "Kompletní dokumentace"
 					= f.check_box :complate_documentation, class: "form-control"
 	.action
