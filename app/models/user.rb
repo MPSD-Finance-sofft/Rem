@@ -12,12 +12,15 @@ class User < ApplicationRecord
 	has_many :cooperations, foreign_key: :agent_id , :dependent => :destroy
 	has_many :user_mobile
 	has_many :mobile, through: :user_mobile
+	has_many :user_address
+	has_many :address, through: :user_address
 	has_one :permission, :dependent => :destroy
 	belongs_to :superior, class_name: "User", foreign_key: "superior_id", required: false
 	has_one :subordinate, class_name: "User", foreign_key: "superior_id"
 
 	accepts_nested_attributes_for :permission,  reject_if: :all_blank, allow_destroy: true
 	accepts_nested_attributes_for :user_mobile,  reject_if: :all_blank, allow_destroy: true
+	accepts_nested_attributes_for :user_address,  reject_if: :all_blank, allow_destroy: true
 
 
 	def all_name

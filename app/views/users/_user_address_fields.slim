@@ -1,0 +1,25 @@
+- f.object = f.object.decorate
+.form-group
+	= f.label :kind
+	= f.select :kind, f.object.select_kind,{},{class: "selectpicker form-control", "data-live-search" => "true"}
+- f.object.build_address unless f.object.address
+= f.fields_for :address do |f| 
+	.form-group	
+		= f.label :street
+		= f.text_field :street, class: "form-control"
+	.form-group
+		= f.label :village
+		= f.text_field :village, class: "form-control"
+	.form-group
+		= f.label :zip 
+		= f.text_field :zip , class: "form-control"
+	.form-group
+		= f.label :district 
+		= f.text_field :district , class: "form-control"
+	.form-group
+		= f.label :region 
+		= f.text_field :region , class: "form-control"
+	.form-group
+		= f.label :number 
+		= f.text_field :number, class: "form-control" 
+hr

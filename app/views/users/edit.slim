@@ -99,6 +99,17 @@ hr
 			.form-group
 				= f.label :bank_code
 				= f.text_field :bank_code, class: "form-control"
+	.col-xl-6.col-lg-6
+		.card.shadow.mb-4
+			.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+				h6.m-0.font-weight-bold.text-primary Adresa
+			.card-body
+				.form-group
+		    		= link_to_add_association('Přidej adresu', f, :user_address, :"data-association-insertion-method" => "after")
+		    		br
+		    		- f.object.user_address.build if f.object.user_address.blank?
+	            	= f.fields_for :user_address do |user_address|
+	              		= render 'user_address_fields', f: user_address
 
 	.col-xl-6.col-lg-6
 		.card.shadow.mb-4
