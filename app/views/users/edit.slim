@@ -86,12 +86,13 @@ hr
 	    		br
             	= f.fields_for :user_mobile do |user_mobile|
               		= render 'user_mobile_fields', f: user_mobile
-			.form-group.col-xl-5.col-lg-5
-				= f.label :email, "E-mail"
-				= f.text_field :email, {class: "form-control", type:"email", required: true}
-			.form-group.col-xl-5.col-lg-5
-				= f.label :web, "Web"
-				= f.text_field :web, class: "form-control"
+         	.row
+				.form-group.col-xl-5.col-lg-5
+					= f.label :email, "E-mail"
+					= f.text_field :email, {class: "form-control", type:"email", required: true}
+				.form-group.col-xl-5.col-lg-5
+					= f.label :web, "Web"
+					= f.text_field :web, class: "form-control"
 			.row.form-group
 				.form-group.col-xl-5.col-lg-5
 					= f.label :account_number, "Číslo účtu"
