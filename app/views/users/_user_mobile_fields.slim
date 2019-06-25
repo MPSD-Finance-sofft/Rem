@@ -2,4 +2,4 @@
 = f.fields_for :mobile do |f| 
 	.form-group
 		= f.label :phone_number, "Mobil"
-		= f.text_field :phone_number,  {class: "form-control", required: true}
+		= f.text_field :phone_number,  {class: "form-control", required: true, type:"tel", pattern:"[0-9]{9}"}
