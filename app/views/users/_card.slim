@@ -113,7 +113,7 @@
 						= f.select :type_of_notice_id , TypeOfNotice.all.map{|a| [a.name,a.id]},{},class: "form-control"
 					.form-group
 						= f.label :or_request_id , "Na žádost"
-						= f.select :or_request_id , User.all.map{|a| [a.name,a.id]},{},class: "form-control"
+						= f.select :or_request_id , User.all.map{|a| [a.all_name,a.id]},{},class: "form-control"
 					.form-group
 						= f.label :notice , "Poznámka"
 						= f.text_field :notice ,class: "form-control"

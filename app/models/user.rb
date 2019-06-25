@@ -24,7 +24,7 @@ class User < ApplicationRecord
 
 
 	def all_name
-		 self.last_name.to_s + ' ' +  self.name.to_s 
+	 self.last_name.to_s + ' ' +  self.name.to_s  + '(' + self.username + ')'
 	end
 
 	def admin?
