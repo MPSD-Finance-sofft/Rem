@@ -2,7 +2,7 @@
 	.card.shadow.mb-4
 		.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
 			h6.m-0.font-weight-bold.text-primary Karta uživatele
-			.col-md-4.nopadding.text-right.panel-title
+			.col-md-8.nopadding.text-right.panel-title
 				div.col-md-3.nopadding.text-right.panel-title
 					=link_to "Upravit", edit_user_path(user),{ type: "button", class: "btn btn-primary"}
 				.col-md-3.nopadding.text-right.panel-title
@@ -113,29 +113,7 @@
 							tr
 								td = ua.kind
 								td = ua.address.full_name
-.col-xl-12.col-lg-12
-	.card.shadow.mb-4
-		.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
-			h6.m-0.font-weight-bold.text-primary Historie
-		.card-body
-			table.table
-				tr
-					th Datum výpovědi
-					th Počet dní
-					th Typ výpovědi
-					th Na žádost
-					th Poznámka
-				- user.cooperations.decorate.each do |cooperate|
-					tr
-						td=cooperate.date_of_notice
-						td=cooperate.day_count
-						td=cooperate.type_of_notice
-						td=cooperate.or_request
-						td=cooperate.notice
 						
-
-
-
 #of_notice.modal.fade aria-hidden="true" aria-labelledby="exampleModalCenterTitle" role="dialog" tabindex="-1" 
 	.modal-dialog.modal-dialog-centered role="document" 
 		.modal-content

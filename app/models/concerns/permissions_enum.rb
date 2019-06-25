@@ -1,6 +1,6 @@
 module PermissionsEnum extend ActiveSupport::Concern
 	
 	included do 
-		enum kind: [:admin, :user, :agent, :manager]
+		enum kind: [:agent, :manager, :user, :admin]
 	end
 end

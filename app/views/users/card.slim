@@ -6,11 +6,30 @@ div.col-md-12
 				| Karta uživatele
 				li.breadcrumb-item
 					= current_user.username		
-.col-xl-6.col-lg-6
-	.card.shadow.mb-4
-    /! Card Header - Dropdown
+	.col-xl-6.col-lg-6
+		= render partial: "card", locals:{user: @user}
+	.col-xl-6.col-lg-6
+	  .card.shadow.mb-4
+	    /! Card Header - Dropdown
 	    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
-      		h6.m-0.font-weight-bold.text-primary Karta nadřízeného
-		= render partial: "superior_card", locals:{superior: @superior}
-= render partial: "card", locals:{user: @user}
-		
+	      h6.m-0.font-weight-bold.text-primary Karta nadřízeného
+	    = render partial: "superior_card", locals:{superior: @superior}
+	.col-xl-6.col-lg-6
+		.card.shadow.mb-4
+			.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+				h6.m-0.font-weight-bold.text-primary Historie
+			.card-body
+				table.table
+					tr
+						th Datum výpovědi
+						th Počet dní
+						th Typ výpovědi
+						th Na žádost
+						th Poznámka
+					- @user.cooperations.decorate.each do |cooperate|
+						tr
+							td=cooperate.date_of_notice
+							td=cooperate.day_count
+							td=cooperate.type_of_notice
+							td=cooperate.or_request
+							td=cooperate.notice
