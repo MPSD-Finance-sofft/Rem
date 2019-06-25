@@ -2,72 +2,117 @@
 	.card.shadow.mb-4
 		.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
 			h6.m-0.font-weight-bold.text-primary Karta uživatele
-			div.col-md-2.nopadding.text-right.panel-title
-				=link_to "Upravit", edit_user_path(user)
-				button.btn.btn-primary data-target="#of_notice" data-toggle="modal" type="button" 
-        			| Výpověd
-				=link_to "Změny", changes_users_path(id: user.id)
+			.col-md-4.nopadding.text-right.panel-title
+				div.col-md-3.nopadding.text-right.panel-title
+					=button_to "Upravit", edit_user_path(user), {type: "button", class: "btn btn-primary"}
+				.col-md-3.nopadding.text-right.panel-title
+					button.btn.btn-primary data-target="#of_notice" data-toggle="modal" type="button" 
+	        			| Výpověd
+	        	.col-md-3.nopadding.text-right.panel-title
+					=button_to "Změny", changes_users_path(id: user.id), {type: "button", class: "btn btn-primary"}
 		.card-body
 			div.col-md-5
 				= image_tag user.avatar.url
-			div.col-md-7
-				table.table
-					tr
-						th Uživatelské jméno
-						td=user.username
-					tr
-						th Jméno
-						td=user.all_name
-					tr
-						th Mobil
-						td=user.mobile
-					tr
-						th Zkratka("accord_id")
-						td=user.short_name
-					tr
-						th Rodné číslo
-						td=user.identity_card_number
-					tr
-						th E-mail
-						td=user.email
-					tr
-						th Ičo
-						td=user.identity_company_number
-					tr
-						th Název společnosti
-						td=user.name_company
-					tr
-						th Datum spolupráce
-						td=user.date_of_cooperation
-					tr
-						th Nadřízený
-						td=user.superior.try(:all_name)
-					tr
-						th Web
-						td=user.web
-					tr
-						th Číslo účtu
-						td
-							=user.account_number
-							|  / 
-							=user.bank_code 	
-					tr
-						th Beží výpověd
-						td 
-							=user.runing_notice	
-					tr
-						th Aktivní
-						td
-							=user.active	
-					tr
-						th Muže se přihlásit
-						td
-							=user.can_sign_in		
-					tr
-						th Kompletní dokumentace
-						td
-							=user.complate_documentation		
-
+			.col-xl-5.col-lg-5
+				.card.shadow.mb-4
+					.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+						h6.m-0.font-weight-bold.text-primary Detil učtu
+				.card-body
+					table.table
+						tr
+							th Uživatelské jméno:
+							td = user.username
+						tr
+							th Role:
+							td = user.permission
+						tr
+							th Nadřízený:
+							td = user.superior
+			.col-xl-5.col-lg-5
+				.card.shadow.mb-4
+					.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+						h6.m-0.font-weight-bold.text-primary Osobní údaje
+				.card-body
+					table.table
+						tr
+							th Jméno:
+							td = user.name
+						tr
+							th Přijmení:
+							td = user.last_name
+						tr
+							th Titul před:
+							td = user.title_before
+						tr
+							th Titul za:
+							td = user.title_last
+			.col-xl-5.col-lg-5
+				.card.shadow.mb-4
+					.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+						h6.m-0.font-weight-bold.text-primary Firemní údaje
+				.card-body
+					table.table
+						tr
+							th Název společnosti:
+							td = user.name_company
+						tr
+							th Ičo:
+							td = user.identity_company_number
+						tr
+							th Datum spolupráce:
+							td = user.date_of_cooperation
+			.col-xl-5.col-lg-5
+				.card.shadow.mb-4
+					.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+						h6.m-0.font-weight-bold.text-primary Kontaktní údaje
+				.card-body
+					table.table
+						tr
+							th Email:
+							td = user.email
+						tr
+							th Web:
+							td = user.web
+						tr
+							th Účet:
+							td 
+								= user.account_number
+								|  / 
+								= user.bank_code
+						tr
+							th Mobil:
+							td = user.mobile
+			.col-xl-5.col-lg-5
+				.card.shadow.mb-4
+					.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+						h6.m-0.font-weight-bold.text-primary Systémové údaje
+				.card-body
+					table.table
+						tr
+							th Aktivní:
+							td = user.active
+						tr
+							th Muže se přihlásit:
+							td = user.can_sign_in
+						tr
+							th Kompletní dokumentace:
+							td = user.complate_documentation
+						tr
+							th Běží výpovědní doba:
+							td = user.runing_notice
+			.col-xl-5.col-lg-5
+				.card.shadow.mb-4
+					.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+						h6.m-0.font-weight-bold.text-primary Adresy
+				.card-body
+					table.table
+						tr
+							th Typ:
+							th Adresa:
+						- user.user_address.decorate.each do |ua|
+							tr
+								td = ua.kind
+								td = ua.address.full_name
 .col-xl-12.col-lg-12
 	.card.shadow.mb-4
 		.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between

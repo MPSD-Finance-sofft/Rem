@@ -36,6 +36,7 @@ class UsersController < ApplicationController
  	end
 
  	def card
+ 		@superior = @user.superior.decorate
  		@user = @user.decorate
  	end
 
