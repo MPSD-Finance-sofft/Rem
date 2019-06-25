@@ -35,7 +35,7 @@ hr
 					= f.select :kind, Permission.kinds.keys.map{|a| [a,a]},{include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true",  required: true}
 			.form-group
 				= f.label :superior_id, "Nadřízený"
-				= f.select :superior_id, User.select([:id,:name, :last_name]).map{|a| [a.all_name,a.id]},{include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true"}
+				= f.select :superior_id, User.select([:id,:name, :last_name, :username]).map{|a| [a.all_name,a.id]},{include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true"}
 			.form-group
 				//= f.label :identity_card_number. "rč"
 				//= f.text_field :identity_card_number, class: "form-control"
@@ -70,10 +70,10 @@ hr
 				= f.label :name_company, "Jméno společnosti"
 				= f.text_field :name_company, class: "form-control"
 			.form-group
-				= f.label :identity_company_number
+				= f.label :identity_company_number, "Ičo"
 				= f.text_field :identity_company_number, class: "form-control"
 			.form-group
-				= f.label :date_of_cooperation
+				= f.label :date_of_cooperation, "Datum spolupráce"
 				= f.text_field :date_of_cooperation, class: "form-control datapicker"
 	.col-xl-6.col-lg-6
 	  .card.shadow.mb-4
@@ -93,12 +93,13 @@ hr
 			.form-group
 				= f.label :web, "Web"
 				= f.text_field :web, class: "form-control"
-			.form-group
-				= f.label :account_number
-				= f.text_field :account_number, class: "form-control"
-			.form-group
-				= f.label :bank_code
-				= f.text_field :bank_code, class: "form-control"
+			.row.form-group
+				.form-group.col-xl-5.col-lg-5
+					= f.label :account_number, "Číslo účtu"
+					= f.text_field :account_number, class: "form-control"
+				.form-group.col-xl-5.col-lg-5
+					= f.label :bank_code, "Kód banky"
+					= f.text_field :bank_code, class: "form-control"
 	.col-xl-6.col-lg-6
 		.card.shadow.mb-4
 			.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
@@ -116,9 +117,6 @@ hr
 			.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
 				h6.m-0.font-weight-bold.text-primary Systémové údaje
 			.card-body
-				.form-group
-					= f.label :runing_notice, "Beží výpověd"
-					= f.check_box :runing_notice, class: "form-control"
 				.form-group
 					= f.label :active, "Aktivní"
 					= f.check_box :active, class: "form-control"
