@@ -16,7 +16,6 @@ class AddUserData < ActiveRecord::Migration[5.2]
   	add_column :users, :web, :string
   	add_column :users, :account_number, :integer
   	add_column :users, :bank_code, :integer
-  	add_column :users, :runing_notice, :boolean
   	add_column :users, :active, :boolean
   end
 end

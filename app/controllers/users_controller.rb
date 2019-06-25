@@ -36,6 +36,7 @@ class UsersController < ApplicationController
  	end
 
  	def card
+ 		@user = @user.decorate
  	end
 
  	def new_user
@@ -65,7 +66,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(User.new.attributes.keys, :avatar ,:password,:email,permission_attributes: [Permission.new.attributes.keys])
+		params.require(:user).permit(User.new.attributes.keys, :avatar ,:password,:email,permission_attributes: [Permission.new.attributes.keys], user_mobile_attributes: [UserMobile.new.attributes.keys, mobile_attributes: [Mobile.new.attributes.keys]])
     end
 
     def configure_permitted_parameters

@@ -10,11 +10,14 @@ class User < ApplicationRecord
 	has_many :messages, :dependent => :destroy
 	has_many :conversations, foreign_key: :sender_id, :dependent => :destroy
 	has_many :cooperations, foreign_key: :agent_id , :dependent => :destroy
+	has_many :user_mobile
+	has_many :mobile, through: :user_mobile
 	has_one :permission, :dependent => :destroy
 	belongs_to :superior, class_name: "User", foreign_key: "superior_id", required: false
 	has_one :subordinate, class_name: "User", foreign_key: "superior_id"
 
 	accepts_nested_attributes_for :permission,  reject_if: :all_blank, allow_destroy: true
+	accepts_nested_attributes_for :user_mobile,  reject_if: :all_blank, allow_destroy: true
 
 
 	def all_name
@@ -41,6 +44,14 @@ class User < ApplicationRecord
 		self.can_sign_in
 	end
 
-	scope :subordinates,   ->(user){ where(superior_id: user.id) }
+	def runing_notice
+		self.cooperations.last.try(:runing_notice?)
+	end
+
+	def without_contract?
+		self.cooperations.last.try(:lost_cooperation?)
+	end
+	 
+	scope :subordinates, -> (user) {where(superior_id: user.id)}
 	scope :agents,   ->{ joins(:permission).where('permissions.kind': 'agent') }
 end

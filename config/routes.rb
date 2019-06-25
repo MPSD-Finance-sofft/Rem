@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :user_mobiles
+  resources :mobiles
   resources :cooperations
   resources :type_of_notices
   resources :rewards

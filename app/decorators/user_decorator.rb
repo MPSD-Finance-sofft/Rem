@@ -9,4 +9,8 @@ class UserDecorator < ApplicationDecorator
  		object.superior.try(:all_name)
  	end
 
+ 	def mobile
+ 		object.mobile.last.try(:phone_number)
+ 	end
+
 end

@@ -87,8 +87,10 @@ div
 	      h6.m-0.font-weight-bold.text-primary Kontaktní údaje
 	    .card-body
 	    	.form-group
-				= f.label :mobile, "Mobil"
-				= f.text_field :mobile,  {class: "form-control", required: true}
+	    		= link_to_add_association('Přidej mobil', f, :user_mobile, :"data-association-insertion-method" => "after")
+	    		br
+            	= f.fields_for :user_mobile do |user_mobile|
+              		= render 'user_mobile_fields', f: user_mobile
 			.form-group
 				= f.label :email, "Email"
 				= f.text_field :email, {class: "form-control", type:"email", required: true}
