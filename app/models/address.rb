@@ -7,7 +7,7 @@ class Address < ApplicationRecord
 			self.zip = address['psc']
 			self.district = address['okres']
 			self.region = address['kraj']
-			self.state = "Čr"
+			self.state = "ČR"
 		end
 	end
 
