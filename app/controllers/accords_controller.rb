@@ -4,7 +4,7 @@ class AccordsController < ApplicationController
   # GET /accords
   # GET /accords.json
   def index
-    @accords = Accord.decorate
+    @accords = Accord.order(created_at: :desc).decorate
     respond_to do |format|
       format.html
       format.json

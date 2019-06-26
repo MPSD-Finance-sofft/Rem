@@ -69,6 +69,11 @@ class AccordDecorator < ApplicationDecorator
  		format_date(object.created_at)
  	end
 
+  def created_at_time
+      object.created_at
+  end
+
+
  	def creator_name 
  		object.creator.try(:all_name)
  	end
