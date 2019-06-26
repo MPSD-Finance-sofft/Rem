@@ -52,3 +52,7 @@ $(document).on('turbolinks:load', function() {
     language: "cs",
   });
 });
+
+$(document).on("turbolinks:load", function() {
+  return FontAwesome.dom.i2svg();
+});
