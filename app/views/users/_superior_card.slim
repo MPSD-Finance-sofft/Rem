@@ -13,12 +13,6 @@
 				tr
 					th Přijmení:
 					td = superior.last_name
-				tr
-					th Titul před:
-					td = superior.title_before
-				tr
-					th Titul za:
-					td = superior.title_last
 	.col-xl-5.col-lg-5
 		.card.shadow.mb-4
 			.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
@@ -26,8 +20,9 @@
 		.card-body
 			table.table
 				tr
+					th Mobil:
+					- superior.mobile.each do | mobil|
+						td = mobil.phone_number
+				tr
 					th Email:
 					td = superior.email
-				tr
-					th Mobil:
-					td = superior.mobile

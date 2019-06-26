@@ -22,6 +22,9 @@ hr
 			.form-group.col-xl-5.col-lg-5
 				= f.label :username, "Přihlašovací jméno"
 				= f.text_field :username, {class: "form-control",  required: true}
+			.form-group.col-xl-5.col-lg-5
+				= f.label :short_name, "Zkrácenina"
+				= f.text_field :short_name, class: "form-control"
 			.form-group
 				//= f.label :password, "Heslo"
 				//= f.text_field :password, {class: "form-control " ,autocomplete: "new-password", type:"password",  required: true}
@@ -39,9 +42,6 @@ hr
 			.form-group
 				//= f.label :identity_card_number. "rč"
 				//= f.text_field :identity_card_number, class: "form-control"
-			.form-group
-				//	= f.label :short_name, "Zkrácenina"
-				//	= f.text_field :short_name, class: "form-control"
 	.col-xl-6.col-lg-6
 	  .card.shadow.mb-4
 	    /! Card Header - Dropdown
