@@ -43,7 +43,7 @@ div
 					= f.select :kind, Permission.kinds.keys.map{|a| [a,a]},{include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true",  required: true}
 			.form-group.col-xl-5.col-lg-5
 				= f.label :superior_id, "Nadřízený"
-				= f.select :superior_id, User.select([:id,:name, :last_name, :username]).map{|a| [a.all_name,a.id]},{include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true"}
+				= f.select :superior_id, User.all.map{|a| [a.all_name,a.id]},{include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true"}
 			.form-group
 				//= f.label :identity_card_number. "rč"
 				//= f.text_field :identity_card_number, class: "form-control"
