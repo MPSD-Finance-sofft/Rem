@@ -26,6 +26,8 @@ class AccordDecorator < ApplicationDecorator
  				'Zamítnutá'
  			when 'dowload'
  				'Stažená'
+      when 'in_terrain'
+        'v terénu'
  			else
  			"nedefinovaný stav"
  		end
@@ -70,7 +72,7 @@ class AccordDecorator < ApplicationDecorator
  	end
 
   def created_at_time
-      object.created_at
+     format_date_time(object.created_at)
   end
 
 
@@ -110,14 +112,14 @@ class AccordDecorator < ApplicationDecorator
   end
 
   def purchase_price
-    object.purchase_price.to_s + " Kč"
+    format_number(object.purchase_price.to_f)
   end
 
   def agency_commission_price
-    object.agency_commission_price.to_s + " Kč"
+    format_number(object.agency_commission_price.to_f)
   end
 
   def commission_for_the_contract
-    object.commission_for_the_contract.to_s + " Kč"
+    format_number(object.commission_for_the_contract.to_f)
   end
 end

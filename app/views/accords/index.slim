@@ -19,7 +19,6 @@ div.container-fluid
           th Typ
           th Přijato
           th Stav
-          th V terénu
           th Výkupní cena
           th Klienti
           th Adresy nemovitostí
@@ -31,7 +30,6 @@ div.container-fluid
             td = accord.kind
             td = accord.created_at_time
             td = accord.state
-            td nemám
             td = accord.purchase_price
             td 
               - accord.clients.each do |client|
