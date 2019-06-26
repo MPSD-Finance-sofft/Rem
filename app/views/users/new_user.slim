@@ -92,6 +92,7 @@ div
 	    	.form-group
 	    		= link_to_add_association('Přidej mobil', f, :user_mobile, :"data-association-insertion-method" => "after")
 	    		br
+	    		- f.object.user_mobile.build
             	= f.fields_for :user_mobile do |user_mobile|
               		= render 'user_mobile_fields', f: user_mobile
          	.row
