@@ -24,7 +24,7 @@ div.container-fluid
           th Adresy nemovitostí
           th Společnost agenta
         - @accords.each do |accord|
-          tr
+          tr class="#{accord.object_state}"
             td = link_to accord.id, accord_path(accord.id)
             td = accord.contract_number
             td = accord.kind

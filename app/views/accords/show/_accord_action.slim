@@ -6,6 +6,7 @@
       = link_to "Úprava", edit_accord_path(@accord.id),{class: 'btn btn-info', type: 'buttom'}
       = link_to "Rozpracovat", accord_path(@accord, accord: {state: 'state_eleboration', user_id: current_user.id}) , {:method=> :put, class: 'btn btn-info', type: 'buttom'}
       = link_to "K podepsání", accord_path(@accord, accord: {state: 'to_sign'}) , {:method=> :put, class: 'btn btn-info', type: 'buttom'}
+      = link_to "V terénu", accord_path(@accord, accord: {state: 'in_terrain'}) , {:method=> :put, class: 'btn btn-info', type: 'buttom'}
       = link_to "Smlouva", accord_path(@accord, accord: {state: 'contract'}) , {:method=> :put, class: 'btn btn-info', type: 'buttom'}
       = link_to "Zamítnout", accord_path(@accord, accord: {state: 'refuse'}) , {:method=> :put, class: 'btn btn-info', type: 'buttom'}
       = link_to "Stažená", accord_path(@accord, accord: {state: 'dowload'}) , {:method=> :put, class: 'btn btn-info', type: 'buttom'}
