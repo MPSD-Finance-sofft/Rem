@@ -18,12 +18,12 @@ hr
 	    .card-body.row
 			.form-group.col-xl-5.col-lg-5
 				= f.label :avatar
-				= f.file_field :avatar, class: "form-control"
+				= f.file_field :avatar
 			.form-group.col-xl-5.col-lg-5
 				= f.label :username, "Přihlašovací jméno"
 				= f.text_field :username, {class: "form-control",  required: true}
 			.form-group.col-xl-5.col-lg-5
-				= f.label :short_name, "Zkrácenina"
+				= f.label :short_name, "Pozice"
 				= f.text_field :short_name, class: "form-control"
 			.form-group
 				//= f.label :password, "Heslo"
