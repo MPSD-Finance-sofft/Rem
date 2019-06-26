@@ -1,3 +1,4 @@
+
 class UserDecorator < ApplicationDecorator
   delegate_all
 
@@ -15,5 +16,9 @@ class UserDecorator < ApplicationDecorator
 
  	def object_superior
  		object.superior
+ 	end
+
+ 	def date_of_cooperation
+ 		format_date(object.date_of_cooperation)
  	end
 end
