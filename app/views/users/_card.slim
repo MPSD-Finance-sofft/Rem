@@ -71,6 +71,12 @@
 				.card-body
 					table.table
 						tr
+							th Mobil:
+							td
+								- user.mobile.each do | mobil|
+									= mobil.phone_number
+									|  , 
+						tr
 							th E-mail:
 							td = user.email
 						tr
@@ -82,12 +88,6 @@
 								= user.account_number
 								|  / 
 								= user.bank_code
-						tr
-							th Mobil:
-							td
-								- user.mobile.each do | mobil|
-									= mobil.phone_number
-									|  , 
 			.col-xl-5.col-lg-5
 				.card.shadow.mb-4
 					.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
@@ -95,11 +95,11 @@
 				.card-body
 					table.table
 						tr
-							th Aktivní:
-							td = user.active
-						tr
 							th Může se přihlásit:
 							td = user.can_sign_in
+						tr
+							th Aktivní:
+							td = user.active
 						tr
 							th Kompletní dokumentace:
 							td = user.complate_documentation
