@@ -123,7 +123,7 @@ div
 			.card-body
 				.form-group.col-xl-4.col-lg-4
 					= f.label :can_sign_in, "Může se přihlásit"
-					= f.check_box :can_sign_in, class: "form-control"
+					= f.check_box :can_sign_in, checked: true,class: "form-control"
 				.form-group.col-xl-4.col-lg-4
 					= f.label :active, "Aktivní"
 					= f.check_box :active, class: "form-control"
