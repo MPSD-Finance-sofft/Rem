@@ -19,7 +19,7 @@
 			= f.text_field :zip , class: "form-control"
 		.form-group.col-xl-5.col-lg-5
 			= f.label :district, "Okres"
-			= f.text_field :district , {class: "form-control", id: 'District'}
+			= f.text_field :district , class: "form-control District"
 		.form-group.col-xl-5.col-lg-5
 			= f.label :state, "Stát"
 			= f.text_field :state , class: "form-control"
@@ -107,7 +107,7 @@ javascript:
 			"Znojmo"
 
 	    ];
-	    $( "#District" ).autocomplete({
+	    $( ".District" ).autocomplete({
 	      source: availableDistrict
 	    });
 	  } );

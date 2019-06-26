@@ -3,7 +3,7 @@ class Address < ApplicationRecord
 
 	def completion
 		address = AutocompleterAddress::validate_adres(self.village,self.street,self.number.split("/").first)
-		if address 
+		if address["kod_adresy"] != -1
 			self.zip = address['psc']
 			self.district = address['okres']
 			self.region = address['kraj']
@@ -13,9 +13,5 @@ class Address < ApplicationRecord
 
 	def full_name
 		"#{self.street.to_s} #{self.number.to_s} #{self.zip.to_s} #{self.village.to_s}, #{self.district.to_s}, #{self.state.to_s}" 
-	end
-	
-	def table_name
-		"#{self.village.to_s} #{self.street.to_s} #{self.number.to_s}" 
 	end
 end
