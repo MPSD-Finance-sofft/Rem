@@ -12,7 +12,7 @@ class Address < ApplicationRecord
 	end
 
 	def full_name
-		"#{self.village.to_s} #{self.street.to_s}  #{self.number.to_s} #{self.zip.to_s}  #{self.district.to_s} #{self.region.to_s} #{self.state.to_s}" 
+		"#{self.street.to_s} #{self.number.to_s} #{self.zip.to_s} #{self.village.to_s}, #{self.district.to_s}, #{self.state.to_s}" 
 	end
 	
 	def table_name
