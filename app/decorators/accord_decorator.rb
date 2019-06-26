@@ -53,7 +53,7 @@ class AccordDecorator < ApplicationDecorator
  			when 'insolvency_buyout'
  					"Insolvenční výkup"
  			else
- 					"nedefinovaný druh klienta"
+ 					"nedefinovaný typ žádosti"
 		end
  	end
 
