@@ -17,4 +17,8 @@ class UserDecorator < ApplicationDecorator
  	def date_of_cooperation
  		format_date(object.date_of_cooperation)
  	end
+ 	
+ 	def birthdate
+ 		format_date(object.birthdate)
+ 	end
 end
