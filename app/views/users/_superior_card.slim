@@ -22,7 +22,9 @@
 				tr
 					th Mobil:
 					- superior.mobile.each do | mobil|
-						td = mobil.phone_number
+						td
+							= mobil.phone_number
+							|  , 
 				tr
 					th Email:
 					td = superior.email
