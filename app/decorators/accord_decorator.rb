@@ -81,6 +81,14 @@ class AccordDecorator < ApplicationDecorator
     object.agent.try(:all_name)
   end
 
+  def agent_company
+    object.agent.try(:name_company)
+  end
+
+  def agent_superior
+    object.agent.try(:superior).try(:all_name)
+  end
+
  	def state_to_color(state)
  		case state
  			when 'state_new'

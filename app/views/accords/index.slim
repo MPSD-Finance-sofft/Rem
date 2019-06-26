@@ -12,6 +12,31 @@ div.container-fluid
       div.col-md-2.nopadding.text-right.panel-title
         = link_to 'Nová žádost', new_accord_path
     .card-body
-      table.table id="accords-datatable" data-source="accords" style="width:100%"
-         
-              
+      table.table 
+        tr
+          th Číslo žádosti
+          th Číslo smlouva
+          th Typ
+          th Přijato
+          th Stav
+          th V terénu
+          th Výkupní cena
+          th Klienti
+          th Adresy nemovitostí
+          th Agent
+          th Společnost agenta
+          th Nadřízený agenta
+        - @accords.each do |accord|
+          tr
+            td = accord.number
+            td = accord.contract_number
+            td = accord.kind
+            td = accord.created_at
+            td = accord.state
+            td nemám
+            td = accord.purchase_price
+            td = accord.clients
+            td nevím
+            td = accord.agent_name
+            td = accord.agent_company
+            td = accord.agent_superior
