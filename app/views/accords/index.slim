@@ -35,8 +35,14 @@ div.container-fluid
             td = accord.state
             td nemám
             td = accord.purchase_price
-            td = accord.clients
-            td nevím
+            td 
+              - accord.clients.each do |client|
+                = client.full_name
+                br
+            td 
+              - accord.realty.each do |realty|
+                = realty.address.try(:full_name)
+                br
             td = accord.agent_name
             td = accord.agent_company
             td = accord.agent_superior
