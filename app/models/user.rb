@@ -43,6 +43,10 @@ class User < ApplicationRecord
 		self.permission.try(:kind) == "agent" 
 	end
 
+	def manager?
+		self.permission.try(:kind) == "manager" 
+	end
+
 	def can_login?
 		self.can_sign_in
 	end

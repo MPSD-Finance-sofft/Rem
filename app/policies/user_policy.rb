@@ -13,7 +13,7 @@ class UserPolicy < ApplicationPolicy
     	def resolve
     		if user.admin?
       			scope.all
-    		elsif user.agent?
+    		elsif user.agent? || user.manager?
             scope.subordinates(user)
         elsif user.user?
             scope.agents
