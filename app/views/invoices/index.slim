@@ -15,6 +15,7 @@ div.container-fluid
     .card-body
 		table.table
 			tr
+				th Agent
 				th Období
 				th Zprostředkovatelská provize
 				th Provize za smlouvy
@@ -22,6 +23,7 @@ div.container-fluid
 				th Datum vyplaceni faktury
 			- @invoices.each do |invoice|
 				tr
+					td =invoice.agent
 					td 
 						= invoice.period
 						|  
