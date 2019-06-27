@@ -12,4 +12,3 @@ class Board < ApplicationRecord
 	scope :for_manager, ->  {where(permission: ["manager", "agent"])}
 
 end
-<a href="/users/2/card">langer547</a>
