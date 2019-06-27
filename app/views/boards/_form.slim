@@ -1,0 +1,21 @@
+= form_with(model: board, local: true) do |form|
+  - if board.errors.any?
+    #error_explanation
+      h2
+        = pluralize(board.errors.count, "error")
+        | prohibited this board from being saved:
+      ul
+        - board.errors.full_messages.each do |message|
+          li= message
+  .field
+    = form.label :permission
+    = form.select :permission, Permission.kinds.keys.map{|a| [a,a]},{include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true",  required: true}
+  .field
+    = form.label :date
+    = form.text_field :date, {class:"datapicker form-control" }
+  .field
+    = form.label :text
+    = form.text_area :text, {class:"md-textarea form-control"}
+  .actions
+    = form.submit
+

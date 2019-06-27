@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :boards
   resources :user_addresses
   resources :user_mobiles
   resources :mobiles
