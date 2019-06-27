@@ -8,7 +8,8 @@ class Board < ApplicationRecord
 		return 	Board.for_permmision("agent") if permission == "agent" 
 	end
 
-	scope :for_permmision, -> (permision) {where(permision: permision)}
-	scope :for_manager, ->  {where(permision: ["manager", "agent"])}
+	scope :for_permmision, -> (permision) {where(permission: permision)}
+	scope :for_manager, ->  {where(permission: ["manager", "agent"])}
 
 end
+<a href="/users/2/card">langer547</a>
