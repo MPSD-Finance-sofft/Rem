@@ -14,4 +14,7 @@ class Invoice < ApplicationRecord
 		end
 	end
 
+	def agent
+		self.rewards.first.try(:agent)
+	end
 end

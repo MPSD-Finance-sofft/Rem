@@ -10,6 +10,10 @@ class InvoicesController < ApplicationController
   # GET /invoices/1
   # GET /invoices/1.json
   def show
+    @invoice = @invoice.decorate
+    respond_to do |format|
+      format.pdf { render pdf: "invoice_#{@invoice.period_year}_#{@invoice.period_month}"}
+    end
   end
 
   # GET /invoices/new

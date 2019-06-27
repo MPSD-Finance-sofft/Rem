@@ -2,7 +2,7 @@ class InvoiceDecorator < ApplicationDecorator
   delegate_all
 
   def period
-	month_to_czech_text(object.period_month)
+    month_to_czech_text(object.period_month) + ' ' + object.period_year.to_s
   end
 
   def agency_commission
@@ -16,5 +16,22 @@ class InvoiceDecorator < ApplicationDecorator
   def agent
   		object.rewards.first.try(:agent).try(:all_name)
   end
+
+  def excepted_payment_day
+      format_date(object.created_at + 21.day)
+  end
+
+   def agent_company
+    object.agent.try(:name_company)
+  end
+
+  def agent_identity_company_number
+    object.agent.try(:identity_company_number)
+  end
+
+  def agnet_bank_number
+     object.agent.try(:account_number).to_s + " / " +  object.agent.try(:identity_company_number).to_s
+  end
+
 
 end

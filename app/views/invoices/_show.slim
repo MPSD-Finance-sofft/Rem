@@ -1,0 +1,57 @@
+h1 Faktura
+table.table
+	tr
+		th forma úhrady 
+		th variabilní symbol
+		th vystaveno
+		th splatná
+		th číslo faktury
+	tr
+		td
+			b převodem
+		td
+		td = @invoice.created_at
+		td = @invoice.excepted_payment_day
+
+table.table
+	tr
+		th
+			h4.col-xl-5.col-lg-5 dodavatel
+		th
+			h4.col-xl-5.col-lg-5 odběratel	
+	tr
+		td
+			p
+				b = @invoice.agent_company
+				br
+				= @invoice.agent_identity_company_number
+				br
+				| fakturační adresa
+				br
+				b Číslo účtu: 
+				= @invoice.agnet_bank_number
+		td
+			p
+				b REOL Financial s.r.o.
+				br
+				| IČ: 259 52 552
+				br
+				| Hněvotínská 241/52 779 00 Olomouc
+
+h3 
+	| Fakturujeme Vám provizi za:    
+	= @invoice.period
+br
+table.table
+	tr
+		th číslo smlouvy
+		th klient
+		th výkupní cena
+		th provize
+	tr
+	tr
+		td celkem
+
+h5 fakturoval
+hr
+

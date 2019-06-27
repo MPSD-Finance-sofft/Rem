@@ -8,13 +8,14 @@ div.container-fluid
 .col-xl-12.col-lg-12
   .card.shadow.mb-4
     .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
-  		h6.m-0.font-weight-bold.text-primary Přehled provizi
+  		h6.m-0.font-weight-bold.text-primary Přehled faktur
       	div.col-md-2.nopadding.text-right.panel-title
     		button.btn.btn-primary data-target="#exampleModalCenter" data-toggle="modal" type="button" 
         		| Vytvoř faktury 
     .card-body
 		table.table
 			tr
+				th
 				th Agent
 				th Období
 				th Zprostředkovatelská provize
@@ -23,18 +24,15 @@ div.container-fluid
 				th Datum vyplaceni faktury
 			- @invoices.each do |invoice|
 				tr
+					td = link_to "pdf", invoice_path(id: invoice.id, format: :pdf)
 					td =invoice.agent
-					td 
-						= invoice.period
-						|  
-						= invoice.period_year
+					td = invoice.period
 					td = invoice.agency_commission
 					td = invoice.commission_for_the_contract
 					td
 					td
-
-
-
+					
+					
 /! Modal
 #exampleModalCenter.modal.fade aria-hidden="true" aria-labelledby="exampleModalCenterTitle" role="dialog" tabindex="1" 
 		.modal-dialog.modal-dialog-centered role="document" 
