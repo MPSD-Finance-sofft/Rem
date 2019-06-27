@@ -33,5 +33,16 @@ class RewardDecorator < ApplicationDecorator
     object.agent.try(:identity_company_number)
   end
 
+  def agent_superior
+    object.agent.try(:superior).try(:all_name)
+  end
+
+  def contract
+    object.accord.try(:contract_number)
+  end
+
+  def invoice_date
+    format_date object.invoice_date
+  end
 
 end

@@ -16,19 +16,23 @@ div.container-fluid
 		table.table
 			tr
 				th
-				th Agent
 				th Období
-				th Zprostředkovatelská provize
+				th Agent
+				th Nadřízený
+				th Výkupní cena
 				th Provize za smlouvy
+				th Datum nároku
 				th Datum doručení faktury
 				th Datum vyplaceni faktury
 			- @invoices.each do |invoice|
 				tr
 					td = link_to "pdf", invoice_path(id: invoice.id, format: :pdf)
-					td =invoice.agent
 					td = invoice.period
-					td = invoice.agency_commission
+					td = invoice.agent
+					td = invoice.agent_superior
+					td = invoice.purchase_price
 					td = invoice.commission_for_the_contract
+					td = invoice.created_at
 					td
 					td
 					

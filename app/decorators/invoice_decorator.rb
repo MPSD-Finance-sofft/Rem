@@ -17,6 +17,10 @@ class InvoiceDecorator < ApplicationDecorator
   		object.rewards.first.try(:agent).try(:all_name)
   end
 
+  def agent_superior
+    object.rewards.first.try(:agent).try(:superior).try(:all_name)
+  end
+
   def excepted_payment_day
       format_date(object.created_at + 21.day)
   end
@@ -33,5 +37,8 @@ class InvoiceDecorator < ApplicationDecorator
      object.agent.try(:account_number).to_s + " / " +  object.agent.try(:identity_company_number).to_s
   end
 
+  def purchase_price
+    format_number object.rewards.sum(&:purchase_price)
+  end
 
 end

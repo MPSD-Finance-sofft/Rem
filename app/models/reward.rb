@@ -13,9 +13,11 @@ class Reward < ApplicationRecord
 
 	
 	def invoice_date
+		self.invoice.created_at
 	end
 
-	def payout_date
+	def purchase_price
+		accord.purchase_price
 	end
 
 	scope :invoice, -> (invoice_id) {where(invoice_id: invoice_id)}

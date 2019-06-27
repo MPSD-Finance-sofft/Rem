@@ -12,18 +12,25 @@ div.container-fluid
     .card-body
       table.table
         tr
-          th Žádost
           th Agent
+          th Nadřízený
+          th Smlouva
+          th Klient
+          th Výkupní cena
           th Zprostředkovatelská provize
           th Provize za smlouvu
-          th Datum faktury
-          th Datum vyplaceni
+          th Datum nároku
+          th Faktura
         - @rewards.each do |reward|
           tr
-            td=link_to reward.accord, accord_path(reward.accord)
             td=link_to reward.agent, card_user_path(reward.user_id)
+            td=reward.agent_superior
+            td=link_to reward.contract, accord_path(reward.accord)
+            td
+            td=reward.purchase_price
             td=reward.agency_commission
             td=reward.commission_for_the_contract
             td=reward.invoice_date
-            td=reward.payout_date
+            td= link_to "pdf", invoice_path(id: reward.invoice_id, format: :pdf) unless reward.invoice_id.blank?
+            
 
