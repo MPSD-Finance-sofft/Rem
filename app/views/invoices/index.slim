@@ -1,0 +1,49 @@
+div.container-fluid
+  ol.breadcrumb
+    li.breadcrumb-item
+      b
+        | Faktury
+    li.breadcrumb-item
+      | Přehled faktur
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+  		h6.m-0.font-weight-bold.text-primary Přehled provizi
+      	div.col-md-2.nopadding.text-right.panel-title
+    		button.btn.btn-primary data-target="#exampleModalCenter" data-toggle="modal" type="button" 
+        		| Vytvoř faktury 
+    .card-body
+		table.table
+			tr
+				th Období
+				th Zprostředkovatelská provize
+				th Provize za smlouvy
+				th Datum doručení faktury
+				th Datum vyplaceni faktury
+			- @invoices.each do |invoice|
+				tr
+					td 
+						= invoice.period
+						|  
+						= invoice.period_year
+					td = invoice.agency_commission
+					td = invoice.commission_for_the_contract
+					td
+					td
+
+
+
+/! Modal
+#exampleModalCenter.modal.fade aria-hidden="true" aria-labelledby="exampleModalCenterTitle" role="dialog" tabindex="1" 
+		.modal-dialog.modal-dialog-centered role="document" 
+			.modal-content
+				.modal-header
+					h5#exampleModalLongTitle.modal-title Vytvoření faktury pro uživatele
+					button.close aria-label="Close" data-dismiss="modal" type="button" 
+						span aria-hidden="true"  &times;
+				.modal-body
+					= form_with(model: Invoice, local: true) do |f|
+						= select_tag :agent_id , options_for_select(User.all.map{|a| [a.all_name,a.id]})
+						.modal-footer
+							button.btn.btn-secondary data-dismiss="modal" type="button"  Close
+							button.btn.btn-primary type="submit"  Odešli

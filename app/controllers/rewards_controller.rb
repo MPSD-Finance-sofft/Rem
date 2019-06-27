@@ -11,6 +11,13 @@ class RewardsController < ApplicationController
   # GET /rewards/1
   # GET /rewards/1.json
   def show
+    @reward = @reward.decorate
+    respond_to do |format|
+        format.html
+        format.pdf {
+          render pdf: "faktura"
+        }
+    end
   end
 
   # GET /rewards/new

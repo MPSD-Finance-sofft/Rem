@@ -1,6 +1,7 @@
 class Reward < ApplicationRecord
 	
 	belongs_to :accord
+	belongs_to :invoice
 	belongs_to :agent, foreign_key: 'user_id', class_name: 'User' ,  required: false
 
 	def create_reward(accord)
@@ -9,5 +10,16 @@ class Reward < ApplicationRecord
 		self.agency_commission = accord.agency_commission_price
 		self.commission_for_the_contract = accord.commission_for_the_contract
 	end
+
+	
+	def invoice_date
+	end
+
+	def payout_date
+	end
+
+	scope :invoice, -> (invoice_id) {where(invoice_id: invoice_id)}
+	scope :for_user, -> (user_id) {where(user_id: user_id)}
+	scope :without_invoice, ->  {where("invoice_id is NULL")}
 
 end

@@ -17,4 +17,33 @@ class ApplicationDecorator < Draper::Decorator
     date.strftime('%d.%m.%Y %I:%M%p') unless date.blank?
   end
 
+  def month_to_czech_text(month_number)
+      case month_number
+        when 1
+          'Leden' 
+        when 2
+          'Únor' 
+        when 3
+          'Březen' 
+        when 4
+          'Duben'
+        when 5
+          'Květen'
+        when 6
+          'Červen'
+        when 7
+          'Červenec'
+        when 8
+          'Srpen'
+        when 9
+          'Září'
+        when 10
+          'Říjen'
+        when 11
+          'Listopad'
+        when 12
+          'Prosinec'
+      end
+  end
+
 end

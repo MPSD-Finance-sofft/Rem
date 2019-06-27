@@ -17,5 +17,21 @@ class RewardDecorator < ApplicationDecorator
   	object.commission_for_the_contract.to_s + " Kč"
   end
 
+  def agent_login
+    object.agent.try(:username)
+  end
+
+  def payment_date
+      format_date(object.created_at + 21.day)
+  end
+
+  def agent_company
+    object.agent.try(:name_company)
+  end
+
+  def agent_identity_company_number
+    object.agent.try(:identity_company_number)
+  end
+
 
 end

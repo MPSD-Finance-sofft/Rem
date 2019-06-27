@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Payout date:</strong>
+  <%= @invoice.payout_date %>
+</p>
+
+<p>
+  <strong>Delivery date:</strong>
+  <%= @invoice.delivery_date %>
+</p>
+
+<p>
+  <strong>Period year:</strong>
+  <%= @invoice.period_year %>
+</p>
+
+<p>
+  <strong>Period month:</strong>
+  <%= @invoice.period_month %>
+</p>
+
+<%= link_to 'Edit', edit_invoice_path(@invoice) %> |
+<%= link_to 'Back', invoices_path %>
