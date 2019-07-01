@@ -48,7 +48,7 @@ table.table
 		th klient
 		th výkupní cena
 		th provize
-	- @invoice.rewards.decorate.each do |reward|
+	- @invoice.rewards.each do |reward|
 		tr
 			td = reward.accord.contract_number
 			td
