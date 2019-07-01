@@ -48,10 +48,19 @@ table.table
 		th klient
 		th výkupní cena
 		th provize
+	- @invoice.rewards.decorate.each do |reward|
+		tr
+			td = reward.accord.contract_number
+			td
+			td = reward.accord.purchase_price
+			td = reward.commission_for_the_contract
 	tr
-	tr
-		td celkem
-
+		td 
+			b celkem
+		td
+		td
+		td
+			b = @invoice.rewards.sum(:commission_for_the_contract)
 h5 fakturoval
 hr
 
