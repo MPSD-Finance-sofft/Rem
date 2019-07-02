@@ -5,6 +5,5 @@ class AddAccordData < ActiveRecord::Migration[5.2]
   	add_column :accords, :date_of_ownership, :date
   	add_column :accords, :date_of_transfer, :date
   	add_column :accords, :transfer_protocol, :integer
-  	add_column :accords, :address_id, :integer
   end
 end

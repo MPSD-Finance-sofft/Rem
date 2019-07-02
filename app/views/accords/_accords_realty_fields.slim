@@ -33,14 +33,16 @@
 			.form-group
 				= f.label :catastral_territory
 				= f.text_field :catastral_territory, class: "form-control"
-			.form-group
-				| Město
-				= text_field_tag "address[village]", nil,{class: "form-control vilage_find", data: {village: "#{}"}}
-			.form-group
-				| Ulice
-				= text_field_tag "address[street]",nil ,class: "form-control street_find"
-			.form-group
-				| Číslo
-				= text_field_tag "address[number]",nil, class: "form-control number_find"
+			- f.object.build_address unless f.object.address
+			= f.fields_for :address do |address|
+				.form-group
+					= address.label :village, "Město"
+					= address.text_field :village, {class: "form-control vilage_find", data: {village: "#{}"}}
+				.form-group
+					= address.label :street, "Ulice"
+					= address.text_field :street, class: "form-control street_find"
+				.form-group
+					= address.label :number, "Číslo"
+					= address.text_field :number, class: "form-control number_find"
 
 	= link_to_remove_association "remove task", f

@@ -15,6 +15,7 @@
           th | Zastavěná plocha
           th | Plocha pozemku
           th | Katastrální území
+          th | Adresa
         - @accord.realty.each do |realty|
           tr
             td=realty.realty_type
@@ -28,8 +29,8 @@
             td=realty.land_plot
             td=realty.catastral_territory
             td
-            =realty.address_village
-            br
-            =realty.address_street
-            br
-            =realty.address_number
+              =realty.address_village
+              br
+              =realty.address_street
+              br
+              =realty.address_number

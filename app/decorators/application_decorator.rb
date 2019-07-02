@@ -10,11 +10,11 @@ class ApplicationDecorator < Draper::Decorator
 	end
 
   def format_number(number)
-    number_to_currency(number, unit: "Kč", separator: ",", delimiter: " ", format: "%n %u")
+    number_to_currency(number, unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
   end
 
   def format_date_time(date)
-    date.strftime('%d.%m.%Y %I:%M%p') unless date.blank?
+    date.strftime('%d.%m.%Y %T') unless date.blank?
   end
 
   def month_to_czech_text(month_number)
