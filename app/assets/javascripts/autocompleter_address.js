@@ -1,6 +1,6 @@
 var find_vilage,find_number,find_street;
 
-$(document).on('ready page:load', function() {
+$(document).on('turbolinks:load', function() {
 	find_vilage();	
 	find_street();	
 	find_number();	
