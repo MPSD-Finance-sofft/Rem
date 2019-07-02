@@ -24,18 +24,20 @@ div.container-fluid
 				th Datum nároku
 				th Datum doručení faktury
 				th Datum vyplaceni faktury
+				th
 			- @invoices.each do |invoice|
-				tr
-					td = link_to "pdf", invoice_path(id: invoice.id, format: :pdf)
-					td = invoice.period
-					td = invoice.agent
-					td = invoice.agent_superior
-					td = invoice.purchase_price
-					td = invoice.commission_for_the_contract
-					td = invoice.created_at
-					td
-					td
-					
+				= form_for invoice.decorate, method: :put do |f| 
+					tr
+						td = link_to "pdf", invoice_path(id: invoice.id, format: :pdf)
+						td = invoice.period
+						td = invoice.agent
+						td = invoice.agent_superior
+						td = invoice.purchase_price
+						td = invoice.commission_for_the_contract
+						td = invoice.created_at
+						td = f.text_field :delivery_date, class: 'datapicker'
+						td = f.text_field :payout_date, class: 'datapicker'
+						td = f.submit "Odešli" , class: "btn btn-default", type: "submit"
 					
 /! Modal
 #exampleModalCenter.modal.fade aria-hidden="true" aria-labelledby="exampleModalCenterTitle" role="dialog" tabindex="1" 

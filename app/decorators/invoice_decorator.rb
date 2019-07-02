@@ -41,4 +41,12 @@ class InvoiceDecorator < ApplicationDecorator
     format_number object.rewards.sum(&:purchase_price)
   end
 
+  def payout_date
+    format_date object.payout_date
+  end
+
+  def delivery_date
+    format_date object.delivery_date
+  end
+
 end
