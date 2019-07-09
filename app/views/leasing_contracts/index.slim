@@ -14,6 +14,7 @@ div.container-fluid
     .card-body
       table.table 
         tr
+          th Číslo nájemní smlouvy 
           th Stav
           th Datum podpisu
           th Nájemní smlouva od
@@ -23,6 +24,7 @@ div.container-fluid
           th Adresa Nemovitosti
         - @leasing_contracts.each do |leasing_contract|
           tr
+            td = link_to leasing_contract.id, leasing_contract_path(leasing_contract)
             td = leasing_contract.state
             td = leasing_contract.expected_date_of_signature
             td = leasing_contract.rent_from
