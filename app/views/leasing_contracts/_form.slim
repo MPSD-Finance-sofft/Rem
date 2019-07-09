@@ -12,7 +12,7 @@
     = form.select :state, form.object.select_state,{},{class: "selectpicker form-control", "data-live-search" => "true"}
   .form-group
     = form.label :expected_date_of_signature, "Předpokládané datum podpisu"
-    = form.text_field :expected_date_of_signature,{class: "form-control"}
+    = form.text_field :expected_date_of_signature,{class: "form-control datapicker"}
   .form-group
     = form.label :rent_from, "Nájem od"
     = form.text_field :rent_from,{class: "form-control datapicker", required: true}
@@ -21,7 +21,7 @@
     = form.text_field :rent_to,{class: "form-control datapicker", required: true}
   .form-group
     = form.label :payment_day, "Den platby"
-    = form.number_field :payment_day, {class: "form-control datapicker", required: true, }
+    = form.number_field :payment_day, {class: "form-control", required: true, }
   .form-group
     = form.label :monthly_rent, "Měsíční nájemné"
     = form.text_field :monthly_rent, {class: "form-control", required: true}
