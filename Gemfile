@@ -49,7 +49,6 @@ group :development do
   gem 'rails_layout'
   gem 'rails-erd'
   gem 'bullet'
-  #gem 'rack-mini-profiler'
 end
 
 group :assets do
