@@ -11,7 +11,7 @@
 				= f.select :type_ownership, f.object.select_type_ownership,{},{class: "selectpicker form-control", "data-live-search" => "true"}
 			.form-group
 				= f.label :record_on_lv, 'Záznam na lv'
-				= f.select :record_on_lv, f.object.select_record_on_lv,{},{multiple:true, class: "selectpicker form-control", "data-live-search" => "true"}
+				= f.select :record_on_lv, f.object.select_record_on_lv,{},{class: "selectpicker form-control", "data-live-search" => "true"}
 			.form-group
 				= f.label :price_estimation, "Odhad ceny"
 				= f.text_field :price_estimation, {class: "form-control", type: "number", step: "any"}

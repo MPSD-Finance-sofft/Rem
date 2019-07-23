@@ -52,7 +52,7 @@ class RealtyDecorator < Draper::Decorator
  	end
 
  	def location
-		record_on_lv_to_text(object.location)
+		location_to_text(object.location)
  	end
 
  	def select_location
@@ -73,7 +73,7 @@ class RealtyDecorator < Draper::Decorator
  			when 'village'
  					"Vesnice"
  			else
- 					"nedefinovaný typ záznamu na lv"
+ 					"nedefinovaný typ lokality"
 		end
  	end
 
