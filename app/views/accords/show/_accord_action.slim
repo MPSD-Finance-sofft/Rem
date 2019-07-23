@@ -3,21 +3,22 @@
     .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
       h6.m-0.font-weight-bold.text-primary Akce
     .card-body
-      = link_to "Úprava", edit_accord_path(@accord.id),{class: 'btn btn-info', type: 'buttom'}
-      = link_to "Rozpracovat", accord_path(@accord, accord: {state: 'state_eleboration', user_id: current_user.id}) , {:method=> :put, class: 'btn btn-info', type: 'buttom'}
-      = link_to "K podepsání", accord_path(@accord, accord: {state: 'to_sign'}) , {:method=> :put, class: 'btn btn-info', type: 'buttom'}
-      = link_to "V terénu", accord_path(@accord, accord: {state: 'in_terrain'}) , {:method=> :put, class: 'btn btn-info', type: 'buttom'}
-      = link_to "Smlouva", accord_path(@accord, accord: {state: 'contract'}) , {:method=> :put, class: 'btn btn-info', type: 'buttom'}
-      = link_to "Zamítnout", accord_path(@accord, accord: {state: 'refuse'}) , {:method=> :put, class: 'btn btn-info', type: 'buttom'}
-      = link_to "Stažená", accord_path(@accord, accord: {state: 'dowload'}) , {:method=> :put, class: 'btn btn-info', type: 'buttom'}
-      = link_to "Vytvoření provizního nároku", rewards_path(accord_id: @accord) , {:method=> :post, class: 'btn btn-info', type: 'buttom'}
-      br
+      - if current_user.user_or_admin?
+        = link_to "Úprava", edit_accord_path(@accord.id),{class: 'btn btn-info', type: 'buttom'}
+        = link_to "Rozpracovat", accord_path(@accord, accord: {state: 'state_eleboration', user_id: current_user.id}) , {:method=> :put, class: 'btn btn-info', type: 'buttom'}
+        = link_to "K podepsání", accord_path(@accord, accord: {state: 'to_sign'}) , {:method=> :put, class: 'btn btn-info', type: 'buttom'}
+        = link_to "V terénu", accord_path(@accord, accord: {state: 'in_terrain'}) , {:method=> :put, class: 'btn btn-info', type: 'buttom'}
+        = link_to "Smlouva", accord_path(@accord, accord: {state: 'contract'}) , {:method=> :put, class: 'btn btn-info', type: 'buttom'}
+        = link_to "Zamítnout", accord_path(@accord, accord: {state: 'refuse'}) , {:method=> :put, class: 'btn btn-info', type: 'buttom'}
+        = link_to "Stažená", accord_path(@accord, accord: {state: 'dowload'}) , {:method=> :put, class: 'btn btn-info', type: 'buttom'}
+        = link_to "Vytvoření provizního nároku", rewards_path(accord_id: @accord) , {:method=> :post, class: 'btn btn-info', type: 'buttom'}
+        = link_to "Zobraz změny", changes_accords_path(id: @accord.id) , { class: 'btn btn-info', type: 'buttom'}
+        br
       button.btn.btn-primary data-target="#exampleModalCenter" data-toggle="modal" type="button" 
         | Přidej poznámku 
       button.btn.btn-primary data-target="#uploadModalCenter" data-toggle="modal" type="button" 
         | Přidej přílohy
       br
-      = link_to "Zobraz změny", changes_accords_path(id: @accord.id) , { class: 'btn btn-info', type: 'buttom'}
 
 /! Modal
 #exampleModalCenter.modal.fade aria-hidden="true" aria-labelledby="exampleModalCenterTitle" role="dialog" tabindex="-1" 
@@ -30,8 +31,12 @@
       .modal-body
         = form_with(model: Note.new.decorate, local: true) do |f|
           = f.hidden_field :accord_id, value: @accord.id
-          = f.text_area :description, class: "form-control"
-          = f.select :color,  f.object.select_color,{include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true"}
+          .form-group
+            = f.text_area :description, class: "form-control"
+          .form-group
+            = f.select :permission,  f.object.select_permission,{},{class: "selectpicker form-control", "data-live-search" => "true"}
+          .form-group
+            = f.select :color,  f.object.select_color,{include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true"}
           .modal-footer
             button.btn.btn-secondary data-dismiss="modal" type="button"  Close
             button.btn.btn-primary type="submit"  Odešli

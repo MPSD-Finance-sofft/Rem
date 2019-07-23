@@ -11,7 +11,7 @@
     			th | Výše zálohy
     			th | Datum úhrady
     		tr
-    			- @accord.energies.decorate.each do |expert_evidence|
+    			- @energies.each do |expert_evidence|
     				tr
     					td=expert_evidence.kind
     					td=expert_evidence.date_of

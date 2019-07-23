@@ -4,8 +4,8 @@ class AccordsController < ApplicationController
   # GET /accords
   # GET /accords.json
   def index
-    @accords = policy_scope(Accord)
-    @accords = @accords.order(created_at: :desc).decorate
+    @accords = policy_scope(Accord).order(created_at: :desc)
+    @accords = @accords.decorate
     respond_to do |format|
       format.html
       format.json
@@ -15,6 +15,12 @@ class AccordsController < ApplicationController
   # GET /accords/1
   # GET /accords/1.json
   def show
+    authorize @accord
+    @notes = NotePolicy::Scope.new(@accord.id, current_user, Note).resolve.decorate
+    @expert_evidences = ExpertEvidencePolicy::Scope.new(@accord.id, current_user, ExpertEvidence).resolve.decorate
+    @commitments = CommitmentPolicy::Scope.new(@accord.id, current_user, Commitment).resolve.decorate
+    @expenses = ExpensePolicy::Scope.new(@accord.id, current_user, Expense).resolve.decorate
+    @energies = EnergyPolicy::Scope.new(@accord.id, current_user, Energy).resolve.decorate
   end
 
   # GET /accords/new
@@ -25,6 +31,7 @@ class AccordsController < ApplicationController
 
   # GET /accords/1/edit
   def edit  
+    authorize @accord
   end
 
   # POST /accords
@@ -47,6 +54,7 @@ class AccordsController < ApplicationController
   # PATCH/PUT /accords/1
   # PATCH/PUT /accords/1.json
   def update
+    authorize @accord
     respond_to do |format|
       if @accord.update(accord_params)
         format.html { redirect_to @accord, notice: 'Accord was successfully updated.' }
@@ -61,6 +69,7 @@ class AccordsController < ApplicationController
   # DELETE /accords/1
   # DELETE /accords/1.json
   def destroy
+    authorize @accord
     @accord.destroy
     respond_to do |format|
       format.html { redirect_to accords_url, notice: 'Accord was successfully destroyed.' }
@@ -69,7 +78,7 @@ class AccordsController < ApplicationController
   end
 
   def changes
-
+    authorize @accord
   end
 
   private

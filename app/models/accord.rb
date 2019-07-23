@@ -40,6 +40,11 @@ class Accord < ApplicationRecord
     	self.purchase_price.to_f * (self.agency_commission.to_f / 100)
   	end
 
-	scope :subordinates_accords, -> (user) {Accord.where(id: [User.where(superior_id: user.id).pluck(:id), user.id])}
-	scope :agents_accords, -> (user) {Accord.where(id:  user.id)}
+
+  	def contract?
+  		self.state == 'contract'
+  	end
+
+	scope :subordinates_accords, -> (user) {where(agent_id: [User.where(superior_id: user.id).pluck(:id), user.id])}
+	scope :agents_accords, -> (user) {where(agent_id:  user.id)}
 end

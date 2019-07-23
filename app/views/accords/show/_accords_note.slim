@@ -8,7 +8,7 @@
     			th | Čas
     			th | Text
     			th | Autor
-    		- @accord.notes.each do |note|
+    		- @notes.each do |note|
     			tr class="#{note.attributes["color"]} color"
     				td = note.created_at
     				td = note.description

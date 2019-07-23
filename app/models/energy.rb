@@ -3,4 +3,5 @@ class Energy < ApplicationRecord
 	include EnergiesEnum
 	belongs_to :distributor
 	validates :kind, :inclusion => {:in => kinds.keys}
+	scope :for_accord, -> (accord_id) {where(accord_id: accord_id)}
 end

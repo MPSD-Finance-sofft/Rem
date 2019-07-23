@@ -58,6 +58,10 @@ class User < ApplicationRecord
 	def without_contract?
 		self.cooperations.last.try(:lost_cooperation?)
 	end
+
+	def user_or_admin?
+		self.permission.try(:kind) == "user" || self.permission.try(:kind) == "admin"
+	end
 	 
 	scope :subordinates, -> (user) {where(superior_id: user.id)}
 	scope :agents,   ->{ joins(:permission).where('permissions.kind': 'agent') }

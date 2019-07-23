@@ -18,11 +18,11 @@ div
     = render partial: "accords/show/accord_data"
     = render partial: "accords/show/reward"
     = render partial: "accords/show/accord_realities"
-    = render partial: "accords/show/accords_expert_evidence"
+    = render partial: "accords/show/accords_expert_evidence" unless @expert_evidences.blank?
     = render partial: "accords/show/accords_clients"
-    = render partial: "accords/show/accords_commitments"
-    = render partial: "accords/show/accords_expense"
-    = render partial: "accords/show/accords_energy"
+    = render partial: "accords/show/accords_commitments" unless @commitments.blank?
+    = render partial: "accords/show/accords_expense" unless @expenses.blank?
+    = render partial: "accords/show/accords_energy" unless @energies.blank?
     = render partial: "accords/show/accords_note"
     = render partial: "accords/show/accords_upload"
 

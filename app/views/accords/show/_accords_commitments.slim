@@ -12,7 +12,7 @@
         		th | Datum skutečného vyplacení
         		th | Popis
         	tr
-        		- @accord.commitments.decorate.each do |commitment|
+        		- @commitments.each do |commitment|
         			tr
         				td=commitment.commitment_type
         				td.amount=commitment.amount

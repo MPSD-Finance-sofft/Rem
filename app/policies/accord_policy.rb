@@ -1,5 +1,21 @@
 class AccordPolicy < ApplicationPolicy
 
+    def show?
+        !(record.contract? && (user.agent? || user.manager?))
+    end
+
+    def update?
+        user.user? || user.admin?
+    end
+
+    def destroy? 
+        user.admin?
+    end
+
+    def changes?
+        update?
+    end
+    
 	class Scope < Scope
    
     	def resolve

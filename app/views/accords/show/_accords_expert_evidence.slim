@@ -11,7 +11,7 @@
     			th | Cena tržní
     			th | Vypracoval
     		tr
-    			- @accord.expert_evidences.decorate.each do |expert_evidence|
+    			- @expert_evidences.each do |expert_evidence|
     				tr
     					td=expert_evidence.of_date
     					td=expert_evidence.number

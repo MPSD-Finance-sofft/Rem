@@ -1,11 +1,6 @@
 class NotesController < ApplicationController
   before_action :set_note, only: [:show, :edit, :update, :destroy]
 
-  # GET /notes
-  # GET /notes.json
-  def index
-    @notes = Note.all
-  end
 
   # GET /notes/1
   # GET /notes/1.json
@@ -69,6 +64,6 @@ class NotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def note_params
-      params.require(:note).permit(:accord_id, :user_id, :description,:color)
+      params.require(:note).permit(:accord_id, :user_id, :description,:color, :permission)
     end
 end
