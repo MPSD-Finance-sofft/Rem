@@ -1,6 +1,6 @@
 class Client < ApplicationRecord
 	include ClientsEnum
-  	has_paper_trail ignore: [:updated_at]
+  has_paper_trail ignore: [:updated_at]
   	
   	validates :kind, :inclusion => {:in => kinds.keys}
 

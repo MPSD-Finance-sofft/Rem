@@ -6,10 +6,12 @@ class AccordValidator < ActiveModel::Validator
 		kind(record)
 		purchase_price(record)
 		agent_id(record)
+		accords_clients(record)
+		accords_realty(record)
 	end
 
 	def max_agency_commission(record)
-		record.errors.add(:agency_commission, "Maximální výše provize je 5%") if record.agency_commission > 5
+		record.errors.add(:agency_commission, "Maximální výše provize je 5%") if record.agency_commission.to_f > 5
 	end
 
 	def state(record)
@@ -27,5 +29,14 @@ class AccordValidator < ActiveModel::Validator
 	def agent_id(record)
 		record.errors.add(:agent_id, "Pokud máte roli agent, agent nesmí být prázdný") if record.current_user.agent? && record.agent_id.blank?
 	end
+
+	def accords_clients(record)
+		record.errors.add(:accords_clients, "Klient musí být vyplněn") if record.accords_clients.blank?
+	end
+
+	def accords_realty(record)
+		record.errors.add(:accords_realty, "Nemovitost musí být vyplněna") if record.accords_realty.blank?
+	end
+
 
 end

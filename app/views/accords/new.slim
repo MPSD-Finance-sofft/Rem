@@ -33,10 +33,10 @@ div.col-md-12
 					= f.select :kind, f.object.select_kind,{},{class: "selectpicker form-control", "data-live-search" => "true"}
 				.form-group
 			    	= f.label :agency_commission, "Zprostředkovatelská provize"
-					= f.text_field :agency_commission,{class: "form-control"}
+					= f.text_field :agency_commission,{class: "form-control", type:"number", step:"any"}
 				.form-group
 			    	= f.label :purchase_price, "Předpokládaná výkupní cena"
-					= f.text_field :purchase_price,{class: "form-control"}
+					= f.text_field :purchase_price,{class: "form-control", type:"number", step:"any"}
 				.form-group
 			    	= f.label :agent_id, "Agent"
 					= f.select :agent_id, User.agents.map{|a| [a.all_name,a.id]},{include_blank: true},{class: "form-control"}
