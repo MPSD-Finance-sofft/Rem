@@ -1,0 +1,16 @@
+<h1>Leasing Contract Realties</h1>
+
+<table class="responsive nowrap table table-hover" id="dttb-leasing_contract_realties" data-sort="true" data-source="<%= url_for(format: :json)%>">
+  <thead>
+    <tr>
+      <th data-data="leasing_contract_id">Leasing contract</th>
+      <th data-data="realty_id">Realty</th>
+      <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
+    </tr>
+  </thead>
+
+</table>
+
+<br>
+
+<%= link_to 'New Leasing Contract Realty', new_leasing_contract_realty_path %>

@@ -1,0 +1,16 @@
+div class="panel-group smart-accordion-default" 
+  div class="panel panel-default"
+    div class="panel-heading"
+      h4 class="panel-title"
+        a data-toggle="collapse" data-parent="#accordion" href="#collapseSecon" aria-expanded="false" class="collapsed" 
+          i class="fa fa-lg fa-angle-down pull-right"
+          i class="fa fa-lg fa-angle-up pull-right"
+          | Nemovitost
+    div id="collapseSecon" class="panel-collapse"
+      div.panel-body.no-padding   
+        #leasing_contract_realty
+          .links
+            = link_to_add_association('Přidej Nemovitost', f, :leasing_contract_realty, :"data-association-insertion-method" => "after")
+            = f.fields_for :leasing_contract_realty do |leasing_contract_realty|
+              = render 'leasing_contract_realty_fields', f: leasing_contract_realty
+    			

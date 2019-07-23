@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :dispositions
+  resources :leasing_contract_realties
+  resources :leasing_contract_clients
   resources :invoices
   resources :boards
   resources :user_addresses

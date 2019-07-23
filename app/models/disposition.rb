@@ -1,0 +1,2 @@
+class Disposition < ApplicationRecord
+end

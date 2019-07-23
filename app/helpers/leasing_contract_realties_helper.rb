@@ -1,0 +1,2 @@
+module LeasingContractRealtiesHelper
+end

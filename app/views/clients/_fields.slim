@@ -1,0 +1,30 @@
+- f.object = f.object.decorate
+.nested-fields.col-md-2.border
+	.field.form-group
+		.form-group
+			= f.label :relationship
+			= f.select :relationship, f.object.select_relationship,{},{class: "selectpicker form-control", "data-live-search" => "true"}
+		- f.object.build_client unless f.object.client
+		= f.fields_for :client do |f| 
+			- f.object = f.object.decorate
+			.form-group
+				= f.label :kind
+				= f.select :kind, f.object.select_kind,{},{class: "selectpicker form-control", "data-live-search" => "true"}
+			- f.object.build_person unless f.object.person
+			= f.fields_for :person do |f|
+				.form-group
+					= f.label :name
+					= f.text_field :name, class: "form-control"
+				.form-group
+					= f.label :last_name
+					= f.text_field :last_name, class: "form-control"
+				.form-group
+					= f.label :identity_card_number
+					= f.text_field :identity_card_number, class: "form-control"
+				.form-group
+					= f.label :mobil
+					= f.text_field :mobil, class: "form-control"
+				.form-group
+					= f.label :personal_identification_number
+					= f.text_field :personal_identification_number, class: "form-control"
+	= link_to_remove_association "Odebrat", f

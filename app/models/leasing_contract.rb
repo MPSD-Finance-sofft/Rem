@@ -3,8 +3,15 @@ class LeasingContract < ApplicationRecord
 
 	has_many :payments, :dependent => :destroy
 	has_many :repayments, :dependent => :destroy
+	has_many :leasing_contract_clients, :dependent => :destroy
+	has_many :leasing_contract_realty, :dependent => :destroy
+
+	has_many :realty, through: :leasing_contract_realty
+	has_many :clients, through: :leasing_contract_clients
 	
 	accepts_nested_attributes_for :repayments,  reject_if: :all_blank, allow_destroy: true
+	accepts_nested_attributes_for :leasing_contract_clients,  reject_if: :all_blank, allow_destroy: true
+	accepts_nested_attributes_for :leasing_contract_realty,  reject_if: :all_blank, allow_destroy: true
 
 	MAX_GENERATE_REPAYMENTS = 100
 

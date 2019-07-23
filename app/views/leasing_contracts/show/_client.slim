@@ -4,4 +4,21 @@
     .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
       h6.m-0.font-weight-bold.text-primary Nájemníci
     .card-body
-    	
+	    table.table
+    		tr
+    			th | Vztah
+    			th | Jméno
+    			th | Přijmení
+    			th | Rodné číslo  
+    			th | Mobil
+    			th | Číslo OP 
+    			
+    		tr
+    			- @leasing_contract.leasing_contract_clients.decorate.each do |leasing_contract_client|
+    				td=leasing_contract_client.relationship
+    				- person = leasing_contract_client.client.person
+    				td=person.name
+    				td=person.last_name
+    				td=person.identity_card_number
+    				td=person.mobil
+    				td=person.personal_identification_number

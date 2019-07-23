@@ -23,6 +23,60 @@ class RealtyDecorator < Draper::Decorator
 		end
  	end
 
+ 	def record_on_lv
+		record_on_lv_to_text(object.record_on_lv)
+ 	end
+
+ 	def select_record_on_lv
+ 		Realty.record_on_lvs.keys.map{|a| [record_on_lv_to_text(a), a]}
+ 	end
+
+
+ 	def record_on_lv_to_text(record_on_lv)
+ 		case record_on_lv
+ 			when 'burden'
+ 					"Břemeno"
+ 			when 'execution'
+ 					"Exekuce"
+ 			when 'hypothec'
+ 					"Hypotéka"
+ 			when 'insolvency_manager'
+ 					"Insolvenční manager"
+ 			when 'unknown'
+ 					"Neznámý"
+ 			when 'pledge'
+ 					"Zástava"
+ 			else
+ 					"nedefinovaný typ záznamu na lv"
+		end
+ 	end
+
+ 	def location
+		record_on_lv_to_text(object.location)
+ 	end
+
+ 	def select_location
+ 		Realty.locations.keys.map{|a| [location_to_text(a), a]}
+ 	end
+
+
+ 	def location_to_text(location)
+ 		case location
+ 			when 'county_seat'
+ 					"Krajské město"
+ 			when 'discrit_town'
+ 					"Okresní město"
+ 			when 'country_seat_15_km'
+ 					"15km od krajského města"
+ 			when 'district_town_15_km'
+ 					"15 km od okresního města"
+ 			when 'village'
+ 					"Vesnice"
+ 			else
+ 					"nedefinovaný typ záznamu na lv"
+		end
+ 	end
+
  	def realty_type
  		object.realty_type.try(:name)
  	end

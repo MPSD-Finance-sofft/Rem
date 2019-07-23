@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Leasing contract:</strong>
+  <%= @leasing_contract_realty.leasing_contract_id %>
+</p>
+
+<p>
+  <strong>Realty:</strong>
+  <%= @leasing_contract_realty.realty_id %>
+</p>
+
+<%= link_to 'Edit', edit_leasing_contract_realty_path(@leasing_contract_realty) %> |
+<%= link_to 'Back', leasing_contract_realties_path %>

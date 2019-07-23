@@ -32,7 +32,6 @@ class Accord < ApplicationRecord
 		self.state = Accord.states[:state_new]
 	end
 
-
 	def commission_for_the_contract
 		self.purchase_price.to_f * 0.03
 	end

@@ -1,0 +1,27 @@
+<%= form_with(model: leasing_contract_realty, local: true) do |form| %>
+  <% if leasing_contract_realty.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(leasing_contract_realty.errors.count, "error") %> prohibited this leasing_contract_realty from being saved:</h2>
+
+      <ul>
+      <% leasing_contract_realty.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :leasing_contract_id %>
+    <%= form.number_field :leasing_contract_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :realty_id %>
+    <%= form.number_field :realty_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

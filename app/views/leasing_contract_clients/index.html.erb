@@ -1,0 +1,17 @@
+<h1>Leasing Contract Clients</h1>
+
+<table class="responsive nowrap table table-hover" id="dttb-leasing_contract_clients" data-sort="true" data-source="<%= url_for(format: :json)%>">
+  <thead>
+    <tr>
+      <th data-data="leasing_contract_id">Leasing contract</th>
+      <th data-data="relationship">Relationship</th>
+      <th data-data="client_id">Client</th>
+      <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
+    </tr>
+  </thead>
+
+</table>
+
+<br>
+
+<%= link_to 'New Leasing Contract Client', new_leasing_contract_client_path %>

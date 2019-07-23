@@ -43,4 +43,8 @@ class LeasingContractDecorator < ApplicationDecorator
  	def expected_date_of_signature
  		format_date(object.expected_date_of_signature)
  	end
+
+ 	def first_client_full_name
+		object.clients.first.try(:full_name)
+ 	end
 end
