@@ -9,7 +9,7 @@
     			th | Text
     			th | Autor
     		- @notes.each do |note|
-    			tr class="#{note.attributes["color"]} color"
+    			tr style="background-color:#{note.attributes["color"]}"
     				td = note.created_at
     				td = note.description
     				td = note.autor

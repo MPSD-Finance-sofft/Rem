@@ -14,6 +14,10 @@ class NoteDecorator < ApplicationDecorator
     Note.colors.keys.map{|a| [color_to_text(a), a]}
   end
 
+  def created_at
+    format_date_time(object.created_at)
+  end
+
 
   def color_to_text(color)
     case color

@@ -36,7 +36,7 @@
           .form-group
             = f.select :permission,  f.object.select_permission,{},{class: "selectpicker form-control", "data-live-search" => "true"}
           .form-group
-            = f.select :color,  f.object.select_color,{include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true"}
+            = f.color_field :color,{class: "selectpicker form-control", "data-live-search" => "true", type:"color"}
           .modal-footer
             button.btn.btn-secondary data-dismiss="modal" type="button"  Close
             button.btn.btn-primary type="submit"  Odešli
