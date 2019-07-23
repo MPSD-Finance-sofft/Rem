@@ -91,5 +91,9 @@ class RealtyDecorator < Draper::Decorator
  		object.address.try(:number)
  	end
 
+ 	def address_fullname
+ 		object.address.try(:full_name)
+ 	end
+
  	
 end

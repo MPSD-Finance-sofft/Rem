@@ -3,34 +3,38 @@
     .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
       h6.m-0.font-weight-bold.text-primary Nemovitosti
     .card-body
-      table.table
-        tr 
-          th | Typ
-          th | Typ vlastnictví
-          th | Záznam na LV
-          th | Odhadovaná cena 
-          th | List vlastnictví 
-          th | Výkupní cena 
-          th | Lokalita
-          th | Zastavěná plocha
-          th | Plocha pozemku
-          th | Katastrální území
-          th | Adresa
-        - @accord.realty.each do |realty|
-          tr
-            td=realty.realty_type
-            td=realty.type_ownership
-            td=realty.record_on_lv
-            td=realty.price_estimation
-            td=realty.property_sheet
-            td=realty.purchase_price
-            td=realty.location
-            td=realty.build_up_area
-            td=realty.land_plot
-            td=realty.catastral_territory
-            td
-              =realty.address_village
-              br
-              =realty.address_street
-              br
-              =realty.address_number
+      - @accord.realty.each do |realty|
+        div class="#{@accord.realty.count > 1 ? 'col-xl-6 col-lg-6' : 'col-xl-12 col-lg-12'}"
+          .card.shadow.mb-4
+            .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+              h6.m-0.font-weight-bold.text-primary =realty.address_fullname
+            .card-body
+              table.table
+                tr
+                  th Typ
+                  th Typ vlastnictví 
+                  th Záznam na LV
+                  th List vlastnictví
+                  th Výkupní cena
+                  th Lokalita
+                tr
+                  td =realty.realty_type
+                  td =realty.type_ownership
+                  td =realty.record_on_lv
+                  td =realty.property_sheet
+                  td =realty.purchase_price
+                  td =realty.location
+                tr
+                  th Zastavěná plocha
+                  th Plocha pozemku
+                  th Katastrální uzemí
+                  th Odhadovaná cena
+                  th
+                  th
+                tr
+                  td =realty.build_up_area
+                  td =realty.land_plot
+                  td =realty.catastral_territory
+                  td =realty.price_estimation
+                  td
+                  
