@@ -1,54 +1,79 @@
 - f.object = f.object.decorate
-.nested-fields.col-md-2.border
-	.field.form-group
-		.form-group
-			= f.label :relationship
-			= f.select :relationship, f.object.select_relationship,{},{class: "selectpicker form-control", "data-live-search" => "true"}
-		- f.object.build_client unless f.object.client
-		= f.fields_for :client do |f| 
-			- f.object = f.object.decorate
-			.form-group
-				= f.label :kind
-				= f.select :kind, f.object.select_kind,{},{class: "selectpicker form-control", "data-live-search" => "true"}
-			- f.object.build_person unless f.object.person
-			= f.fields_for :person do |f|
-				.form-group
-					= f.label :name
-					= f.text_field :name, class: "form-control"
-				.form-group
-					= f.label :last_name
-					= f.text_field :last_name, class: "form-control"
-				.form-group
-					= f.label :identity_card_number
-					= f.text_field :identity_card_number, class: "form-control"
-				.form-group
-					= f.label :mobil
-					= f.text_field :mobil, class: "form-control"
-				.form-group
-					= f.label :personal_identification_number
-					= f.text_field :personal_identification_number, class: "form-control"
-			legend Trvalá adresa
-			- f.object.build_permanent_address unless f.object.permanent_address
-			= f.fields_for :permanent_address do |address|
-				.form-group
-					= address.label :village, "Město"
-					= address.text_field :village, {class: "form-control vilage_find", data: {village: "#{}"}}
-				.form-group
-					= address.label :street, "Ulice"
-					= address.text_field :street, class: "form-control street_find"
-				.form-group
-					= address.label :number, "Číslo"
-					= address.text_field :number, class: "form-control number_find"
-			legend Kontaktní adresa
-			- f.object.build_contact_address unless f.object.contact_address
-			= f.fields_for :contact_address do |address|
-				.form-group
-					= address.label :village, "Město"
-					= address.text_field :village, {class: "form-control vilage_find", data: {village: "#{}"}}
-				.form-group
-					= address.label :street, "Ulice"
-					= address.text_field :street, class: "form-control street_find"
-				.form-group
-					= address.label :number, "Číslo"
-					= address.text_field :number, class: "form-control number_find"
-	= link_to_remove_association "Odebrat", f
+.nested-fields
+	.card.shadow.mb-4
+		.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+			h6.m-0.font-weight-bold.text-primary = link_to_remove_association "Odebrání klienta", f
+		.card-body.field
+			- f.object.build_client unless f.object.client
+			= f.fields_for :client do |c| 
+				- c.object = c.object.decorate
+				- c.object.build_person unless c.object.person
+				= c.fields_for :person do |p|
+					- p.object =  p.object.decorate
+					.card.shadow.mb-4.col-xl-3.col-lg-3
+	    				.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+	      					h6.m-0.font-weight-bold.text-primary Detail účtu
+	    				.card-body
+							.form-group
+								= p.label :name, 'Jméno'
+								= p.text_field :name, class: "form-control"
+							.form-group
+								= p.label :last_name, 'Přijmení'
+								= p.text_field :last_name, class: "form-control"
+							.form-group
+	    						= link_to_add_association('Přidej mobil', c, :client_mobile, :"data-association-insertion-method" => "after")
+	    						br
+            					= c.fields_for :client_mobile do |client_mobile|
+              						= render 'mobiles/field', f: client_mobile
+							.form-group
+								= p.label :email
+								= p.text_field :email, {class: "form-control", type: 'email'}
+					.card.shadow.mb-4.col-xl-3.col-lg-3
+	    				.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+	      					h6.m-0.font-weight-bold.text-primary Detail účtu
+	    				.card-body
+							.form-group
+								= c.label :kind, 'Typ klienta'
+								= c.select :kind, c.object.select_kind,{},{class: "selectpicker form-control", "data-live-search" => "true"}
+							.form-group
+								= p.label :identity_card_number, 'IČ'
+								= p.text_field :identity_card_number, class: "form-control"
+							.form-group
+								= p.label :personal_identification_number, 'OP'
+								= p.text_field :personal_identification_number, class: "form-control"
+							.form-group
+								= p.label :marital_status, 'Rodinný vztah'
+								= p.select :marital_status, p.object.select_marital_status,{include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true"}
+							.form-group
+								= f.label :relationship, 'Vztah k nemovitosti'
+								= f.select :relationship, f.object.select_relationship,{},{class: "selectpicker form-control", "data-live-search" => "true"}
+					.card.shadow.mb-4.col-xl-3.col-lg-3
+	    				.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+	      					h6.m-0.font-weight-bold.text-primary Trvalá adresa
+	    				.card-body
+							- c.object.build_permanent_address unless c.object.permanent_address
+							= c.fields_for :permanent_address do |address|
+								.form-group
+									= address.label :village, "Obec"
+									= address.text_field :village, {class: "form-control vilage_find", data: {village: "#{}"}}
+								.form-group
+									= address.label :street, "Ulice"
+									= address.text_field :street, class: "form-control street_find"
+								.form-group
+									= address.label :number, "ČP/ČO"
+									= address.text_field :number, class: "form-control number_find"
+					.card.shadow.mb-4.col-xl-3.col-lg-3
+	    				.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+	      					h6.m-0.font-weight-bold.text-primary Kontaktní adresa
+	    				.card-body
+							- c.object.build_contact_address unless c.object.contact_address
+							= c.fields_for :contact_address do |address|
+								.form-group
+									= address.label :village, "Obec"
+									= address.text_field :village, {class: "form-control vilage_find", data: {village: "#{}"}}
+								.form-group
+									= address.label :street, "Ulice"
+									= address.text_field :street, class: "form-control street_find"
+								.form-group
+									= address.label :number, "ČP/ČO"
+									= address.text_field :number, class: "form-control number_find"

@@ -1,60 +1,66 @@
-.nested-fields.col-md-2
+.nested-fields
 	.field.form-group
 		- f.object.build_realty unless f.object.realty
 		= f.fields_for :realty do |f| 
 			- f.object = f.object.decorate
-			.form-group
-				= f.label :realty_type_id, 'Typ nemovitosti'
-				= f.select :realty_type_id, RealtyType.select([:id,:name]).map{|a| [a.name,a.id]},{},{class: "selectpicker form-control", "data-live-search" => "true"}
-			.form-group
-				= f.label :type_ownership, 'Typ vlastnictví'
-				= f.select :type_ownership, f.object.select_type_ownership,{},{class: "selectpicker form-control", "data-live-search" => "true"}
-			.form-group
-				= f.label :record_on_lv, 'Záznam na lv'
-				= f.select :record_on_lv, f.object.select_record_on_lv,{},{class: "selectpicker form-control", "data-live-search" => "true"}
-			.form-group
-				= f.label :price_estimation, "Odhad ceny"
-				= f.text_field :price_estimation, {class: "form-control", type: "number", step: "any"}
-			.form-group
-				= f.label :property_sheet, "List vlastnictví"
-				= f.text_field :property_sheet, {class: "form-control", type: "number"}
-			.form-group
-				= f.label :purchase_price, "Výkupní cena"
-				= f.text_field :purchase_price, {class: "form-control", type: "number", step: "any"}
-			.form-group
-				= f.label :location, "Lokalita"
-				= f.select :location, f.object.select_location,{},{class: "selectpicker form-control", "data-live-search" => "true"}
-			.form-group
-				= f.label :build_up_area, "Zastavěná plocha"
-				= f.text_field :build_up_area, {class: "form-control", type: "number"}
-			.form-group
-				= f.label :land_plot, "Plocha pozemku"
-				= f.text_field :land_plot, {class: "form-control", type: "number"}
-			.form-group
-				= f.label :catastral_territory, "Katastrální uzemí"
-				= f.text_field :catastral_territory, {class: "form-control", type: "number"}
-			.form-group
-				= f.label :flat_number, "Číslo domu"
-				= f.text_field :flat_number, {class: "form-control", type: "number"}
-			.form-group
-				= f.label :disposition_id, "Dispozice"
-				= f.select :disposition_id, Disposition.select([:id,:name]).map{|a| [a.name,a.id]},{},{class: "selectpicker form-control", "data-live-search" => "true"}
-			.form-group
-				= f.label :real_number_abovegroud_floors, "Reálný počet nadzemních podlaží "
-				= f.text_field :real_number_abovegroud_floors, {class: "form-control", type: "number"}
-			.form-group
-				= f.label :part_number, "Spoluvlastniký podíl"
-				= f.text_field :part_number, {class: "form-control"}
-			- f.object.build_address unless f.object.address
-			= f.fields_for :address do |address|
-				.form-group
-					= address.label :village, "Město"
-					= address.text_field :village, {class: "form-control vilage_find", data: {village: "#{}"}}
-				.form-group
-					= address.label :street, "Ulice"
-					= address.text_field :street, class: "form-control street_find"
-				.form-group
-					= address.label :number, "Číslo"
-					= address.text_field :number, class: "form-control number_find"
-
-	= link_to_remove_association "remove task", f
+			.card.shadow.mb-4
+				.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+					h6.m-0.font-weight-bold.text-primary = link_to_remove_association "Odebrání nemovitosti", f
+				.card-body
+					.col-xl-4.col-lg-4
+						- f.object.build_address unless f.object.address
+						= f.fields_for :address do |address|
+							.form-group
+								= address.label :village, "Město"
+								= address.text_field :village, {class: "form-control vilage_find", data: {village: "#{}"}}
+							.form-group
+								= address.label :street, "Ulice"
+								= address.text_field :street, class: "form-control street_find"
+							.form-group
+								= address.label :number, "Číslo"
+								= address.text_field :number, class: "form-control number_find"
+							.form-group
+								= f.label :property_sheet, "List vlastnictví"
+								= f.text_field :property_sheet, {class: "form-control", type: "number"}
+							.form-group
+								= f.label :catastral_territory, "Katastrální území"
+								= f.text_field :catastral_territory, {class: "form-control", type: "number"}
+							.form-group
+								= f.label :location, "Lokalita"
+								= f.select :location, f.object.select_location,{},{class: "selectpicker form-control", "data-live-search" => "true"}
+					.col-xl-4.col-lg-4
+						.form-group
+							= f.label :realty_type_id, 'Typ nemovitosti'
+							= f.select :realty_type_id, RealtyType.select([:id,:name]).map{|a| [a.name,a.id]},{},{class: "selectpicker form-control", "data-live-search" => "true"}
+						.form-group
+							= f.label :type_ownership, 'Typ vlastnictví'
+							= f.select :type_ownership, f.object.select_type_ownership,{},{class: "selectpicker form-control", "data-live-search" => "true"}
+						.form-group
+							= f.label :record_on_lv, 'Záznam na LV'
+							= f.select :record_on_lv, f.object.select_record_on_lv,{},{class: "selectpicker form-control", "data-live-search" => "true"}
+						.form-group
+							= f.label :price_estimation, "Odhad tržní ceny"
+							= f.text_field :price_estimation, {class: "form-control", type: "number", step: "any"}
+						.form-group
+							= f.label :purchase_price, "Výkupní cena"
+							= f.text_field :purchase_price, {class: "form-control", type: "number", step: "any"}
+					.col-xl-4.col-lg-4
+						.form-group
+							= f.label :disposition_id, "Dispozice"
+							= f.select :disposition_id, Disposition.select([:id,:name]).map{|a| [a.name,a.id]},{},{class: "selectpicker form-control", "data-live-search" => "true"}
+						.form-group
+							= f.label :flat_number, "Číslo bytové jednotky"
+							= f.text_field :flat_number, {class: "form-control", type: "number"}
+						.form-group
+							= f.label :build_up_area, "Zastavěná plocha"
+							= f.text_field :build_up_area, {class: "form-control", type: "number"}
+						.form-group
+							= f.label :land_plot, "Plocha pozemku"
+							= f.text_field :land_plot, {class: "form-control", type: "number"}
+						.form-group
+							= f.label :part_number, "Spoluvlastniký podíl"
+							= f.text_field :part_number, {class: "form-control"}	
+						.form-group
+							= f.label :real_number_abovegroud_floors, "Reálný počet nadzemních podlaží "
+							= f.text_field :real_number_abovegroud_floors, {class: "form-control", type: "number"}
+			

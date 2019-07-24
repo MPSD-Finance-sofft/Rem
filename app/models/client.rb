@@ -7,11 +7,14 @@
   	belongs_to :person, foreign_key: 'object_id'
     belongs_to :permanent_address, class_name: 'Address', required: false
     belongs_to :contact_address, class_name: 'Address', required: false
-  	
+  	has_many :client_mobile
+    has_many :mobile, through: :client_mobile
+    has_one :accords_client
+    
   	accepts_nested_attributes_for :person,  reject_if: :all_blank, allow_destroy: true
     accepts_nested_attributes_for :permanent_address,  reject_if: :all_blank, allow_destroy: true
     accepts_nested_attributes_for :contact_address,  reject_if: :all_blank, allow_destroy: true
-  	has_one :accords_client
+    accepts_nested_attributes_for :client_mobile,  reject_if: :all_blank, allow_destroy: true
 
   	def full_name
   		"#{person.name} #{person.last_name}"
