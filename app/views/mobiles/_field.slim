@@ -1,5 +1,7 @@
 - f.object.build_mobile if f.object.mobile.blank?
-= f.fields_for :mobile do |f| 
-	.form-group
-		= f.label :phone_number, "Mobil"
-		= f.text_field :phone_number,  {class: "form-control", required: true, type:"tel", pattern:"[0-9]{9}"}
+= f.fields_for :mobile do |m|
+	.nested-fields
+		.form-group.field
+			= m.label :phone_number, "Mobil"
+			= m.text_field :phone_number,  {class: "form-control", required: true, type:"tel", pattern:"[0-9]{9}"}
+			= link_to_remove_association "Odebrání mobilu", m
