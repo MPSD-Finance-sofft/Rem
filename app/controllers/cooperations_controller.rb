@@ -28,8 +28,8 @@ class CooperationsController < ApplicationController
 
     respond_to do |format|
       if @cooperation.save
-        format.html { redirect_to @cooperation, notice: 'Cooperation was successfully created.' }
-        format.json { render :show, status: :created, location: @cooperation }
+        format.html { redirect_to users_url, notice: 'Cooperation was successfully destroyed.' }
+        format.json { redirect_to users_url, notice: 'Cooperation was successfully destroyed.' }
       else
         format.html { render :new }
         format.json { render json: @cooperation.errors, status: :unprocessable_entity }

@@ -55,6 +55,10 @@ class User < ApplicationRecord
 		self.cooperations.last.try(:runing_notice?)
 	end
 
+	def not_runing_notice?
+		!(runing_notice)
+	end
+
 	def without_contract?
 		self.cooperations.last.try(:lost_cooperation?)
 	end
@@ -62,8 +66,14 @@ class User < ApplicationRecord
 	def user_or_admin?
 		self.permission.try(:kind) == "user" || self.permission.try(:kind) == "admin"
 	end
+
+
+	def self.can_create_accord
+		User.agents.can_sign_in.select(&:not_runing_notice?)
+	end
 	 
 	scope :subordinates, -> (user) {where(superior_id: user.id)}
 	scope :agents,   ->{ joins(:permission).where('permissions.kind': 'agent') }
 	scope :manager_and_user,   ->{ joins(:permission).where('permissions.kind': ['manager','user']) }
+	scope :can_sign_in, -> {where(can_sign_in: true)}
 end

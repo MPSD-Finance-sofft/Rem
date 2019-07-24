@@ -34,7 +34,7 @@ div.container-fluid
 							= f.select :state, f.object.select_state,{selected: f.object.object_state},{class: "selectpicker form-control", "data-live-search" => "true", disabled:true}
 						.form-group
 					    	= f.label :agent_id, "Agent"
-							= f.select :agent_id, User.agents.map{|a| [a.all_name, a.id]},{include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true"}
+							= f.select :agent_id, User::can_create_accord.map{|a| [a.all_name, a.id]},{include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true"}
 						.form-group
 					    	= f.label :agent_terrain_id, "V terénu zpracovává"
 							= f.select :agent_terrain_id, User.manager_and_user.map{|a| [a.all_name, a.id]},{include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true"}
