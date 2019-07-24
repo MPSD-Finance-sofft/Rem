@@ -53,9 +53,11 @@
         button.close aria-label="Close" data-dismiss="modal" type="button" 
           span aria-hidden="true"  &times;
       .modal-body
-        = form_with(model: Upload.new, local: true, html: {multipart:true}) do |f| 
+        = form_with(model: Upload.new.decorate, local: true, html: {multipart:true}) do |f| 
           = f.hidden_field :accord_id, value: @accord.id 
           = f.file_field :file 
+          .form-group
+            = f.select :permission,  f.object.select_permission,{},{class: "selectpicker form-control", "data-live-search" => "true"}
           .modal-footer
             button.btn.btn-secondary data-dismiss="modal" type="button"  Close
             button.btn.btn-primary type="submit"  Odešli

@@ -1,10 +1,6 @@
-class NoteDecorator < ApplicationDecorator
+class UploadDecorator < ApplicationDecorator
   delegate_all
-
-  def autor
-  	User.find_by_id(object.user_id).try(:username)
-  end
-
+  
   def created_at
     format_date_time(object.created_at)
   end

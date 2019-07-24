@@ -17,6 +17,7 @@ class AccordsController < ApplicationController
   def show
     authorize @accord
     @notes = NotePolicy::Scope.new(@accord.id, current_user, Note).resolve.decorate
+    @uploads = UploadPolicy::Scope.new(@accord.id, current_user, Upload).resolve.decorate
     @expert_evidences = ExpertEvidencePolicy::Scope.new(@accord.id, current_user, ExpertEvidence).resolve.decorate
     @commitments = CommitmentPolicy::Scope.new(@accord.id, current_user, Commitment).resolve.decorate
     @expenses = ExpensePolicy::Scope.new(@accord.id, current_user, Expense).resolve.decorate
