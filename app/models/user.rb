@@ -59,6 +59,10 @@ class User < ApplicationRecord
 		!(runing_notice)
 	end
 
+	def not_runing_notice_ignor_exist?(agent_id)
+		!(runing_notice) || (agent_id == self.id)
+	end
+
 	def without_contract?
 		self.cooperations.last.try(:lost_cooperation?)
 	end
@@ -70,6 +74,10 @@ class User < ApplicationRecord
 
 	def self.can_create_accord
 		User.agents.can_sign_in.select(&:not_runing_notice?)
+	end
+
+	def self.can_create_accord_with_exist(agent_id)
+		User.agents.can_sign_in.or(User.agents.where(id: agent_id)).select{|a| a.not_runing_notice_ignor_exist?(agent_id)}
 	end
 	 
 	scope :subordinates, -> (user) {where(superior_id: user.id)}
