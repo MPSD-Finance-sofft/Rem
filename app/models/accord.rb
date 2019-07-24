@@ -41,7 +41,6 @@ class Accord < ApplicationRecord
     	self.purchase_price.to_f * (self.agency_commission.to_f / 100)
   	end
 
-
   	def contract?
   		self.state == 'contract'
   	end

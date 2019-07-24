@@ -12,13 +12,13 @@
 					- p.object =  p.object.decorate
 					.card.shadow.mb-4.col-xl-3.col-lg-3
 	    				.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
-	      					h6.m-0.font-weight-bold.text-primary Detail účtu
+	      					h6.m-0.font-weight-bold.text-primary Údaje klienta
 	    				.card-body
 							.form-group
 								= p.label :name, 'Jméno'
 								= p.text_field :name, class: "form-control"
 							.form-group
-								= p.label :last_name, 'Přijmení'
+								= p.label :last_name, 'Příjmení'
 								= p.text_field :last_name, class: "form-control"
 							.form-group
 	    						= link_to_add_association('Přidej mobil', c, :client_mobile, :"data-association-insertion-method" => "after")
@@ -26,11 +26,11 @@
             					= c.fields_for :client_mobile do |client_mobile|
               						= render 'mobiles/field', f: client_mobile
 							.form-group
-								= p.label :email
+								= p.label :email, 'E-mail'
 								= p.text_field :email, {class: "form-control", type: 'email'}
 					.card.shadow.mb-4.col-xl-3.col-lg-3
 	    				.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
-	      					h6.m-0.font-weight-bold.text-primary Detail účtu
+	      					h6.m-0.font-weight-bold.text-primary Údaje klienta
 	    				.card-body
 							.form-group
 								= c.label :kind, 'Typ klienta'

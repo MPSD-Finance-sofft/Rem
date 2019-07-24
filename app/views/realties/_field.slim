@@ -11,13 +11,13 @@
 						- f.object.build_address unless f.object.address
 						= f.fields_for :address do |address|
 							.form-group
-								= address.label :village, "Město"
+								= address.label :village, "Obec"
 								= address.text_field :village, {class: "form-control vilage_find", data: {village: "#{}"}}
 							.form-group
 								= address.label :street, "Ulice"
 								= address.text_field :street, class: "form-control street_find"
 							.form-group
-								= address.label :number, "Číslo"
+								= address.label :number, "ČP/ČO"
 								= address.text_field :number, class: "form-control number_find"
 							.form-group
 								= f.label :property_sheet, "List vlastnictví"
@@ -58,7 +58,7 @@
 							= f.label :land_plot, "Plocha pozemku"
 							= f.text_field :land_plot, {class: "form-control", type: "number"}
 						.form-group
-							= f.label :part_number, "Spoluvlastniký podíl"
+							= f.label :part_number, "Spoluvlastnický podíl"
 							= f.text_field :part_number, {class: "form-control"}	
 						.form-group
 							= f.label :real_number_abovegroud_floors, "Reálný počet nadzemních podlaží "
