@@ -1,4 +1,4 @@
-tr
+tr.nested-fields
 	= f.hidden_field :accord_id, value: @accord.id
 	td
 		= f.select :expense_type_id, ExpenseType.select([:id,:name]).map{|a| [a.name,a.id]},{},{class: "selectpicker form-control", "data-live-search" => "true"}

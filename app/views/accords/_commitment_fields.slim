@@ -1,4 +1,4 @@
-tr
+tr.nested-fields
 	= f.hidden_field :accord_id, value: @accord.id
 	td
 		= f.select :commitment_type_id, CommitmentType.select([:id,:description]).map{|a| [a.description,a.id]},{},{class: "selectpicker form-control", "data-live-search" => "true"}

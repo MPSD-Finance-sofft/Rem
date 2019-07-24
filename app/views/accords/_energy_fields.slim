@@ -1,5 +1,5 @@
 - f.object = f.object.decorate
-tr
+tr.nested-fields
 	= f.hidden_field :accord_id, value: @accord.id
 	td
 		= f.select :kind, f.object.select_kind_energy, {selected: f.object.object_kind},{class: "selectpicker form-control kind_energy", "data-live-search" => "true"}
