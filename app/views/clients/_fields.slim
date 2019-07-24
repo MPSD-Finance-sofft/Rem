@@ -27,4 +27,28 @@
 				.form-group
 					= f.label :personal_identification_number
 					= f.text_field :personal_identification_number, class: "form-control"
+			legend Trvalá adresa
+			- f.object.build_permanent_address unless f.object.permanent_address
+			= f.fields_for :permanent_address do |address|
+				.form-group
+					= address.label :village, "Město"
+					= address.text_field :village, {class: "form-control vilage_find", data: {village: "#{}"}}
+				.form-group
+					= address.label :street, "Ulice"
+					= address.text_field :street, class: "form-control street_find"
+				.form-group
+					= address.label :number, "Číslo"
+					= address.text_field :number, class: "form-control number_find"
+			legend Kontaktní adresa
+			- f.object.build_contact_address unless f.object.contact_address
+			= f.fields_for :contact_address do |address|
+				.form-group
+					= address.label :village, "Město"
+					= address.text_field :village, {class: "form-control vilage_find", data: {village: "#{}"}}
+				.form-group
+					= address.label :street, "Ulice"
+					= address.text_field :street, class: "form-control street_find"
+				.form-group
+					= address.label :number, "Číslo"
+					= address.text_field :number, class: "form-control number_find"
 	= link_to_remove_association "Odebrat", f

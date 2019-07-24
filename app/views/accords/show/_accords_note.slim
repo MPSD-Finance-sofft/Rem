@@ -3,17 +3,16 @@
     .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
       h6.m-0.font-weight-bold.text-primary Poznámky
     .card-body
-    	table.table
-    		tr
-    			th | Čas
-    			th | Text
-    			th | Autor
-    		- @notes.each do |note|
-    			tr style="background-color:#{note.attributes["color"]}"
-    				td = note.created_at
-    				td = note.description
-    				td = note.autor
-      			 
+      table.table
+        tr
+          th | Čas
+          th | Autor
+          th | Text
+        - @notes.each do |note|
+          tr style="background-color:#{note.attributes["color"]}"
+            td = note.created_at
+            td = note.autor
+            td = note.description
 javascript: 
   $(document).ready(function() {
       $('.color').each(function(){
