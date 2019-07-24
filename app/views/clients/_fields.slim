@@ -50,7 +50,7 @@
 					.card.shadow.mb-4.col-xl-3.col-lg-3
 	    				.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
 	      					h6.m-0.font-weight-bold.text-primary Trvalá adresa
-	    				.card-body
+	    				.card-body.field.form-group
 							- c.object.build_permanent_address unless c.object.permanent_address
 							= c.fields_for :permanent_address do |address|
 								.form-group
@@ -65,7 +65,7 @@
 					.card.shadow.mb-4.col-xl-3.col-lg-3
 	    				.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
 	      					h6.m-0.font-weight-bold.text-primary Kontaktní adresa
-	    				.card-body
+	    				.card-body.field.form-group
 							- c.object.build_contact_address unless c.object.contact_address
 							= c.fields_for :contact_address do |address|
 								.form-group
