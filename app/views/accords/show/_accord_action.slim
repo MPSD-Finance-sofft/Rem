@@ -7,7 +7,8 @@
         = link_to "Úprava", edit_accord_path(@accord.id),{class: 'btn btn-info', type: 'buttom'}
         = link_to "Rozpracovat", accord_path(@accord, accord: {state: 'state_eleboration', user_id: current_user.id}) , {:method=> :put, class: 'btn btn-info', type: 'buttom'}
         = link_to "K podepsání", accord_path(@accord, accord: {state: 'to_sign'}) , {:method=> :put, class: 'btn btn-info', type: 'buttom'}
-        = link_to "V terénu", accord_path(@accord, accord: {state: 'in_terrain'}) , {:method=> :put, class: 'btn btn-info', type: 'buttom'}
+        button.btn.btn-info data-target="#TerrainModalCenter" data-toggle="modal" type="button" 
+          | V terénu 
         = link_to "Smlouva", accord_path(@accord, accord: {state: 'contract'}) , {:method=> :put, class: 'btn btn-info', type: 'buttom'}
         = link_to "Zamítnout", accord_path(@accord, accord: {state: 'refuse'}) , {:method=> :put, class: 'btn btn-info', type: 'buttom'}
         = link_to "Stažená", accord_path(@accord, accord: {state: 'dowload'}) , {:method=> :put, class: 'btn btn-info', type: 'buttom'}
@@ -19,6 +20,7 @@
       button.btn.btn-primary data-target="#uploadModalCenter" data-toggle="modal" type="button" 
         | Přidej přílohy
       br
+
 
 /! Modal
 #exampleModalCenter.modal.fade aria-hidden="true" aria-labelledby="exampleModalCenterTitle" role="dialog" tabindex="-1" 
@@ -47,13 +49,34 @@
   .modal-dialog.modal-dialog-centered role="document" 
     .modal-content
       .modal-header
-        h5#exampleModalLongTitle.modal-title Přidání poznámky
+        h5#exampleModalLongTitle.modal-title Přidání přílohy
         button.close aria-label="Close" data-dismiss="modal" type="button" 
           span aria-hidden="true"  &times;
       .modal-body
         = form_with(model: Upload.new, local: true, html: {multipart:true}) do |f| 
           = f.hidden_field :accord_id, value: @accord.id 
           = f.file_field :file 
+          .modal-footer
+            button.btn.btn-secondary data-dismiss="modal" type="button"  Close
+            button.btn.btn-primary type="submit"  Odešli
+
+/! Modal
+#TerrainModalCenter.modal.fade aria-hidden="true" aria-labelledby="exampleModalCenterTitle" role="dialog" tabindex="-1" 
+  .modal-dialog.modal-dialog-centered role="document" 
+    .modal-content
+      .modal-header
+        h5#exampleModalLongTitle.modal-title Předání do terénu
+        button.close aria-label="Close" data-dismiss="modal" type="button" 
+          span aria-hidden="true"  &times;
+      .modal-body
+        = form_with(model: @accord, local: true) do |f| 
+          = f.hidden_field :state, value: 'in_terrain'
+          .form-group
+              = f.label :agent_terrain_id, "Agent v terénu"
+              = f.select :agent_terrain_id, User.agents.map{|a| [a.all_name, a.id]},{include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true"}
+          .form-group
+              = f.label :date_to_terrain, "Datum předání do terénu"
+              = f.text_field :date_to_terrain, class: "form-control datapicker"
           .modal-footer
             button.btn.btn-secondary data-dismiss="modal" type="button"  Close
             button.btn.btn-primary type="submit"  Odešli

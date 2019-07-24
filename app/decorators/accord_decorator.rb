@@ -75,7 +75,10 @@ class AccordDecorator < ApplicationDecorator
      format_date_time(object.created_at)
   end
 
-
+  def date_to_terrain
+    format_date(object.date_to_terrain)
+  end
+  
  	def creator_name 
  		object.creator.try(:all_name)
  	end
@@ -94,6 +97,10 @@ class AccordDecorator < ApplicationDecorator
 
   def agent_superior
     object.agent.try(:superior).try(:all_name)
+  end
+
+  def agent_terrain
+    object.agent_terrain.try(:all_name)
   end
 
  	def state_to_color(state)

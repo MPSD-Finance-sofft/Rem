@@ -41,6 +41,9 @@ div.col-md-12
 				    	= f.label :agent_id, "Agent"
 						= f.select :agent_id, User.agents.map{|a| [a.all_name, a.id]},{include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true"}
 					.form-group
+				    	= f.label :agent_terrain_id, "Agent v terénu"
+						= f.select :agent_terrain_id, User.agents.map{|a| [a.all_name, a.id]},{include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true"}
+					.form-group
 				    	= f.label :agency_commission, "Zprostředkovatelská provize"
 						= f.text_field :agency_commission,{class: "form-control"}
 					.form-group
@@ -51,13 +54,16 @@ div.col-md-12
 						= f.text_field :contract_number, class: "form-control"
 					.form-group
 				    	= f.label :date_of_signature, "Datum podpisu"
-						= f.text_field :date_of_signature, class: "form-control"
+						= f.text_field :date_of_signature, class: "form-control datapicker"
 					.form-group
 				    	= f.label :date_of_ownership, "Datum vlastnictví"
-						= f.text_field :date_of_ownership, class: "form-control"
+						= f.text_field :date_of_ownership, class: "form-control datapicker"
 					.form-group
 				    	= f.label :date_of_transfer, "Datum předání"
-						= f.text_field :date_of_transfer, class: "form-control"
+						= f.text_field :date_of_transfer, class: "form-control datapicker"
+					.form-group
+				    	= f.label :date_to_terrain, "Datum předání do terénu"
+						= f.text_field :date_to_terrain, class: "form-control datapicker"
 					.form-group
 						= f.label :transfer_protocol, "Předávací protokol"
 						= f.check_box :transfer_protocol, class: "form-control"
