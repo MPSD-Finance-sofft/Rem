@@ -1,0 +1,8 @@
+#edit_event.modal.fade aria-hidden="true" aria-labelledby="exampleModalCenterTitle" role="dialog" 
+  .modal-dialog.modal-dialog-centered role="document" 
+    .modal-content
+      .modal-header
+        h5#exampleModalLongTitle.modal-title Upravení události
+        button.close aria-label="Close" data-dismiss="modal" type="button" 
+          span aria-hidden="true"  &times;
+      = render 'form', event: @event
