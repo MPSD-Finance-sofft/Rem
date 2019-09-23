@@ -30,7 +30,7 @@
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
                   <%= current_user.all_name  %>
                 </span>
-                <%= image_tag current_user.avatar.url, class: "mg-profile rounded-circle", style:"max-width:10px" %>
+                <%= image_tag current_user.avatar.url, class: "mg-profile rounded-circle", style:"max-width:10px" unless current_user.avatar.blank?%>
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
