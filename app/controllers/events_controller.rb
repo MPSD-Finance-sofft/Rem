@@ -10,6 +10,7 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    @accord_id = params[:accord_id]
   end
 
   def edit
@@ -24,13 +25,15 @@ class EventsController < ApplicationController
   def create_html
     @event = Event.new(event_params)
     @event.user_id = current_user.id if @event.user_id.blank?
+    accord_id = params[:accord_id]
+    @event.event_text_with_accord(accord_id)
     @event.save
     respond_to do |format|
       if @event.save
-        format.html { redirect_to events_path(), notice: 'Accord was successfully updated.' }
+        format.html { redirect_to accord_path(id: accord_id), notice: 'Accord was successfully updated.' }
         format.json {}
       else
-        format.html { redirect_to events_path(), notice: 'Accord was successfully updated.' }
+        format.html { redirect_to accord_path(id: accord_id), notice: 'Accord was successfully updated.' }
         format.json{}
       end
     end

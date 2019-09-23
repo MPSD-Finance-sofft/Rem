@@ -6,5 +6,8 @@ class Event < ApplicationRecord
     	self.start == self.start.midnight && self.end == self.end.midnight ? true : false
   	end
 
+  	def event_text_with_accord(accord_id)
+  		#self.title = self.title + "<a href='/accords/#{accord_id}'>Žádost</a>"
+  	end
 	scope :for_user, -> (user_id) {where(user_id:  user_id)} 
 end

@@ -14,16 +14,17 @@ div
 			h6.m-0.font-weight-bold.text-primary Nová událost
 		.card-body
 			= form_with(model: @event, :url => create_html_events_path,   local: true) do |f|
+				= hidden_field_tag 'accord_id', @accord_id
 				.form-group
 					= f.label :title, 'Popis'
-					= f.text_field :title, class: "form-control"
+					= f.select :title, EventType.all_description_for_select,{}, class: "selectpicker form-control", "data-live-search" => "true"
 				.form-group
 					= f.text_field :date_range, class: "string optional form-control input-sm date-range-picker"
 					= f.hidden_field :start, value: Date.today,class: 'form-control input-sm start_hidden' 
 					= f.hidden_field :end, value: Date.today,class: 'form-control input-sm end_hidden' 
 				.form-group
-					= f.select :color, [['Černá','black'], ['Zelená','green'], ['Červená','red']]
+					= f.select :color, [['Černá','black'], ['Zelená','green'], ['Červená','red']],{},class: "selectpicker form-control", "data-live-search" => "true"
 				.form-group
-					= f.select :user_id, User.user_can_sign_id.map{|a| [a.all_name,a.id]}	
+					= f.select :user_id, User.user_can_sign_id.map{|a| [a.all_name,a.id]},{},class: "selectpicker form-control", "data-live-search" => "true"
 				.form-group
 					= f.submit 

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :event_types
   resources :client_mobiles
   resources :dispositions
   resources :leasing_contract_realties
