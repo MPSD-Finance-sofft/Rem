@@ -19,9 +19,11 @@ div
 					= f.text_field :title, class: "form-control"
 				.form-group
 					= f.text_field :date_range, class: "string optional form-control input-sm date-range-picker"
+					= f.hidden_field :start, value: Date.today,class: 'form-control input-sm start_hidden' 
+					= f.hidden_field :end, value: Date.today,class: 'form-control input-sm end_hidden' 
 				.form-group
 					= f.select :color, [['Černá','black'], ['Zelená','green'], ['Červená','red']]
 				.form-group
 					= f.select :user_id, User.user_can_sign_id.map{|a| [a.all_name,a.id]}	
 				.form-group
-					= f.submit
+					= f.submit 
