@@ -4,6 +4,7 @@ initialize_calendar = function() {
     var calendar = $(this);
     calendar.fullCalendar({
       lang: 'cs',
+      defaultView: 'agendaWeek',
       header: {
         left: 'prev,next today',
         center: 'title',
