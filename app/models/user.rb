@@ -9,7 +9,7 @@ class User < ApplicationRecord
   	do_not_validate_attachment_file_type :avatar
 	has_many :messages, :dependent => :destroy
 	has_many :conversations, foreign_key: :sender_id, :dependent => :destroy
-	has_many :cooperations, foreign_key: :agent_id , :dependent => :destroy
+	has_many :cooperations, foreign_key: :agent_id
 	has_many :user_mobile
 	has_many :mobile, through: :user_mobile
 	has_many :user_address
@@ -78,6 +78,10 @@ class User < ApplicationRecord
 
 	def self.can_create_accord_with_exist(agent_id)
 		User.agents.can_sign_in.or(User.agents.where(id: agent_id)).select{|a| a.not_runing_notice_ignor_exist?(agent_id)}
+	end
+
+	def self.user_can_sign_id
+		User.manager_and_user.can_sign_in
 	end
 	 
 	scope :subordinates, -> (user) {where(superior_id: user.id)}

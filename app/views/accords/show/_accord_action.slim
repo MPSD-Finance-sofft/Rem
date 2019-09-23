@@ -13,6 +13,7 @@
         = link_to "Zamítnout", accord_path(@accord, accord: {state: 'refuse'}) , {:method=> :put, class: 'btn btn-info', type: 'buttom'}
         = link_to "Stažená", accord_path(@accord, accord: {state: 'dowload'}) , {:method=> :put, class: 'btn btn-info', type: 'buttom'}
         = link_to "Vytvoření provizního nároku", rewards_path(accord_id: @accord) , {:method=> :post, class: 'btn btn-info', type: 'buttom'}
+        = link_to "Přidej události", new_event_path() , { class: 'btn btn-info', type: 'buttom'}
         = link_to "Zobraz změny", changes_accords_path(id: @accord.id) , { class: 'btn btn-info', type: 'buttom'}
         br
       button.btn.btn-primary data-target="#exampleModalCenter" data-toggle="modal" type="button" 

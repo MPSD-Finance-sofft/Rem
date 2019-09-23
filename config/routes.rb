@@ -49,7 +49,11 @@ Rails.application.routes.draw do
     end
   end
   root 'home#index'
-  resources :events
+  resources :events do 
+    collection do 
+        post :create_html
+    end
+  end
   resources :uploads
   resources :conversations, only: [:create,:index] do
     member do

@@ -1,0 +1,27 @@
+div 
+  div.container-fluid
+    ol.breadcrumb
+      li.breadcrumb-item
+        b
+         | Událost
+      li.breadcrumb-item
+          | Vytvoření události
+
+.col-xl-12.col-lg-12
+	.card.shadow.mb-4
+		/! Card Header - Dropdown
+		.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+			h6.m-0.font-weight-bold.text-primary Nová událost
+		.card-body
+			= form_with(model: @event, :url => create_html_events_path,   local: true) do |f|
+				.form-group
+					= f.label :title, 'Popis'
+					= f.text_field :title, class: "form-control"
+				.form-group
+					= f.text_field :date_range, class: "string optional form-control input-sm date-range-picker"
+				.form-group
+					= f.select :color, [['Černá','black'], ['Zelená','green'], ['Červená','red']]
+				.form-group
+					= f.select :user_id, User.user_can_sign_id.map{|a| [a.all_name,a.id]}	
+				.form-group
+					= f.submit
