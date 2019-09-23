@@ -53,6 +53,7 @@ Rails.application.routes.draw do
   resources :events do 
     collection do 
         post :create_html
+        get :index_list
     end
   end
   resources :uploads

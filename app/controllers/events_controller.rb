@@ -5,6 +5,10 @@ class EventsController < ApplicationController
     @events = Event.for_user(current_user).where(start: params[:start]..params[:end])
   end
 
+  def index_list
+    @events = Event.for_user(current_user).decorate
+  end
+
   def show
   end
 
