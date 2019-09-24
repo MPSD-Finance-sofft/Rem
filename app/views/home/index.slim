@@ -18,6 +18,11 @@
       .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
         h6.m-0.font-weight-bold.text-primary Nástěnka
       .card-body  
+        div
+          - FileBoard.show_by_permission(current_user.permission.try(:kind)).each do |board|
+            p
+              = link_to board.text, board.file.url
+
 
   .col-xl-5.col-lg-5
     .card.shadow.mb-4

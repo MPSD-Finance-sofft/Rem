@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @file_board.text %>
+</p>
+
+<p>
+  <strong>Permission:</strong>
+  <%= @file_board.permission %>
+</p>
+
+<p>
+  <strong>End:</strong>
+  <%= @file_board.end %>
+</p>
+
+<p>
+  <strong>Start:</strong>
+  <%= @file_board.start %>
+</p>
+
+<%= link_to 'Edit', edit_file_board_path(@file_board) %> |
+<%= link_to 'Back', file_boards_path %>

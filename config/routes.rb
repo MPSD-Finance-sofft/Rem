@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :file_boards
   resources :event_types
   resources :client_mobiles
   resources :dispositions
