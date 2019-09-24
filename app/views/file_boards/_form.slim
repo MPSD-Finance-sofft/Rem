@@ -1,0 +1,27 @@
+= form_with(model: file_board, local: true) do |form|
+  - if file_board.errors.any?
+    #error_explanation
+      h2
+        = pluralize(file_board.errors.count, "error")
+        | prohibited this file_board from being saved:
+      ul
+        - file_board.errors.full_messages.each do |message|
+          li= message
+  .field
+    = form.label :text
+    = form.text_field :text
+  .field
+    = form.label :file
+    = form.file_field :file
+  .field
+    = form.label :permission
+    = form.select :permission, Permission.kinds.keys.map{|a| [a,a]},{include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true",  required: true}
+  .field
+    = form.label :end
+    = form.text_field :end, class: "datapicker"
+  .field
+    = form.label :start
+    = form.text_field :start,  class: "datapicker"
+  .actions
+    = form.submit
+
