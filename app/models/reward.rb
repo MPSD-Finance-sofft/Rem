@@ -1,7 +1,7 @@
 class Reward < ApplicationRecord
 	
 	belongs_to :accord
-	belongs_to :invoice
+	belongs_to :invoice, required: false
 	belongs_to :agent, foreign_key: 'user_id', class_name: 'User' ,  required: false
 
 	def create_reward(accord)
@@ -13,7 +13,7 @@ class Reward < ApplicationRecord
 
 	
 	def invoice_date
-		self.invoice.created_at
+		self.invoice.try(:created_at) 
 	end
 
 	def purchase_price
