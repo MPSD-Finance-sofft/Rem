@@ -8,7 +8,11 @@ class FileBoard < ApplicationRecord
 		return 	FileBoard.for_permmision("agent") if permission == "agent" 
 	end
 
+	enum permission: [:agent, :manager, :user, :admin]
+
+
 	scope :for_agent, ->  {where(permission: "agent")}
 	scope :for_manager, ->  {where(permission: ["agent","manager"])}
+	scope :validity, -> {where("start < ? AND end > ?", Date.today,Date.today)}
 end
 

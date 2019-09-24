@@ -15,13 +15,13 @@
     = form.file_field :file
   .field
     = form.label :permission
-    = form.select :permission, Permission.kinds.keys.map{|a| [a,a]},{include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true",  required: true}
-  .field
-    = form.label :end
-    = form.text_field :end, class: "datapicker"
+    = form.select :permission, Permission.kinds.keys.map{|a| [a,a]},{include_blank: true, selected: form.object.permission},{class: "selectpicker form-control", "data-live-search" => "true",  required: true}
   .field
     = form.label :start
     = form.text_field :start,  class: "datapicker"
+  .field
+    = form.label :end
+    = form.text_field :end, class: "datapicker"
   .actions
     = form.submit
 

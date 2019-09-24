@@ -19,7 +19,7 @@
         h6.m-0.font-weight-bold.text-primary Nástěnka
       .card-body  
         div
-          - FileBoard.show_by_permission(current_user.permission.try(:kind)).each do |board|
+          - FileBoard.validity.show_by_permission(current_user.permission.try(:kind)).each do |board|
             p
               = link_to board.text, board.file.url
 
