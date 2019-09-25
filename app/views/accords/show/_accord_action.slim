@@ -4,24 +4,25 @@
       h6.m-0.font-weight-bold.text-primary Akce
     .card-body
       - if current_user.user_or_admin?
-        = link_to "Úprava", edit_accord_path(@accord.id),{class: 'btn btn-sm btn-info', type: 'buttom'}
-        = link_to "Rozpracovat", accord_path(@accord, accord: {state: 'state_eleboration', user_id: current_user.id}) , {:method=> :put, class: 'btn btn-sm btn-info', type: 'buttom'}
-        = link_to "K podepsání", accord_path(@accord, accord: {state: 'to_sign'}) , {:method=> :put, class: 'btn btn-sm btn-info', type: 'buttom'}
-        button.btn.btn-info.btn-sm data-target="#TerrainModalCenter" data-toggle="modal" type="button" 
-          | V terénu 
-        = link_to "Smlouva", accord_path(@accord, accord: {state: 'contract'}) , {:method=> :put, class: 'btn btn-sm btn-info', type: 'buttom'}
-        = link_to "Zamítnout", accord_path(@accord, accord: {state: 'refuse'}) , {:method=> :put, class: 'btn btn-sm btn-info', type: 'buttom'}
-        = link_to "Stažená", accord_path(@accord, accord: {state: 'dowload'}) , {:method=> :put, class: 'btn btn-sm btn-info', type: 'buttom'}
-        = link_to "Vytvoření provizního nároku", rewards_path(accord_id: @accord) , {:method=> :post, class: 'btn btn-sm btn-info', type: 'buttom'}
-        = link_to "Zobraz změny", changes_accords_path(id: @accord.id) , { class: 'btn btn-info btn-sm float-right', type: 'buttom'}
+        = link_to "Úprava", edit_accord_path(@accord.id),{class: 'btn btn-sm btn-info m-1', type: 'buttom'}
+        = link_to "Vytvoření provizního nároku", rewards_path(accord_id: @accord) , {:method=> :post, class: 'btn btn-sm btn-info m-1', type: 'buttom'}
+        button.btn.btn-primary.float-right.btn-sm type="button"  id='show_all'
+          | Zobraz vše
         br
-      button.btn.btn-primary.btn-sm data-target="#exampleModalCenter" data-toggle="modal" type="button" 
+        = link_to "Rozpracovat", accord_path(@accord, accord: {state: 'state_eleboration', user_id: current_user.id}) , {:method=> :put, class: 'btn btn-sm btn-info m-1', type: 'buttom'}
+        = link_to "K podepsání", accord_path(@accord, accord: {state: 'to_sign'}) , {:method=> :put, class: 'btn btn-sm btn-info m-1', type: 'buttom'}
+        button.btn.btn-info.btn-sm.m-1 data-target="#TerrainModalCenter" data-toggle="modal" type="button" 
+          | V terénu 
+        = link_to "Smlouva", accord_path(@accord, accord: {state: 'contract'}) , {:method=> :put, class: 'btn btn-sm btn-info m-1', type: 'buttom'}
+        = link_to "Zamítnout", accord_path(@accord, accord: {state: 'refuse'}) , {:method=> :put, class: 'btn btn-sm btn-info m-1', type: 'buttom'}
+        = link_to "Stažená", accord_path(@accord, accord: {state: 'dowload'}) , {:method=> :put, class: 'btn btn-sm btn-info m-1', type: 'buttom'}
+        = link_to "Zobraz změny", changes_accords_path(id: @accord.id) , { class: 'btn btn-info btn-sm float-right m-1', type: 'buttom'}
+        br
+      button.btn.btn-primary.btn-sm.m-1 data-target="#exampleModalCenter" data-toggle="modal" type="button" 
         | Přidej poznámku 
-      button.btn.btn-primary.btn-sm data-target="#uploadModalCenter" data-toggle="modal" type="button" 
+      button.btn.btn-primary.btn-sm.m-1 data-target="#uploadModalCenter" data-toggle="modal" type="button" 
         | Přidej přílohy
-      = link_to "Přidej události", new_event_path(accord_id: @accord.id) , { class: 'btn btn-info btn-sm', type: 'buttom'}
-      button.btn.btn-primary.float-right.btn-sm type="button"  id='show_all'
-        | Zobraz vše
+      = link_to "Přidej události", new_event_path(accord_id: @accord.id) , { class: 'btn btn-info btn-sm m-1', type: 'buttom'}
       br
 
 
