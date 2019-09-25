@@ -1,26 +1,27 @@
 .col-xl-12.col-lg-12
   .card.shadow.mb-4
-    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+    a href="#colapseExpense" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="colapseExpense"
       h6.m-0.font-weight-bold.text-primary Náklady
-    .card-body
-        table.table
-    		tr
-    			th | Typ závazku
-    			th | Částka
-    			th | Skutečná částka
-    			th | Datum předpokládaného termínu vyplacení
-    			th | Datum skutečného vyplacení
-    			th | Popis
-    		tr
-    			- @expenses.each do |expense|
-    				tr
-    					td=expense.expense_type
-    					td.expense_amount=expense.amount
-    					td.expense_real_amount=expense.real_amount
-    					td=expense.date_of_excepted_payment
-    					td=expense.payout_day
-    					td=expense.description
-    		tr
-    			td | Výsledek
-    			td#expense_sum_amount
-    			td#expense_sum_real_amount
+    .collapse id="colapseExpense"
+        .card-body
+            table.table
+        		tr
+        			th | Typ závazku
+        			th | Částka
+        			th | Skutečná částka
+        			th | Datum předpokládaného termínu vyplacení
+        			th | Datum skutečného vyplacení
+        			th | Popis
+        		tr
+        			- @expenses.each do |expense|
+        				tr
+        					td=expense.expense_type
+        					td.expense_amount=expense.amount
+        					td.expense_real_amount=expense.real_amount
+        					td=expense.date_of_excepted_payment
+        					td=expense.payout_day
+        					td=expense.description
+        		tr
+        			td | Výsledek
+        			td#expense_sum_amount
+        			td#expense_sum_real_amount

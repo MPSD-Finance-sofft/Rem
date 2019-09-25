@@ -1,18 +1,19 @@
 .col-xl-12.col-lg-12
   .card.shadow.mb-4
-    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+    a href="#colapseNote" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="colapseNote"
       h6.m-0.font-weight-bold.text-primary Poznámky
-    .card-body
-      table.table
-        tr
-          th | Čas
-          th | Autor
-          th | Text
-        - @notes.each do |note|
-          tr style="background-color:#{note.attributes["color"]}"
-            td = note.created_at
-            td = note.autor
-            td = note.description
+    .collapse id="colapseNote"
+      .card-body
+        table.table
+          tr
+            th | Čas
+            th | Autor
+            th | Text
+          - @notes.each do |note|
+            tr style="background-color:#{note.attributes["color"]}"
+              td = note.created_at
+              td = note.autor
+              td = note.description
 javascript: 
   $(document).ready(function() {
       $('.color').each(function(){

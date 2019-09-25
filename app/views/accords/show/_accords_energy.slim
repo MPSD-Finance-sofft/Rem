@@ -1,20 +1,21 @@
 .col-xl-12.col-lg-12
   .card.shadow.mb-4
-    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+    a href="#colapseEnergi" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="colapseEnergi"
       h6.m-0.font-weight-bold.text-primary Energie
-    .card-body
-    	table.table
-    		tr
-    			th | Typ
-    			th | Datum žádosti
-    			th | Distributor
-    			th | Výše zálohy
-    			th | Datum úhrady
-    		tr
-    			- @energies.each do |expert_evidence|
-    				tr
-    					td=expert_evidence.kind
-    					td=expert_evidence.date_of
-    					td=expert_evidence.distributor
-    					td=expert_evidence.price
-    					td=expert_evidence.payment_day
+    .collapse id="colapseEnergi"
+        .card-body
+        	table.table
+        		tr
+        			th | Typ
+        			th | Datum žádosti
+        			th | Distributor
+        			th | Výše zálohy
+        			th | Datum úhrady
+        		tr
+        			- @energies.each do |expert_evidence|
+        				tr
+        					td=expert_evidence.kind
+        					td=expert_evidence.date_of
+        					td=expert_evidence.distributor
+        					td=expert_evidence.price
+        					td=expert_evidence.payment_day

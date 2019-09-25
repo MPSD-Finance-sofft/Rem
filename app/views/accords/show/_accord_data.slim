@@ -1,31 +1,32 @@
 .col-xl-12.col-lg-12
   .card.shadow.mb-4
-    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+    a href="#colapseData" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="colapseData"
       h6.m-0.font-weight-bold.text-primary Data
-    .card-body
-      table.table
-        tr
-          th | Typ žádosti
-          th | Číslo žádosti
-          th | Číslo smlouvy
-          th | Datum podpisu
-          th | Datum vlastnictví
-          th | Datum předání
-          th | Datum předání do terénu
-          th | Agent v terénu
-          th | Vytvořil
-          th | V péči
-        tr
-          td=@accord.kind
-          td=@accord.number
-          td=@accord.contract_number
-          td=@accord.date_of_signature
-          td=@accord.date_of_ownership
-          td=@accord.date_of_transfer
-          td=@accord.date_to_terrain
-          td=@accord.agent_terrain
-          td=@accord.creator_name
-          td=@accord.owner_name
+    .collapse id="colapseData"
+      .card-body
+        table.table
+          tr
+            th | Typ žádosti
+            th | Číslo žádosti
+            th | Číslo smlouvy
+            th | Datum podpisu
+            th | Datum vlastnictví
+            th | Datum předání
+            th | Datum předání do terénu
+            th | Agent v terénu
+            th | Vytvořil
+            th | V péči
+          tr
+            td=@accord.kind
+            td=@accord.number
+            td=@accord.contract_number
+            td=@accord.date_of_signature
+            td=@accord.date_of_ownership
+            td=@accord.date_of_transfer
+            td=@accord.date_to_terrain
+            td=@accord.agent_terrain
+            td=@accord.creator_name
+            td=@accord.owner_name
 
 
 

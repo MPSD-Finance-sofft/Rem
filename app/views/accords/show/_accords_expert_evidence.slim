@@ -1,20 +1,21 @@
 .col-xl-12.col-lg-12
   .card.shadow.mb-4
-    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+    a href="#colapseExpertEvidence" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="colapseExpertEvidence"
       h6.m-0.font-weight-bold.text-primary Znalecké posudky
-    .card-body
-    	table.table
-    		tr
-    			th | Zp ze dne
-    			th | Číslo znaleckého posudku
-    			th | Cena nemovitosti
-    			th | Cena tržní
-    			th | Vypracoval
-    		tr
-    			- @expert_evidences.each do |expert_evidence|
-    				tr
-    					td=expert_evidence.of_date
-    					td=expert_evidence.number
-    					td=expert_evidence.price
-    					td=expert_evidence.market_price
-    					td=expert_evidence.user
+    .collapse id="colapseExpertEvidence"
+        .card-body
+        	table.table
+        		tr
+        			th | Zp ze dne
+        			th | Číslo znaleckého posudku
+        			th | Cena nemovitosti
+        			th | Cena tržní
+        			th | Vypracoval
+        		tr
+        			- @expert_evidences.each do |expert_evidence|
+        				tr
+        					td=expert_evidence.of_date
+        					td=expert_evidence.number
+        					td=expert_evidence.price
+        					td=expert_evidence.market_price
+        					td=expert_evidence.user

@@ -11,6 +11,7 @@
               = board.date
               |   
               = board.text.html_safe
+              
   .float-left.w-50.p-1
     .card.shadow.mb-4
       /! Card Header - Dropdown
@@ -18,6 +19,7 @@
         h6.m-0.font-weight-bold.text-primary Kalendář
       .card-body
         div class="calendar"
+
   .float-right.w-50.p-1
     .card.shadow.mb-4
       /! Card Header - Dropdown
@@ -27,6 +29,7 @@
         .card-body  
           - FileBoard.validity.show_by_permission(current_user.permission.try(:kind)).each do |board|
             = link_to board.text, board.file.url
+
   .float-right.w-50.p-1
     .card.shadow.mb-4
       /! Card Header - Dropdown

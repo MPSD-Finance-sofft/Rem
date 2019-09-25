@@ -1,26 +1,27 @@
 .col-xl-12.col-lg-12
   .card.shadow.mb-4
-    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+    a href="#colapseCommitment" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="colapseCommitment"
       h6.m-0.font-weight-bold.text-primary Závazky
-    .card-body
-        table.table
-        	tr
-        		th | Typ závazku
-        		th | Částka
-        		th | Skutečná částka
-        		th | Datum předpokládaného termínu vyplacení
-        		th | Datum skutečného vyplacení
-        		th | Popis
-        	tr
-        		- @commitments.each do |commitment|
-        			tr
-        				td=commitment.commitment_type
-        				td.amount=commitment.amount
-        				td.real_amount=commitment.real_amount
-        				td=commitment.date_of_excepted_payment
-        				td=commitment.payout_day
-        				td=commitment.description
-        	tr
-        		td | Výsledek
-        		td#sum_amount
-        		td#sum_real_amount
+    .collapse id="colapseCommitment"
+        .card-body
+            table.table
+            	tr
+            		th | Typ závazku
+            		th | Částka
+            		th | Skutečná částka
+            		th | Datum předpokládaného termínu vyplacení
+            		th | Datum skutečného vyplacení
+            		th | Popis
+            	tr
+            		- @commitments.each do |commitment|
+            			tr
+            				td=commitment.commitment_type
+            				td.amount=commitment.amount
+            				td.real_amount=commitment.real_amount
+            				td=commitment.date_of_excepted_payment
+            				td=commitment.payout_day
+            				td=commitment.description
+            	tr
+            		td | Výsledek
+            		td#sum_amount
+            		td#sum_real_amount

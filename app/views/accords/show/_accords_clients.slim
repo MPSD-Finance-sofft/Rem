@@ -1,23 +1,24 @@
 .col-xl-12.col-lg-12
   .card.shadow.mb-4
-    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+    a href="#colapseClient" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="colapseClient"
       h6.m-0.font-weight-bold.text-primary Klienti
-    .card-body
-    	table.table
-    		tr
-    			th | Vztah
-    			th | Jméno
-    			th | Přijmení
-    			th | Rodné číslo  
-    			th | Mobil
-    			th | Číslo OP 
-    			
-    		tr
-    			- @accord.accords_clients.decorate.each do |accords_client|
-    				td=accords_client.relationship
-    				- person = accords_client.client.person
-    				td=person.name
-    				td=person.last_name
-    				td=person.identity_card_number
-    				td=person.mobil
-    				td=person.personal_identification_number
+    .collapse id="colapseClient"
+        .card-body
+        	table.table
+        		tr
+        			th | Vztah
+        			th | Jméno
+        			th | Přijmení
+        			th | Rodné číslo  
+        			th | Mobil
+        			th | Číslo OP 
+        			
+        		tr
+        			- @accord.accords_clients.decorate.each do |accords_client|
+        				td=accords_client.relationship
+        				- person = accords_client.client.person
+        				td=person.name
+        				td=person.last_name
+        				td=person.identity_card_number
+        				td=person.mobil
+        				td=person.personal_identification_number
