@@ -34,6 +34,7 @@ gem 'devise_masquerade'
 gem 'jquery-datatables'
 gem 'ajax-datatables-rails'
 gem 'bootstrap-datepicker-rails'
+gem 'mysql2'
 
 
 group :development, :test do
@@ -49,6 +50,7 @@ group :development do
   gem 'rails_layout'
   gem 'rails-erd'
   gem 'bullet'
+  gem "capistrano", "~> 3.11", require: false
 end
 
 group :assets do
