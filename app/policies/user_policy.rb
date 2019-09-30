@@ -23,7 +23,7 @@ class UserPolicy < ApplicationPolicy
     		elsif user.agent? || user.manager?
             scope.subordinates(user)
         elsif user.user?
-            scope.agents
+            scope.all
         end
     	end
   end
