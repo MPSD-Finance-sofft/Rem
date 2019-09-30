@@ -7,6 +7,9 @@ class UserPolicy < ApplicationPolicy
     user.admin? || user.user?
   end
 
+  def edit?
+    update?
+  end
 
  	class Scope < Scope
    
