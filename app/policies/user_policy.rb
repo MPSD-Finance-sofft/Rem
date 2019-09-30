@@ -11,6 +11,10 @@ class UserPolicy < ApplicationPolicy
     update?
   end
 
+  def new_user?
+    update?
+  end
+
  	class Scope < Scope
    
     	def resolve

@@ -27,9 +27,6 @@ div.col-md-12
 				    		- @accord.errors.messages.each do |attributes,message|
 				      			li= message.first
 				.form-group
-			    	= f.label :state, "Stav"
-					= f.select :state, f.object.select_state,{},{class: "selectpicker form-control", "data-live-search" => "true",  disabled: true}
-				.form-group
 			    	= f.label :kind, "Typ žádosti"
 					= f.select :kind, f.object.select_kind,{},{class: "selectpicker form-control", "data-live-search" => "true"}
 				.form-group

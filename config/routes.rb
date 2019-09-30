@@ -31,7 +31,6 @@ Rails.application.routes.draw do
   resources :expenses
   resources :commitment_types
   resources :commitments
-  resources :people
   resources :clients
   resources :realties
   resources :realty_types

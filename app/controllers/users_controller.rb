@@ -41,6 +41,7 @@ class UsersController < ApplicationController
  	end
 
  	def new_user
+ 		authorize current_user
  		@user = User.new
  	end
 

@@ -16,9 +16,9 @@
         		tr
         			- @accord.accords_clients.decorate.each do |accords_client|
         				td=accords_client.relationship
-        				- person = accords_client.client.person
+        				- person = accords_client.client
         				td=person.name
         				td=person.last_name
         				td=person.identity_card_number
-        				td=person.mobil
+        				td=person.mobile
         				td=person.personal_identification_number

@@ -19,6 +19,8 @@ class Accord < ApplicationRecord
 	belongs_to :owner, foreign_key: 'user_id', class_name: 'User' ,  required: false
 	belongs_to :agent, foreign_key: 'agent_id', class_name: 'User' ,  required: false
 	belongs_to :agent_terrain, foreign_key: 'agent_terrain_id', class_name: 'User' ,  required: false
+
+	
 	accepts_nested_attributes_for :accords_realty,  reject_if: :all_blank, allow_destroy: true
 	accepts_nested_attributes_for :accords_clients,  reject_if: :all_blank, allow_destroy: true
 	accepts_nested_attributes_for :commitments,  reject_if: :all_blank, allow_destroy: true
@@ -27,11 +29,6 @@ class Accord < ApplicationRecord
 	accepts_nested_attributes_for :energies,  reject_if: :all_blank, allow_destroy: true
 
 	validates :state, :inclusion => {:in => states.keys}
-
-	def initialize(attributes = {})
-		super
-		self.state = Accord.states[:state_new]
-	end
 
 	def commission_for_the_contract
 		self.purchase_price.to_f * 0.03
@@ -45,6 +42,14 @@ class Accord < ApplicationRecord
   		self.state == 'contract'
   	end
 
-	scope :subordinates_accords, -> (user) {where(agent_id: [User.where(superior_id: user.id).pluck(:id), user.id])}
+  	def persons
+		self.clients.where(type: "Person")
+	end
+
+	def companies
+		self.clients.where(type: "Company")
+	end
+
+	scope :subordinates_accords, -> (user) {where(agent_id: [User.where(superior_id: user.id).pluck(:id)])}
 	scope :agents_accords, -> (user) {where(agent_id:  user.id)}
 end

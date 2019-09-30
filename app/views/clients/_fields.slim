@@ -7,72 +7,105 @@
 			- f.object.build_client unless f.object.client
 			= f.fields_for :client do |c| 
 				- c.object = c.object.decorate
-				- c.object.build_person unless c.object.person
-				= c.fields_for :person do |p|
-					- p.object =  p.object.decorate
-					.card.shadow.mb-4.col-xl-4.col-lg-4
-	    				.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
-	      					h6.m-0.font-weight-bold.text-primary Údaje klienta
-	    				.card-body
+				.card.shadow.mb-4.col-xl-4.col-lg-4
+    				.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      					h6.m-0.font-weight-bold.text-primary Údaje klienta
+    				.card-body
+    					.form-group
+							= f.label :relationship
+							= f.select :relationship, f.object.select_relationship,{},{class: "selectpicker form-control", "data-live-search" => "true"}
+    					.form-group
+							= c.label :type, 'Typ klienta'
+							= c.select :type, c.object.select_kind,{},{class: "selectpicker form-control types_client", "data-live-search" => "true"}
+						.form-group
+    						= link_to_add_association('Přidej mobil', c, :client_mobile, :"data-association-insertion-method" => "after")
+    						br
+        					= c.fields_for :client_mobile do |client_mobile|
+  								= render 'mobiles/field', f: client_mobile
+						.form-group
+							//= p.label :email, 'E-mail'
+							//= p.text_field :email, {class: "form-control", type: 'email'}
+				.card.shadow.mb-4.col-xl-4.col-lg-4.person
+    				.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      					h6.m-0.font-weight-bold.text-primary Údaje Osoby
+    				.card-body
+    					.form-group
+							= c.label :name, 'Jméno'
+							= c.text_field :name, class: "form-control"
+						.form-group
+							= c.label :last_name, 'Příjmení'
+							= c.text_field :last_name, class: "form-control"
+						.form-group
+							= c.label :identity_card_number, 'OP'
+							= c.text_field :identity_card_number, class: "form-control"
+						.form-group
+							= c.label :personal_identification_number, 'RČ'
+							= c.text_field :personal_identification_number, class: "form-control"
+				.card.shadow.mb-4.col-xl-4.col-lg-4.company
+    				.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      					h6.m-0.font-weight-bold.text-primary Údaje Firmy
+    				.card-body
+    					.form-group
+							= c.label :name, 'Název'
+							= c.text_field :name, class: "form-control"
+						.form-group
+							= c.label :identity_card_number, 'IČO'
+							= c.text_field :identity_card_number, class: "form-control"
+						.form-group
+							= c.label :data_box, 'Datová schránka'
+							= c.text_field :data_box, class: "form-control"
+				.card.shadow.mb-4.col-xl-4.col-lg-4
+    				.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      					h6.m-0.font-weight-bold.text-primary Trvalá adresa
+    				.card-body.field.form-group
+						- c.object.build_permanent_address unless c.object.permanent_address
+						= c.fields_for :permanent_address do |address|	
 							.form-group
-								= p.label :name, 'Jméno'
-								= p.text_field :name, class: "form-control"
+								= address.label :village, "Obec"
+								= address.text_field :village, {class: "form-control vilage_find", data: {village: "#{}"}}
 							.form-group
-								= p.label :last_name, 'Příjmení'
-								= p.text_field :last_name, class: "form-control"
+								= address.label :street, "Ulice"
+								= address.text_field :street, class: "form-control street_find"
 							.form-group
-	    						= link_to_add_association('Přidej mobil', c, :client_mobile, :"data-association-insertion-method" => "after")
-	    						br
-            					= c.fields_for :client_mobile do |client_mobile|
-              						= render 'mobiles/field', f: client_mobile
+								= address.label :number, "ČP/ČO"
+								= address.text_field :number, class: "form-control number_find"
+					a href="#collapseContactAddress" class="d-block card-header py-3 collapsed" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseContactAddress"
+      					h6.m-0.font-weight-bold.text-primary Kontaktní adresa
+    				.card-body.field.form-group#collapseContactAddress.collapse
+						- c.object.build_contact_address unless c.object.contact_address
+						= c.fields_for :contact_address do |address|
 							.form-group
-								= p.label :email, 'E-mail'
-								= p.text_field :email, {class: "form-control", type: 'email'}
-					.card.shadow.mb-4.col-xl-4.col-lg-4
-	    				.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
-	      					h6.m-0.font-weight-bold.text-primary Údaje klienta
-	    				.card-body
+								= address.label :village, "Obec"
+								= address.text_field :village, {class: "form-control vilage_find", data: {village: "#{}"}}
 							.form-group
-								= c.label :kind, 'Typ klienta'
-								= c.select :kind, c.object.select_kind,{},{class: "selectpicker form-control", "data-live-search" => "true"}
+								= address.label :street, "Ulice"
+								= address.text_field :street, class: "form-control street_find"
 							.form-group
-								= p.label :identity_card_number, 'IČ'
-								= p.text_field :identity_card_number, class: "form-control"
-							.form-group
-								= p.label :personal_identification_number, 'OP'
-								= p.text_field :personal_identification_number, class: "form-control"
-							.form-group
-								= p.label :marital_status, 'Rodinný vztah'
-								= p.select :marital_status, p.object.select_marital_status,{include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true"}
-							.form-group
-								= f.label :relationship, 'Vztah k nemovitosti'
-								= f.select :relationship, f.object.select_relationship,{},{class: "selectpicker form-control", "data-live-search" => "true"}
-					.card.shadow.mb-4.col-xl-4.col-lg-4
-	    				.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
-	      					h6.m-0.font-weight-bold.text-primary Trvalá adresa
-	    				.card-body.field.form-group
-							- c.object.build_permanent_address unless c.object.permanent_address
-							= c.fields_for :permanent_address do |address|	
-								.form-group
-									= address.label :village, "Obec"
-									= address.text_field :village, {class: "form-control vilage_find", data: {village: "#{}"}}
-								.form-group
-									= address.label :street, "Ulice"
-									= address.text_field :street, class: "form-control street_find"
-								.form-group
-									= address.label :number, "ČP/ČO"
-									= address.text_field :number, class: "form-control number_find"
-    					a href="#collapseContactAddress" class="d-block card-header py-3 collapsed" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseContactAddress"
-	      					h6.m-0.font-weight-bold.text-primary Kontaktní adresa
-	    				.card-body.field.form-group#collapseContactAddress.collapse
-							- c.object.build_contact_address unless c.object.contact_address
-							= c.fields_for :contact_address do |address|
-								.form-group
-									= address.label :village, "Obec"
-									= address.text_field :village, {class: "form-control vilage_find", data: {village: "#{}"}}
-								.form-group
-									= address.label :street, "Ulice"
-									= address.text_field :street, class: "form-control street_find"
-								.form-group
-									= address.label :number, "ČP/ČO"
-									= address.text_field :number, class: "form-control number_find"
+								= address.label :number, "ČP/ČO"
+								= address.text_field :number, class: "form-control number_find"
+javascript:
+	$(document).on('turbolinks:load', function() {
+		toogle_object();
+		$('#clients').on('cocoon:after-insert', function() {
+			toogle_object();
+			set_up($('.types_client'));
+		});
+		set_up($('.types_client'));
+	});
+
+	toogle_object = function(){
+		$('.types_client').change(function(){
+			set_up($(this));
+		});
+	};
+
+	set_up = function(e){
+		if (e.val() == "Person") {
+				e.closest(".field").find(".company").hide();
+				e.closest(".field").find(".person").show();
+			} else {
+				e.closest(".field").find(".person").hide();
+				e.closest(".field").find(".company").show();
+		};
+	};
+

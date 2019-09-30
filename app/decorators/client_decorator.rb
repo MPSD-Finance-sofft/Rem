@@ -1,14 +1,9 @@
 class ClientDecorator < ApplicationDecorator
   delegate_all
   
-	def kind
-		kind_to_text(object.kind)
+	def select_kind
+ 		[['Osoba', 'Person'],['Společnost', 'Company']]
  	end
-
- 	def select_kind
- 		Client.kinds.keys.map{|a| [kind_to_text(a), a]}
- 	end
-
 
  	def kind_to_text(kind)
  		case kind

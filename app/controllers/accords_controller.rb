@@ -41,6 +41,7 @@ class AccordsController < ApplicationController
     @accord = Accord.new(accord_params).decorate
     @accord.current_user = current_user
     @accord.creator = current_user
+    @accord.state = Accord.states[:state_new]
     respond_to do |format|
       if @accord.save
         format.html { redirect_to @accord, notice: 'Accord was successfully created.' }
@@ -91,6 +92,6 @@ class AccordsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def accord_params
-      params.require(:accord).permit(Accord.new.attributes.keys, accords_realty_attributes: [AccordsRealty.new.attributes.keys, realty_attributes: [Realty.new.attributes.keys, address_attributes:[Address.new.attributes.keys]]], accords_clients_attributes: [:id, :relationship, client_attributes: [:id, :kind, permanent_address_attributes:[Address.new.attributes.keys],contact_address_attributes:[Address.new.attributes.keys],client_mobile_attributes: [ClientMobile.new.attributes.keys, mobile_attributes: [Mobile.new.attributes.keys]], person_attributes: [Person.new.attributes.keys]]], commitments_attributes: [Commitment.new.attributes.keys],expenses_attributes: [Expense.new.attributes.keys], expert_evidences_attributes:[ExpertEvidence.new.attributes.keys],energies_attributes:[Energy.new.attributes.keys])
+       params.require(:accord).permit!
     end
 end
