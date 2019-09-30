@@ -7,6 +7,8 @@ div class="#{@leasing_contract.object_state}"
       li.breadcrumb-item
           | Nájemní smlouva č.
           = @leasing_contract.id
+          |  pro žádost č. 
+          = @leasing_contract.accord_id
 = render partial: "leasing_contracts/show/action"
 = render partial: "leasing_contracts/show/data"
 = render partial: "leasing_contracts/show/repayment"

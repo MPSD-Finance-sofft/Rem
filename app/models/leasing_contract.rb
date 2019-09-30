@@ -9,6 +9,7 @@ class LeasingContract < ApplicationRecord
 	has_many :realty, through: :leasing_contract_realty
 	has_many :clients, through: :leasing_contract_clients
 	
+	belongs_to :accord
 	accepts_nested_attributes_for :repayments,  reject_if: :all_blank, allow_destroy: true
 	accepts_nested_attributes_for :leasing_contract_clients,  reject_if: :all_blank, allow_destroy: true
 	accepts_nested_attributes_for :leasing_contract_realty,  reject_if: :all_blank, allow_destroy: true
@@ -25,5 +26,5 @@ class LeasingContract < ApplicationRecord
 			i = i + 1
 		end if range < MAX_GENERATE_REPAYMENTS
 	end
-
+	scope :for_accord, -> (accord_id) {where(accord_id: accord_id)}
 end

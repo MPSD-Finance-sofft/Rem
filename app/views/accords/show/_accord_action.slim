@@ -6,6 +6,7 @@
       - if current_user.user_or_admin?
         = link_to "Úprava", edit_accord_path(@accord.id),{class: 'btn btn-sm btn-info m-1', type: 'buttom'}
         = link_to "Vytvoření provizního nároku", rewards_path(accord_id: @accord) , {:method=> :post, class: 'btn btn-sm btn-info m-1', type: 'buttom'}
+        = link_to 'Nová nájemní smlouva', new_leasing_contract_path(accord_id: @accord.id), {class: 'btn btn-sm btn-info m-1', type: 'buttom'}
         button.btn.btn-primary.float-right.btn-sm type="button"  id='show_all'
           | Zobraz vše
         br

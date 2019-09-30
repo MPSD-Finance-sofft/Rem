@@ -8,6 +8,9 @@
         - leasing_contract.errors.full_messages.each do |message|
           li= message
   .form-group
+    = form.label :accord_id, "Nájemní smlouva pro žádost"
+    = form.text_field :accord_id, {class: "form-control ", required: true, readonly: true}
+  .form-group
     = form.label :state, "Stav"
     = form.select :state, form.object.select_state,{},{class: "selectpicker form-control", "data-live-search" => "true"}
   .form-group

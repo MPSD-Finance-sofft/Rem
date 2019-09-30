@@ -15,6 +15,7 @@ class LeasingContractsController < ApplicationController
   # GET /leasing_contracts/new
   def new
     @leasing_contract = LeasingContract.new.decorate
+    @leasing_contract.accord_id = params[:accord_id]
   end
 
   # GET /leasing_contracts/1/edit
@@ -69,6 +70,6 @@ class LeasingContractsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def leasing_contract_params
-      params.require(:leasing_contract).permit(:state, :expected_date_of_signature, :rent_from, :rent_to, :payment_day, :monthly_rent)
+      params.require(:leasing_contract).permit(:state, :expected_date_of_signature, :rent_from, :rent_to, :payment_day, :monthly_rent, :accord_id)
     end
 end

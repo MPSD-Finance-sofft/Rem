@@ -1,0 +1,9 @@
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    a href="#colapseLeasing" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="colapseLeasing"
+      h6.m-0.font-weight-bold.text-primary Nájemní smlouvy
+    .collapse id="colapseLeasing"
+  		.card-body
+  			- @leasing_contracts.each do |leasing|
+  				= link_to "Nájemní smlouva č. #{leasing}", leasing_contract_path(leasing)
+  				br
