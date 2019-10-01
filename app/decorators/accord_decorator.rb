@@ -129,4 +129,16 @@ class AccordDecorator < ApplicationDecorator
   def commission_for_the_contract
     format_number(object.commission_for_the_contract.to_f)
   end
+
+  def date_of_signature
+    format_date object.date_of_signature
+  end 
+
+  def date_of_ownership
+    format_date object.date_of_ownership
+  end
+
+  def date_of_transfer
+    format_date object.date_of_transfer
+  end
 end
