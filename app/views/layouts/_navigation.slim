@@ -26,6 +26,17 @@
       a.nav-link href="/invoices" 
         i.fas.fa-fw.fa-table
         span Faktury
+    li.nav-item
+      a.nav-link.collapsed aria-controls="collapseUtilities" aria-expanded="true" data-target="#collapseUtilities" data-toggle="collapse" href="#" data-remote="true"
+        i.fas.fa-fw.fa-wrench
+        span Kalkulace
+      #collapseUtilities.collapse aria-labelledby="headingUtilities" data-parent="#accordionSidebar" 
+        .bg-white.py-2.collapse-inner.rounded
+          h6.collapse-header Kalkulace v  aplikace:
+          a.collapse-item href="/home/balance_price_calculation"
+            | Výpočet 
+            br
+            | zůstatkové ceny
     /! Nav Item - Utilities Collapse Menu
     li.nav-item
       a.nav-link.collapsed aria-controls="collapseUtilities" aria-expanded="true" data-target="#collapseUtilities" data-toggle="collapse" href="#" data-remote="true"

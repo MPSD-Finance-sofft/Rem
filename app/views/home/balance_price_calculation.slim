@@ -1,0 +1,126 @@
+script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"
+
+h4 Výpočet zůstatkové ceny
+hr
+.col-xl-6
+	table.table
+		tr
+			th Pořizovací cena
+			td
+				input class= "purchase_price"
+		tr
+			th % Nájmu
+			td 
+				input.percent_rent.r
+		tr
+			th Nájemné Kč
+			td
+				input  class="rent r"
+		tr
+			th Svj Kč
+			td
+				input  class="svj r"
+		tr
+			th Nájemné celkem
+			td.full_rent.kc
+		tr
+			th Doba nájmu - měs.
+			td
+				input.time
+		tr
+			th % zhodnocení
+			td
+				input.appreciation 
+		tr
+			th % prvních nákl.
+			td
+				input.legal_costs
+		tr
+			th % provozních nákl.
+			td
+				input.operating_costs 
+		tr
+			th Tipařská provize
+			td
+				input.reward
+		tr
+			th Prodejní cena
+			td.selling_price
+		tr
+			th Hrubý zisk
+			td.profit
+
+javascript:
+	$(document).on('turbolinks:load', function() {
+		add_number_to_data();
+		profit();
+		sum_rent();
+	});
+
+	sum_rent = function(){
+		$('.r').change(function(){
+			$('.full_rent').text(rent_calculate() + ' Kč');
+		});
+	};
+	format = function(){
+				$('.full_rent').text(
+					parseFloat($('.full_rent').text()).toFixed(0).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "1 ") + ' Kč'
+				);
+			}
+	add_number_to_data = function(){
+		$('input').change(function(e){
+			input = $(this)
+			input.data("number", parseFloat(input.val().replace(/[^0-9]/gi, '')) )
+		});
+	}
+
+	selling_price = function(){
+		$('.selling_price').text(selling_price_calculate())
+	}
+
+	profit = function(){
+		$('input').change(function(){
+			selling_price()
+			sel_price = selling_price_calculate() 
+			purchase_price = number($(".purchase_price"))
+			time = number($(".time"))
+			rent = rent_calculate() || 0
+			$('.profit').text(
+				(sel_price - purchase_price) + (time * rent)
+			)	
+		});
+	}
+	number = function(input){
+		return input.data("number") || 0
+	}
+
+	selling_price_calculate = function(){
+		purchase_price = number($(".purchase_price"))
+		//zhodnocení
+		appreciation = number($(".appreciation")) / 100
+		operating_costs = number($(".operating_costs")) / 100
+		time = number($(".time"))
+		tariff = 4 / 100
+		legal_costs = number($(".legal_costs")) / 100
+		reward = number($(".reward")) / 100
+		rent = rent_calculate() || 0
+		return purchase_price + (purchase_price * (operating_costs + appreciation) * time/12) + (purchase_price * tariff) + (purchase_price * (reward + legal_costs) - (rent*time))
+
+	}
+
+	rent_calculate = function(){
+		percent_rent = number($(".percent_rent")) /100
+		rent = number($(".rent"))
+		svj = number($(".svj"))
+		purchase_price = number($(".purchase_price"))
+		if (rent <= 0) {
+			return purchase_price * percent_rent - svj
+		}
+		else {
+			return rent - svj
+		}
+	}
+
+
+
+

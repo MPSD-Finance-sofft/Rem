@@ -50,6 +50,11 @@ Rails.application.routes.draw do
     end
   end
   root 'home#index'
+  resources :home do 
+    collection do 
+      get :balance_price_calculation
+    end
+  end
   resources :events do 
     collection do 
         post :create_html

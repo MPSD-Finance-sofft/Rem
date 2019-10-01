@@ -6,4 +6,7 @@ class HomeController < ApplicationController
     @conversations = Conversation.includes(:recipient, :messages)
                                  .find(session[:conversations])
   end
+
+  def balance_price_calculation
+  end
 end
