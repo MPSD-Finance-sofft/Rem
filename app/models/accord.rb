@@ -1,6 +1,7 @@
 class Accord < ApplicationRecord
 	has_paper_trail ignore: [:updated_at, :id]
 	include AccordsEnum
+	include RemoveWhiteSpiceFromNumberInput::Accord
 	validates_with AccordValidator
 	attr_accessor :current_user
 	
