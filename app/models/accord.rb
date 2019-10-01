@@ -41,7 +41,7 @@ class Accord < ApplicationRecord
   	end
 
   	def contract?
-  		self.state == 'contract'
+  		self.state == "contract"
   	end
 
   	def persons
@@ -54,4 +54,5 @@ class Accord < ApplicationRecord
 
 	scope :subordinates_accords, -> (user) {where(agent_id: [User.where(superior_id: user.id).pluck(:id)])}
 	scope :agents_accords, -> (user) {where(agent_id:  user.id)}
+	scope :agent_terrain, -> (user) {where(agent_terrain_id:  user.id)}
 end

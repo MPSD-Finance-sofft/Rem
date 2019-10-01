@@ -1,7 +1,15 @@
 class AccordPolicy < ApplicationPolicy
 
-    def show?
-        !(record.contract? && (user.agent? || user.manager?))
+    def show?       
+        if user.agent?
+            (record.agent_id == user.id)  && !record.contract?
+        elsif user.manager?
+            (record.agent.try(:superior_id) == user.id || record.agent_terrain_id == user.id) && !record.contract?
+        elsif user.user? || user.admin?
+            true
+        else
+            false
+        end
     end
 
     def update?
@@ -22,7 +30,7 @@ class AccordPolicy < ApplicationPolicy
     		if user.admin?
       			scope.all
     		elsif user.manager?
-            	scope.subordinates_accords(user)
+            	scope.subordinates_accords(user).or(scope.agent_terrain(user))
         	elsif user.agent?
         		scope.agents_accords(user)
         	elsif user.user?
