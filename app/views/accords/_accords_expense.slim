@@ -8,17 +8,17 @@
       table id="expenses_table" class="table table-hover table-bordered"
         tr
             th
-              | commitment_type_id
+              | Typ Nákladu
             th
-              | amount
+              | Částka
             th
-              | real amount
+              | Skutečná částka
             th
-              | date_of_excepted_payment
+              | Datum očekávání platby
             th
-              | payout_day
+              | Datum placení
             th
-              | description
+              | Popis
             th
         tbody id="nested_expenses"
           = f.fields_for :expenses do |expenses|

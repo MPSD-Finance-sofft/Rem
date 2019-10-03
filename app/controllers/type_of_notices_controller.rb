@@ -28,8 +28,8 @@ class TypeOfNoticesController < ApplicationController
 
     respond_to do |format|
       if @type_of_notice.save
-        format.html { redirect_to @type_of_notice.user_id, notice: 'Type of notice was successfully created.' }
-        format.json { render :show, status: :created, location: @type_of_notice.user_id }
+        format.html { redirect_to type_of_notices_url, notice: 'Type of notice was successfully created.' }
+        format.json { render :show, status: :created, location: @type_of_notice }
       else
         format.html { render :new }
         format.json { render json: @type_of_notice.errors, status: :unprocessable_entity }

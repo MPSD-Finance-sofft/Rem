@@ -11,7 +11,7 @@
           | Zobraz vše
         br
         = link_to "Rozpracovat", accord_path(@accord, accord: {state: 'state_eleboration', user_id: current_user.id}) , {:method=> :put, class: 'btn btn-sm btn-info m-1', type: 'buttom'}
-        = link_to "K podepsání", accord_path(@accord, accord: {state: 'to_sign'}) , {:method=> :put, class: 'btn btn-sm btn-info m-1', type: 'buttom'}
+        = link_to "Ke schválení", accord_path(@accord, accord: {state: 'to_sign'}) , {:method=> :put, class: 'btn btn-sm btn-info m-1', type: 'buttom'}
         button.btn.btn-info.btn-sm.m-1 data-target="#TerrainModalCenter" data-toggle="modal" type="button" 
           | V terénu 
         = link_to "Smlouva", accord_path(@accord, accord: {state: 'contract'}) , {:method=> :put, class: 'btn btn-sm btn-info m-1', type: 'buttom'}
