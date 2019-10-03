@@ -8,6 +8,7 @@ set :puma_threads,    [4, 16]
 set :puma_workers,    0
 
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
+set :linked_files, %w(config/database.yml)
 
 set :pty,             true
 set :use_sudo,        false
