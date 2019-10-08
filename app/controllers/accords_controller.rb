@@ -1,5 +1,5 @@
 class AccordsController < ApplicationController
-  before_action :set_accord, only: [:show, :edit, :update, :destroy, :changes]
+  before_action :set_accord, only: [:show, :edit, :update, :destroy, :changes, :uploads, :create_uploads, :delete_image]
 
   # GET /accords
   # GET /accords.json
@@ -17,7 +17,6 @@ class AccordsController < ApplicationController
   def show
     authorize @accord
     @notes = NotePolicy::Scope.new(@accord.id, current_user, Note).resolve.decorate
-    @uploads = UploadPolicy::Scope.new(@accord.id, current_user, Upload).resolve.decorate
     @expert_evidences = ExpertEvidencePolicy::Scope.new(@accord.id, current_user, ExpertEvidence).resolve.decorate
     @commitments = CommitmentPolicy::Scope.new(@accord.id, current_user, Commitment).resolve.decorate
     @expenses = ExpensePolicy::Scope.new(@accord.id, current_user, Expense).resolve.decorate
@@ -82,6 +81,28 @@ class AccordsController < ApplicationController
 
   def changes
     authorize @accord
+  end
+
+  def uploads
+
+  end
+
+  def create_uploads
+    respond_to do |format|
+      if @accord.update(accord_params)
+        format.html { redirect_to uploads_accord_path(accord_id: @accord), notice: 'Přílohy přidány' }
+        format.json { render :show, status: :ok, location: @accord }
+      else
+        format.html { render :edit }
+        format.json { render json: @accord.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def delete_image
+    @file = ActiveStorage::Blob.find_signed(params[:file_id])
+    @file.attachments.first.purge
+    redirect_to uploads_accord_path(accord_id: @accord)
   end
 
   private

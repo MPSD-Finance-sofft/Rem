@@ -48,6 +48,11 @@ Rails.application.routes.draw do
     collection do
       get :changes
     end
+    member do
+      get :uploads
+      patch :create_uploads
+      delete :delete_image
+    end
   end
   root 'home#index'
   resources :home do 
@@ -61,7 +66,6 @@ Rails.application.routes.draw do
         get :index_list
     end
   end
-  resources :uploads
   resources :conversations, only: [:create,:index] do
     member do
       post :close

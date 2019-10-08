@@ -1,6 +1,5 @@
 class FileBoard < ApplicationRecord
-	has_attached_file :file
-	do_not_validate_attachment_file_type :file
+
 
 	def self.show_by_permission(permission)
 		return 	FileBoard.all if permission == "admin" || permission == "user"

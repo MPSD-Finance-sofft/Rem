@@ -5,8 +5,9 @@ class User < ApplicationRecord
   	# Include default devise modules. Others available are:
   	# :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   	devise :database_authenticatable, :recoverable, :rememberable, :validatable, :masqueradable, authentication_keys: [:username]
-	has_attached_file :avatar
-  	do_not_validate_attachment_file_type :avatar
+	#has_attached_file :avatar
+	has_one_attached :avatar
+  #	do_not_validate_attachment_file_type :avatar
 	has_many :messages, :dependent => :destroy
 	has_many :conversations, foreign_key: :sender_id, :dependent => :destroy
 	has_many :cooperations, foreign_key: :agent_id
