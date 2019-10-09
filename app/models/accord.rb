@@ -23,6 +23,7 @@ class Accord < ApplicationRecord
 	belongs_to :agent_terrain, foreign_key: 'agent_terrain_id', class_name: 'User' ,  required: false
 
 	has_many_attached :uploads_agent
+	has_many_attached :uploads_manager
 	
 	accepts_nested_attributes_for :accords_realty,  reject_if: :all_blank, allow_destroy: true
 	accepts_nested_attributes_for :accords_clients,  reject_if: :all_blank, allow_destroy: true

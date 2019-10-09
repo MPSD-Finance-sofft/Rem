@@ -31,6 +31,22 @@
 				= link_to (image_tag(file)), file
 				= file.filename
 				br
-				= link_to 'Remove', delete_image_accord_url(file_id: file.signed_id, accord_id: @accord.id),
-		                method: :delete,
-		                data: { confirm: 'Are you sure?' }
+	.col-xl-1.border.m-1
+		= form_with(model: @accord, url: create_uploads_accord_path(accord_id: @accord.id), local: true) do |f|
+			- if @accord.errors.any?
+				#error_explanation
+					h2
+						= pluralize(@accord.errors.count, "error")
+						| prohibited this accord from being saved:
+					ul
+						- @accord.errors.full_messages.each do |message|
+							li= message
+	    	= f.label :uploads_manager, "Přílohy managera"
+			= f.file_field :uploads_manager, multiple: true, direct_upload: true
+			= f.submit
+		- @accord.uploads_manager.each do |file|
+			.p-1.border
+				= link_to (image_tag(file)), file
+				= file.filename
+				br
+				

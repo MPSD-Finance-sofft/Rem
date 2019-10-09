@@ -22,7 +22,7 @@
       button.btn.btn-primary.btn-sm.m-1 data-target="#exampleModalCenter" data-toggle="modal" type="button" 
         | Přidej poznámku 
       = link_to "Přidej události", new_event_path(accord_id: @accord.id) , { class: 'btn btn-info btn-sm m-1', type: 'buttom'}
-      br
+      = link_to "Přílohy", uploads_accord_path(id: @accord.id) , { class: 'btn btn-info btn-sm float-right m-1', type: 'buttom'}
       
 /! Modal
 #exampleModalCenter.modal.fade aria-hidden="true" aria-labelledby="exampleModalCenterTitle" role="dialog" tabindex="-1" 

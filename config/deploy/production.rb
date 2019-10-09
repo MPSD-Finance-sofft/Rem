@@ -50,7 +50,7 @@
 # The server-based syntax can be used to override options:
 # ------------------------------------
 set :stage, :production
-
+config.active_storage.service = :local
 #server 'windb.smartfin.local:3306', user: 'dep_rem',password: "IeLEP9Q5Js", roles: %w{db}
 server "192.168.3.150",
   user: "dep_rem",
