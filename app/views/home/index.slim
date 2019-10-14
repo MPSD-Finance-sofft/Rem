@@ -28,6 +28,7 @@
       div class="collapse " id="colapseFileBoard"
         .card-body  
           - FileBoard.validity.show_by_permission(current_user.permission.try(:kind)).each do |board|
+            = link_to board.file.filename, rails_blob_path(board.file, disposition: 'attachment')
             br
   .float-right.w-50.p-1
     .card.shadow.mb-4

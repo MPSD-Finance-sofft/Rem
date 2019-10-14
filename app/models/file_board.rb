@@ -1,5 +1,5 @@
 class FileBoard < ApplicationRecord
-
+	has_one_attached :file
 
 	def self.show_by_permission(permission)
 		return 	FileBoard.all if permission == "admin" || permission == "user"
