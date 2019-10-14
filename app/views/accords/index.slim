@@ -20,7 +20,7 @@ div.container-fluid
         = link_to 'Nová žádost', new_accord_path
     .card-body
       table.table 
-        tr
+        tr.text-dark
           th Číslo žádosti
           th Číslo smlouva
           th Typ
@@ -32,7 +32,7 @@ div.container-fluid
           th Nadřízený Agenta
           th V péči
         - @accords.each do |accord|
-          tr class="#{accord.object_state}"
+          tr class="#{accord.object_state} text-dark"
             td = link_to accord.id, accord_path(accord.id)
             td = accord.contract_number
             td = accord.kind
