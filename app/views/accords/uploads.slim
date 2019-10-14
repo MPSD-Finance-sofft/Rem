@@ -33,123 +33,125 @@
 				br
 				= link_to 'Remove', delete_image_accord_url(file_id: file.signed_id, accord_id: @accord.id), method: :delete, data: { confirm: 'Are you sure?' }
 				br
-	.col-xl-2.border.m-1
-		= form_with(model: @accord, url: create_uploads_accord_path(accord_id: @accord.id), local: true) do |f|
-			- if @accord.errors.any?
-				#error_explanation
-					h2
-						= pluralize(@accord.errors.count, "error")
-						| prohibited this accord from being saved:
-					ul
-						- @accord.errors.full_messages.each do |message|
-							li= message
-	    	= f.label :uploads_manager, "Přílohy managera"
-			= f.file_field :uploads_manager, multiple: true, direct_upload: true
-			= f.submit
-		- @accord.uploads_manager.each do |file|
-			.p-1.border
-				= link_to (image_tag(file)), file
-				= link_to file.filename, rails_blob_path(file, disposition: 'attachment')
-				br
-				= link_to 'Remove', delete_image_accord_url(file_id: file.signed_id, accord_id: @accord.id), method: :delete, data: { confirm: 'Are you sure?' }
-				br
-	.col-xl-2.border.m-1
-		= form_with(model: @accord, url: create_uploads_accord_path(accord_id: @accord.id), local: true) do |f|
-			- if @accord.errors.any?
-				#error_explanation
-					h2
-						= pluralize(@accord.errors.count, "error")
-						| prohibited this accord from being saved:
-					ul
-						- @accord.errors.full_messages.each do |message|
-							li= message
-	    	= f.label :land_registry, "Přílohy katastr"
-			= f.file_field :land_registry, multiple: true, direct_upload: true
-			= f.submit
-		- @accord.land_registry.each do |file|
-			.p-1.border
-				= link_to (image_tag(file)), file
-				= link_to file.filename, rails_blob_path(file, disposition: 'attachment')
-				br
-				= link_to 'Remove', delete_image_accord_url(file_id: file.signed_id, accord_id: @accord.id), method: :delete, data: { confirm: 'Are you sure?' }
-				br
-	.col-xl-2.border.m-1
-		= form_with(model: @accord, url: create_uploads_accord_path(accord_id: @accord.id), local: true) do |f|
-			- if @accord.errors.any?
-				#error_explanation
-					h2
-						= pluralize(@accord.errors.count, "error")
-						| prohibited this accord from being saved:
-					ul
-						- @accord.errors.full_messages.each do |message|
-							li= message
-	    	= f.label :constract_files, "Přílohy smlouva"
-			= f.file_field :constract_files, multiple: true, direct_upload: true
-			= f.submit
-		- @accord.constract_files.each do |file|
-			.p-1.border
-				= link_to (image_tag(file)), file
-				= link_to file.filename, rails_blob_path(file, disposition: 'attachment')
-				br
-				= link_to 'Remove', delete_image_accord_url(file_id: file.signed_id, accord_id: @accord.id), method: :delete, data: { confirm: 'Are you sure?' }
-				br
-	.col-xl-1.border.m-1
-		= form_with(model: @accord, url: create_uploads_accord_path(accord_id: @accord.id), local: true) do |f|
-			- if @accord.errors.any?
-				#error_explanation
-					h2
-						= pluralize(@accord.errors.count, "error")
-						| prohibited this accord from being saved:
-					ul
-						- @accord.errors.full_messages.each do |message|
-							li= message
-	    	= f.label :constract_file, "Smlouva"
-			= f.file_field :constract_file, multiple: true, direct_upload: true
-			= f.submit
-		- @accord.constract_file.each do |file|
-			.p-1.border
-				= link_to (image_tag(file)), file
-				= link_to file.filename, rails_blob_path(file, disposition: 'attachment')
-				br
-				= link_to 'Remove', delete_image_accord_url(file_id: file.signed_id, accord_id: @accord.id), method: :delete, data: { confirm: 'Are you sure?' }
-				br
-	.col-xl-1.border.m-1
-		= form_with(model: @accord, url: create_uploads_accord_path(accord_id: @accord.id), local: true) do |f|
-			- if @accord.errors.any?
-				#error_explanation
-					h2
-						= pluralize(@accord.errors.count, "error")
-						| prohibited this accord from being saved:
-					ul
-						- @accord.errors.full_messages.each do |message|
-							li= message
-	    	= f.label :documents, "Doklad"
-			= f.file_field :documents, multiple: true, direct_upload: true
-			= f.submit
-		- @accord.documents.each do |file|
-			.p-1.border
-				= link_to (image_tag(file)), file
-				= link_to file.filename, rails_blob_path(file, disposition: 'attachment')
-				br
-				= link_to 'Remove', delete_image_accord_url(file_id: file.signed_id, accord_id: @accord.id), method: :delete, data: { confirm: 'Are you sure?' }
-				br
-	.col-xl-1.border.m-1
-		= form_with(model: @accord, url: create_uploads_accord_path(accord_id: @accord.id), local: true) do |f|
-			- if @accord.errors.any?
-				#error_explanation
-					h2
-						= pluralize(@accord.errors.count, "error")
-						| prohibited this accord from being saved:
-					ul
-						- @accord.errors.full_messages.each do |message|
-							li= message
-	    	= f.label :reminders, "Upomínky"
-			= f.file_field :reminders, multiple: true, direct_upload: true
-			= f.submit
-		- @accord.reminders.each do |file|
-			.p-1.border
-				= link_to (image_tag(file)), file
-				= link_to file.filename, rails_blob_path(file, disposition: 'attachment')
-				br
-				= link_to 'Remove', delete_image_accord_url(file_id: file.signed_id, accord_id: @accord.id), method: :delete, data: { confirm: 'Are you sure?' }
-				br
+	- if current_user.user? || current_user.admin? || current_user.manager?
+		.col-xl-2.border.m-1
+			= form_with(model: @accord, url: create_uploads_accord_path(accord_id: @accord.id), local: true) do |f|
+				- if @accord.errors.any?
+					#error_explanation
+						h2
+							= pluralize(@accord.errors.count, "error")
+							| prohibited this accord from being saved:
+						ul
+							- @accord.errors.full_messages.each do |message|
+								li= message
+		    	= f.label :uploads_manager, "Přílohy managera"
+				= f.file_field :uploads_manager, multiple: true, direct_upload: true
+				= f.submit
+			- @accord.uploads_manager.each do |file|
+				.p-1.border
+					= link_to (image_tag(file)), file
+					= link_to file.filename, rails_blob_path(file, disposition: 'attachment')
+					br
+					= link_to 'Remove', delete_image_accord_url(file_id: file.signed_id, accord_id: @accord.id), method: :delete, data: { confirm: 'Are you sure?' }
+					br
+	-if current_user.user? || current_user.admin?
+		.col-xl-2.border.m-1
+			= form_with(model: @accord, url: create_uploads_accord_path(accord_id: @accord.id), local: true) do |f|
+				- if @accord.errors.any?
+					#error_explanation
+						h2
+							= pluralize(@accord.errors.count, "error")
+							| prohibited this accord from being saved:
+						ul
+							- @accord.errors.full_messages.each do |message|
+								li= message
+		    	= f.label :land_registry, "Přílohy katastr"
+				= f.file_field :land_registry, multiple: true, direct_upload: true
+				= f.submit
+			- @accord.land_registry.each do |file|
+				.p-1.border
+					= link_to (image_tag(file)), file
+					= link_to file.filename, rails_blob_path(file, disposition: 'attachment')
+					br
+					= link_to 'Remove', delete_image_accord_url(file_id: file.signed_id, accord_id: @accord.id), method: :delete, data: { confirm: 'Are you sure?' }
+					br
+		.col-xl-2.border.m-1
+			= form_with(model: @accord, url: create_uploads_accord_path(accord_id: @accord.id), local: true) do |f|
+				- if @accord.errors.any?
+					#error_explanation
+						h2
+							= pluralize(@accord.errors.count, "error")
+							| prohibited this accord from being saved:
+						ul
+							- @accord.errors.full_messages.each do |message|
+								li= message
+		    	= f.label :constract_files, "Přílohy smlouva"
+				= f.file_field :constract_files, multiple: true, direct_upload: true
+				= f.submit
+			- @accord.constract_files.each do |file|
+				.p-1.border
+					= link_to (image_tag(file)), file
+					= link_to file.filename, rails_blob_path(file, disposition: 'attachment')
+					br
+					= link_to 'Remove', delete_image_accord_url(file_id: file.signed_id, accord_id: @accord.id), method: :delete, data: { confirm: 'Are you sure?' }
+					br
+		.col-xl-1.border.m-1
+			= form_with(model: @accord, url: create_uploads_accord_path(accord_id: @accord.id), local: true) do |f|
+				- if @accord.errors.any?
+					#error_explanation
+						h2
+							= pluralize(@accord.errors.count, "error")
+							| prohibited this accord from being saved:
+						ul
+							- @accord.errors.full_messages.each do |message|
+								li= message
+		    	= f.label :constract_file, "Smlouva"
+				= f.file_field :constract_file, multiple: true, direct_upload: true
+				= f.submit
+			- @accord.constract_file.each do |file|
+				.p-1.border
+					= link_to (image_tag(file)), file
+					= link_to file.filename, rails_blob_path(file, disposition: 'attachment')
+					br
+					= link_to 'Remove', delete_image_accord_url(file_id: file.signed_id, accord_id: @accord.id), method: :delete, data: { confirm: 'Are you sure?' }
+					br
+		.col-xl-1.border.m-1
+			= form_with(model: @accord, url: create_uploads_accord_path(accord_id: @accord.id), local: true) do |f|
+				- if @accord.errors.any?
+					#error_explanation
+						h2
+							= pluralize(@accord.errors.count, "error")
+							| prohibited this accord from being saved:
+						ul
+							- @accord.errors.full_messages.each do |message|
+								li= message
+		    	= f.label :documents, "Doklad"
+				= f.file_field :documents, multiple: true, direct_upload: true
+				= f.submit
+			- @accord.documents.each do |file|
+				.p-1.border
+					= link_to (image_tag(file)), file
+					= link_to file.filename, rails_blob_path(file, disposition: 'attachment')
+					br
+					= link_to 'Remove', delete_image_accord_url(file_id: file.signed_id, accord_id: @accord.id), method: :delete, data: { confirm: 'Are you sure?' }
+					br
+		.col-xl-1.border.m-1
+			= form_with(model: @accord, url: create_uploads_accord_path(accord_id: @accord.id), local: true) do |f|
+				- if @accord.errors.any?
+					#error_explanation
+						h2
+							= pluralize(@accord.errors.count, "error")
+							| prohibited this accord from being saved:
+						ul
+							- @accord.errors.full_messages.each do |message|
+								li= message
+		    	= f.label :reminders, "Upomínky"
+				= f.file_field :reminders, multiple: true, direct_upload: true
+				= f.submit
+			- @accord.reminders.each do |file|
+				.p-1.border
+					= link_to (image_tag(file)), file
+					= link_to file.filename, rails_blob_path(file, disposition: 'attachment')
+					br
+					= link_to 'Remove', delete_image_accord_url(file_id: file.signed_id, accord_id: @accord.id), method: :delete, data: { confirm: 'Are you sure?' }
+					br

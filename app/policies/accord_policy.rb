@@ -23,6 +23,14 @@ class AccordPolicy < ApplicationPolicy
     def changes?
         update?
     end
+
+    def uploads?
+        show?
+    end
+
+    def delete_image?
+        update?
+    end
     
 	class Scope < Scope
    

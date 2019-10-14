@@ -84,7 +84,7 @@ class AccordsController < ApplicationController
   end
 
   def uploads
-
+    authorize @accord
   end
 
   def create_uploads
@@ -100,6 +100,7 @@ class AccordsController < ApplicationController
   end
 
   def delete_image
+    authorize @accord
     @file = ActiveStorage::Blob.find_signed(params[:file_id])
     @file.attachments.first.purge
     redirect_to uploads_accord_path(accord_id: @accord)
