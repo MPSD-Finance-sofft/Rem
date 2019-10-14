@@ -1,6 +1,6 @@
 .card-body
 	div.col-md-5
-		= superior.avatar 
+		= image_tag superior.avatar if superior.avatar.try(:attachment)
 	.col-xl-5.col-lg-5
 		.card.shadow.mb-4
 			.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
