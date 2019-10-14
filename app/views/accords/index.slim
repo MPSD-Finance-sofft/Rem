@@ -30,6 +30,7 @@ div.container-fluid
           th Klienti
           th Adresy nemovitostí
           th Nadřízený Agenta
+          th V péči
         - @accords.each do |accord|
           tr
             td = link_to accord.id, accord_path(accord.id)
@@ -47,3 +48,4 @@ div.container-fluid
                 = realty.address.try(:full_name)
                 br
             td = accord.agent_superior
+            td = accord.owner_name
