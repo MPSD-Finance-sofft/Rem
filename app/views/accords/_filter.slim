@@ -1,1 +1,35 @@
-| někdy příště :D 
+= form_tag(accords_path(), {method: :get}) do 
+	= label_tag :number_accord, "Číslo žádosti"
+	= text_field_tag :number_accord, params[:number_accord]
+	= label_tag :contract_number, "Číslo smlouvy"
+	= text_field_tag :contract_number, params[:contract_number]
+	= label_tag :kind, "Typ"
+	= select_tag :kind, options_for_select([["Výkup", "buyout"], ["Dražba", "auction"], ["Insolvenční výkup", "insolvency_buyout"]], params[:kind]), {include_blank: true}
+	= label_tag :start_created_at, "Přijato od"
+	= text_field_tag :start_created_at, params[:start_created_at], class: "datapicker auto_submit_item"
+	= label_tag :end_created_at, "Přijato do"
+	= text_field_tag :end_created_at, params[:end_created_at], class: "datapicker auto_submit_item"
+	= label_tag :state, "Typ"
+	= select_tag :state, options_for_select([["Nový", "state_new"], ["Rozpracováno", "state_eleboration"], ["v terénu", "in_terrain"], ["Ke schválení", "to_sign"],["Smlouva", "contract"],["Zamítnutá", "refuse"],["Stažená", "dowload"]], params[:state]), {include_blank: true }
+	= label_tag :user_id, "V péči"
+	= select_tag :user_id, options_for_select(Accord.pluck(:user_id).uniq.map{|a| [User.find_by_id(a).try(:all_name),a]}, params[:state]), {include_blank: true}
+	= label_tag :client_name, "Jméno klienta"
+	= text_field_tag :client_name, params[:client_name],class: "auto_submit_item"
+	= label_tag :client_last_name, "Přijmení klienta"
+	= text_field_tag :client_last_name, params[:client_last_name]
+	= label_tag :realty_type, "Typ nemovitosti"
+	= select_tag :realty_type, options_for_select(RealtyType.select([:id,:name]).map{|a| [a.name,a.id]}, params[:realty_type]), {include_blank: true}
+	= label_tag :agent_id, "Agent"
+	= select_tag :agent_id, options_for_select(Accord.pluck(:agent_id).uniq.map{|a| [User.find_by_id(a).try(:all_name),a]}, params[:agent_id]), {include_blank: true}
+	= label_tag :superior_id, "Přímý nadřízený agenta"
+	= select_tag :superior_id, options_for_select(User.where(id: Accord.pluck(:agent_id)).pluck(:superior_id).uniq.map{|a| [User.find_by_id(a).try(:all_name),a]}, params[:superior_id]), {include_blank: true}
+
+	br
+	= submit_tag "Vyhledat"
+
+javascript:
+	$(document).on('turbolinks:load', function() {
+		$(".auto_submit_item").change(function() {
+    		$("form").submit();
+  		});
+	});

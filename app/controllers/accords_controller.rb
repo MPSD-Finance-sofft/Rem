@@ -5,6 +5,7 @@ class AccordsController < ApplicationController
   # GET /accords.json
   def index
     @accords = policy_scope(Accord).order(created_at: :desc)
+    @accords =  Accords::IndexServices.new(@accords,params).perform
     @accords = @accords.decorate
     respond_to do |format|
       format.html

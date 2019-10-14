@@ -62,4 +62,16 @@ class Accord < ApplicationRecord
 	scope :subordinates_accords, -> (user) {where(agent_id: [User.where(superior_id: user.id).pluck(:id)])}
 	scope :agents_accords, -> (user) {where(agent_id:  user.id)}
 	scope :agent_terrain, -> (user) {where(agent_terrain_id:  user.id)}
+	scope :number_accord, -> (number_accord) {where(id:  number_accord)}
+	scope :user_id, -> (user_id) {where(user_id:  user_id)}
+	scope :agent_id, -> (agent_id) {where(agent_id:  agent_id)}
+	scope :contract_number, -> (contract_number) {where(contract_number:  contract_number)}
+	scope :kind, -> (kind) {where(kind:  kind)}
+	scope :state, -> (state) {where(state:  state)}
+	scope :start_created_at, -> (date) {where("accords.created_at > ?", date.to_date)}
+	scope :end_created_at, -> (date) {where("accords.created_at < ?", date.to_date)}
+	scope :client_name, -> (client_name) {joins(:clients).where("clients.name": client_name)}
+	scope :client_last_name, -> (client_last_name) {joins(:clients).where("clients.last_name": client_last_name)}
+	scope :realty_type, -> (realty_type_id) {joins(:realty).where("realties.realty_type_id": realty_type_id)}
+	scope :superior_id, -> (superior_id) {joins(:agent).where("users.superior_id": superior_id)}
 end
