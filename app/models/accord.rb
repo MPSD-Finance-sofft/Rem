@@ -24,6 +24,11 @@ class Accord < ApplicationRecord
 
 	has_many_attached :uploads_agent
 	has_many_attached :uploads_manager
+	has_many_attached :land_registry
+	has_many_attached :constract_files
+	has_many_attached :constract_file
+	has_many_attached :documents
+	has_many_attached :reminders
 	
 	accepts_nested_attributes_for :accords_realty,  reject_if: :all_blank, allow_destroy: true
 	accepts_nested_attributes_for :accords_clients,  reject_if: :all_blank, allow_destroy: true
