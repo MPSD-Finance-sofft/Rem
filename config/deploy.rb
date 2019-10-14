@@ -7,7 +7,7 @@ set :repo_url, "ssh://git.sitd.cz/opt/git_repos/echo/rem.git"
 set :puma_threads,    [4, 16]
 set :puma_workers,    0
 
-append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
+append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "storage"
 set :linked_files, %w(config/database.yml)
 
 set :pty,             true
