@@ -1,5 +1,5 @@
 - title "Žádost č. " + @accord.id.to_s
-div
+div class="#{@accord.object_state} text-dark"
   div.container-fluid
     ol.breadcrumb
       li.breadcrumb-item
@@ -13,18 +13,18 @@ div
           = @accord.state
           | , v péči uživatele 
           = @accord.owner_name
-  .col-xl-12.accord_show
-    = render partial: "accords/show/accord_action"
-    = render partial: "accords/show/accord_data"
-    = render partial: "accords/show/accord_leasing_contracts"
-    = render partial: "accords/show/reward"
-    = render partial: "accords/show/accord_realities"
-    = render partial: "accords/show/accords_expert_evidence" unless @expert_evidences.blank?
-    = render partial: "accords/show/accords_clients"
-    = render partial: "accords/show/accords_commitments" unless @commitments.blank?
-    = render partial: "accords/show/accords_expense" unless @expenses.blank?
-    = render partial: "accords/show/accords_energy" unless @energies.blank?
-    = render partial: "accords/show/accords_note"
+    .col-xl-12.accord_show.bg-primary
+      = render partial: "accords/show/accord_action"
+      = render partial: "accords/show/accord_data"
+      = render partial: "accords/show/accord_leasing_contracts"
+      = render partial: "accords/show/reward"
+      = render partial: "accords/show/accord_realities"
+      = render partial: "accords/show/accords_expert_evidence" unless @expert_evidences.blank?
+      = render partial: "accords/show/accords_clients"
+      = render partial: "accords/show/accords_commitments" unless @commitments.blank?
+      = render partial: "accords/show/accords_expense" unless @expenses.blank?
+      = render partial: "accords/show/accords_energy" unless @energies.blank?
+      = render partial: "accords/show/accords_note"
 
 javascript:
   var spocitej_castku;
