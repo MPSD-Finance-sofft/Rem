@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :file_boards
   resources :event_types
+  resources :contracts, only: :index
   resources :client_mobiles
   resources :dispositions
   resources :leasing_contract_realties

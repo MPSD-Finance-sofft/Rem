@@ -141,4 +141,8 @@ class AccordDecorator < ApplicationDecorator
   def date_of_transfer
     format_date object.date_of_transfer
   end
+
+  def village
+    object.realty.first.try(:address).try(:village)
+  end
 end
