@@ -56,12 +56,12 @@
       .modal-body
         = form_with(model: @accord, local: true) do |f| 
           = f.hidden_field :state, value: 'in_terrain'
-          .form-group
+          .form-group.text-dark
               = f.label :agent_terrain_id, "Agent v terénu"
-              = f.select :agent_terrain_id, User.manager_and_user.map{|a| [a.all_name, a.id]},{include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true"}
-          .form-group
+              = f.select :agent_terrain_id, User.manager_and_user.map{|a| [a.all_name, a.id]},{include_blank: true},{class: "selectpicker form-control input-sm", "data-live-search" => "true"}
+          .form-group.text-dark
               = f.label :date_to_terrain, "Datum předání do terénu"
-              = f.text_field :date_to_terrain, class: "form-control datapicker"
+              = f.text_field :date_to_terrain, class: "form-control datapicker input-sm"
           .modal-footer
             button.btn.btn-secondary data-dismiss="modal" type="button"  Close
             button.btn.btn-primary type="submit"  Odešli
