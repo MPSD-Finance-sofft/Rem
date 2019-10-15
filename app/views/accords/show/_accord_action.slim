@@ -35,9 +35,9 @@
       .modal-body
         = form_with(model: Note.new.decorate, local: true) do |f|
           = f.hidden_field :accord_id, value: @accord.id
-          .form-group
-            = f.text_area :description, class: "form-control"
-          .form-group
+          .form-group.text-dark
+            = f.trix_editor :description
+          .form-group.text-dark
             = f.select :permission,  f.object.select_permission,{},{class: "selectpicker form-control", "data-live-search" => "true"}
           - if current_user.admin?
             .form-group

@@ -24,6 +24,7 @@
 //= require sb-admin-2.min
 //= require bootstrap-datepicker
 //= require activestorage
+//= require trix
 //= require_tree .
 
 
