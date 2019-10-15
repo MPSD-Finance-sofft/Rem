@@ -2,12 +2,12 @@ tr.nested-fields
 	= f.hidden_field :accord_id, value: @accord.id
 	= f.hidden_field :user_id, value: current_user.id
 	td
-		= f.text_field :of_date, class: "form-control amount text-right datapicker"
+		= f.text_field :of_date, class: "form-control datapicker"
 	td
-		= f.text_field :delivery_date, class: "form-control amount text-right datapicker"
+		= f.text_field :delivery_date, class: "form-control datapicker"
 	td
-		= f.text_field :number, class: "form-control amount text-right"
+		= f.text_field :number, class: "form-control  text-right"
 	td
-		= f.text_field :market_price, class: "form-control amount text-right"
+		= f.text_field :market_price, class: "form-control  text-right"
 	td
 		= link_to_remove_association "Odstranění znaleckého posudku", f, class: 'btn btn-primary btn-danger'
