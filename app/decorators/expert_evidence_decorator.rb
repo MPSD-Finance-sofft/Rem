@@ -8,4 +8,8 @@ class ExpertEvidenceDecorator < ApplicationDecorator
   	def of_date
  		format_date(object.of_date)
 	end
+	
+  	def delivery_date
+ 		format_date(object.delivery_date)
+	end
 end
