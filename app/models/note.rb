@@ -8,7 +8,7 @@ class Note < ApplicationRecord
 		if self.color.blank?
 			self.color = "Yellow" if permission == "agent"
 			self.color = "Aqua" if permission == "manager"
-			self.color = "#96d35f" if permission == "user"
+			self.color = "Fuchsia" if permission == "user"
 		end
 	end
 
