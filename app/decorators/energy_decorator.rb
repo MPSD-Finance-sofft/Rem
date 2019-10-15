@@ -31,4 +31,12 @@ class EnergyDecorator < ApplicationDecorator
  		object.distributor.try(:name)
  	end
 
+ 	def date_of
+ 		format_date(object.date_of)
+ 	end
+
+ 	def payment_day
+ 		format_date(object.payment_day)
+ 	end
+
 end

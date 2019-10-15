@@ -2,56 +2,67 @@
   .card.shadow.mb-4
     .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
       h6.m-0.font-weight-bold.text-primary Energie
-    .card-body
-      .links
-        = link_to_add_association 'Přidej energie elektřina', f, :eletricities,:"data-association-insertion-node" => "table#electricity_energies_table",:"data-association-insertion-method" => "append",  class: 'btn btn-primary btn-success eletricity'
-      table id="electricity_energies_table" class="table table-hover table-bordered"
-      	tr
-        	th
-        		| Typ
-        	th
-        		| Datum žádosti
-        	th
-        		| Distributor
-        	th
-        		| Výše zálohy
-        	th
-        		| Datum úhrady
-        tbody id="nested_energies"
-          = f.fields_for :eletricities do |eletricities|
-            = render 'energy_fields', f: eletricities
-      .links
-        = link_to_add_association 'Přidej energie plyn', f, :energies,:"data-association-insertion-node" => "table#energies_table",:"data-association-insertion-method" => "append",  class: 'btn btn-primary btn-success gas'
-      table id="energies_table" class="table table-hover table-bordered"
-        tr
-          th
-            | Typ
-          th
-            | Datum žádosti
-          th
-            | Distributor
-          th
-            | Výše zálohy
-          th
-            | Datum úhrady
-        tbody id="nested_energies"
-          = f.fields_for :energies do |energies|
-            = render 'energy_fields', f: energies
+    .card-body.energy
+      .electricity
+        .links
+          = link_to_add_association 'Přidej energie elektřina', f, :eletricities,:"data-association-insertion-node" => "tbody#electricity",:"data-association-insertion-method" => "append",  class: 'btn btn-primary btn-success'
+        table id="electricity_energies_table" class="table table-hover table-bordered"
+          tr
+            th
+              | Typ
+            th
+              | Datum žádosti
+            th
+              | Distributor
+            th
+              | Výše zálohy
+            th
+              | Datum úhrady
+          tbody id="electricity"
+            = f.fields_for :eletricities do |eletricities|
+              = render 'eletricity_fields', f: eletricities
+      .gas_energies
+        .links
+          = link_to_add_association 'Přidej energie plyn', f, :gas_energies,:"data-association-insertion-node" => "tbody#gas_energies",:"data-association-insertion-method" => "append",  class: 'btn btn-primary btn-success gas'
+        table class="table table-hover table-bordered"
+          tr
+            th
+              | Typ
+            th
+              | Datum žádosti
+            th
+              | Distributor
+            th
+              | Výše zálohy
+            th
+              | Datum úhrady
+          tbody id="gas_energies"
+            = f.fields_for :gas_energies do |gas_energies|
+              = render 'gas_energy_fields', f: gas_energies
+      .water_energies
+        .links
+          = link_to_add_association 'Přidej energie voda', f, :water_energies,:"data-association-insertion-node" => "tbody#water_energies",:"data-association-insertion-method" => "append",  class: 'btn btn-primary btn-success'
+        table class="table table-hover table-bordered"
+          tr
+            th
+              | Typ
+            th
+              | Datum žádosti
+            th
+              | Distributor
+            th
+              | Výše zálohy
+            th
+              | Datum úhrady
+          tbody id="water_energies"
+            = f.fields_for :water_energies do |water_energies|
+              = render 'water_energy_fields', f: water_energies
+
 
 javascript:
-  var zmen_plyn,zmen_elektrina;
-  $(document).ready(function() {
-    $(document).on('click', '.gas', function(evt) {
-        zmen_plyn();
-        });
-    $(document).on('click', '.eletricity', function(evt) {
-        zmen_elektrina();
-        });
-    });
+  $(".energy").on('cocoon:after-insert', function(e) {
+    val = $("."+ e.target.id + " .nested-fields:first").find(".selectpicker").val()
+    last = $("."+ e.target.id + " .nested-fields:last").find(".selectpicker").val(val)
+  });
 
-  zmen_plyn = function(){
-    $(".kind_energy").first().val("gas")
-  }
-  zmen_elektrina = function(){
-    $(".kind_energy").first().val("electricity")
-  }
+

@@ -1,0 +1,2 @@
+class GasEnergy < Energy
+end

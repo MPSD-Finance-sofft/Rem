@@ -1,0 +1,2 @@
+class Eletricity < Energy
+end

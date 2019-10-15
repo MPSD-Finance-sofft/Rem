@@ -15,6 +15,9 @@ class Accord < ApplicationRecord
 	has_many :notes, :dependent => :destroy
 	has_many :expert_evidences, :dependent => :destroy
 	has_many :energies, :dependent => :destroy
+	has_many :eletricities, :dependent => :destroy
+	has_many :gas_energies, :dependent => :destroy
+	has_many :water_energies, :dependent => :destroy
 	has_many :leasing_contracts, :dependent => :destroy
 	belongs_to :creator, foreign_key: 'creator_id', class_name: 'User',  required: true
 	belongs_to :owner, foreign_key: 'user_id', class_name: 'User' ,  required: false
@@ -35,6 +38,9 @@ class Accord < ApplicationRecord
 	accepts_nested_attributes_for :expenses,  reject_if: :all_blank, allow_destroy: true
 	accepts_nested_attributes_for :expert_evidences,  reject_if: :all_blank, allow_destroy: true
 	accepts_nested_attributes_for :energies,  reject_if: :all_blank, allow_destroy: true
+	accepts_nested_attributes_for :eletricities,  reject_if: :all_blank, allow_destroy: true
+	accepts_nested_attributes_for :gas_energies,  reject_if: :all_blank, allow_destroy: true
+	accepts_nested_attributes_for :water_energies,  reject_if: :all_blank, allow_destroy: true
 
 	validates :state, :inclusion => {:in => states.keys}
 

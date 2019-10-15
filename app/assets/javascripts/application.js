@@ -55,6 +55,12 @@ $(document).on('turbolinks:load', function() {
   });
 });
 // direct_uploads.js
+
+$(document).on('cocoon:after-insert', function() {
+     $('.datapicker').datepicker({
+    language: "cs",
+  });
+  });
  
 addEventListener("direct-upload:initialize", event => {
   const { target, detail } = event
