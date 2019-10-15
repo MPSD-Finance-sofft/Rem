@@ -13,7 +13,7 @@
             tr style="background-color:#{note.attributes["color"]}"
               td.text-dark = note.created_at
               td.text-dark = note.autor
-              td.text-dark = note.description
+              td.text-dark = note.description.html_safe
 javascript: 
   $(document).ready(function() {
       $('.color').each(function(){
