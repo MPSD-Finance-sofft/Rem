@@ -50,7 +50,7 @@
 							= f.select :disposition_id, Disposition.select([:id,:name]).map{|a| [a.name,a.id]},{},{class: "selectpicker form-control", "data-live-search" => "true"}
 						.form-group
 							= f.label :flat_number, "Číslo bytové jednotky"
-							= f.text_field :flat_number, {class: "form-control", type: "number"}
+							= f.text_field :flat_number, {class: "form-control"}
 						.form-group
 							= f.label :build_up_area, "Zastavěná plocha"
 							= f.text_field :build_up_area, {class: "form-control", type: "number"}

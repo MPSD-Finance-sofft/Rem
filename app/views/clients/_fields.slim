@@ -34,7 +34,7 @@
 							= c.text_field :name, class: "form-control"
 						.form-group
 							= c.label :last_name, 'Příjmení'
-							= c.text_field :last_name, class: "form-control"
+							= c.text_field :last_name, class: "form-control last_name"
 						.form-group
 							= c.label :identity_card_number, 'OP'
 							= c.text_field :identity_card_number, class: "form-control"
@@ -102,10 +102,12 @@ javascript:
 	set_up = function(e){
 		if (e.val() == "Person") {
 				e.closest(".field").find(".company_name").prop( "disabled", true );
+				e.closest(".field").find(".last_name").prop( "disabled", false );
 				e.closest(".field").find(".company").hide();
 				e.closest(".field").find(".person").show();
 			} else {
 				e.closest(".field").find(".company_name").prop( "disabled", false );
+				e.closest(".field").find(".last_name").prop( "disabled", true );
 				e.closest(".field").find(".person").hide();
 				e.closest(".field").find(".company").show();
 		};
