@@ -1,1 +1,14 @@
-_filter.slim
+= form_tag(contracts_path(), {method: :get}) do 
+	.row.p-3
+		.col-xl-2
+			.form-group
+				= label_tag :contract_number, "Číslo smlouvy"
+				= text_field_tag :contract_number, params[:contract_number], class: "form-control input-sm"
+			.form-group
+				= label_tag :client_name, "Jméno klienta"
+				= text_field_tag :client_name, params[:client_name],class: "form-control input-sm"
+			.form-group
+				= label_tag :client_last_name, "Přijmení klienta"
+				= text_field_tag :client_last_name, params[:client_last_name], class: "form-control input-sm"
+			.form-group.float-right
+				= submit_tag "Vyhledat"

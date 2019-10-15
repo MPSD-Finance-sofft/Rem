@@ -39,8 +39,9 @@
             = f.text_area :description, class: "form-control"
           .form-group
             = f.select :permission,  f.object.select_permission,{},{class: "selectpicker form-control", "data-live-search" => "true"}
-          .form-group
-            = f.color_field :color,{class: "selectpicker form-control", "data-live-search" => "true", type:"color"}
+          - if current_user.admin?
+            .form-group
+              = f.color_field :color, {class: "selectpicker form-control", "data-live-search" => "true", type:"color", value:"#f6b73c"}
           .modal-footer
             button.btn.btn-secondary data-dismiss="modal" type="button"  Close
             button.btn.btn-primary type="submit"  Odešli
