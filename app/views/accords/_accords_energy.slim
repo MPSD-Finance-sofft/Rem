@@ -4,10 +4,8 @@
       h6.m-0.font-weight-bold.text-primary Energie
     .card-body
       .links
-        = link_to_add_association('Přidej energie', f, :energies, :"data-association-insertion-node" => "tbody#nested_energies",:"data-association-insertion-method" => "append",  class: 'btn btn-primary btn-success') 
-        = link_to_add_association 'Přidej energie elektřina', f, :energies,:"data-association-insertion-node" => "table#energies_table",:"data-association-insertion-method" => "append",  class: 'btn btn-primary btn-success eletricity'
-        = link_to_add_association 'Přidej energie plyn', f, :energies,:"data-association-insertion-node" => "table#energies_table",:"data-association-insertion-method" => "append",  class: 'btn btn-primary btn-success gas'
-      table id="energies_table" class="table table-hover table-bordered"
+        = link_to_add_association 'Přidej energie elektřina', f, :eletricities,:"data-association-insertion-node" => "table#electricity_energies_table",:"data-association-insertion-method" => "append",  class: 'btn btn-primary btn-success eletricity'
+      table id="electricity_energies_table" class="table table-hover table-bordered"
       	tr
         	th
         		| Typ
@@ -19,6 +17,23 @@
         		| Výše zálohy
         	th
         		| Datum úhrady
+        tbody id="nested_energies"
+          = f.fields_for :eletricities do |eletricities|
+            = render 'energy_fields', f: eletricities
+      .links
+        = link_to_add_association 'Přidej energie plyn', f, :energies,:"data-association-insertion-node" => "table#energies_table",:"data-association-insertion-method" => "append",  class: 'btn btn-primary btn-success gas'
+      table id="energies_table" class="table table-hover table-bordered"
+        tr
+          th
+            | Typ
+          th
+            | Datum žádosti
+          th
+            | Distributor
+          th
+            | Výše zálohy
+          th
+            | Datum úhrady
         tbody id="nested_energies"
           = f.fields_for :energies do |energies|
             = render 'energy_fields', f: energies

@@ -6,8 +6,8 @@ class Note < ApplicationRecord
 
 	def ad_default_color
 		if self.color.blank?
-			self.color = "#ff8c82" if permission == "agent"
-			self.color = "#fff86b" if permission == "manager"
+			self.color = "Yellow" if permission == "agent"
+			self.color = "Aqua" if permission == "manager"
 			self.color = "#96d35f" if permission == "user"
 		end
 	end
