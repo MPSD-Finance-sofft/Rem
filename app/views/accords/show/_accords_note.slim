@@ -9,11 +9,13 @@
             th | Čas
             th | Autor
             th | Text
+            th
           - @notes.each do |note|
             tr style="background-color:#{note.attributes["color"]}"
               td.text-dark = note.created_at
               td.text-dark = note.autor
               td.text-dark = note.description.html_safe
+              td = link_to 'Remove', note, method: :delete, data: { confirm: 'Are you sure?' }
 javascript: 
   $(document).ready(function() {
       $('.color').each(function(){
