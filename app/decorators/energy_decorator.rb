@@ -39,4 +39,8 @@ class EnergyDecorator < ApplicationDecorator
  		format_date(object.payment_day)
  	end
 
+ 	def price
+ 		format_number(object.price)
+ 	end
+
 end

@@ -23,8 +23,8 @@ class AccordsController < ApplicationController
     @expenses = ExpensePolicy::Scope.new(@accord.id, current_user, Expense).resolve.decorate
     @energies = EnergyPolicy::Scope.new(@accord.id, current_user, Energy).resolve.decorate
     @electricity = EnergyPolicy::Scope.new(@accord.id, current_user, Eletricity).resolve.decorate
-    @gas = EnergyPolicy::Scope.new(@accord.id, current_user, Eletricity).resolve.decorate
-    @water = EnergyPolicy::Scope.new(@accord.id, current_user, Eletricity).resolve.decorate
+    @gas = EnergyPolicy::Scope.new(@accord.id, current_user, GasEnergy).resolve.decorate
+    @water = EnergyPolicy::Scope.new(@accord.id, current_user, WaterEnergy).resolve.decorate
     @leasing_contracts = LeasingContract.for_accord(@accord.id).pluck(:id)
   end
 
