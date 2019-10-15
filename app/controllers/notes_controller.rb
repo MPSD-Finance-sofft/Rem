@@ -49,6 +49,7 @@ class NotesController < ApplicationController
   # DELETE /notes/1
   # DELETE /notes/1.json
   def destroy
+    authorize @note
     @accord = @note.accord
     @note.destroy
     respond_to do |format|

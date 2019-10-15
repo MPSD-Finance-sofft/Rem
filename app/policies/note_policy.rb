@@ -1,4 +1,11 @@
 class NotePolicy < ApplicationPolicy
+        
+
+        def destroy? 
+            return true if user.admin?
+            record.user_id == user.id
+        end
+
 
 	class Scope 
 		attr_reader :user, :scope, :accord_id

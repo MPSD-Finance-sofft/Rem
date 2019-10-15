@@ -13,8 +13,14 @@ class NoteDecorator < ApplicationDecorator
     permission_to_text(object.permission)
   end
 
-  def select_permission
-    Note.permissions.keys.map{|a| [permission_to_text(a), a]}
+  def select_permission(user)
+      if user.admin? || user.user?
+        Note.permissions.keys.map{|a| [permission_to_text(a), a]}
+      elsif user.manager?
+        [["Pro Agenta","agent"],["Pro Managera","manager"]]
+      elsif user.agent?
+        [["Pro Agenta","agent"]]
+    end
   end
 
   def permission_to_text(permission)

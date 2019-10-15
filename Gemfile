@@ -36,6 +36,7 @@ gem 'ajax-datatables-rails'
 gem 'bootstrap-datepicker-rails'
 gem 'mysql2'
 gem 'trix-rails', require: 'trix'
+gem 'font-awesome-rails'
 
 group :development, :test do
   gem 'byebug', platform: :mri
