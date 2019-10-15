@@ -9,11 +9,11 @@
 				th
 					| Žádost ze dne
 				th
+					| Doručen dne
+				th
 					| Číslo znaleckého posudku
 				th
-					| Cena nemovitosti
-				th
-					| Cena tržní
+					| Cena nem. obvyklá (tržní)
 			tbody id="nested_expert_evidences"
 				= f.fields_for :expert_evidences do |expert_evidence|
 					= render 'expert_evidence_fields', f: expert_evidence
