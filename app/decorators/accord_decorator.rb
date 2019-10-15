@@ -121,6 +121,10 @@ class AccordDecorator < ApplicationDecorator
   def purchase_price
     format_number(object.purchase_price.to_f)
   end
+  
+  def repurchase
+    format_number(object.repurchase.to_f)
+  end
 
   def agency_commission_price
     format_number(object.agency_commission_price.to_f)
