@@ -10,5 +10,15 @@
 			.form-group
 				= label_tag :client_last_name, "Přijmení klienta"
 				= text_field_tag :client_last_name, params[:client_last_name], class: "form-control input-sm"
+		.col-xl-2
+			.form-group
+				= label_tag :realty_type, "Typ nemovitosti"
+				= select_tag :realty_type, options_for_select(RealtyType.select([:id,:name]).map{|a| [a.name,a.id]}, params[:realty_type]), {include_blank: true, class: "form-control input-sm"}
+			.form-group
+				= label_tag :realty_adress_street, "Ulice nemovitosti"
+				= text_field_tag :realty_adress_street, params[:realty_adress_street], class: "form-control input-sm"
+			.form-group
+				= label_tag :realty_adress_village, "Obec nemovitosti"
+				= text_field_tag :realty_adress_village, params[:realty_adress_village], class: "form-control input-sm"
 			.form-group.float-right
 				= submit_tag "Vyhledat"
