@@ -79,6 +79,6 @@ class Accord < ApplicationRecord
 	scope :client_last_name, -> (client_last_name) {joins(:clients).where("clients.last_name": client_last_name)}
 	scope :realty_type, -> (realty_type_id) {joins(:realty).where("realties.realty_type_id": realty_type_id)}
 	scope :superior_id, -> (superior_id) {joins(:agent).where("users.superior_id": superior_id)}
-	scope :realty_adress_street, -> (superior_id) {joins(realty: :address).where("addresses.street": superior_id)}
-	scope :realty_adress_village, -> (superior_id) {joins(realty: :address).where("addresses.village": superior_id)}
+	scope :realty_adress_street, -> (street) {joins(realty: :address).where("addresses.street LIKE ?", "%#{street}%")}
+	scope :realty_adress_village, -> (village) {joins(realty: :address).where("addresses.village LIKE ?","%#{village}%")}
 end

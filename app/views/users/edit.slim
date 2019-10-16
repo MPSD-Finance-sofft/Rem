@@ -108,7 +108,7 @@ hr
 			.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
 				h6.m-0.font-weight-bold.text-primary Adresa
 			.card-body
-				.form-group
+				.form-group.user_adress
 		    		= link_to_add_association('Přidej adresu', f, :user_address, :"data-association-insertion-method" => "after")
 		    		br
 		    		- f.object.user_address.build if f.object.user_address.blank?
