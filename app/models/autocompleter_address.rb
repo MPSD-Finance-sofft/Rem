@@ -43,6 +43,7 @@ class AutocompleterAddress
      request = Net::HTTP::Get.new(uri.path, {'Content-Type' => 'application/json'})
      request.body = {value: value, pocet_vysledku: 20, typ_volani: 1 ,min_chars: 1}.to_json
      response = http.request(request)
+     binding.pry
      JSON.parse(response.body)
    end
 

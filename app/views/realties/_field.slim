@@ -10,57 +10,92 @@
 					.col-xl-4.col-lg-4
 						- f.object.build_address unless f.object.address
 						= f.fields_for :address do |address|
-							.form-group
-								= address.label :village, "Obec"
-								= address.text_field :village, {class: "form-control vilage_find", data: {village: "#{}"}}
-							.form-group
-								= address.label :street, "Ulice"
-								= address.text_field :street, class: "form-control street_find"
-							.form-group
-								= address.label :number, "ČP/ČO"
-								= address.text_field :number, class: "form-control number_find"
-							.form-group
-								= f.label :property_sheet, "List vlastnictví"
-								= f.text_field :property_sheet, {class: "form-control", type: "number"}
-							.form-group
-								= f.label :catastral_territory, "Katastrální území"
-								= f.text_field :catastral_territory, {class: "form-control", type: "number"}
-							.form-group
-								= f.label :location, "Lokalita"
-								= f.select :location, f.object.select_location,{},{class: "selectpicker form-control", "data-live-search" => "true"}
+							.find_adress
+								.form-group
+									label Zadej adresu
+									input type="text" value="" placeholder="hledaná fráze" class="finder form-control"
+								.form-group
+									= address.label :village, "Obec"
+									= address.text_field :village, class: "form-control village imput-sm",readonly: true
+								.form-group
+									= address.label :street, "Ulice"
+									= address.text_field :street, class: "form-control street input-sm", readonly: true
+								.form-group
+									= address.label :number, "ČP/ČO"
+									= address.text_field :number, class: "form-control number input-sm", readonly: true
+								.form-group
+									= address.label :zip, "PSC"
+									= address.text_field :zip, class: "form-control zip input-sm", readonly: true
+								.form-group
+									= address.label :district, "Okres"
+									= address.text_field :district, class: "form-control district input-sm", readonly: true
+								.form-group
+									= address.label :region, "Kraj"
+									= address.text_field :region, class: "form-control region input-sm", readonly: true
 					.col-xl-4.col-lg-4
 						.form-group
 							= f.label :realty_type_id, 'Typ nemovitosti'
 							= f.select :realty_type_id, RealtyType.select([:id,:name]).map{|a| [a.name,a.id]},{},{class: "selectpicker form-control", "data-live-search" => "true"}
 						.form-group
 							= f.label :type_ownership, 'Typ vlastnictví'
-							= f.select :type_ownership, f.object.select_type_ownership,{},{class: "selectpicker form-control", "data-live-search" => "true"}
+							= f.select :type_ownership, f.object.select_type_ownership,{},{class: "selectpicker form-control input-sm", "data-live-search" => "true"}
 						.form-group
-							= f.label :record_on_lv, 'Záznam na LV'
-							= f.select :record_on_lv, f.object.select_record_on_lv,{},{class: "selectpicker form-control", "data-live-search" => "true"}
+							= f.label :record_on_lv, 'Záznam na LV' 
+							= f.select :record_on_lv, f.object.select_record_on_lv,{},{class: "selectpicker form-control input-sm", "data-live-search" => "true"}
 						.form-group
 							= f.label :price_estimation, "Odhad tržní ceny"
-							= f.text_field :price_estimation, {class: "form-control", type: "number", step: "any"}
+							= f.text_field :price_estimation, {class: "form-control input-sm", type: "number", step: "any"}
 						.form-group
 							= f.label :purchase_price, "Výkupní cena"
-							= f.text_field :purchase_price, {class: "form-control", type: "number", step: "any"}
+							= f.text_field :purchase_price, {class: "form-control input-sm", type: "number", step: "any"}
+						.form-group
+								= f.label :location, "Lokalita"
+								= f.select :location, f.object.select_location,{},{class: "selectpicker form-control input-sm", "data-live-search" => "true"}
+						.form-group
+								= f.label :property_sheet, "List vlastnictví"
+								= f.text_field :property_sheet, {class: "form-control input-sm", type: "number"}
 					.col-xl-4.col-lg-4
 						.form-group
 							= f.label :disposition_id, "Dispozice"
-							= f.select :disposition_id, Disposition.select([:id,:name]).map{|a| [a.name,a.id]},{},{class: "selectpicker form-control", "data-live-search" => "true"}
+							= f.select :disposition_id, Disposition.select([:id,:name]).map{|a| [a.name,a.id]},{},{class: "input-sm selectpicker form-control", "data-live-search" => "true"}
 						.form-group
 							= f.label :flat_number, "Číslo bytové jednotky"
-							= f.text_field :flat_number, {class: "form-control"}
+							= f.text_field :flat_number, {class: "form-control input-sm"}
 						.form-group
 							= f.label :build_up_area, "Zastavěná plocha"
-							= f.text_field :build_up_area, {class: "form-control", type: "number"}
+							= f.text_field :build_up_area, {class: "form-control input-sm", type: "number"}
 						.form-group
 							= f.label :land_plot, "Plocha pozemku"
-							= f.text_field :land_plot, {class: "form-control", type: "number"}
+							= f.text_field :land_plot, {class: "form-control input-sm", type: "number"}
 						.form-group
 							= f.label :part_number, "Spoluvlastnický podíl"
-							= f.text_field :part_number, {class: "form-control"}	
+							= f.text_field :part_number, {class: "form-control input-sm"}	
 						.form-group
 							= f.label :real_number_abovegroud_floors, "Reálný počet nadzemních podlaží "
-							= f.text_field :real_number_abovegroud_floors, {class: "form-control", type: "number"}
-			
+							= f.text_field :real_number_abovegroud_floors, {class: "form-control input-sm", type: "number"}
+						.form-group
+								= f.label :catastral_territory, "Katastrální území"
+								= f.text_field :catastral_territory, {class: "form-control input-sm", type: "number"}
+
+javascript: 
+	var inputEl = document.querySelector(".finder");
+	var suggest = new SMap.Suggest(inputEl);
+	suggest.urlParams({
+		// omezeni pro celou CR
+		bounds: "48.5370786,12.0921668|51.0746358,18.8927040"
+		});
+	suggest.addListener("suggest", function(suggestData) {
+		// vyber polozky z naseptavace
+		position = suggestData.position
+		data = JSON.parse(suggest._options.provider._responseData.data).result[position].userData
+		console.log(data)
+		$(".village").val(data.district)
+		$(".street").val(data.ward)
+		$(".district").val(data.municipality)
+		$(".zip").val(data.zipCode)
+		$(".region").val(data.region)
+		$(".number").val(data.houseNumber + "/" + data.streetNumber)
+	}).addListener("close", function() {
+		console.log("suggest byl zavren/skryt");
+	});
+	
