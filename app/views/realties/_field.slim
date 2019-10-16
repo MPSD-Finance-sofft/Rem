@@ -89,9 +89,9 @@ javascript:
 		position = suggestData.position
 		data = JSON.parse(suggest._options.provider._responseData.data).result[position].userData
 		console.log(data)
-		$(".village").val(data.district)
+		$(".village").val(data.municipality)
 		$(".street").val(data.street)
-		$(".district").val(data.municipality)
+		$(".district").val(data.district)
 		$(".zip").val(data.zipCode)
 		$(".region").val(data.region)
 		$(".number").val(data.houseNumber + "/" + data.streetNumber)
