@@ -40,10 +40,16 @@
 			.form-group
 				= label_tag :superior_id, "Přímý nadřízený agenta"
 				= select_tag :superior_id, options_for_select(User.where(id: Accord.pluck(:agent_id)).pluck(:superior_id).uniq.map{|a| [User.find_by_id(a).try(:all_name),a]}, params[:superior_id]), {include_blank: true, class: "form-control input-sm"}
-
+		.col-xl-2
+			.form-group
+				= label_tag :realty_adress_street, "Ulice nemovitosti"
+				= text_field_tag :realty_adress_street, params[:realty_adress_street], class: "form-control input-sm"
+			.form-group
+				= label_tag :realty_adress_village, "Město nemovitosti"
+				= text_field_tag :realty_adress_village, params[:realty_adress_village], class: "form-control input-sm"
 			.form-group.float-right
 				= submit_tag "Vyhledat"
-		.col-xl-3.ml-5
+		.col-xl-1
 			table.table.text-dark
 				tr.state_new
 					th Nová
