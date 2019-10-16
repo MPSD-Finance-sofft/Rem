@@ -13,10 +13,10 @@
 							.find_adress
 								.form-group
 									label Zadej adresu
-									input type="text" value="" placeholder="hledaná fráze" class="finder form-control"
+									input type="text" value="" placeholder="zadejte hledanou adresu" class="finder form-control"
 								.form-group
 									= address.label :village, "Obec"
-									= address.text_field :village, class: "form-control village imput-sm",readonly: true
+									= address.text_field :village, class: "form-control village input-sm",readonly: true
 								.form-group
 									= address.label :street, "Ulice"
 									= address.text_field :street, class: "form-control street input-sm", readonly: true
@@ -90,7 +90,7 @@ javascript:
 		data = JSON.parse(suggest._options.provider._responseData.data).result[position].userData
 		console.log(data)
 		$(".village").val(data.district)
-		$(".street").val(data.ward)
+		$(".street").val(data.street)
 		$(".district").val(data.municipality)
 		$(".zip").val(data.zipCode)
 		$(".region").val(data.region)
