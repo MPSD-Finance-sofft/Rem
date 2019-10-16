@@ -45,7 +45,7 @@ div.container-fluid
                 br
             td 
               - accord.realty.each do |realty|
-                = realty.address.try(:full_name)
+                = realty.address.try(:index_name)
                 br
             td = accord.agent_superior
             td = accord.owner_name
