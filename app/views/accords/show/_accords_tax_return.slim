@@ -1,0 +1,23 @@
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    a href="#colapseCommitment" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="colapseCommitment"
+      h6.m-0.font-weight-bold.text-primary Daňové přiznání
+    .collapse id="colapseCommitment"
+        .card-body
+            table.table
+            	tr
+            		th  Datum vytvoření
+            		th  Datum odeslání
+            		th  Datum doručení na finanční úřad
+            		th  Datum platby
+            		th  Částka
+            		th  Číslo v kladu
+            	tr
+            		- @tax_returns.each do |tax_return|
+            			tr
+            				td = tax_return.created_at
+            				td = tax_return.date_send
+            				td = tax_return.date_send_tax_office
+            				td = tax_return.tax_pay_date
+            				td = tax_return.price
+            				td = tax_return.number

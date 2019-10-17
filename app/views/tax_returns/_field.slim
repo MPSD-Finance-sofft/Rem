@@ -1,0 +1,16 @@
+- f.object = f.object.decorate
+tr.nested-fields
+	= f.hidden_field :accord_id, value: @accord.id
+	td
+		= f.text_field :date_send, class: "form-control  datapicker"
+	td
+		= f.text_field :date_send_tax_office, class: "form-control  datapicker"
+	td
+		= f.text_field :tax_pay_date, class: "form-control  datapicker"
+	td
+		= f.text_field :price, class: "form-control"
+	td
+		= f.text_field :number, class: "form-control"
+	td
+		= link_to_remove_association "Odstranění daňového přiznání", f, class: 'btn btn-primary btn-danger'
+ 

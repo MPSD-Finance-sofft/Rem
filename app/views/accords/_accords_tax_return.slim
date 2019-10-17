@@ -1,0 +1,17 @@
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary Daňové přiznání
+    .card-body
+        .links
+      		= link_to_add_association 'Přidej daňové přiznání', f, :tax_returns,:"data-association-insertion-node" => "tbody.tax",:"data-association-insertion-method" => "append",  class: 'btn btn-primary btn-success'
+        table class="table table-hover table-bordered"
+          tr
+            th Datum odeslání
+            th Datum doručení na finanční úřad
+            th Datum platby
+            th Částka
+            th Číslo v kladu
+          tbody.tax
+            = f.fields_for :tax_returns do |tax_returns|
+            	= render 'tax_return_fields', f: tax_returns
