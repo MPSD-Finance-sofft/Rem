@@ -29,6 +29,7 @@ class AccordsController < ApplicationController
     @insurance = InsurancePolicy::Scope.new(@accord.id, current_user, Insurance).resolve.decorate
     @penbs = PenbPolicy::Scope.new(@accord.id, current_user, Penb).resolve.decorate
     @flat_admistrations = FlatAdmistrationPolicy::Scope.new(@accord.id, current_user, FlatAdmistration).resolve.decorate
+    @month_advances = MonthAdvencePolicy::Scope.new(@accord.id, current_user, MonthAdvence).resolve.decorate
     @leasing_contracts = LeasingContract.for_accord(@accord.id).pluck(:id)
   end
 
