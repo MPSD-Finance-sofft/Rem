@@ -1,0 +1,22 @@
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    a href="#colapsePENB" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="colapsePENB"
+      h6.m-0.font-weight-bold.text-primary PENB
+    .collapse id="colapsePENB"
+        .card-body
+            table.table
+            	tr
+            		th  Datum vytvoření
+            		th  Energetická třída
+            		th  Datum řádosti o doručení
+            		th  Datum datum doručení
+            		th  Částka
+            	tr
+            		- @penbs.each do |penb|
+            			tr
+            				td = penb.created_at
+            				td = penb.energy_class
+            				td = penb.date_of_delivery_request
+            				td = penb.delivery_date
+            				td = penb.price
+            		
