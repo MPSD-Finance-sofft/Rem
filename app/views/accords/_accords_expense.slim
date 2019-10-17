@@ -1,36 +1,35 @@
-.col-xl-12.col-lg-12
-  .card.shadow.mb-4
-    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
-      h6.m-0.font-weight-bold.text-primary Náklady
-    .card-body
-      .links
-        = link_to_add_association('Přidej náklad', f, :expenses, :"data-association-insertion-node" => "tbody#nested_expenses",:"data-association-insertion-method" => "append",  class: 'btn btn-primary btn-success') 
-      table id="expenses_table" class="table table-hover table-bordered"
-        tr
-            th
-              | Typ Nákladu
-            th
-              | Částka
-            th
-              | Skutečná částka
-            th
-              | Datum očekávání platby
-            th
-              | Datum placení
-            th
-              | Popis
-            th
-        tbody id="nested_expenses"
-          = f.fields_for :expenses do |expenses|
-            = render 'expense_fields', f: expenses
-        tr
-          th 
-            | Výsledek
-          th.text-right id="sum_amount_expenses"
-          th.text-right id="sum_real_amount_expenses"
+.card.shadow.mb-4
+  .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+    h6.m-0.font-weight-bold.text-primary Náklady
+  .card-body
+    .links
+      = link_to_add_association('Přidej náklad', f, :expenses, :"data-association-insertion-node" => "tbody#nested_expenses",:"data-association-insertion-method" => "append",  class: 'btn btn-primary btn-success') 
+    table id="expenses_table" class="table table-hover table-bordered"
+      tr
           th
+            | Typ Nákladu
           th
+            | Částka
           th
+            | Skutečná částka
+          th
+            | Datum očekávání platby
+          th
+            | Datum placení
+          th
+            | Popis
+          th
+      tbody id="nested_expenses"
+        = f.fields_for :expenses do |expenses|
+          = render 'expense_fields', f: expenses
+      tr
+        th 
+          | Výsledek
+        th.text-right id="sum_amount_expenses"
+        th.text-right id="sum_real_amount_expenses"
+        th
+        th
+        th
 
 javascript:
   var spocitej_castku;

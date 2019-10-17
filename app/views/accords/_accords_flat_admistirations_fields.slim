@@ -1,17 +1,16 @@
-.col-xl-12.col-lg-12
-  .card.shadow.mb-4
-    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
-      h6.m-0.font-weight-bold.text-primary Správa bytu
-    .card-body
-        .links
-      		= link_to_add_association 'Přidej správu bytu', f, :flat_admistrations,:"data-association-insertion-node" => "tbody.flat_admistration",:"data-association-insertion-method" => "append",  class: 'btn btn-primary btn-success'
-        table class="table table-hover table-bordered"
-          tr
-            th Subject
-            th Addresa
-            th Telefon
-            th Email
-            th Poznámka
-          tbody.flat_admistration
-            = f.fields_for :flat_admistrations do |flat_admistration|
-            	= render 'flat_admistration_fields', f: flat_admistration
+.card.shadow.mb-4
+  .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+    h6.m-0.font-weight-bold.text-primary Správa bytu
+  .card-body
+      .links
+    		= link_to_add_association 'Přidej správu bytu', f, :flat_admistrations,:"data-association-insertion-node" => "tbody.flat_admistration",:"data-association-insertion-method" => "append",  class: 'btn btn-primary btn-success'
+      table class="table table-hover table-bordered"
+        tr
+          th Subject
+          th Addresa
+          th Telefon
+          th Email
+          th Poznámka
+        tbody.flat_admistration
+          = f.fields_for :flat_admistrations do |flat_admistration|
+          	= render 'flat_admistration_fields', f: flat_admistration

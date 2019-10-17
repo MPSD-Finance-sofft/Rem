@@ -1,15 +1,14 @@
-.col-xl-12.col-lg-12
-  .card.shadow.mb-4
-    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
-      h6.m-0.font-weight-bold.text-primary Měsíční zálohy
-    .card-body
-        .links
-      		= link_to_add_association 'Přidej měsíční zálohy', f, :month_advences,:"data-association-insertion-node" => "tbody.month_advance",:"data-association-insertion-method" => "append",  class: 'btn btn-primary btn-success'
-        table class="table table-hover table-bordered"
-          tr
-            th Předepsáno
-            th Datum splatnosti
-            th Datum uhrazení
-          tbody.month_advance
-            = f.fields_for :month_advences do |month_advance|
-            	= render 'month_advence_fields', f: month_advance
+.card.shadow.mb-4
+  .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+    h6.m-0.font-weight-bold.text-primary Měsíční zálohy
+  .card-body
+      .links
+    		= link_to_add_association 'Přidej měsíční zálohy', f, :month_advences,:"data-association-insertion-node" => "tbody.month_advance",:"data-association-insertion-method" => "append",  class: 'btn btn-primary btn-success'
+      table class="table table-hover table-bordered"
+        tr
+          th Předepsáno
+          th Datum splatnosti
+          th Datum uhrazení
+        tbody.month_advance
+          = f.fields_for :month_advences do |month_advance|
+          	= render 'month_advence_fields', f: month_advance

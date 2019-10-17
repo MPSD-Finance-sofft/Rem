@@ -1,16 +1,15 @@
-.col-xl-12.col-lg-12
-  .card.shadow.mb-4
-    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
-      h6.m-0.font-weight-bold.text-primary Pojištění nemovitosti
-    .card-body
-        .links
-      		= link_to_add_association 'Přidej pojištění nemovitosti', f, :insurances,:"data-association-insertion-node" => "tbody.insurance",:"data-association-insertion-method" => "append",  class: 'btn btn-primary btn-success'
-        table class="table table-hover table-bordered"
-          tr
-            th Datum začátku pojištění
-            th Datum ukončení pojištění
-            th Datum uhrazení
-            th Částka
-          tbody.insurance
-            = f.fields_for :insurances do |insurance|
-            	= render 'insurance_fields', f: insurance
+.card.shadow.mb-4
+  .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+    h6.m-0.font-weight-bold.text-primary Pojištění nemovitosti
+  .card-body
+      .links
+    		= link_to_add_association 'Přidej pojištění nemovitosti', f, :insurances,:"data-association-insertion-node" => "tbody.insurance",:"data-association-insertion-method" => "append",  class: 'btn btn-primary btn-success'
+      table class="table table-hover table-bordered"
+        tr
+          th Datum začátku pojištění
+          th Datum ukončení pojištění
+          th Datum uhrazení
+          th Částka
+        tbody.insurance
+          = f.fields_for :insurances do |insurance|
+          	= render 'insurance_fields', f: insurance
