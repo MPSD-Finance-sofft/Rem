@@ -26,6 +26,7 @@ class AccordsController < ApplicationController
     @gas = EnergyPolicy::Scope.new(@accord.id, current_user, GasEnergy).resolve.decorate
     @water = EnergyPolicy::Scope.new(@accord.id, current_user, WaterEnergy).resolve.decorate
     @tax_returns = TaxReturnPolicy::Scope.new(@accord.id, current_user, TaxReturn).resolve.decorate
+    @insurance = InsurancePolicy::Scope.new(@accord.id, current_user, Insurance).resolve.decorate
     @leasing_contracts = LeasingContract.for_accord(@accord.id).pluck(:id)
   end
 

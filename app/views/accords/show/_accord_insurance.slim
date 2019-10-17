@@ -1,0 +1,22 @@
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    a href="#colapseInsurancet" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="colapseInsurancet"
+      h6.m-0.font-weight-bold.text-primary Pojištění nemovitosti
+    .collapse id="colapseInsurancet"
+        .card-body
+            table.table
+            	tr
+            		th Datum vytvoření
+            		th  Datum začátku pojištění
+            		th  Datum ukončení pojištění
+            		th  Datum uhrazení
+            		th  Částka
+            	tr
+            		- @insurance.each do |insurance|
+            			tr
+            				td = insurance.created_at
+            				td = insurance.date_start
+            				td = insurance.date_send
+            				td = insurance.date_of_payment
+            				td = insurance.price
+            				

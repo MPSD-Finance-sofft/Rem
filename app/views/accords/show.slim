@@ -25,6 +25,7 @@ div class="#{@accord.object_state} text-dark"
       = render partial: "accords/show/accords_expense" unless @expenses.blank?
       = render partial: "accords/show/accords_energy" unless @energies.blank?
       = render partial: "accords/show/accords_tax_return" unless @tax_returns.blank?
+      = render partial: "accords/show/accord_insurance" unless @insurance.blank?
       = render partial: "accords/show/accords_note"
 
 javascript:

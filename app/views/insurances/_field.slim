@@ -1,0 +1,14 @@
+- f.object = f.object.decorate
+tr.nested-fields
+	= f.hidden_field :accord_id, value: @accord.id
+	td
+		= f.text_field :date_start, class: "form-control  datapicker"
+	td
+		= f.text_field :date_send, class: "form-control  datapicker"
+	td
+		= f.text_field :date_of_payment, class: "form-control datapicker"
+	td
+		= f.text_field :price, class: "form-control"
+	td
+		= link_to_remove_association "Odstranění pojištění nemovitosti", f, class: 'btn btn-primary btn-danger'
+ 
