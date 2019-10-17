@@ -1,0 +1,2 @@
+module FlatAdmistrationsHelper
+end

@@ -28,6 +28,7 @@ class AccordsController < ApplicationController
     @tax_returns = TaxReturnPolicy::Scope.new(@accord.id, current_user, TaxReturn).resolve.decorate
     @insurance = InsurancePolicy::Scope.new(@accord.id, current_user, Insurance).resolve.decorate
     @penbs = PenbPolicy::Scope.new(@accord.id, current_user, Penb).resolve.decorate
+    @flat_admistrations = FlatAdmistrationPolicy::Scope.new(@accord.id, current_user, FlatAdmistration).resolve.decorate
     @leasing_contracts = LeasingContract.for_accord(@accord.id).pluck(:id)
   end
 

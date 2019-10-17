@@ -1,0 +1,23 @@
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    a href="#colapseFlat" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="colapseFlat"
+      h6.m-0.font-weight-bold.text-primary Správa bytu
+    .collapse id="colapseFlat"
+        .card-body
+            table.table
+            	tr
+            		th  Datum vytvoření
+            		th Subject
+            		th Adresa
+            		th Tel
+            		th Email
+            		th Poznámka
+            	tr
+            		- @flat_admistrations.each do |flat_admistration|
+            			tr
+            				td = flat_admistration.created_at
+            				td = flat_admistration.subject
+            				td = flat_admistration.address
+            				td = flat_admistration.tel
+            				td = flat_admistration.email
+            				td = flat_admistration.note

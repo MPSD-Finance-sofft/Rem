@@ -22,6 +22,7 @@ class Accord < ApplicationRecord
 	has_many :tax_returns, :dependent => :destroy
 	has_many :insurances, :dependent => :destroy
 	has_many :penbs, :dependent => :destroy
+	has_many :flat_admistrations, :dependent => :destroy
 	belongs_to :creator, foreign_key: 'creator_id', class_name: 'User',  required: true
 	belongs_to :owner, foreign_key: 'user_id', class_name: 'User' ,  required: false
 	belongs_to :agent, foreign_key: 'agent_id', class_name: 'User' ,  required: false
@@ -47,6 +48,7 @@ class Accord < ApplicationRecord
 	accepts_nested_attributes_for :tax_returns,  reject_if: :all_blank, allow_destroy: true
 	accepts_nested_attributes_for :insurances,  reject_if: :all_blank, allow_destroy: true
 	accepts_nested_attributes_for :penbs,  reject_if: :all_blank, allow_destroy: true
+	accepts_nested_attributes_for :flat_admistrations,  reject_if: :all_blank, allow_destroy: true
 
 	validates :state, :inclusion => {:in => states.keys}
 

@@ -1,0 +1,16 @@
+- f.object = f.object.decorate
+tr.nested-fields
+	= f.hidden_field :accord_id, value: @accord.id
+	td
+		= f.text_field :subject, class: "form-control"
+	td
+		= f.text_field :address, class: "form-control"
+	td
+		= f.text_field :tel, class: "form-control"
+	td
+		= f.text_field :email, class: "form-control"
+	td
+		= f.text_field :note, class: "form-control"
+	td
+		= link_to_remove_association "Odstranění správy bytu", f, class: 'btn btn-primary btn-danger'
+ 
