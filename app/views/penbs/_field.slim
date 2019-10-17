@@ -1,0 +1,14 @@
+- f.object = f.object.decorate
+tr.nested-fields
+	= f.hidden_field :accord_id, value: @accord.id
+	td
+		= f.select :energy_class, f.object.select_energy_class,{selected: f.object.object_energy_class, include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true"}
+	td
+		= f.text_field :date_of_delivery_request, class: "form-control  datapicker"
+	td
+		= f.text_field :delivery_date, class: "form-control  datapicker"
+	td
+		= f.text_field :price, class: "form-control"
+	td
+		= link_to_remove_association "Odstranění PENB", f, class: 'btn btn-primary btn-danger'
+ 

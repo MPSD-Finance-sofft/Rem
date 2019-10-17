@@ -1,4 +1,4 @@
-module RemoveWhiteSpiceFromNumberInput::Energy
+module RemoveWhiteSpiceFromNumberInput::Price
 
 	def price=(value)
 		self[:price] = value.delete(" ")

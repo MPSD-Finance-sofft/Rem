@@ -85,5 +85,7 @@ div.container-fluid
 				    = render partial: "accords_tax_return", locals: {f: f}
 				.form-group
 				    = render partial: "accords_insurences_fields", locals: {f: f}
+				.form-group
+				    = render partial: "accords_penb_fields", locals: {f: f}
 				.action
 				    = f.submit "Odešli" , class: "btn btn-default", type: "submit"
