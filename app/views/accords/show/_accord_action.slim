@@ -59,7 +59,7 @@
           = f.hidden_field :state, value: 'in_terrain'
           .form-group.text-dark
               = f.label :agent_terrain_id, "Agent v terénu"
-              = f.select :agent_terrain_id, User.manager_and_user.map{|a| [a.all_name, a.id]},{include_blank: true},{class: "selectpicker form-control input-sm", "data-live-search" => "true"}
+              = f.select :agent_terrain_id, User.manager.map{|a| [a.all_name, a.id]},{include_blank: true},{class: "selectpicker form-control input-sm", "data-live-search" => "true"}
           .form-group.text-dark
               = f.label :date_to_terrain, "Datum předání do terénu"
               = f.text_field :date_to_terrain, class: "form-control datapicker input-sm"
