@@ -27,4 +27,14 @@ class LeasingContract < ApplicationRecord
 		end if range < MAX_GENERATE_REPAYMENTS
 	end
 	scope :for_accord, -> (accord_id) {where(accord_id: accord_id)}
+	scope :contract_number, -> (contract_number) {where(id:  contract_number)}
+	scope :client_name, -> (client_name) {joins(:clients).where("clients.name": client_name)}
+	scope :client_last_name, -> (client_last_name) {joins(:clients).where("clients.last_name": client_last_name)}
+	scope :realty_type, -> (realty_type_id) {joins(:realty).where("realties.realty_type_id": realty_type_id)}
+	scope :realty_adress_street, -> (street) {joins(realty: :address).where("addresses.street LIKE ?", "%#{street}%")}
+	scope :realty_adress_village, -> (village) {joins(realty: :address).where("addresses.village LIKE ?","%#{village}%")}
+	scope :monthly_rent_min, -> (number) {where("leasing_contracts.monthly_rent > ?", number)}
+	scope :monthly_rent_max, -> (number) {where("leasing_contracts.monthly_rent < ?", number)}
+	scope :rent_to_start, -> (date) {where("leasing_contracts.rent_to > ?", date.to_date)}
+	scope :rent_to_end, -> (date) {where("leasing_contracts.rent_to < ?", date.to_date)}
 end

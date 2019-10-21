@@ -1,7 +1,7 @@
-module Accords
+module IndexFilter
   class IndexServices
-    def initialize(accords,params)
-     	@accords = accords
+    def initialize(object,params)
+     	@object = object
      	params.delete("utf8")
      	params.delete("commit")
      	params.delete("controller")
@@ -11,9 +11,9 @@ module Accords
 
     def perform
     	@params.each do |key, value|
-    		@accords = @accords.send(key,value) unless value.blank?
+    		@object = @object.send(key,value) unless value.blank?
     	end unless @params.blank?
-     	@accords
+     	@object
     end
   end
 

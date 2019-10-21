@@ -4,7 +4,9 @@ class LeasingContractsController < ApplicationController
   # GET /leasing_contracts
   # GET /leasing_contracts.json
   def index
-    @leasing_contracts = LeasingContract.all.decorate
+    @leasing_contracts = LeasingContract.all
+    @leasing_contracts =  IndexFilter::IndexServices.new(@leasing_contracts,params).perform
+    @leasing_contracts = @leasing_contracts.decorate
   end
 
   # GET /leasing_contracts/1
