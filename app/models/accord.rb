@@ -85,6 +85,10 @@ class Accord < ApplicationRecord
 	scope :state, -> (state) {where(state:  state)}
 	scope :start_created_at, -> (date) {where("accords.created_at > ?", date.to_date)}
 	scope :end_created_at, -> (date) {where("accords.created_at < ?", date.to_date)}
+	scope :date_of_signature_start, -> (date) {where("accords.date_of_signature > ?", date.to_date)}
+	scope :date_of_signature_end, -> (date) {where("accords.date_of_signature < ?", date.to_date)}
+	scope :repurchase_min, -> (number) {where("accords.repurchase > ?", number)}
+	scope :repurchase_max, -> (number) {where("accords.repurchase < ?", number)}
 	scope :client_name, -> (client_name) {joins(:clients).where("clients.name": client_name)}
 	scope :client_last_name, -> (client_last_name) {joins(:clients).where("clients.last_name": client_last_name)}
 	scope :realty_type, -> (realty_type_id) {joins(:realty).where("realties.realty_type_id": realty_type_id)}
