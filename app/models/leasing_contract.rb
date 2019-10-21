@@ -17,15 +17,17 @@ class LeasingContract < ApplicationRecord
 	MAX_GENERATE_REPAYMENTS = 100
 
 	def generate_repayments
-		i =0 
+		i = 1
 		exist_repayment_date = Repayment.for_leasing_contract(self.id).pluck(:repayment_date)
 		range  = (self.rent_to.year * 12 + self.rent_to.month) - (self.rent_from.year * 12 + self.rent_from.month)
 		range.times do
-			date = Date.new(self.rent_to.year, self.rent_to.month,payment_day) + i.month
+			date = Date.new(self.rent_from.year, self.rent_from.month, payment_day) + i.month
 			self.repayments.build(leasing_contract_id: self.id, amount: self.monthly_rent, repayment_date: date) unless exist_repayment_date.include?(date)
 			i = i + 1
 		end if range < MAX_GENERATE_REPAYMENTS
 	end
+
+	
 	scope :for_accord, -> (accord_id) {where(accord_id: accord_id)}
 	scope :contract_number, -> (contract_number) {where(id:  contract_number)}
 	scope :client_name, -> (client_name) {joins(:clients).where("clients.name": client_name)}

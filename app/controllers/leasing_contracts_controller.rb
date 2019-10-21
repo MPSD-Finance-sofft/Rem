@@ -72,6 +72,6 @@ class LeasingContractsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def leasing_contract_params
-      params.require(:leasing_contract).permit(:state, :expected_date_of_signature, :rent_from, :rent_to, :payment_day, :monthly_rent, :accord_id)
+      params.require(:leasing_contract).permit!
     end
 end
