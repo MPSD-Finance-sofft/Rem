@@ -1,6 +1,7 @@
 class LeasingContractDecorator < ApplicationDecorator
   	delegate_all
   	decorates_association :repayment
+  	decorates_association :realty
 
 	def object_state
   		object.state
@@ -47,4 +48,8 @@ class LeasingContractDecorator < ApplicationDecorator
  	def first_client_full_name
 		object.clients.first.try(:full_name)
  	end
+
+	def village
+	object.realty.first.try(:address).try(:village)
+	end
 end
