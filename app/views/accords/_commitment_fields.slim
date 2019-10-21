@@ -1,3 +1,4 @@
+- f.object = f.object.decorate
 tr.nested-fields
 	= f.hidden_field :accord_id, value: @accord.id
 	td
@@ -7,9 +8,9 @@ tr.nested-fields
 	td
 		= f.text_field :real_amount, class: "form-control real_amount text-right"
 	td
-		= f.text_field :date_of_excepted_payment, class: "form-control"
+		= f.text_field :date_of_excepted_payment, class: "form-control datapicker"
 	td	
-		= f.text_field :payout_day, class: "form-control"
+		= f.text_field :payout_day, class: "form-control datapicker"
 	td				
 		= f.text_field :description, class: "form-control"
 	td

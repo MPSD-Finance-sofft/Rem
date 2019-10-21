@@ -37,7 +37,7 @@ class RewardsController < ApplicationController
 
     respond_to do |format|
       if @reward.save
-        format.html { redirect_to @accord, notice: 'Reward was successfully created.' }
+        format.html { redirect_to @accord, notice: 'Provizní nárok byl úspěšně vytvořen.' }
         format.json { render :show, status: :created, location: @accord }
       else
         format.html { render :new }
