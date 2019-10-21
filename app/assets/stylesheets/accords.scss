@@ -25,10 +25,10 @@
 	text-align: right;
 }
 
-.for_signature {
+.entry {
 	background-color: orange;
 }
-.active {
+.action {
 	background-color: lime;
 }
 
@@ -36,7 +36,10 @@
 	background-color: red;
 }
 
-.finish {
+.added {
+	background-color: white;
+}
+.ended {
 	background-color: white;
 }
 

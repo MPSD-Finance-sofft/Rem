@@ -5,14 +5,14 @@ div class="#{@leasing_contract.object_state}"
         b
           = link_to 'Nájemní smlouva', accords_path()  
       li.breadcrumb-item
-          | Nájemní smlouva č.
-          = @leasing_contract.id
-          |  pro žádost č. 
-          = @leasing_contract.accord_id
-= render partial: "leasing_contracts/show/action"
-= render partial: "leasing_contracts/show/data"
-= render partial: "leasing_contracts/show/payment"
-= render partial: "leasing_contracts/show/repayment"
-= render partial: "leasing_contracts/show/client"
-= render partial: "leasing_contracts/show/realty"
-= render partial: "leasing_contracts/show/notice"
+        | Nájemní smlouva č.
+        = @leasing_contract.id
+        |  pro žádost č. 
+        = @leasing_contract.accord_id
+    = render partial: "leasing_contracts/show/action"
+    = render partial: "leasing_contracts/show/data"
+    = render partial: "leasing_contracts/show/payment"
+    = render partial: "leasing_contracts/show/repayment"
+    = render partial: "leasing_contracts/show/client"
+    = render partial: "leasing_contracts/show/realty"
+    = render partial: "leasing_contracts/show/notice"
