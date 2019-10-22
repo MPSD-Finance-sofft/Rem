@@ -35,6 +35,14 @@ class LeasingContract < ApplicationRecord
     	self.leasing_contract_realty.build(realty_id: id) unless id.blank?
     	self.save
 	end
+
+	def persons
+		self.clients.where(type: "Person")
+	end
+
+	def companies
+		self.clients.where(type: "Company")
+	end
 	
 	scope :for_accord, -> (accord_id) {where(accord_id: accord_id)}
 	scope :contract_number, -> (contract_number) {where(id:  contract_number)}

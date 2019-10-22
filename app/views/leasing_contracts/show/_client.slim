@@ -1,24 +1,38 @@
 .col-xl-12.col-lg-12
   .card.shadow.mb-4
-    /! Card Header - Dropdown
-    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+    a href="#colapseClient" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="colapseClient"
       h6.m-0.font-weight-bold.text-primary Nájemníci
-    .card-body
-	    table.table
-    		tr
-    			th | Vztah
-    			th | Jméno
-    			th | Přijmení
-    			th | Rodné číslo  
-    			th | Mobil
-    			th | Číslo OP 
-    			
-    		tr
-    			- @leasing_contract.leasing_contract_clients.decorate.each do |leasing_contract_client|
-                        td=leasing_contract_client.relationship
-                        - person = leasing_contract_client.client
-                        td=person.name
-                        td=person.last_name
-                        td=person.identity_card_number
-                        td=person.mobile
-                        td=person.personal_identification_number
+    .collapse id="colapseClient"
+        .card-body
+            - unless @leasing_contract.persons.blank?
+                table.table
+                    tr
+                        th | Jméno
+                        th | Přijmení
+                        th | Rodné číslo  
+                        th | Mobil
+                        th | Číslo OP                      
+                    - @leasing_contract.persons.each do |client|
+                        tr
+                            td=client.name
+                            td=client.last_name
+                            td=client.identity_card_number
+                            td
+                                - client.mobile.each do |mobil|
+                                    =mobil.phone_number
+                                    | ,  
+                            td=client.personal_identification_number
+            - unless @leasing_contract.companies.blank?
+                table.table
+                    tr
+                        th | Jméno
+                        th | Ičo
+                        th | Mobil  
+                    - @leasing_contract.companies.each do |client|
+                        tr
+                            td=client.name
+                            td
+                            td
+                                - client.mobile.each do |mobil|
+                                    =mobil.phone_number
+                                    | ,  

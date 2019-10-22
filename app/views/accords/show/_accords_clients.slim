@@ -4,21 +4,35 @@
       h6.m-0.font-weight-bold.text-primary Klienti
     .collapse id="colapseClient"
         .card-body
-        	table.table
-        		tr
-        			th | Vztah
-        			th | Jméno
-        			th | Přijmení
-        			th | Rodné číslo  
-        			th | Mobil
-        			th | Číslo OP 
-        			
-        		tr
-        			- @accord.accords_clients.decorate.each do |accords_client|
-        				td=accords_client.relationship
-        				- person = accords_client.client
-        				td=person.name
-        				td=person.last_name
-        				td=person.identity_card_number
-        				td=person.mobile
-        				td=person.personal_identification_number
+            - unless @accord.persons.blank?
+                table.table
+                    tr
+                        th | Jméno
+                        th | Přijmení
+                        th | Rodné číslo  
+                        th | Mobil
+                        th | Číslo OP                      
+                    - @accord.persons.each do |client|
+                        tr
+                            td=client.name
+                            td=client.last_name
+                            td=client.identity_card_number
+                            td
+                                - client.mobile.each do |mobil|
+                                    =mobil.phone_number
+                                    | ,  
+                            td=client.personal_identification_number
+            - unless @accord.companies.blank?
+                table.table
+                    tr
+                        th | Jméno
+                        th | Ičo
+                        th | Mobil  
+                    - @accord.companies.each do |client|
+                        tr
+                            td=client.name
+                            td
+                            td
+                                - client.mobile.each do |mobil|
+                                    =mobil.phone_number
+                                    | ,  
