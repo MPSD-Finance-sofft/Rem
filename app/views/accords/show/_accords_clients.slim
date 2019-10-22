@@ -11,7 +11,8 @@
                         th | Přijmení
                         th | Rodné číslo  
                         th | Mobil
-                        th | Číslo OP                      
+                        th | Číslo OP       
+                        th | Vztah               
                     - @accord.persons.each do |client|
                         tr
                             td=client.name
@@ -22,6 +23,7 @@
                                     =mobil.phone_number
                                     | ,  
                             td=client.personal_identification_number
+                            td=client.relation_ship
             - unless @accord.companies.blank?
                 table.table
                     tr

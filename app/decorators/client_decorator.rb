@@ -15,4 +15,31 @@ class ClientDecorator < ApplicationDecorator
  					"nedefinovaný druh klienta"
 		end
  	end
+
+ 	def select_realationship
+ 		[['neuvádí se', nil], ['Druh,Družka', 'companion'],['Rozvedený/á', 'divorced'], ['Svobodný/á', 'free'], ['Vdovec/a', 'widow'], ['Chudák/Vdaná', 'married']]
+ 	end
+
+ 	def realationship_text(relation_ship)
+ 		case relation_ship
+ 			when nil
+				"neuvádí se"
+ 			when 'companion'
+ 				'Druh,Družka'
+ 			when 'divorced'
+ 				'Rozvedený/á'
+ 			when 'free'
+ 				'Svobodný/á'
+ 			when 'widow'
+ 				'Vdovec/a'
+ 			when 'married'
+ 				'Chudák/Vdaná'
+ 			else
+				"nedefinovaný druh klienta"
+		end
+ 	end
+
+ 	def relation_ship
+ 		realationship_text(object.relation_ship)
+ 	end
 end

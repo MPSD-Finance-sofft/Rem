@@ -23,6 +23,10 @@ class RealtyDecorator < Draper::Decorator
 		end
  	end
 
+ 	def object_type_ownership
+ 		object.type_ownership
+ 	end
+
  	def record_on_lv
 		record_on_lv_to_text(object.record_on_lv)
  	end
@@ -51,8 +55,16 @@ class RealtyDecorator < Draper::Decorator
 		end
  	end
 
+ 	def object_record_on_lv
+ 		object.record_on_lv
+ 	end
+
  	def location
 		location_to_text(object.location)
+ 	end
+
+ 	def object_location
+		object.location
  	end
 
  	def select_location

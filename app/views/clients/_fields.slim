@@ -41,6 +41,9 @@
 						.form-group
 							= c.label :personal_identification_number, 'RČ'
 							= c.text_field :personal_identification_number, class: "form-control"
+						.form-group
+							= c.label :relation_ship, 'Vztah'
+							= c.select :relation_ship, c.object.select_realationship,{include_blank:true},{class: "selectpicker form-control", "data-live-search" => "true"}
 				.card.shadow.mb-4.col-xl-4.col-lg-4.company
     				.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
       					h6.m-0.font-weight-bold.text-primary Údaje Firmy
