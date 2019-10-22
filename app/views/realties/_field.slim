@@ -14,13 +14,13 @@
 					.col-xl-4.col-lg-4
 						.form-group
 							= f.label :realty_type_id, 'Typ nemovitosti'
-							= f.select :realty_type_id, RealtyType.select([:id,:name]).map{|a| [a.name,a.id]},{},{class: "selectpicker form-control", "data-live-search" => "true"}
+							= f.select :realty_type_id, RealtyType.select([:id,:name]).map{|a| [a.name,a.id]},{ include_blank: true },{class: "selectpicker form-control", "data-live-search" => "true"}
 						.form-group
 							= f.label :type_ownership, 'Typ vlastnictví'
-							= f.select :type_ownership, f.object.select_type_ownership,{},{class: "selectpicker form-control input-sm", "data-live-search" => "true"}
+							= f.select :type_ownership, f.object.select_type_ownership,{include_blank: true},{class: "selectpicker form-control input-sm", "data-live-search" => "true"}
 						.form-group
 							= f.label :record_on_lv, 'Záznam na LV' 
-							= f.select :record_on_lv, f.object.select_record_on_lv,{},{class: "selectpicker form-control input-sm", "data-live-search" => "true"}
+							= f.select :record_on_lv, f.object.select_record_on_lv,{include_blank: true},{class: "selectpicker form-control input-sm", "data-live-search" => "true"}
 						.form-group
 							= f.label :price_estimation, "Odhad tržní ceny"
 							= f.text_field :price_estimation, {class: "form-control input-sm", type: "number", step: "any"}
@@ -28,15 +28,15 @@
 							= f.label :purchase_price, "Výkupní cena"
 							= f.text_field :purchase_price, {class: "form-control input-sm", type: "number", step: "any"}
 						.form-group
-								= f.label :location, "Lokalita"
-								= f.select :location, f.object.select_location,{},{class: "selectpicker form-control input-sm", "data-live-search" => "true"}
+							= f.label :location, "Lokalita"
+							= f.select :location, f.object.select_location,{include_blank: true},{class: "selectpicker form-control input-sm", "data-live-search" => "true"}
 						.form-group
-								= f.label :property_sheet, "List vlastnictví"
-								= f.text_field :property_sheet, {class: "form-control input-sm", type: "number"}
+							= f.label :property_sheet, "List vlastnictví"
+							= f.text_field :property_sheet, {class: "form-control input-sm", type: "number"}
 					.col-xl-4.col-lg-4
 						.form-group
 							= f.label :disposition_id, "Dispozice"
-							= f.select :disposition_id, Disposition.select([:id,:name]).map{|a| [a.name,a.id]},{},{class: "input-sm selectpicker form-control", "data-live-search" => "true"}
+							= f.select :disposition_id, Disposition.select([:id,:name]).map{|a| [a.name,a.id]},{include_blank:true},{class: "input-sm selectpicker form-control", "data-live-search" => "true"}
 						.form-group
 							= f.label :flat_number, "Číslo bytové jednotky"
 							= f.text_field :flat_number, {class: "form-control input-sm"}
