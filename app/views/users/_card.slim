@@ -81,7 +81,10 @@
 									|  , 
 						tr
 							th E-mail:
-							td = user.email
+							td 
+								- user.email.each do | email|
+									= email.email_address
+									|  , 
 						tr
 							th Web:
 							td = user.web

@@ -30,4 +30,7 @@
 							|  , 
 				tr
 					th E-mail:
-					td = superior.email
+					td 
+						- superior.email.each do | email|
+									= email.email_address
+									|  , 
