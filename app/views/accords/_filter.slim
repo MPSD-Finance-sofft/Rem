@@ -11,12 +11,12 @@
 				= label_tag :start_created_at, "Přijato od"
 				= text_field_tag :start_created_at, params[:start_created_at], class: "datapicker form-control input-sm"
 			.form-group
-				= label_tag :kind, "Typ žádosti"
-				= select_tag :kind, options_for_select([["Výkup", "buyout"], ["Dražba", "auction"], ["Insolvenční výkup", "insolvency_buyout"]], params[:kind]), {include_blank: true, class: "form-control input-sm"}
-		.col-xl-2
-			.form-group
 				= label_tag :state, "Stav žádosti"
 				= select_tag :state, options_for_select([["Nový", "state_new"], ["Rozpracováno", "state_eleboration"], ["v terénu", "in_terrain"], ["Ke schválení", "to_sign"],["Smlouva", "contract"],["Zamítnutá", "refuse"],["Stažená", "dowload"]], params[:state]), {include_blank: true, class: "form-control input-sm" }
+		.col-xl-2
+			.form-group
+				= label_tag :kind, "Typ žádosti"
+				= select_tag :kind, options_for_select([["Výkup", "buyout"], ["Dražba", "auction"], ["Insolvenční výkup", "insolvency_buyout"]], params[:kind]), {include_blank: true, class: "form-control input-sm"}
 			.form-group
 				= label_tag :user_id, "V péči"
 				= select_tag :user_id, options_for_select(Accord.pluck(:user_id).uniq.map{|a| [User.find_by_id(a).try(:all_name),a]}, params[:state]), {include_blank: true, class: "form-control input-sm"}
