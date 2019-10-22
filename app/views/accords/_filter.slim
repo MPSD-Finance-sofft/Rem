@@ -11,7 +11,7 @@
 				= label_tag :start_created_at, "Přijato od"
 				= text_field_tag :start_created_at, params[:start_created_at], class: "datapicker form-control input-sm"
 			.form-group
-				= label_tag :kind, "Typ"
+				= label_tag :kind, "Stav žádosti"
 				= select_tag :kind, options_for_select([["Výkup", "buyout"], ["Dražba", "auction"], ["Insolvenční výkup", "insolvency_buyout"]], params[:kind]), {include_blank: true, class: "form-control input-sm"}
 		.col-xl-2
 			.form-group
@@ -51,7 +51,7 @@
 				= text_field_tag :client_last_name, params[:client_last_name], class: "form-control input-sm"
 		.col-xl-2
 			.form-group
-			 	= label_tag :agent_in_terrain, "Agent v terénu"
+			 	= label_tag :agent_in_terrain, "V terénu zpracovává"
 			 	= select_tag :agent_in_terrain, options_for_select( User.manager.map{|a| [a.all_name, a.id]}, params[:agent_in_terrain]) ,{include_blank: true, class: "form-control input-sm"}
 			.form-group
 				= label_tag :realty_type, "Typ nemovitosti"
