@@ -39,13 +39,13 @@
 							= c.text_field :last_name, class: "form-control last_name"
 						.form-group
 							= c.label :identity_card_number, 'OP'
-							= c.text_field :identity_card_number, class: "form-control"
+							= c.text_field :identity_card_number, class: "form-control identity_card_number"
 						.form-group
 							= c.label :personal_identification_number, 'RČ'
 							= c.text_field :personal_identification_number, class: "form-control"
 						.form-group
 							= c.label :relation_ship, 'Vztah'
-							= c.select :relation_ship, c.object.select_realationship,{include_blank:true},{class: "selectpicker form-control", "data-live-search" => "true"}
+							= c.select :relation_ship, c.object.select_realationship,{include_blank:true, selected: c.object.object_relation_ship},{class: "selectpicker form-control", "data-live-search" => "true"}
 				.card.shadow.mb-4.col-xl-4.col-lg-4.company
     				.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
       					h6.m-0.font-weight-bold.text-primary Údaje Firmy
@@ -55,7 +55,7 @@
 							= c.text_field :name, class: "form-control company_name", disabled: true
 						.form-group
 							= c.label :identity_card_number, 'IČO'
-							= c.text_field :identity_card_number, class: "form-control"
+							= c.text_field :identity_card_number, class: "form-control identity_card_number_company"
 						.form-group
 							= c.label :data_box, 'Datová schránka'
 							= c.text_field :data_box, class: "form-control"
@@ -92,10 +92,12 @@ javascript:
 		if (e.val() == "Person") {
 				e.closest(".field").find(".company_name").prop( "disabled", true );
 				e.closest(".field").find(".last_name").prop( "disabled", false );
+				e.closest(".field").find(".identity_card_number_company").prop( "disabled", true );
 				e.closest(".field").find(".company").hide();
 				e.closest(".field").find(".person").show();
 			} else {
 				e.closest(".field").find(".company_name").prop( "disabled", false );
+				e.closest(".field").find(".identity_card_number_company").prop( "disabled", false );
 				e.closest(".field").find(".last_name").prop( "disabled", true );
 				e.closest(".field").find(".person").hide();
 				e.closest(".field").find(".company").show();

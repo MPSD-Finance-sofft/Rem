@@ -22,7 +22,7 @@ class ClientDecorator < ApplicationDecorator
 
  	def realationship_text(relation_ship)
  		case relation_ship
- 			when nil
+ 			when nil, ""
 				"neuvádí se"
  			when 'companion'
  				'Druh,Družka'
@@ -41,5 +41,9 @@ class ClientDecorator < ApplicationDecorator
 
  	def relation_ship
  		realationship_text(object.relation_ship)
+ 	end
+ 	
+ 	def object_relation_ship
+ 		object.relation_ship
  	end
 end

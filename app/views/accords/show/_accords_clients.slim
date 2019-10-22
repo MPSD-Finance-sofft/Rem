@@ -16,6 +16,7 @@
                         th | Email            
                         th | Adresa   
                     - @accord.persons.each do |client|
+                        - client = client.decorate
                         tr
                             td=client.name
                             td=client.last_name
@@ -40,6 +41,7 @@
                         th | Email
                         th | Adresa
                     - @accord.companies.each do |client|
+                        - client = client.decorate
                         tr
                             td=client.name
                             td=identity_card_number
