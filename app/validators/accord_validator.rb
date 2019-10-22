@@ -27,7 +27,7 @@ class AccordValidator < ActiveModel::Validator
 	end
 
 	def agent_id(record)
-		record.errors.add(:agent_id, "Pokud máte roli agent, agent nesmí být prázdný") if record.current_user.agent? && record.agent_id.blank?
+		record.errors.add(:agent_id, "Pokud máte roli agent, agent nesmí být prázdný") if !record.current_user.blank? &&record.current_user.agent? && record.agent_id.blank?
 	end
 
 	def accords_clients(record)
