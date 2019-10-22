@@ -47,6 +47,18 @@
 			.form-group
 				= label_tag :realty_adress_village, "Obec nemovitosti"
 				= text_field_tag :realty_adress_village, params[:realty_adress_village], class: "form-control input-sm"
+			.form-group
+				= label_tag :date_to_terrain_start, "Do terenu od "
+				= text_field_tag :date_to_terrain_start, params[:date_to_terrain_start], class: "form-control input-sm datapicker"
+			.form-group
+				= label_tag :date_to_terrain_end, "Do terenu do "
+				= text_field_tag :date_to_terrain_end, params[:date_to_terrain_end], class: "form-control input-sm datapicker"
+			.form-group
+				= label_tag :date_end_terrain_start, "Z terenu od "
+				= text_field_tag :date_end_terrain_start, params[:date_end_terrain_start], class: "form-control input-sm datapicker"
+			.form-group
+				= label_tag :date_end_terrain_end, "Z terenu do "
+				= text_field_tag :date_end_terrain_end, params[:date_end_terrain_end], class: "form-control input-sm datapicker"
 			.form-group.float-right
 				= submit_tag "Vyhledat"
 		.col-xl-1
