@@ -10,9 +10,9 @@
                         th | Jméno
                         th | Přijmení
                         th | Rodné číslo  
-                        th | Mobil
                         th | Číslo OP       
-                        th | Vztah               
+                        th | Vztah    
+                        th | Mobil           
                         th | Email            
                         th | Adresa   
                     - @accord.persons.each do |client|
@@ -20,12 +20,12 @@
                             td=client.name
                             td=client.last_name
                             td=client.personal_identification_number
+                            td=client.identity_card_number
+                            td=client.relation_ship
                             td
                                 - client.mobile.each do |mobil|
                                     =mobil.phone_number
                                     | ,  
-                            td=client.identity_card_number
-                            td=client.relation_ship
                             td
                                 - client.email.each do |email|
                                     =email.email_address
