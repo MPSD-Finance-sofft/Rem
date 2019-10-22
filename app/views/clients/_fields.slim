@@ -60,37 +60,21 @@
     				.card-body.field.form-group
 						- c.object.build_permanent_address unless c.object.permanent_address
 						= c.fields_for :permanent_address do |address|	
-							.form-group
-								= address.label :village, "Obec"
-								= address.text_field :village, {class: "form-control vilage_find", data: {village: "#{}"}}
-							.form-group
-								= address.label :street, "Ulice"
-								= address.text_field :street, class: "form-control street_find"
-							.form-group
-								= address.label :number, "ČP/ČO"
-								= address.text_field :number, class: "form-control number_find"
+							= render 'addresses/field', address: address
 					a href="#collapseContactAddress" class="d-block card-header py-3 collapsed" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseContactAddress"
       					h6.m-0.font-weight-bold.text-primary Kontaktní adresa
     				.card-body.field.form-group#collapseContactAddress.collapse
 						- c.object.build_contact_address unless c.object.contact_address
 						= c.fields_for :contact_address do |address|
-							.form-group
-								= address.label :village, "Obec"
-								= address.text_field :village, {class: "form-control vilage_find", data: {village: "#{}"}}
-							.form-group
-								= address.label :street, "Ulice"
-								= address.text_field :street, class: "form-control street_find"
-							.form-group
-								= address.label :number, "ČP/ČO"
-								= address.text_field :number, class: "form-control number_find"
+							= render 'addresses/field', address: address
 javascript:
 	$(document).on('turbolinks:load', function() {
 		toogle_object();
-		$('#clients').on('cocoon:after-insert', function() {
+		set_up($('.types_client'));
+	});
+	$('#clients').on('cocoon:after-insert', function() {
 			toogle_object();
 			set_up($('.types_client'));
-		});
-		set_up($('.types_client'));
 	});
 
 	toogle_object = function(){
