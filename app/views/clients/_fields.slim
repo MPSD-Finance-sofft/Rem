@@ -22,9 +22,11 @@
     						br
         					= c.fields_for :client_mobile do |client_mobile|
   								= render 'mobiles/field', f: client_mobile
-						.form-group
-							//= p.label :email, 'E-mail'
-							//= p.text_field :email, {class: "form-control", type: 'email'}
+  						.form-group
+    						= link_to_add_association('Přidej email', c, :client_email, :"data-association-insertion-method" => "after")
+    						br
+        					= c.fields_for :client_email do |client_email|
+  								= render 'emails/field', f: client_email
 				.card.shadow.mb-4.col-xl-4.col-lg-4.person
     				.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
       					h6.m-0.font-weight-bold.text-primary Údaje Osoby

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :client_emails
+  resources :emails
   resources :note_leasing_contracts
   resources :terrains, only: [:create, :update]
   resources :file_boards

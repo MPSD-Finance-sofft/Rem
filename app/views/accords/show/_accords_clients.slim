@@ -13,6 +13,7 @@
                         th | Mobil
                         th | Číslo OP       
                         th | Vztah               
+                        th | Email               
                     - @accord.persons.each do |client|
                         tr
                             td=client.name
@@ -24,12 +25,17 @@
                                     | ,  
                             td=client.personal_identification_number
                             td=client.relation_ship
+                            td
+                                - client.email.each do |email|
+                                    =email.email_address
+                                    | ,  
             - unless @accord.companies.blank?
                 table.table
                     tr
                         th | Jméno
                         th | Ičo
                         th | Mobil  
+                        th | Email
                     - @accord.companies.each do |client|
                         tr
                             td=client.name
@@ -37,4 +43,8 @@
                             td
                                 - client.mobile.each do |mobil|
                                     =mobil.phone_number
+                                    | ,  
+                            td
+                                - client.email.each do |email|
+                                    =email.email_address
                                     | ,  
