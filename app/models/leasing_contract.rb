@@ -11,9 +11,11 @@ class LeasingContract < ApplicationRecord
 	has_many :clients, through: :leasing_contract_clients
 	
 	belongs_to :accord
+	has_many_attached :uploads
 	accepts_nested_attributes_for :repayments,  reject_if: :all_blank, allow_destroy: true
 	accepts_nested_attributes_for :leasing_contract_clients,  reject_if: :all_blank, allow_destroy: true
 	accepts_nested_attributes_for :leasing_contract_realty,  reject_if: :all_blank, allow_destroy: true
+
 
 	MAX_GENERATE_REPAYMENTS = 100
 

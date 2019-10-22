@@ -1,10 +1,11 @@
 class LeasingContractsController < ApplicationController
-  before_action :set_leasing_contract, only: [:show, :edit, :update, :destroy]
+  before_action :set_leasing_contract, only: [:show, :edit, :update, :destroy ,:uploads, :create_uploads, :delete_image]
 
   # GET /leasing_contracts
   # GET /leasing_contracts.json
   def index
     @leasing_contracts = LeasingContract.all
+    authorize @leasing_contracts, policy_class: LeasingContractPolicy 
     @leasing_contracts =  IndexFilter::IndexServices.new(@leasing_contracts,params).perform
     @leasing_contracts = @leasing_contracts.decorate
   end
@@ -63,6 +64,29 @@ class LeasingContractsController < ApplicationController
       format.html { redirect_to leasing_contracts_url, notice: 'Leasing contract was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def uploads
+    authorize @leasing_contract
+  end
+
+  def create_uploads
+    respond_to do |format|
+      if @leasing_contract.update(leasing_contract_params)
+        format.html { redirect_to uploads_leasing_contract_path(leasing_contract_id: @leasing_contract), notice: 'Přílohy přidány' }
+        format.json { render :show, status: :ok, location: @leasing_contract }
+      else
+        format.html { render :edit }
+        format.json { render json: @leasing_contract.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def delete_image
+    authorize @leasing_contract
+    @file = ActiveStorage::Blob.find_signed(params[:file_id])
+    @file.attachments.first.purge
+    redirect_to uploads_leasing_contract_path(leasing_contract_id: @leasing_contract)
   end
 
   private

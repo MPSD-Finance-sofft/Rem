@@ -4,12 +4,11 @@
     .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
       h6.m-0.font-weight-bold.text-primary Akce
     .card-body
-    	= link_to "Úprava", edit_leasing_contract_path(@leasing_contract.id),{class: 'btn btn-info ', type: 'buttom'}
-    	= link_to "Generování splátek", bulk_create_leasing_contract_repayments_path(leasing_contract_id: @leasing_contract.id),{class: 'btn btn-info', type: 'buttom'}
-    	button.btn.btn-primary data-target="#paymentModal" data-toggle="modal" type="button" 
-    		| Přidej úhradu
-
-
+      = link_to "Úprava", edit_leasing_contract_path(@leasing_contract.id),{class: 'btn btn-info ', type: 'buttom'}
+      = link_to "Generování splátek", bulk_create_leasing_contract_repayments_path(leasing_contract_id: @leasing_contract.id),{class: 'btn btn-info', type: 'buttom'}
+      button.btn.btn-primary data-target="#paymentModal" data-toggle="modal" type="button" 
+        | Přidej úhradu
+      = link_to "Přílohy", uploads_leasing_contract_path(id: @leasing_contract.id) , { class: 'btn btn-info btn-sm float-right m-1', type: 'buttom'}
 /! Modal
 #paymentModal.modal.fade aria-hidden="true" aria-labelledby="exampleModalCenterTitle" role="dialog" tabindex="-1" 
   .modal-dialog.modal-dialog-centered role="document" 

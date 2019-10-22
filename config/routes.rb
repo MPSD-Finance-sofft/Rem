@@ -21,6 +21,11 @@ Rails.application.routes.draw do
       end
     end
     resources :payments
+    member do
+      get :uploads
+      patch :create_uploads
+      delete :delete_image
+    end
   end
   resources :permissions
   resources :addresses
