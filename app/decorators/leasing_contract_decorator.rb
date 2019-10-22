@@ -15,7 +15,7 @@ class LeasingContractDecorator < ApplicationDecorator
  		case state
  			when 'entry'
  				'k podpisu'
- 			when 'action'
+ 			when 'actions'
  				'Aktivní'
  			when 'debt'
  				'Dluh'
