@@ -30,7 +30,7 @@
                                 - client.email.each do |email|
                                     =email.email_address
                                     | ,  
-                        td=client.address.try(:index_name)
+                            td=client.address.try(:index_name)
             - unless @accord.companies.blank?
                 table.table
                     tr
@@ -51,4 +51,4 @@
                                 - client.email.each do |email|
                                     =email.email_address
                                     | ,  
-                        td=client.address.try(:index_name)
+                            td=client.address.try(:index_name)
