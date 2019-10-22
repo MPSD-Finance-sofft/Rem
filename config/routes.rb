@@ -1,12 +1,9 @@
 Rails.application.routes.draw do
-  resources :client_emails
-  resources :emails
   resources :note_leasing_contracts
   resources :terrains, only: [:create, :update]
   resources :file_boards
   resources :event_types
   resources :contracts, only: :index
-  resources :client_mobiles
   resources :dispositions
   resources :leasing_contract_realties
   resources :leasing_contract_clients
@@ -14,7 +11,6 @@ Rails.application.routes.draw do
   resources :boards
   resources :user_addresses
   resources :user_mobiles
-  resources :mobiles
   resources :cooperations
   resources :type_of_notices
   resources :rewards
