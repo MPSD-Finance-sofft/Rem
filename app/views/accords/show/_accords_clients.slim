@@ -13,7 +13,8 @@
                         th | Mobil
                         th | Číslo OP       
                         th | Vztah               
-                        th | Email               
+                        th | Email            
+                        th | Adresa   
                     - @accord.persons.each do |client|
                         tr
                             td=client.name
@@ -29,6 +30,7 @@
                                 - client.email.each do |email|
                                     =email.email_address
                                     | ,  
+                        td=client.address.try(:index_name)
             - unless @accord.companies.blank?
                 table.table
                     tr
@@ -36,6 +38,7 @@
                         th | Ičo
                         th | Mobil  
                         th | Email
+                        th | Adresa
                     - @accord.companies.each do |client|
                         tr
                             td=client.name
@@ -48,3 +51,4 @@
                                 - client.email.each do |email|
                                     =email.email_address
                                     | ,  
+                        td=client.address.try(:index_name)

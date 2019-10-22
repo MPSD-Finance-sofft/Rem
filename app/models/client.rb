@@ -19,4 +19,9 @@
   	def full_name
   		"#{self.name} #{self.last_name}"
   	end
+
+    def address
+      return self.permanent_address if self.contact_address.blank?
+      self.contact_address
+    end 
 end
