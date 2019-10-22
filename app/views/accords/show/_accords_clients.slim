@@ -18,12 +18,12 @@
                         tr
                             td=client.name
                             td=client.last_name
-                            td=client.identity_card_number
+                            td=client.personal_identification_number
                             td
                                 - client.mobile.each do |mobil|
                                     =mobil.phone_number
                                     | ,  
-                            td=client.personal_identification_number
+                            td=client.identity_card_number
                             td=client.relation_ship
                             td
                                 - client.email.each do |email|
@@ -39,7 +39,7 @@
                     - @accord.companies.each do |client|
                         tr
                             td=client.name
-                            td
+                            td=identity_card_number
                             td
                                 - client.mobile.each do |mobil|
                                     =mobil.phone_number
