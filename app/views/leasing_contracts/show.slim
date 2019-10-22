@@ -8,7 +8,7 @@ div class="#{@leasing_contract.object_state} leasing_contract_show"
         | Nájemní smlouva č.
         = @leasing_contract.id
         |  pro žádost č. 
-        = @leasing_contract.accord_id
+        = link_to @leasing_contract.accord_id, accord_path(@leasing_contract.accord_id)
     = render partial: "leasing_contracts/show/action"
     = render partial: "leasing_contracts/show/data"
     = render partial: "leasing_contracts/show/payment"
