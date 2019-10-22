@@ -10,17 +10,17 @@
         button.btn.btn-primary.float-right.btn-sm type="button"  id='show_all'
           | Zobraz vše
         br
-        = link_to "Rozpracovat", accord_path(@accord, accord: {state: 'state_eleboration', user_id: current_user.id}) , {:method=> :put, class: 'btn btn-sm btn-info m-1', type: 'buttom'}
-        = link_to "Ke schválení", accord_path(@accord, accord: {state: 'to_sign'}) , {:method=> :put, class: 'btn btn-sm btn-info m-1', type: 'buttom'}
+        = link_to "Rozpracovat", accord_path(@accord, accord: {state: 'state_eleboration', user_id: current_user.id}) , {:method=> :put, class: 'btn btn-sm m-1 state_eleboration text-dark', type: 'buttom'}
+        = link_to "Ke schválení", accord_path(@accord, accord: {state: 'to_sign'}) , {:method=> :put, class: 'btn btn-sm m-1 to_sign text-dark', type: 'buttom'}
         - if @accord.active_terrain?
-          button.btn.btn-info.btn-sm.m-1 data-target="#EndTerrainModalCenter" data-toggle="modal" type="button" 
+          button.btn.btn-sm.m-1.in_terrain.text-dark data-target="#EndTerrainModalCenter" data-toggle="modal" type="button" 
             | Z terénu 
         - else
-          button.btn.btn-info.btn-sm.m-1 data-target="#TerrainModalCenter" data-toggle="modal" type="button" 
+          button.btn.btn-sm.m-1.in_terrain.text-dark data-target="#TerrainModalCenter" data-toggle="modal" type="button" 
             | Do terénu 
-        = link_to "Smlouva", accord_path(@accord, accord: {state: 'contract'}) , {:method=> :put, class: 'btn btn-sm btn-info m-1', type: 'buttom'}
-        = link_to "Zamítnout", accord_path(@accord, accord: {state: 'refuse'}) , {:method=> :put, class: 'btn btn-sm btn-info m-1', type: 'buttom'}
-        = link_to "Stažená", accord_path(@accord, accord: {state: 'dowload'}) , {:method=> :put, class: 'btn btn-sm btn-info m-1', type: 'buttom'}
+        = link_to "Smlouva", accord_path(@accord, accord: {state: 'contract'}) , {:method=> :put, class: 'btn btn-sm  m-1 contract text-dark', type: 'buttom'}
+        = link_to "Zamítnout", accord_path(@accord, accord: {state: 'refuse'}) , {:method=> :put, class: 'btn btn-sm  m-1 refuse text-dark', type: 'buttom'}
+        = link_to "Stažená", accord_path(@accord, accord: {state: 'dowload'}) , {:method=> :put, class: 'btn btn-sm  m-1 dowload text-dark', type: 'buttom'}
         = link_to "Zobraz změny", changes_accords_path(id: @accord.id) , { class: 'btn btn-info btn-sm float-right m-1', type: 'buttom'}
         br
       button.btn.btn-primary.btn-sm.m-1 data-target="#exampleModalCenter" data-toggle="modal" type="button" 
