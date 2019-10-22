@@ -15,7 +15,7 @@ class LeasingContract < ApplicationRecord
 	accepts_nested_attributes_for :repayments,  reject_if: :all_blank, allow_destroy: true
 	accepts_nested_attributes_for :leasing_contract_clients,  reject_if: :all_blank, allow_destroy: true
 	accepts_nested_attributes_for :leasing_contract_realty,  reject_if: :all_blank, allow_destroy: true
-
+	after_create :add_realty
 
 	MAX_GENERATE_REPAYMENTS = 100
 
@@ -30,6 +30,11 @@ class LeasingContract < ApplicationRecord
 		end if range < MAX_GENERATE_REPAYMENTS
 	end
 
+	def add_realty
+		id =  self.accord.realty.first.try(:id)
+    	self.leasing_contract_realty.build(realty_id: id) unless id.blank?
+    	self.save
+	end
 	
 	scope :for_accord, -> (accord_id) {where(accord_id: accord_id)}
 	scope :contract_number, -> (contract_number) {where(id:  contract_number)}

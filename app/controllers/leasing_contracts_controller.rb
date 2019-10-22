@@ -30,7 +30,6 @@ class LeasingContractsController < ApplicationController
   # POST /leasing_contracts.json
   def create
     @leasing_contract = LeasingContract.new(leasing_contract_params)
-
     respond_to do |format|
       if @leasing_contract.save
         format.html { redirect_to @leasing_contract, notice: 'Leasing contract was successfully created.' }
