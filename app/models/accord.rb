@@ -28,7 +28,6 @@ class Accord < ApplicationRecord
 	belongs_to :creator, foreign_key: 'creator_id', class_name: 'User',  required: true
 	belongs_to :owner, foreign_key: 'user_id', class_name: 'User' ,  required: false
 	belongs_to :agent, foreign_key: 'agent_id', class_name: 'User' ,  required: false
-	belongs_to :agent_terrain, foreign_key: 'agent_terrain_id', class_name: 'User' ,  required: false
 
 	has_many_attached :uploads_agent
 	has_many_attached :uploads_manager
