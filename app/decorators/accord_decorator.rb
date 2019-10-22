@@ -27,7 +27,7 @@ class AccordDecorator < ApplicationDecorator
  			when 'dowload'
  				'Stažená'
       when 'in_terrain'
-        'v terénu'
+        'V terénu'
  			else
  			"nedefinovaný stav"
  		end
