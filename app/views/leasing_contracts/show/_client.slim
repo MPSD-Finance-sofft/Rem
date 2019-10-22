@@ -10,25 +10,28 @@
                         th | Jméno
                         th | Přijmení
                         th | Rodné číslo  
-                        th | Mobil
                         th | Číslo OP       
-                        th | Vztah               
-                        th | Email               
+                        th | Vztah    
+                        th | Mobil           
+                        th | Email            
+                        th | Kontaktní adresa   
                     - @leasing_contract.persons.each do |client|
+                        - client = client.decorate
                         tr
                             td=client.name
                             td=client.last_name
+                            td=client.personal_identification_number
                             td=client.identity_card_number
+                            td=client.relation_ship
                             td
                                 - client.mobile.each do |mobil|
                                     =mobil.phone_number
                                     | ,  
-                            td=client.personal_identification_number
-                            td=client.relation_ship
                             td
                                 - client.email.each do |email|
                                     =email.email_address
                                     | ,  
+                            td=client.address.try(:index_name)
             - unless @leasing_contract.companies.blank?
                 table.table
                     tr
@@ -36,10 +39,12 @@
                         th | Ičo
                         th | Mobil  
                         th | Email
+                        th | Kontaktní adresa
                     - @leasing_contract.companies.each do |client|
+                        - client = client.decorate
                         tr
                             td=client.name
-                            td
+                            td=identity_card_number
                             td
                                 - client.mobile.each do |mobil|
                                     =mobil.phone_number
@@ -48,3 +53,4 @@
                                 - client.email.each do |email|
                                     =email.email_address
                                     | ,  
+                            td=client.address.try(:index_name)
