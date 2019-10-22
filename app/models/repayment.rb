@@ -1,6 +1,7 @@
 class Repayment < ApplicationRecord
+	include RepaymentEnum
 	belongs_to :leasing_contract
-
+	attr_accessor :paid
 
 	scope :for_leasing_contract, -> (leasing_contract_id) {where(leasing_contract_id:  leasing_contract_id)}
 end

@@ -3,15 +3,15 @@
     a href="#colapseRepayments" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="colapseLeasing"
       h6.m-0.font-weight-bold.text-primary Splátky
     .card-body.collapse id="colapseRepayments"
-    	table.table
-      		tr
-      			th | Datum splatnosti
-      			th | Částka
-      		tr
-      			- @leasing_contract.repayments.decorate.each do |repayment|
-      				tr
-      					td=repayment.repayment_date
-      					td.amount=repayment.amount
-      					
+      table.table
+        tr
+          th | Datum splatnosti
+          th | Částka
+          th
+        - @repayments.each do |repayment|
+          tr class="#{repayment.paid}"
+            td=repayment.repayment_date
+            td.amount=repayment.amount
+
 
 

@@ -1,5 +1,6 @@
 class LeasingContract < ApplicationRecord
 	include LeasingContractsEnum
+	include LeasingContract::RepaymentCalendar
 
 	has_many :payments, :dependent => :destroy
 	has_many :repayments, :dependent => :destroy

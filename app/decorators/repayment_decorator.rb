@@ -4,5 +4,9 @@ class RepaymentDecorator < ApplicationDecorator
 	def repayment_date
 		format_date(object.repayment_date)
 	end
+
+	def amount
+		format_number(object.amount)
+	end
 	
 end

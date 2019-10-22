@@ -11,7 +11,8 @@ class LeasingContractsController < ApplicationController
 
   # GET /leasing_contracts/1
   # GET /leasing_contracts/1.json
-  def show
+  def show  
+    @repayments = @leasing_contract.calendar
   end
 
   # GET /leasing_contracts/new
