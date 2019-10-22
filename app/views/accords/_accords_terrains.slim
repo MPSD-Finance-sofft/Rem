@@ -1,0 +1,21 @@
+.card.shadow.mb-4
+  .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+    h6.m-0.font-weight-bold.text-primary Terén
+  .card-body
+    div.panel-body.no-padding
+      .links
+        = link_to_add_association('Přidej terén', f, :terrains, :"data-association-insertion-node" => "tbody#nested_terrains",:"data-association-insertion-method" => "append",  class: 'btn btn-primary btn-success') 
+      table id="terrains_table" class="table table-hover table-bordered"
+        tr
+            th
+              | Datum předání do terénu
+            th
+              | Datum schůzky
+            th
+              | Agent v terénu
+            th
+              | Vráceno z terénu
+        tbody id="nested_terrains"
+          = f.fields_for :terrains do |terrain|
+            = render 'terrain_fields', f: terrain
+        

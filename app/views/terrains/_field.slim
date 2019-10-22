@@ -1,0 +1,13 @@
+- f.object = f.object.decorate
+tr.nested-fields
+	= f.hidden_field :accord_id, value: @accord.id
+	td
+		= f.text_field :date_to_terrain, class: "form-control  text-right datapicker"
+	td
+		= f.text_field :date_meeting_in_terain, class: "form-control  text-right datapicker"
+	td
+		= f.select :agent_id, User.manager.map{|a| [a.all_name, a.id]},{include_blank: true},{class: "selectpicker form-control input-sm", "data-live-search" => "true"}
+	td
+		= f.text_field :date_end_terrain, class: "form-control  text-right datapicker"
+	td
+		= link_to_remove_association "Odstranění terénu", f, class: 'btn btn-primary btn-danger'

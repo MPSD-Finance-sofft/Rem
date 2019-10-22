@@ -37,15 +37,6 @@ div.container-fluid
 					    	= f.label :agent_id, "Agent"
 							= f.select :agent_id, User::can_create_accord_with_exist(f.object.agent_id).map{|a| [a.all_name, a.id]},{include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true"}
 						.form-group
-					    	= f.label :agent_terrain_id, "V terénu zpracovává"
-							= f.select :agent_terrain_id, User.manager.map{|a| [a.all_name, a.id]},{include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true"}
-						.form-group
-					    	= f.label :date_to_terrain, "Datum předání do terénu"
-							= f.text_field :date_to_terrain, class: "form-control datapicker"
-						.form-group
-					    	= f.label :date_meeting_in_terain, "Datum schůzky v terénu"
-							= f.text_field :date_meeting_in_terain, class: "form-control datapicker"
-						.form-group
 					    	= f.label :agency_commission, "Zprostředkovatelská provize"
 							= f.text_field :agency_commission,{class: "form-control"}
 						.form-group
@@ -73,6 +64,8 @@ div.container-fluid
 				   = render partial: "accords_realities", locals: {f: f}
 				.form-group
 				    = render partial: "accords_clients", locals: {f: f}
+				.form-group
+				    = render partial: "accords_terrains", locals: {f: f}
 				.form-group
 				    = render partial: "accords_commitments", locals: {f: f}
 				.form-group

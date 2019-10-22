@@ -31,6 +31,7 @@ class AccordsController < ApplicationController
     @flat_admistrations = FlatAdmistrationPolicy::Scope.new(@accord.id, current_user, FlatAdmistration).resolve.decorate
     @month_advances = MonthAdvencePolicy::Scope.new(@accord.id, current_user, MonthAdvence).resolve.decorate
     @leasing_contracts = LeasingContract.for_accord(@accord.id).pluck(:id)
+    @terrains = TerrainPolicy::Scope.new(@accord.id, current_user, Terrain).resolve.decorate
   end
 
   # GET /accords/new

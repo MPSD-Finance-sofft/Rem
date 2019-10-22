@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :terrains, only: [:create, :update]
   resources :file_boards
   resources :event_types
   resources :contracts, only: :index

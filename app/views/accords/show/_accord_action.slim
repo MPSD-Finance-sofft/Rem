@@ -12,8 +12,12 @@
         br
         = link_to "Rozpracovat", accord_path(@accord, accord: {state: 'state_eleboration', user_id: current_user.id}) , {:method=> :put, class: 'btn btn-sm btn-info m-1', type: 'buttom'}
         = link_to "Ke schválení", accord_path(@accord, accord: {state: 'to_sign'}) , {:method=> :put, class: 'btn btn-sm btn-info m-1', type: 'buttom'}
-        button.btn.btn-info.btn-sm.m-1 data-target="#TerrainModalCenter" data-toggle="modal" type="button" 
-          | V terénu 
+        - if @accord.active_terrain?
+          button.btn.btn-info.btn-sm.m-1 data-target="#EndTerrainModalCenter" data-toggle="modal" type="button" 
+            | Z terénu 
+        - else
+          button.btn.btn-info.btn-sm.m-1 data-target="#TerrainModalCenter" data-toggle="modal" type="button" 
+            | Do terénu 
         = link_to "Smlouva", accord_path(@accord, accord: {state: 'contract'}) , {:method=> :put, class: 'btn btn-sm btn-info m-1', type: 'buttom'}
         = link_to "Zamítnout", accord_path(@accord, accord: {state: 'refuse'}) , {:method=> :put, class: 'btn btn-sm btn-info m-1', type: 'buttom'}
         = link_to "Stažená", accord_path(@accord, accord: {state: 'dowload'}) , {:method=> :put, class: 'btn btn-sm btn-info m-1', type: 'buttom'}
@@ -55,17 +59,34 @@
         button.close aria-label="Close" data-dismiss="modal" type="button" 
           span aria-hidden="true"  &times;
       .modal-body
-        = form_with(model: @accord, local: true) do |f| 
-          = f.hidden_field :state, value: 'in_terrain'
+        = form_with(model: Terrain.new, local: true) do |f| 
+          = f.hidden_field :accord_id, value: @accord.id 
           .form-group.text-dark
-              = f.label :agent_terrain_id, "Agent v terénu"
-              = f.select :agent_terrain_id, User.manager.map{|a| [a.all_name, a.id]},{include_blank: true},{class: "selectpicker form-control input-sm", "data-live-search" => "true"}
+              = f.label :agent_id, "Agent v terénu"
+              = f.select :agent_id, User.manager.map{|a| [a.all_name, a.id]},{include_blank: true},{class: "selectpicker form-control input-sm", "data-live-search" => "true"}
           .form-group.text-dark
               = f.label :date_to_terrain, "Datum předání do terénu"
               = f.text_field :date_to_terrain, class: "form-control datapicker input-sm"
           .form-group.text-dark
               = f.label :date_meeting_in_terain, "Datum schůzky v terénu"
               = f.text_field :date_meeting_in_terain, class: "form-control datapicker input-sm"
+          .modal-footer
+            button.btn.btn-secondary data-dismiss="modal" type="button"  Close
+            button.btn.btn-primary type="submit"  Odešli
+/! Modal
+#EndTerrainModalCenter.modal.fade aria-hidden="true" aria-labelledby="exampleModalCenterTitle" role="dialog" tabindex="-1" 
+  .modal-dialog.modal-dialog-centered role="document" 
+    .modal-content
+      .modal-header
+        h5#exampleModalLongTitle.modal-title.text-dark Vrácení z terénu
+        button.close aria-label="Close" data-dismiss="modal" type="button" 
+          span aria-hidden="true"  &times;
+      .modal-body
+        = form_with(model: @accord.terrains.last, local: true) do |f| 
+          = f.hidden_field :accord_id, value: @accord.id 
+          .form-group.text-dark
+              = f.label :date_end_terrain, "Datum vráceno z terénu"
+              = f.text_field :date_end_terrain, class: "form-control datapicker input-sm"
           .modal-footer
             button.btn.btn-secondary data-dismiss="modal" type="button"  Close
             button.btn.btn-primary type="submit"  Odešli

@@ -1,0 +1,22 @@
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    a href="#colapseTarrain" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="colapseTarrain"
+      h6.m-0.font-weight-bold.text-primary Terén
+    .collapse id="colapseTarrain"
+  		.card-body
+      		table.table
+      			tr
+		            th  Datum vytvoření
+		            th  Datum předání do terénu
+		            th  Datum schůzky
+		            th  Agent v terénu
+		            th  Poslal do terénu
+		            th  Vráceno z terénu
+		        - @terrains.each do |terrain|
+		        	tr
+		        		td = terrain.created_at 
+		        		td = terrain.date_to_terrain 
+		        		td = terrain.date_meeting_in_terain 
+		        		td = terrain.agent 
+		        		td = terrain.user
+		        		td = terrain.date_end_terrain 
