@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     resources :repayments do 
       collection do 
         get :bulk_create
+        get :delete_all_repayments
       end
     end
     resources :payments

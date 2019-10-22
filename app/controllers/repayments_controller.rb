@@ -1,6 +1,6 @@
 class RepaymentsController < ApplicationController
   before_action :set_repayment, only: [:show, :edit, :update, :destroy]
-  before_action :set_leasing_contract, only: [:show, :edit, :update, :destroy, :bulk_create]
+  before_action :set_leasing_contract, only: [:show, :edit, :update, :destroy, :bulk_create, :delete_all_repayments]
 
   # GET /repayments
   # GET /repayments.json
@@ -49,6 +49,14 @@ class RepaymentsController < ApplicationController
         format.json { render json: @leasing_contract.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+   def delete_all_repayments
+      @leasing_contract.repayments.delete_all
+      respond_to do |format|
+        format.html { redirect_to leasing_contract_path(@leasing_contract), alert: 'Si v háji všechno sis smazals :P ' }
+        format.json { render :show, status: :ok, location: @leasing_contract }
+      end
   end
 
   # PATCH/PUT /repayments/1
