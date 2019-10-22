@@ -1,0 +1,19 @@
+<h1>Note Leasing Contracts</h1>
+
+<table class="responsive nowrap table table-hover" id="dttb-note_leasing_contracts" data-sort="true" data-source="<%= url_for(format: :json)%>">
+  <thead>
+    <tr>
+      <th data-data="accord_id">Accord</th>
+      <th data-data="user_id">User</th>
+      <th data-data="description">Description</th>
+      <th data-data="color">Color</th>
+      <th data-data="permission">Permission</th>
+      <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
+    </tr>
+  </thead>
+
+</table>
+
+<br>
+
+<%= link_to 'New Note Leasing Contract', new_note_leasing_contract_path %>

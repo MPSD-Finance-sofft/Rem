@@ -1,4 +1,4 @@
-div class="#{@leasing_contract.object_state}"
+div class="#{@leasing_contract.object_state} leasing_contract_show"
   div.container-fluid
     ol.breadcrumb
       li.breadcrumb-item
@@ -16,3 +16,10 @@ div class="#{@leasing_contract.object_state}"
     = render partial: "leasing_contracts/show/client"
     = render partial: "leasing_contracts/show/realty"
     = render partial: "leasing_contracts/show/notice"
+javascript:
+  $(document).ready(function() {
+    $(".leasing_contract_show").find(".collapse").collapse('toggle');
+    $(document).on('click', '#show_all', function(evt) {
+        $(".leasing_contract_show").find(".collapse").collapse('toggle')
+        })});
+  

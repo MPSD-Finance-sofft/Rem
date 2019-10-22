@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Accord:</strong>
+  <%= @note_leasing_contract.accord_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @note_leasing_contract.user_id %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @note_leasing_contract.description %>
+</p>
+
+<p>
+  <strong>Color:</strong>
+  <%= @note_leasing_contract.color %>
+</p>
+
+<p>
+  <strong>Permission:</strong>
+  <%= @note_leasing_contract.permission %>
+</p>
+
+<%= link_to 'Edit', edit_note_leasing_contract_path(@note_leasing_contract) %> |
+<%= link_to 'Back', note_leasing_contracts_path %>

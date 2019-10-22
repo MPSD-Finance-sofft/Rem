@@ -4,13 +4,16 @@
     .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
       h6.m-0.font-weight-bold.text-primary Akce
     .card-body
-      = link_to "Úprava", edit_leasing_contract_path(@leasing_contract.id),{class: 'btn btn-info ', type: 'buttom'}
-      button.btn.btn-primary data-target="#paymentModal" data-toggle="modal" type="button" 
+      = link_to "Úprava", edit_leasing_contract_path(@leasing_contract.id),{class: 'btn btn-info btn-sm ', type: 'buttom'}
+      button.btn.btn-primary.btn-sm data-target="#paymentModal" data-toggle="modal" type="button" 
         | Přidej úhradu
       = link_to "Přílohy", uploads_leasing_contract_path(id: @leasing_contract.id) , { class: 'btn btn-info btn-sm float-right m-1', type: 'buttom'}
+      button.btn.btn-primary.btn-sm.m-1 data-target="#exampleModalCenter" data-toggle="modal" type="button" 
+        | Přidej poznámku 
       br
-      = link_to "Generování splátek", bulk_create_leasing_contract_repayments_path(leasing_contract_id: @leasing_contract.id),{class: 'btn btn-info', type: 'buttom'}
-      = link_to "Smazaní všech splátek", delete_all_repayments_leasing_contract_repayments_path(leasing_contract_id: @leasing_contract.id),{class: 'btn btn-info', type: 'buttom'}
+      = link_to "Generování splátek", bulk_create_leasing_contract_repayments_path(leasing_contract_id: @leasing_contract.id),{class: 'btn btn-info btn-sm', type: 'buttom'}
+      = link_to "Smazaní všech splátek", delete_all_repayments_leasing_contract_repayments_path(leasing_contract_id: @leasing_contract.id),{class: 'btn btn-info btn-sm', type: 'buttom'}
+
 /! Modal
 #paymentModal.modal.fade aria-hidden="true" aria-labelledby="exampleModalCenterTitle" role="dialog" tabindex="-1" 
   .modal-dialog.modal-dialog-centered role="document" 
@@ -28,6 +31,28 @@
           .form-group
           	= f.label :amount, "Datum platby"
           	= f.text_field :payment_date, class: "form-control datapicker"
+          .modal-footer
+            button.btn.btn-secondary data-dismiss="modal" type="button"  Close
+            button.btn.btn-primary type="submit"  Odešli
+
+/! Modal
+#exampleModalCenter.modal.fade aria-hidden="true" aria-labelledby="exampleModalCenterTitle" role="dialog" tabindex="-1" 
+  .modal-dialog.modal-dialog-centered role="document" 
+    .modal-content
+      .modal-header
+        h5#exampleModalLongTitle.modal-title.text-dark Přidání poznámky
+        button.close aria-label="Close" data-dismiss="modal" type="button" 
+          span aria-hidden="true"  &times;
+      .modal-body
+        = form_with(model: NoteLeasingContract.new.decorate, local: true) do |f|
+          = f.hidden_field :accord_id, value: @leasing_contract.id
+          .form-group.text-dark
+            = f.trix_editor :description
+          .form-group.text-dark
+            = f.select :permission,  f.object.select_permission(current_user),{},{class: "selectpicker form-control", "data-live-search" => "true"}
+          - if current_user.admin?
+            .form-group
+              = f.color_field :color, {class: "selectpicker form-control", "data-live-search" => "true", type:"color", value:"#f6b73c"}
           .modal-footer
             button.btn.btn-secondary data-dismiss="modal" type="button"  Close
             button.btn.btn-primary type="submit"  Odešli

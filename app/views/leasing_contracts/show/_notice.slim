@@ -1,7 +1,32 @@
 .col-xl-12.col-lg-12
   .card.shadow.mb-4
-    /! Card Header - Dropdown
-    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+    a href="#colapseNote" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="colapseNote"
       h6.m-0.font-weight-bold.text-primary Poznámky
-    .card-body
-    	
+    .collapse id="colapseNote"
+      .card-body
+        table.table
+          tr
+            th | Čas
+            th | Autor
+            th | Text
+            th
+          - @leasing_constract_notes.each do |note|
+            tr style="background-color:#{note.attributes["color"]}" class="#{note.attributes["color"]== 'Fuchsia' ? 'text-white' : 'text-dark'}"
+              td = note.created_at
+              td = note.autor
+              td = note.description.html_safe
+              td = link_to 'Remove', note, method: :delete, data: { confirm: 'Are you sure?' }
+javascript: 
+  $(document).ready(function() {
+      $('.color').each(function(){
+        if ($(this).hasClass("green")) {
+          $(this).css("background-color","YellowGreen")
+        }
+        else if ($(this).hasClass("red")) {
+          $(this).css("background-color","OrangeRed ")
+        }
+        else if ($(this).hasClass("yellow")) {
+          $(this).css("background-color","yellow")
+        }
+      });
+  });
