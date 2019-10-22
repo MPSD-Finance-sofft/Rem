@@ -12,6 +12,8 @@ class RealtyDecorator < Draper::Decorator
 
  	def type_ownership_to_text(type_ownership)
  		case type_ownership
+ 			when nil
+ 				''
  			when 'part'
  					"Podílné"
  			when 'exclusiv'
