@@ -2,9 +2,11 @@
 div class="#{@accord.object_state} text-dark"
   div.container-fluid
     ol.breadcrumb
-      li.breadcrumb-item.display-4
-        = link_to 'Žádosti', accords_path()  
-      li.breadcrumb-item.display-4
+      li.breadcrumb-item
+        b
+          = link_to 'Žádosti', accords_path()  
+      li.breadcrumb-item
+        b
           | žádost č.
           = @accord.id
           |  ,klienta 
