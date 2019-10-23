@@ -75,15 +75,15 @@
 javascript:
 	$(document).on('turbolinks:load', function() {
 		toogle_object();
-		set_up($('.types_client'));
+		set_up($('select.types_client'));
 	});
 	$('#clients').on('cocoon:after-insert', function() {
 			toogle_object();
-			set_up($('.types_client'));
+			set_up($('select.types_client'));
 	});
 
 	toogle_object = function(){
-		$('.types_client').change(function(){
+		$('select.types_client').change(function(){
 			set_up($(this));
 		});
 	};
