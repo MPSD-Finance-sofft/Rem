@@ -25,7 +25,7 @@ class User < ApplicationRecord
 	accepts_nested_attributes_for :user_mobile,  reject_if: :all_blank, allow_destroy: true
 	accepts_nested_attributes_for :user_address,  reject_if: :all_blank, allow_destroy: true
 	accepts_nested_attributes_for :user_email,  reject_if: :all_blank, allow_destroy: true
-
+	validates_confirmation_of :password
 
 	def all_name
 	 self.title_before.to_s + ' ' + self.last_name.to_s + ' ' +  self.name.to_s + ' ' + self.title_last.to_s + ' (' + self.username + ')'
@@ -86,6 +86,11 @@ class User < ApplicationRecord
 
 	def self.user_can_sign_id
 		User.manager_and_user.can_sign_in
+	end
+
+	def encrypted_password=(value)
+		return if value.blank?
+		super
 	end
 	 
 	scope :subordinates, -> (user) {where(superior_id: user.id)}
