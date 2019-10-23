@@ -53,9 +53,9 @@ class RealtyDecorator < Draper::Decorator
  			when 'discrit_town'
  					"Okresní město"
  			when 'country_seat_15_km'
- 					"15 km do okresní města"
+ 					"Do 15km od okresního města"
  			when 'district_town_15_km'
- 					"15 km od okresního města"
+ 					"Nad 15km od okresního města"
  			else
  					"nedefinovaný typ lokality"
 		end
