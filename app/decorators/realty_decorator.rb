@@ -29,38 +29,6 @@ class RealtyDecorator < Draper::Decorator
  		object.type_ownership
  	end
 
- 	def record_on_lv
-		record_on_lv_to_text(object.record_on_lv)
- 	end
-
- 	def select_record_on_lv
- 		Realty.record_on_lvs.keys.map{|a| [record_on_lv_to_text(a), a]}
- 	end
-
-
- 	def record_on_lv_to_text(record_on_lv)
- 		case record_on_lv
- 			when 'burden'
- 					"Břemeno"
- 			when 'execution'
- 					"Exekuce"
- 			when 'hypothec'
- 					"Hypotéka"
- 			when 'insolvency_manager'
- 					"Insolvenční manager"
- 			when 'unknown'
- 					"Neznámý"
- 			when 'pledge'
- 					"Zástava"
- 			else
- 					"nedefinovaný typ záznamu na lv"
-		end
- 	end
-
- 	def object_record_on_lv
- 		object.record_on_lv
- 	end
-
  	def location
 		location_to_text(object.location)
  	end
@@ -71,6 +39,10 @@ class RealtyDecorator < Draper::Decorator
 
  	def select_location
  		Realty.locations.keys.map{|a| [location_to_text(a), a]}
+ 	end
+
+ 	def record_on_lvs
+ 		object.record_on_lvs.map{|a| a.kind_to_s}.join(",")
  	end
 
 

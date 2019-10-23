@@ -15,9 +15,9 @@ class AccordDecorator < ApplicationDecorator
  	def state_to_text(state)
  		case state
  			when 'state_new'
- 				'Nový'
+ 				'Nová'
  			when 'state_eleboration'
- 				'Rozpracováno'
+ 				'Rozpracovaná'
  			when 'to_sign'
  				'Ke schválení'
  			when 'contract'

@@ -19,8 +19,8 @@
 							= f.label :type_ownership, 'Typ vlastnictví'
 							= f.select :type_ownership, f.object.select_type_ownership,{include_blank: true,selected: f.object.object_type_ownership},{class: "selectpicker form-control input-sm", "data-live-search" => "true"}
 						.form-group
-							= f.label :record_on_lv, 'Záznam na LV' 
-							= f.select :record_on_lv, f.object.select_record_on_lv,{include_blank: true,selected: f.object.object_record_on_lv},{class: "selectpicker form-control input-sm", "data-live-search" => "true"}
+							= f.label :record_on_lvs, 'Záznam na LV' 
+							= f.collection_select :record_on_lv_ids, RecordOnLv.all, :id, :kind_to_s, {}, {multiple: true,class: "selectpicker form-control", "data-live-search" => "true"}
 						.form-group
 							= f.label :price_estimation, "Odhad tržní ceny"
 							= f.text_field :price_estimation, {class: "form-control input-sm", type: "number", step: "any"}
@@ -53,5 +53,5 @@
 							= f.label :real_number_abovegroud_floors, "Reálný počet nadzemních podlaží "
 							= f.text_field :real_number_abovegroud_floors, {class: "form-control input-sm", type: "number"}
 						.form-group
-								= f.label :catastral_territory, "Katastrální území"
-								= f.text_field :catastral_territory, {class: "form-control input-sm", type: "number"}
+							= f.label :catastral_territory, "Katastrální území"
+							= f.text_field :catastral_territory, {class: "form-control input-sm", type: "number"}
