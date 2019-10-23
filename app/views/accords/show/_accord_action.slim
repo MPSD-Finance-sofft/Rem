@@ -4,10 +4,10 @@
       h6.m-0.font-weight-bold.text-primary Akce
     .card-body
       - if current_user.user_or_admin?
-        = link_to "Úprava", edit_accord_path(@accord.id),{class: 'btn btn-sm btn-info m-1', type: 'buttom'}
-        = link_to "Vytvoření provizního nároku", rewards_path(accord_id: @accord) , {:method=> :post, class: 'btn btn-sm btn-info m-1', type: 'buttom', data: { confirm: 'Jste si jistí tím co děláte? Nebo vůbec netušíte? Pan langer se vám jistě rád ozve.'}}
+        = link_to "Úprava", edit_accord_path(@accord.id),{class: 'btn btn-sm btn-info m-1 text-white', type: 'buttom'}
+        = link_to "Vytvoření provizního nároku", rewards_path(accord_id: @accord) , {:method=> :post, class: 'btn btn-sm btn-info m-1 text-white', type: 'buttom', data: { confirm: 'Jste si jistí tím co děláte? Nebo vůbec netušíte? Pan langer se vám jistě rád ozve.'}}
         = link_to 'Nová nájemní smlouva', new_leasing_contract_path(accord_id: @accord.id), {class: 'btn btn-sm btn-info m-1', type: 'buttom'}
-        button.btn.btn-primary.float-right.btn-sm type="button"  id='show_all'
+        button.btn.btn-sm.btn-info.m-1.float-right type="button"  id='show_all'
           | Zobraz vše
         br
         = link_to "Rozpracovat", accord_path(@accord, accord: {state: 'state_eleboration', user_id: current_user.id}) , {:method=> :put, class: 'btn btn-sm m-1 state_eleboration text-dark', type: 'buttom'}
@@ -21,9 +21,9 @@
         = link_to "Smlouva", accord_path(@accord, accord: {state: 'contract'}) , {:method=> :put, class: 'btn btn-sm  m-1 contract text-dark', type: 'buttom'}
         = link_to "Zamítnout", accord_path(@accord, accord: {state: 'refuse'}) , {:method=> :put, class: 'btn btn-sm  m-1 refuse text-dark', type: 'buttom'}
         = link_to "Stažená", accord_path(@accord, accord: {state: 'dowload'}) , {:method=> :put, class: 'btn btn-sm  m-1 dowload text-dark', type: 'buttom'}
-        = link_to "Zobraz změny", changes_accords_path(id: @accord.id) , { class: 'btn btn-info btn-sm float-right m-1', type: 'buttom'}
+        = link_to "Zobraz změny", changes_accords_path(id: @accord.id) , { class: 'btn btn-sm btn-info m-1 float-right text-white', type: 'buttom'}
         br
-      button.btn.btn-primary.btn-sm.m-1 data-target="#exampleModalCenter" data-toggle="modal" type="button" 
+      button.btn.btn-sm.btn-info.m-1 data-target="#exampleModalCenter" data-toggle="modal" type="button" 
         | Přidej poznámku 
       = link_to "Přidej události", new_event_path(accord_id: @accord.id) , { class: 'btn btn-info btn-sm m-1', type: 'buttom'}
       = link_to "Přílohy", uploads_accord_path(id: @accord.id) , { class: 'btn btn-info btn-sm float-right m-1', type: 'buttom'}
