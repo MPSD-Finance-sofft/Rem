@@ -19,13 +19,13 @@ div.container-fluid
     .card-body
       table.table 
         tr.text-dark
-			th Číslo smlouva
-       		th Typ nemovitosti
-			th Obec
-			th Klient
-			th Datum podpisu 
-			th Kupní cena
-			th Výše zpětné koupě
+          th Číslo smlouvy
+          th Typ nemovitosti
+          th Obec
+          th Klient
+          th Datum podpisu 
+          th Kupní cena
+          th Výše zpětné koupě
         - @accords.each do |accord|
           tr.text-dark
             td = link_to accord.contract_number, accord_path(accord.id)
