@@ -9,7 +9,6 @@ div class="#{@leasing_contract.object_state}"
           = @leasing_contract.id
 .col-xl-12.col-lg-12
   .card.shadow.mb-4
-    /! Card Header - Dropdown
     .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
       h6.m-0.font-weight-bold.text-primary Úprava nájemní smlouvy
     .card-body
@@ -24,7 +23,7 @@ div class="#{@leasing_contract.object_state}"
 						li= message
 			.form-group
 				= form.label :state, "Stav"
-				= form.select :state, form.object.select_state,{},{class: "selectpicker form-control", "data-live-search" => "true"}
+				= form.select :state, form.object.select_state,{selected: form.object.object_state},{class: "selectpicker form-control", "data-live-search" => "true"}
 			.form-group
 				= form.label :expected_date_of_signature, "Předpokládané datum podpisu"
 				= form.text_field :expected_date_of_signature,{class: "form-control datapicker", required: true}
