@@ -11,6 +11,9 @@
 						- f.object.build_address unless f.object.address
 						= f.fields_for :address do |address|
 							= render 'addresses/field', address: address
+						.form-group
+					    	= f.label :date_of_final_building_approval, "Datum kolaudace nemovitosti"
+							= f.text_field :date_of_final_building_approval, class: "form-control datapicker"
 					.col-xl-4.col-lg-4
 						.form-group
 							= f.label :realty_type_id, 'Typ nemovitosti'
@@ -51,7 +54,7 @@
 							= f.text_field :part_number, {class: "form-control input-sm"}	
 						.form-group
 							= f.label :real_number_abovegroud_floors, "Reálný počet nadzemních podlaží "
-							= f.text_field :real_number_abovegroud_floors, {class: "form-control input-sm", type: "number"}
+							= f.text_field :real_number_abovegroud_floors, {class: "form-control input-sm"}
 						.form-group
 							= f.label :catastral_territory, "Katastrální území"
 							= f.text_field :catastral_territory, {class: "form-control input-sm", type: "number"}

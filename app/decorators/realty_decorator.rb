@@ -1,4 +1,4 @@
-class RealtyDecorator < Draper::Decorator
+class RealtyDecorator < ApplicationDecorator
   delegate_all
 
 	def type_ownership
@@ -78,6 +78,13 @@ class RealtyDecorator < Draper::Decorator
  	def address_fullname
  		object.address.try(:full_name)
  	end
+
+ 	def date_of_final_building_approval
+ 		format_date object.date_of_final_building_approval
+ 	end
+
+
+
 
  	
 end
