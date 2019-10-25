@@ -5,9 +5,11 @@
     .card-body.collapse id="colapseRepayments"
       table.table
         tr
-          th | Datum splatnosti
-          th | Částka
-          th
+          th Sum
+          th =@leasing_contract.repayments_sum
+        tr
+          th  Datum splatnosti
+          th  Částka
         - @repayments.each do |repayment|
           tr class="#{repayment.paid}"
             td=repayment.repayment_date

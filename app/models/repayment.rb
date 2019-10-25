@@ -1,5 +1,6 @@
 class Repayment < ApplicationRecord
 	include RepaymentEnum
+	include RemoveWhiteSpiceFromNumberInput::Amount
 	belongs_to :leasing_contract
 	attr_accessor :paid
 

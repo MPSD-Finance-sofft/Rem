@@ -56,4 +56,11 @@ class LeasingContractDecorator < ApplicationDecorator
 	def monthly_rent
 		format_number object.monthly_rent
 	end
+
+	def payments_sum
+		format_number object.payments.sum(:amount)
+	end
+	def repayments_sum
+		format_number object.repayments.sum(:amount)
+	end
 end
