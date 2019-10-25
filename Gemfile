@@ -37,6 +37,7 @@ gem 'bootstrap-datepicker-rails'
 gem 'mysql2'
 gem 'trix-rails', require: 'trix'
 gem 'font_awesome5_rails'
+gem "sentry-raven"
 
 group :development, :test do
   gem 'byebug', platform: :mri
