@@ -4,7 +4,7 @@ class LeasingContractsController < ApplicationController
   # GET /leasing_contracts
   # GET /leasing_contracts.json
   def index
-    @leasing_contracts = LeasingContract.all
+    @leasing_contracts = LeasingContract.order(created_at: :desc)
     authorize @leasing_contracts, policy_class: LeasingContractPolicy 
     @leasing_contracts =  IndexFilter::IndexServices.new(@leasing_contracts,params).perform
     @leasing_contracts = @leasing_contracts.decorate

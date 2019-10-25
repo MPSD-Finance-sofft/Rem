@@ -5,7 +5,7 @@ class RewardsController < ApplicationController
   # GET /rewards
   # GET /rewards.json
   def index
-    @rewards = Reward.all.decorate
+    @rewards = Reward.order(created_at: :desc).decorate
   end
 
   # GET /rewards/1

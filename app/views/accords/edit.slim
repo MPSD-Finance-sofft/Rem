@@ -55,11 +55,11 @@ div.container-fluid
 					    	= f.label :date_of_ownership, "Datum přepisu vlasnictví"
 							= f.text_field :date_of_ownership, class: "form-control datapicker"
 						.form-group
+					    	= f.label :excepted_date_of_transfer, "Předpokládané datum předání nemovitosti"
+							= f.text_field :excepted_date_of_transfer, class: "form-control datapicker"
+						.form-group
 					    	= f.label :date_of_transfer, "Skutečné datum předání nemovitosti"
 							= f.text_field :date_of_transfer, class: "form-control datapicker"
-						.form-group
-					    	= f.label :excepted_date_of_transfer, "Předpokládané datum předání nemovitost"
-							= f.text_field :excepted_date_of_transfer, class: "form-control datapicker"
 						.form-group
 							= f.label :transfer_protocol, "Předávací protokol"
 							= f.check_box :transfer_protocol, class: "form-control"
