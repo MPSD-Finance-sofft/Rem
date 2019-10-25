@@ -1,4 +1,5 @@
 class Terrain < ApplicationRecord
+	has_paper_trail ignore: [:updated_at]
 	after_save :set_state_accord
 	belongs_to :accord
 	belongs_to :user
