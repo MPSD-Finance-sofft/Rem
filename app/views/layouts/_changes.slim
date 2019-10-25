@@ -1,12 +1,11 @@
-div id="collapseFirth" class="panel-collapse"
-  div.panel-body.no-padding
-  	div class="panel-group smart-accordion-default" 
-	  div class="panel panel-default"
-	    div class="panel-heading"
-	      h4 class="panel-title"
-	          | Změny 
-	          = description
-	    div id="collapseFirth" class="panel-collapse"
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    a href="#colapse#{description}" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="colapse#{description}"
+      h6.m-0.font-weight-bold.text-primary 
+      	| Změny  
+      	= description
+    .collapse id="colapse#{description}"
+      .card-body
 	    	table.table
 	    		tr
 	    			th Kdy

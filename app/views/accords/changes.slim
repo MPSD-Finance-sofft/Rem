@@ -2,27 +2,25 @@ div.container-fluid
   ol.breadcrumb
     li.breadcrumb-item
       b
-        | Žádosti 
+        = link_to "Žádosti", accords_path
     li.breadcrumb-item
         | žádost č.
-        = @accord.id
+        = link_to @accord.id, accord_path(@accord)
         |  ,klienta 
         = @accord.first_client_full_name
         | , ve stavu 
         = @accord.state
-  div class="panel-group smart-accordion-default" 
-    div class="panel panel-default"
-      div class="panel-heading"
-    		h4 class="panel-title"
-          	a data-toggle="collapse" data-parent="#accordion" href="#collapseChanges" aria-expanded="true" class="collapse" 
-            	i class="fa fa-lg fa-angle-down pull-right"
-            	i class="fa fa-lg fa-angle-up pull-right"
-            	|  Změny
-      div id="collapseChanges" class="panel-collapse"
-        = render partial: "layouts/changes",locals:{f: @accord, description: "Žádost"}
-        = render partial: "layouts/changes",locals:{f: @accord.clients, description: "Klienti"}
-        = render partial: "layouts/changes",locals:{f: @accord.realty, description: "Nemovitosti"}
-        = render partial: "layouts/changes",locals:{f: @accord.expert_evidences, description: "Znalecké posudky"}
-        = render partial: "layouts/changes",locals:{f: @accord.commitments, description: "Závazky"}
-        = render partial: "layouts/changes",locals:{f: @accord.expenses, description: "Náklady"}
-        = render partial: "layouts/changes",locals:{f: @accord.energies, description: "Energie"}
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    h6.m-0.font-weight-bold.text-primary.card-header Změny
+    .card-body
+      = render partial: "layouts/changes",locals:{f: @accord, description: "Žádost"}
+      = render partial: "layouts/changes",locals:{f: @accord.clients, description: "Klienti"}
+      = render partial: "layouts/changes",locals:{f: @accord.realty, description: "Nemovitosti"}
+      = render partial: "layouts/changes",locals:{f: @accord.expert_evidences, description: "Znalecké posudky"}
+      = render partial: "layouts/changes",locals:{f: @accord.commitments, description: "Závazky"}
+      = render partial: "layouts/changes",locals:{f: @accord.expenses, description: "Náklady"}
+      = render partial: "layouts/changes",locals:{f: @accord.energies, description: "Energie"}
+      = render partial: "layouts/changes",locals:{f: @accord.terrains, description: "Terén"}
+      = render partial: "layouts/changes",locals:{f: @accord.tax_returns, description: "Daňové přiznání"}
+      = render partial: "layouts/changes",locals:{f: @accord.penbs, description: "PENBS"}
