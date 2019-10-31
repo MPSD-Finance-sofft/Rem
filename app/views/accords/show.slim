@@ -50,3 +50,13 @@ javascript:
       });
       return sum;
   };
+
+  spocitej_castku = function(selector){
+    var sum = 0;
+      $(selector).each(function() {
+          var amount = $(this).text();
+          var amount_withou_kc = amount.replace(/\sKč/,'').replace(/\s/g,'');
+          sum += Number(amount_withou_kc);
+      });
+      return sum;
+  };

@@ -33,7 +33,7 @@
           th
 
 javascript:
-  var spocitej_castku;
+  var spocitej_castkuu;
   $(document).ready(function() {
     $(document).on('change', '.amount', function(evt) {
       return $("#sum_amount").text(spocitej_castku(".amount") + " Kč");
@@ -46,7 +46,9 @@ javascript:
   spocitej_castku = function(selector){
     var sum = 0;
       $(selector).each(function() {
-          sum += Number($(this).val());
+          var amount = $(this).val();
+          var amount_withou_kc = amount.replace(/\sKč/,'').replace(/\s/g,'');
+          sum += Number(amount_withou_kc);
       });
       return sum;
   };
