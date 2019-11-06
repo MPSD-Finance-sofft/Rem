@@ -42,12 +42,12 @@ namespace :import_user do
   			h.delete(nil)
 			r = User.new h
 			r.save(validate:false)
-			a = r.address.build(address_bil.attributes)
-			b = r.address.build(address_permanent.attributes)
-			c = r.address.build(address_mailing.attributes)
-			a.user_address.kind = 'billing'
-			b.user_address.kind = 'permanent'
-			c.user_address.kind = 'mailing'
+			a = r.address.build(address_bil.attributes) unless address_bil.number.blank?
+			b = r.address.build(address_permanent.attributes) unless address_permanent.number.blank?
+			c = r.address.build(address_mailing.attributes) unless address_mailing.number.blank?
+			a.user_address.kind = 'billing'  unless address_bil.number.blank?
+			b.user_address.kind = 'permanent' unless address_permanent.number.blank?
+			c.user_address.kind = 'mailing' unless address_mailing.number.blank?
 			r.mobile.build(phone_number: mobil) unless mobil.blank?
 			r.mobile.build(phone_number: mobil2) unless mobil2.blank?
 			r.email.build(email_address: email) unless email.blank?
