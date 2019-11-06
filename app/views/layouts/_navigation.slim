@@ -29,45 +29,46 @@
       a.nav-link href="/invoices" 
         i.fas.fa-fw.fa-table
         span Faktury
-    li.nav-item
-      a.nav-link.collapsed aria-controls="headingCalculate" aria-expanded="true" data-target="#headingCalculate" data-toggle="collapse" href="#" data-remote="true"
-        i.fas.fa-fw.fa-wrench
-        span Kalkulace
-      #headingCalculate.collapse aria-labelledby="headingCalculate" data-parent="#accordionFirstSidebar" 
-        .bg-white.py-2.collapse-inner.rounded
-          h6.collapse-header Kalkulace v  aplikace:
-          a.collapse-item href="/home/balance_price_calculation"
-            | Výpočet 
-            br
-            | zůstatkové cenyl
-    li.nav-item
-      a.nav-link.collapsed aria-controls="headingOverview" aria-expanded="true" data-target="#headingOverview" data-toggle="collapse" href="#" data-remote="true"
-        i.fas.fa-fw.fa-wrench
-        span Přehledy
-      #headingOverview.collapse aria-labelledby="headingOverview" data-parent="#accordionFirstSidebar" 
-        .bg-white.py-2.collapse-inner.rounded
-          h6.collapse-header Přehledy v  aplikace:
-          a.collapse-item href="/leasing_contracts?template=summary_of_payments"
-            | Plán 
-            br
-            | úhrad
-    /! Nav Item - Utilities Collapse Menu
-    li.nav-item
-      a.nav-link.collapsed aria-controls="collapseUtilities" aria-expanded="true" data-target="#collapseUtilities" data-toggle="collapse" href="#" data-remote="true"
-        i.fas.fa-fw.fa-wrench
-        span Nastavení
-      #collapseUtilities.collapse aria-labelledby="headingUtilities" data-parent="#accordionSidebar" 
-        .bg-white.py-2.collapse-inner.rounded
-          h6.collapse-header Nastavení aplikace:
-          a.collapse-item href="/realty_types"  Typy nemovitostí
-          a.collapse-item href="/commitment_types"  Typy závazků
-          a.collapse-item href="/expense_types"  Typy nákladů
-          a.collapse-item href="/distributors"  Distributoři
-          a.collapse-item href="/type_of_notices"  Typy výpovědí
-          a.collapse-item href="/boards"  Novinky aplikace 
-          a.collapse-item href="/file_boards"  Nástěnka
-          a.collapse-item href="/dispositions"  Typy Dispozicí
-          a.collapse-item href="/event_types"  Typy Událostí
+    - if current_user.user_or_admin?
+      li.nav-item
+        a.nav-link.collapsed aria-controls="headingCalculate" aria-expanded="true" data-target="#headingCalculate" data-toggle="collapse" href="#" data-remote="true"
+          i.fas.fa-fw.fa-wrench
+          span Kalkulace
+        #headingCalculate.collapse aria-labelledby="headingCalculate" data-parent="#accordionFirstSidebar" 
+          .bg-white.py-2.collapse-inner.rounded
+            h6.collapse-header Kalkulace v  aplikace:
+            a.collapse-item href="/home/balance_price_calculation"
+              | Výpočet 
+              br
+              | zůstatkové cenyl
+      li.nav-item
+        a.nav-link.collapsed aria-controls="headingOverview" aria-expanded="true" data-target="#headingOverview" data-toggle="collapse" href="#" data-remote="true"
+          i.fas.fa-fw.fa-wrench
+          span Přehledy
+        #headingOverview.collapse aria-labelledby="headingOverview" data-parent="#accordionFirstSidebar" 
+          .bg-white.py-2.collapse-inner.rounded
+            h6.collapse-header Přehledy v  aplikace:
+            a.collapse-item href="/leasing_contracts?template=summary_of_payments"
+              | Plán 
+              br
+              | úhrad
+      /! Nav Item - Utilities Collapse Menu
+      li.nav-item
+        a.nav-link.collapsed aria-controls="collapseUtilities" aria-expanded="true" data-target="#collapseUtilities" data-toggle="collapse" href="#" data-remote="true"
+          i.fas.fa-fw.fa-wrench
+          span Nastavení
+        #collapseUtilities.collapse aria-labelledby="headingUtilities" data-parent="#accordionSidebar" 
+          .bg-white.py-2.collapse-inner.rounded
+            h6.collapse-header Nastavení aplikace:
+            a.collapse-item href="/realty_types"  Typy nemovitostí
+            a.collapse-item href="/commitment_types"  Typy závazků
+            a.collapse-item href="/expense_types"  Typy nákladů
+            a.collapse-item href="/distributors"  Distributoři
+            a.collapse-item href="/type_of_notices"  Typy výpovědí
+            a.collapse-item href="/boards"  Novinky aplikace 
+            a.collapse-item href="/file_boards"  Nástěnka
+            a.collapse-item href="/dispositions"  Typy Dispozicí
+            a.collapse-item href="/event_types"  Typy Událostí
     /! Divider
     hr.sidebar-divider/
     .text-center.d-none.d-md-inline
