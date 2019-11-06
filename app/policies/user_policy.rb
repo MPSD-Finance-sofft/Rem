@@ -23,7 +23,7 @@ class UserPolicy < ApplicationPolicy
     		elsif user.agent? || user.manager?
             scope.subordinates(user).order(username: :desc)
         elsif user.user?
-            scope.all.order(username: :desc)
+            scope.all_without_user.order(username: :desc)
         end
     	end
   end

@@ -98,4 +98,5 @@ class User < ApplicationRecord
 	scope :manager_and_user,   ->{ joins(:permission).where('permissions.kind': ['manager','user']) }
 	scope :manager,   ->{ joins(:permission).where('permissions.kind': 'manager') }
 	scope :can_sign_in, -> {where(can_sign_in: true)}
+	scope :all_without_user,   ->{ joins(:permission).where('permissions.kind': ['manager','user','agent']) }
 end
