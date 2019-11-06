@@ -28,7 +28,7 @@ class User < ApplicationRecord
 	validates_confirmation_of :password
 
 	def all_name
-	 self.title_before.to_s + ' ' + self.last_name.to_s + ' ' +  self.name.to_s + ' ' + self.title_last.to_s + ' (' + self.username + ')'
+	 self.title_before.to_s + ' ' + self.last_name.to_s + ' ' +  self.name.to_s + ' ' + self.title_last.to_s + ' (' + self.username.to_s + ')'
 	end
 
 	def admin?
