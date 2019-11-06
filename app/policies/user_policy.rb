@@ -19,11 +19,11 @@ class UserPolicy < ApplicationPolicy
    
     	def resolve
     		if user.admin?
-      			scope.all.order(created_at: :desc)
+      			scope.all.order(username: :desc)
     		elsif user.agent? || user.manager?
-            scope.subordinates(user).order(created_at: :desc)
+            scope.subordinates(user).order(username: :desc)
         elsif user.user?
-            scope.all.order(created_at: :desc)
+            scope.all.order(username: :desc)
         end
     	end
   end
