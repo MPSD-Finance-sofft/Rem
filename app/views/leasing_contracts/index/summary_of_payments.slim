@@ -1,0 +1,140 @@
+div.container-fluid
+  ol.breadcrumb
+    li.breadcrumb-item
+      b
+        | Nájemní smlouvy
+    li.breadcrumb-item
+      | Přehled úhrad u nájemních smluv
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary Filter 
+    .card-body
+		= form_tag(leasing_contracts_path(), {method: :get}) do 
+			.row.p-3
+				.col-xl-2
+					.form-group
+						= label_tag :contract_number, "Číslo smlouvy"
+						= text_field_tag :contract_number, params[:contract_number], class: "form-control input-sm"
+					.form-group
+						= label_tag :client_name, "Jméno klienta"
+						= text_field_tag :client_name, params[:client_name],class: "form-control input-sm"
+					.form-group
+						= label_tag :client_last_name, "Přijmení klienta"
+						= text_field_tag :client_last_name, params[:client_last_name], class: "form-control input-sm"
+				.col-xl-2
+					.form-group
+						= label_tag :realty_type, "Typ nemovitosti"
+						= select_tag :realty_type, options_for_select(RealtyType.select([:id,:name]).map{|a| [a.name,a.id]}, params[:realty_type]), {include_blank: true, class: "form-control input-sm"}
+					.form-group
+						= label_tag :realty_adress_street, "Ulice nemovitosti"
+						= text_field_tag :realty_adress_street, params[:realty_adress_street], class: "form-control input-sm"
+					.form-group
+						= label_tag :realty_adress_village, "Obec nemovitosti"
+						= text_field_tag :realty_adress_village, params[:realty_adress_village], class: "form-control input-sm"
+				.col-xl-2
+					.form-group
+						= label_tag :monthly_rent_min, "Výše nájmu od"
+						= text_field_tag :monthly_rent_min, params[:monthly_rent_min], class: "form-control input-sm"
+					.form-group
+						= label_tag :monthly_rent_max, "Výše nájmu do"
+						= text_field_tag :monthly_rent_max, params[:monthly_rent_max], class: "form-control input-sm"
+				.col-xl-3
+					.form-group
+						= label_tag :rent_to_start, "Datum konce nájemní smlouvy od"
+						= text_field_tag :rent_to_start, params[:rent_to_start], class: "form-control input-sm datapicker"
+					.form-group
+						= label_tag :rent_to_end, "Datum konce nájemní smlouvy do"
+						= text_field_tag :rent_to_end, params[:rent_to_end], class: "form-control input-sm datapicker"
+					.form-group.float-right
+						= submit_tag "Vyhledat"
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    a href="#colapseReimbursementPlan" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="colapseReimbursementPlan"
+      h6.m-0.font-weight-bold.text-primary Plán úhrad
+    .card-body
+		table.table 
+			tr
+				th Adresa
+				th Částka
+				th Datum podpisu
+				th Den
+				th Leden
+				th Únor
+				th Březen
+				th Duben
+				th Květen
+				th Červen
+				th Červenec
+				th Srpen
+				th Září
+				th Říjen
+				th Listopad
+				th Prosinec
+			tbody.collapse id="colapseReimbursementPlan"
+				- @leasing_contracts.each do |leasing_contract|
+					tr
+						td =leasing_contract.address
+					 	td =leasing_contract.monthly_rent
+					 	td = leasing_contract.expected_date_of_signature
+					 	td = leasing_contract.payment_day
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    a href="#colapseReimbursement" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="colapseReimbursement"
+      h6.m-0.font-weight-bold.text-primary Přehled aktuálních úhrad
+    .card-body
+		table.table 
+			tr
+				th Adresa
+				th Částka
+				th Datum podpisu
+				th Den
+				th Leden
+				th Únor
+				th Březen
+				th Duben
+				th Květen
+				th Červen
+				th Červenec
+				th Srpen
+				th Září
+				th Říjen
+				th Listopad
+				th Prosinec
+			tbody.collapse id="colapseReimbursement"
+				- @leasing_contracts.each do |leasing_contract|
+					tr
+						td =leasing_contract.address
+					 	td = leasing_contract.monthly_rent
+					 	td = leasing_contract.expected_date_of_signature
+					 	td = leasing_contract.payment_day
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    a href="#colapsePlan" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="colapsePlan"
+      h6.m-0.font-weight-bold.text-primary Rozdíl splátek/úhrad
+    .card-body
+		table.table 
+			tr
+				th Adresa
+				th Částka
+				th Datum podpisu
+				th Den
+				th Leden
+				th Únor
+				th Březen
+				th Duben
+				th Květen
+				th Červen
+				th Červenec
+				th Srpen
+				th Září
+				th Říjen
+				th Listopad
+				th Prosinec
+			tbody.collapse id="colapsePlan"
+				- @leasing_contracts.each do |leasing_contract|
+					tr
+						td =leasing_contract.address
+					 	td = leasing_contract.monthly_rent
+					 	td = leasing_contract.expected_date_of_signature
+					 	td = leasing_contract.payment_day

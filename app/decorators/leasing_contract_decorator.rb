@@ -63,4 +63,8 @@ class LeasingContractDecorator < ApplicationDecorator
 	def repayments_sum
 		format_number object.repayments.sum(:amount)
 	end
+
+	def address
+		object.realty.first.try(:address).try(:index_name)
+	end
 end

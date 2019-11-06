@@ -6,8 +6,10 @@ class LeasingContractsController < ApplicationController
   def index
     @leasing_contracts = LeasingContract.order(created_at: :desc)
     authorize @leasing_contracts, policy_class: LeasingContractPolicy 
+    template = LeasingContracts::IndexServices.new(params).perform
     @leasing_contracts =  IndexFilter::IndexServices.new(@leasing_contracts,params).perform
     @leasing_contracts = @leasing_contracts.decorate
+    render template
   end
 
   # GET /leasing_contracts/1

@@ -6,6 +6,7 @@ module IndexFilter
      	params.delete("commit")
      	params.delete("controller")
      	params.delete("action")
+        params.delete("template")
      	@params = params
     end
 
