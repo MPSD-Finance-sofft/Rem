@@ -52,7 +52,11 @@ group :development do
   gem 'rails_layout'
   gem 'rails-erd'
   gem 'bullet'
-  gem "capistrano", "~> 3.11", require: false
+ gem 'capistrano'
+    gem 'capistrano3-puma'
+    gem 'capistrano-rails', require: false
+    gem 'capistrano-bundler', require: false
+    gem 'capistrano-rake', require: false
 end
 
 group :assets do

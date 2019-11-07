@@ -1,7 +1,7 @@
 require 'csv'
 namespace :import_accord do
   task :import => :environment do
-  	file = File.open Rails.root.join('tmp', 'drazby.csv')
+  	file = File.open Rails.root.join('tmp', 'zadost_insolvence.csv')
   	convert = {
   			'id' => 'number', 
   			'stav'=> 'state', 
@@ -13,9 +13,12 @@ namespace :import_accord do
   	CSV.foreach(file.path, headers: true, header_converters: lambda { |name| convert[name] }) do |row|
   			h = row.to_hash
   			h.delete('nil')
-			r = Accord.new h
-			r.kind = 'auction'
-			r.save(validate:false)
+  			h.delete(nil)
+			if Accord.where(number: (h['number'])).blank?
+				r = Accord.new h
+				r.kind = 'insolvency_buyout'
+				r.save(validate:false)
+			end
 		end
   end
 end

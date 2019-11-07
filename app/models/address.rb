@@ -19,6 +19,6 @@ class Address < ApplicationRecord
 
 	def zip
 		zip = self.attributes["zip"]
-		zip.insert(3, " ") unless zip.blank?
+		zip.insert(3, " ") if !zip.blank? && zip.size >= 3
 	end
 end
