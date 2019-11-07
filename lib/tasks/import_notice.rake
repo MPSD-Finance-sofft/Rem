@@ -22,7 +22,17 @@ namespace :import_notice do
 				typ = h.delete('typ')
 				if typ == 'veřejná'
 					typ = "agent"
-				elsif 'interní'
+				elsif typ == 'verejna'
+					typ = "agent"
+				elsif typ == 'od_om'
+					typ = 'manager'
+				elsif typ == 'pro_om'
+					typ = 'manager'
+				elsif typ == 'závěr_risk'
+					typ = 'manager'
+				elsif typ == 'závěr_fp_risk'
+					typ = 'manager'
+				elsif typ == 'interní'
 					typ = 'manager'
 				else
 					typ = 'user'

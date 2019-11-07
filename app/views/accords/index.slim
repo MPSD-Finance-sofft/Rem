@@ -20,8 +20,9 @@ div.container-fluid
         = link_to 'Nová žádost', new_accord_path
     .card-body
       p
-        b Počet vyhledaných žádostí: 
-        = @accords.size
+        b 
+          | Počet vyhledaných žádostí: 
+          = @accords.size
       table.table 
         tr.text-dark
           th Číslo žádosti
