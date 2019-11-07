@@ -13,21 +13,23 @@ namespace :import_notice do
 			h = row.to_hash
 			number = h.delete('number')
 			accord = Accord.find_by_number number
-			n = Note.new
-			n.accord_id = accord.id
-			n.user_id = h.delete('username_id')
-			n.description = h.delete('description')
-			n.created_at = h.delete('created_at')
-			typ = h.delete('typ')
-			if typ == 'veřejná'
-				typ = "agent"
-			elsif 'interní'
-				typ = 'manager'
-			else
-				typ = 'user'
+			unless accord.blank?
+				n = Note.new
+				n.accord_id = accord.id
+				n.user_id = h.delete('username_id')
+				n.description = h.delete('description')
+				n.created_at = h.delete('created_at')
+				typ = h.delete('typ')
+				if typ == 'veřejná'
+					typ = "agent"
+				elsif 'interní'
+					typ = 'manager'
+				else
+					typ = 'user'
+				end
+				n.permission = typ
+				n.save(validate:false)
 			end
-			n.permission = typ
-			n.save
   		end
   	end
 end
