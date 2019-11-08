@@ -83,8 +83,13 @@ class RealtyDecorator < ApplicationDecorator
  		format_date object.date_of_final_building_approval
  	end
 
+ 	def price_estimation
+ 		format_number object.price_estimation
+ 	end
 
-
+ 	def purchase_price
+ 		format_number object.purchase_price
+ 	end
 
  	
 end

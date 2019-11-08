@@ -25,6 +25,7 @@ class Accord < ApplicationRecord
 	has_many :flat_admistrations, :dependent => :destroy
 	has_many :month_advences, :dependent => :destroy
 	has_many :terrains, :dependent => :destroy
+	has_one :reward, :dependent => :destroy
 	belongs_to :creator, foreign_key: 'creator_id', class_name: 'User',  required: true
 	belongs_to :owner, foreign_key: 'user_id', class_name: 'User' ,  required: false
 	belongs_to :agent, foreign_key: 'agent_id', class_name: 'User' ,  required: false

@@ -26,10 +26,10 @@
 							= f.collection_select :record_on_lv_ids, RecordOnLv.all, :id, :kind_to_s, {}, {multiple: true,class: "selectpicker form-control", "data-live-search" => "true"}
 						.form-group
 							= f.label :price_estimation, "Odhad tržní ceny"
-							= f.text_field :price_estimation, {class: "form-control input-sm", type: "number", step: "any"}
+							= f.text_field :price_estimation, {class: "form-control input-sm"}
 						.form-group
 							= f.label :purchase_price, "Výkupní cena"
-							= f.text_field :purchase_price, {class: "form-control input-sm", type: "number", step: "any"}
+							= f.text_field :purchase_price, {class: "form-control input-sm"}
 						.form-group
 							= f.label :location, "Lokalita"
 							= f.select :location, f.object.select_location,{include_blank: true, selected: f.object.object_location},{class: "selectpicker form-control input-sm", "data-live-search" => "true"}

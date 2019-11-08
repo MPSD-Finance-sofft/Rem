@@ -97,6 +97,10 @@ class AccordDecorator < ApplicationDecorator
     object.agent.try(:superior).try(:all_name)
   end
 
+  def agent_bank_code
+    object.agent.try(:account_number).to_s + '/' + object.agent.try(:bank_code).to_s
+  end
+
  	def state_to_color(state)
  		case state
  			when 'state_new'

@@ -1,6 +1,7 @@
 class Realty < ApplicationRecord
 	has_paper_trail ignore: [:updated_at]
 	include RealtieEnum
+	include RemoveWhiteSpiceFromNumberInput::Realty
 	validates_with RealtyValidator
 
   	has_many :realty_record_on_lvs

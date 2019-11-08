@@ -7,13 +7,25 @@
             table.table
                 tr
                     th Výkupní cena
-                    th Provize za smlouvu
+                    td =@accord.purchase_price 
                     th Zprostředkovatelská provize
-                    th Zprostředkovatelská provize částka
-                    th Agent
-                tr
-                    td=@accord.purchase_price 
-                    td=@accord.commission_for_the_contract 
                     td=@accord.agency_commission 
+                    th Číslo účtu agenta
+                    td=@accord.agent_bank_code 
+                tr
+                    th Datum vytvoření provizního nároku
+                    td = @accord.reward.try(:creted_at)
+                    th Zprostředkovatelská provize částka
                     td=@accord.agency_commission_price 
+                    th Agent
                     td=@accord.agent_name 
+                tr
+                    th Provize za smlouvu
+                    td=@accord.commission_for_the_contract 
+                    th
+                    td
+                    th Přímý nadřízený agenta
+                    td = @accord.agent_superior
+                    
+                    
+               
