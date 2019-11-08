@@ -77,11 +77,11 @@ class User < ApplicationRecord
 
 
 	def self.can_create_accord
-		User.agents.can_sign_in.select(&:not_runing_notice?)
+		User.manager_and_agents.can_sign_in.select(&:not_runing_notice?)
 	end
 
 	def self.can_create_accord_with_exist(agent_id)
-		User.agents.can_sign_in.or(User.agents.where(id: agent_id)).select{|a| a.not_runing_notice_ignor_exist?(agent_id)}
+		User.manager_and_agents.can_sign_in.or(User.manager_and_agents.where(id: agent_id)).select{|a| a.not_runing_notice_ignor_exist?(agent_id)}
 	end
 
 	def self.user_can_sign_id
@@ -96,6 +96,7 @@ class User < ApplicationRecord
 	scope :subordinates, -> (user) {where(superior_id: user.id)}
 	scope :agents,   ->{ joins(:permission).where('permissions.kind': 'agent') }
 	scope :manager_and_user,   ->{ joins(:permission).where('permissions.kind': ['manager','user']) }
+	scope :manager_and_agents,   ->{ joins(:permission).where('permissions.kind': ['manager','agent']) }
 	scope :manager,   ->{ joins(:permission).where('permissions.kind': 'manager') }
 	scope :can_sign_in, -> {where(can_sign_in: true)}
 	scope :all_without_user,   ->{ joins(:permission).where('permissions.kind': ['manager','user','agent']) }
