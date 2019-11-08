@@ -14,6 +14,14 @@ class UserPolicy < ApplicationPolicy
   def new_user?
     update?
   end
+  
+  def card?
+    update?
+  end
+  
+  def changes?
+    update?
+  end
 
  	class Scope < Scope
    
