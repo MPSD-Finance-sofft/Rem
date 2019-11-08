@@ -20,6 +20,7 @@ class LeasingContract < ApplicationRecord
 	accepts_nested_attributes_for :leasing_contract_realty,  reject_if: :all_blank, allow_destroy: true
 	
 	after_create :add_realty
+	after_create :add_client
 
 	MAX_GENERATE_REPAYMENTS = 100
 
@@ -38,6 +39,14 @@ class LeasingContract < ApplicationRecord
 		id =  self.accord.realty.first.try(:id)
     	self.leasing_contract_realty.build(realty_id: id) unless id.blank?
     	self.save
+	end
+
+	def add_client
+		self.accord.clients.each do |client|
+			id =  client.id
+			LeasingContractClient.create(client_id: client.id, leasing_contract_id: self.id, relationship: client.accords_client.relationship)
+    		self.save
+    	end
 	end
 
 	def persons
