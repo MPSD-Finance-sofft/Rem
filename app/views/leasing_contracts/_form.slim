@@ -11,6 +11,9 @@
     = form.label :accord_id, "Nájemní smlouva pro žádost"
     = form.text_field :accord_id, {class: "form-control ", required: true, readonly: true}
   .form-group
+    = form.label :kind, "Typ"
+    = form.select :kind, form.object.select_kind,{include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true"}
+  .form-group
     = form.label :state, "Stav"
     = form.select :state, form.object.select_state,{},{class: "selectpicker form-control", "data-live-search" => "true"}
   .form-group

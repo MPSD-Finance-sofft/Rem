@@ -67,4 +67,30 @@ class LeasingContractDecorator < ApplicationDecorator
 	def address
 		object.realty.first.try(:address).try(:index_name)
 	end
+
+	def object_kind
+ 		object.kind
+ 	end
+
+ 	def kind
+		kind_to_text(object.kind)
+ 	end
+
+ 	def select_kind
+ 		LeasingContract.kinds.keys.map{|a| [kind_to_text(a), a]}
+ 	end
+
+
+ 	def kind_to_text(kind)
+ 		case kind
+ 			when 'long'
+ 				'Dlouhodobá'
+ 			when 'from_reality'
+ 				'Přes FR'
+ 			when 'prepaid'
+ 				'Předplacená'
+ 			else
+ 				""
+		end
+ 	end
 end
