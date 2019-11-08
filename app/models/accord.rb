@@ -82,7 +82,7 @@ class Accord < ApplicationRecord
 	scope :subordinates_accords, -> (user) {where(agent_id: [User.where(superior_id: user.id).pluck(:id)])}
 	scope :agents_accords, -> (user) {where(agent_id:  user.id)}
 	scope :agent_terrain, -> (user) {where(agent_terrain_id:  user.id)}
-	scope :number_accord, -> (number_accord) {where(id:  number_accord)}
+	scope :number_accord, -> (number_accord) {where(number:  number_accord)}
 	scope :user_id, -> (user_id) {where(user_id:  user_id)}
 	scope :agent_id, -> (agent_id) {where(agent_id:  agent_id)}
 	scope :contract_number, -> (contract_number) {where(contract_number:  contract_number)}

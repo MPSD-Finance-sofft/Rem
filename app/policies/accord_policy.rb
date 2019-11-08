@@ -35,14 +35,12 @@ class AccordPolicy < ApplicationPolicy
 	class Scope < Scope
    
     	def resolve
-    		if user.admin?
-      			scope.all
+    		if user.admin? || user.user?
+      			scope.includes(:owner).includes(realty: :address).includes(agent: :superior).includes(:clients)
     		elsif user.manager?
             	scope.subordinates_accords(user).or(scope.agent_terrain(user))
         	elsif user.agent?
         		scope.agents_accords(user)
-        	elsif user.user?
-            	scope.all
         	end
     	end
   	end
