@@ -37,5 +37,5 @@
         h6.m-0.font-weight-bold.text-primary Karta nadřízeného
       div class="collapse " id="colapseSuperiorCard"
         .card-body
-          = render partial: "users/superior_card", locals:{superior: current_user.superior.try(:decorate)} unless current_user.superior
+          = render partial: "users/superior_card", locals:{superior: current_user.superior.try(:decorate)} if current_user.superior
 
