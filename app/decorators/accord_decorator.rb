@@ -28,6 +28,8 @@ class AccordDecorator < ApplicationDecorator
  				'Stažená'
       when 'in_terrain'
         'V terénu'
+      when 'returned'
+        'Vrácená'
  			else
  			"nedefinovaný stav"
  		end

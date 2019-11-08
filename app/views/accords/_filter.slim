@@ -12,7 +12,7 @@
 				= text_field_tag :start_created_at, params[:start_created_at], class: "datapicker form-control input-sm"
 			.form-group
 				= label_tag :state, "Stav žádosti"
-				= select_tag :state, options_for_select([["Nový", "state_new"], ["Rozpracováno", "state_eleboration"], ["v terénu", "in_terrain"], ["Ke schválení", "to_sign"],["Smlouva", "contract"],["Zamítnutá", "refuse"],["Stažená", "dowload"]], params[:state]), {include_blank: true, class: "form-control input-sm selectpicker",data: {"live-search": true} , multiple: true}
+				= select_tag :state, options_for_select([["Nový", "state_new"], ["Rozpracováno", "state_eleboration"], ["v terénu", "in_terrain"],["Vrácená", "returned"], ["Ke schválení", "to_sign"],["Smlouva", "contract"],["Zamítnutá", "refuse"],["Stažená", "dowload"]], params[:state]), {include_blank: true, class: "form-control input-sm selectpicker",data: {"live-search": true} , multiple: true}
 		.col-xl-2
 			.form-group
 				= label_tag :kind, "Typ žádosti"
@@ -75,6 +75,9 @@
 				tr.in_terrain
 					th V terénu
 					td = Accord.state("in_terrain").count
+				tr.returned
+					th Vrácená
+					td = Accord.state("returned").count
 				tr.to_sign
 					th Ke schválení
 					td = Accord.state("to_sign").count
