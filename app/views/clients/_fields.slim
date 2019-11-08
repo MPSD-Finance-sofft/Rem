@@ -12,7 +12,7 @@
       					h6.m-0.font-weight-bold.text-primary Údaje klienta
     				.card-body
     					.form-group
-							= f.label :relationship
+							= f.label :relationship, Vztah k nemovitosti
 							= f.select :relationship, f.object.select_relationship,{},{class: "selectpicker form-control", "data-live-search" => "true"}
     					.form-group
 							= c.label :type, 'Typ klienta'

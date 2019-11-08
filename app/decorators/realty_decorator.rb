@@ -57,7 +57,7 @@ class RealtyDecorator < ApplicationDecorator
  			when 'district_town_15_km'
  					"Nad 15km od okresního města"
  			else
- 					"nedefinovaný typ lokality"
+ 					""
 		end
  	end
 
