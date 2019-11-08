@@ -17,11 +17,11 @@
         - else
           button.btn.btn-sm.m-1.in_terrain.text-dark data-target="#TerrainModalCenter" data-toggle="modal" type="button" 
             | Do terénu 
-        = link_to "Vrácená", accord_path(@accord, accord: {state: 'to_sign'}) , {:method=> :put, class: 'btn btn-sm m-1 to_sign text-dark', type: 'buttom'}
+        = link_to "Vrácená", accord_path(@accord, accord: {state: 'returned'}) , {:method=> :put, class: 'btn btn-sm m-1 returned text-dark', type: 'buttom'}
         = link_to "Ke schválení", accord_path(@accord, accord: {state: 'to_sign'}) , {:method=> :put, class: 'btn btn-sm m-1 to_sign text-dark', type: 'buttom'}
         = link_to "Smlouva", accord_path(@accord, accord: {state: 'contract'}) , {:method=> :put, class: 'btn btn-sm  m-1 contract text-dark', type: 'buttom'}
         = link_to "Zamítnout", accord_path(@accord, accord: {state: 'refuse'}) , {:method=> :put, class: 'btn btn-sm  m-1 refuse text-dark', type: 'buttom'}
-        = link_to "Stáhnout", accord_path(@accord, accord: {state: 'returned'}) , {:method=> :put, class: 'btn btn-sm  m-1 dowload text-dark', type: 'buttom'}
+        = link_to "Stáhnout", accord_path(@accord, accord: {state: 'dowload'}) , {:method=> :put, class: 'btn btn-sm  m-1 dowload text-dark', type: 'buttom'}
         = link_to "Zobraz změny", changes_accords_path(id: @accord.id) , { class: 'btn btn-sm btn-info m-1 float-right text-white', type: 'buttom'}
         br
       button.btn.btn-sm.btn-info.m-1 data-target="#exampleModalCenter" data-toggle="modal" type="button" 
