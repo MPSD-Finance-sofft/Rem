@@ -22,6 +22,9 @@ div class="#{@leasing_contract.object_state}"
 					- @leasing_contract.errors.full_messages.each do |message|
 						li= message
 			.form-group
+    			= form.label :kind, "Typ"
+    			= form.select :kind, form.object.select_kind,{include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true"}
+			.form-group
 				= form.label :state, "Stav"
 				= form.select :state, form.object.select_state,{selected: form.object.object_state},{class: "selectpicker form-control", "data-live-search" => "true"}
 			.form-group
