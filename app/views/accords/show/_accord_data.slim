@@ -5,24 +5,32 @@
     .collapse id="colapseData"
       .card-body
         table.table
+          tr 
+            th Číslo žádosti
+            td = @accord.number
+            th Datum navedení žádosti
+            td = @accord.created_at
+            th Datum podpisu
+            td = @accord.date_of_signature
+
           tr
-            th | Typ žádosti
-            th | Číslo žádosti
-            th | Číslo smlouvy
-            th | Datum podpisu
-            th | Datum přepisu vlasnictví
-            th | Datum předání
-            th | Vytvořil
-            th | V péči
+            th Číslo smlouvy
+            td = @accord.contract_number
+            th Vytvořil
+            td = @accord.creator_name
+            th Datum přepisu vlastnictví
+            td = @accord.date_of_ownership
           tr
-            td=@accord.kind
-            td=@accord.number
-            td=@accord.contract_number
-            td=@accord.date_of_signature
-            td=@accord.date_of_ownership
-            td=@accord.date_of_transfer
-            td=@accord.creator_name
-            td=@accord.owner_name
-
-
-
+            th Stav žádosti
+            td = @accord.state
+            th Přímý nadřízený agenta
+            td = @accord.agent_superior
+            th Předpokládané datum předání nemovitosti
+            td = @accord.excepted_date_of_transfer
+          tr
+            th Typ žádosti
+            td = @accord.kind
+            th V péči uživatele
+            td = @accord.owner_name 
+            th Skutečné datum předání nemovitosti
+            td = @accord.date_of_transfer
