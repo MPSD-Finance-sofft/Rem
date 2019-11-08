@@ -12,30 +12,40 @@
               .card-body
                 table.table
                   tr
-                    th Typ
-                    th Typ vlastnictví 
-                    th Záznam na LV
-                    th List vlastnictví
-                    th Výkupní cena
-                    th Lokalita
-                  tr
+                    th Typ nemovitosti
                     td =realty.realty_type
+                    th Typ vlastnictví 
                     td =realty.type_ownership
+                    th Záznam na LV
                     td =realty.record_on_lvs
-                    td =realty.property_sheet
-                    td =realty.purchase_price
-                    td =realty.location
+                  tr
+                    th Lokalita
+                    td = realty.location
+                    th List vlastnictví
+                    td = realty.property_sheet
+                    th Dispozice
+                    td = realty.disposition_id
                   tr
                     th Zastavěná plocha
+                    td = realty.build_up_area
                     th Plocha pozemku
-                    th Katastrální uzemí
-                    th Odhadovaná cena
-                    th
-                    th
+                    td = realty.property_sheet
+                    th Výkupní cena
+                    td = realty.purchase_price
                   tr
-                    td =realty.build_up_area
-                    td =realty.land_plot
+                    th Datum kolaudace nemovitosti
+                    td = realty.date_of_final_building_approval
+                    th Spoluvlastnický podíl
+                    td = realty.part_number
+                    th Reálný počet nadzemních podlaží
+                    td = realty.real_number_abovegroud_floors
+                  tr
+                    th Katastrální uzemí
                     td =realty.catastral_territory
-                    td =realty.price_estimation
-                    td
-                  
+                    th Číslo bytové jednotky
+                    td = realty.flat_number
+                    th Odhad tržní ceny
+                    td = realty.flat_number
+
+
+                
