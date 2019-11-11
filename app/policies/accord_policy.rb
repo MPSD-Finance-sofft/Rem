@@ -4,7 +4,7 @@ class AccordPolicy < ApplicationPolicy
         if user.agent?
             (record.agent_id == user.id)  && !record.contract?
         elsif user.manager?
-            (record.agent.try(:superior_id) == user.id || record.agent_terrain_id == user.id) && !record.contract?
+            (record.agent.try(:superior_id) == user.id) && !record.contract?
         elsif user.user? || user.admin?
             true
         else
