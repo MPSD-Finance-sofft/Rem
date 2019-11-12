@@ -60,7 +60,11 @@ class LeasingContract < ApplicationRecord
 
 	def debt?
 		number = self.repayments.repayment_date_today.sum(:amount).to_f - self.payments.sum(:amount).to_f 
-		number > 0
+		number > 0 && self.state != 'ended'
+	end
+
+	def active?
+		!debt? && self.state != 'ended'
 	end
 	
 	scope :for_accord, -> (accord_id) {where(accord_id: accord_id)}

@@ -7,6 +7,7 @@ class LeasingContractsController < ApplicationController
     @leasing_contracts = LeasingContract.order(rent_from: :desc)
     authorize @leasing_contracts, policy_class: LeasingContractPolicy 
     @leasing_contracts.select(&:debt?).map{|a| a.state= "debt"; a.save}
+    @leasing_contracts.select(&:active?).map{|a| a.state= "acive"; a.save}
     template = LeasingContracts::IndexServices.new(params).perform
     @leasing_contracts =  IndexFilter::IndexServices.new(@leasing_contracts,params).perform
     @leasing_contracts = @leasing_contracts.decorate
