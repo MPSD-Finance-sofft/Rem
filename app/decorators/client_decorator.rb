@@ -17,15 +17,15 @@ class ClientDecorator < ApplicationDecorator
  	end
 
  	def select_realationship
- 		[['neuvádí se', nil], ['Druh,Družka', 'companion'],['Rozvedený/á', 'divorced'], ['Svobodný/á', 'free'], ['Vdovec/a', 'widow'], ['Chudák/Vdaná', 'married']]
+ 		[['', nil], ['Druh,Družka', 'companion'],['Rozvedený/á', 'divorced'], ['Svobodný/á', 'free'], ['Vdovec/a', 'widow'], ['Chudák/Vdaná', 'married']]
  	end
 
  	def realationship_text(relation_ship)
  		case relation_ship
  			when nil, ""
-				"neuvádí se"
+				""
  			when 'companion'
- 				'Druh,Družka'
+ 				'Druh/Družka'
  			when 'divorced'
  				'Rozvedený/á'
  			when 'free'
@@ -33,7 +33,7 @@ class ClientDecorator < ApplicationDecorator
  			when 'widow'
  				'Vdovec/a'
  			when 'married'
- 				'Chudák/Vdaná'
+ 				'Ženatý/Vdaná'
  			else
 				"nedefinovaný druh klienta"
 		end
