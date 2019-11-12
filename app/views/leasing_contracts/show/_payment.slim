@@ -6,12 +6,12 @@
     .card-body
       table.table
         tr
+          th Sum
+          th =@leasing_contract.payments_sum
+        tr
           th | Datum úhrady
           th | Částka
         - @leasing_contract.payments.decorate.each do |payment|
           tr
           	td=payment.payment_date
           	td.amount=payment.amount
-        tr
-          th Sum
-          td =@leasing_contract.payments_sum

@@ -1,0 +1,24 @@
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    /! Card Header - Dropdown
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary Úhrady
+    .card-body
+	    #payments
+	    	.links
+				= link_to_add_association('Přidej Úhradu', f, :payments, :"data-association-insertion-node" => "tbody#nested_payments",:"data-association-insertion-method" => "append",  class: 'btn btn-primary btn-success') 
+	    	table id="payments_table" class="table table-hover table-bordered"
+				tr
+					th Datum splatnosti
+					th Částka
+				tbody id="nested_payments"
+					= f.fields_for :payments do |payments|
+						= render 'payment_fields', f: payments
+
+javascript: 
+	$('#payments').on('cocoon:after-insert', function() {
+	  $('input').datepicker({
+	    language: "cs"
+	  });
+	});
+			

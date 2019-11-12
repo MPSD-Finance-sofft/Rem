@@ -48,6 +48,8 @@ div class="#{@leasing_contract.object_state}"
 				= render partial: "leasing_contract_realities", locals: {f: form}
 			.form-group
 				= render 'repayments_fields', f: form
+			.form-group
+				= render 'payments_fields', f: form
 			.actions
 				= form.submit
 = link_to 'Zpět', leasing_contract_path(@leasing_contract)
