@@ -26,19 +26,18 @@ div.container-fluid
       table.table 
         tr.text-dark
           th Číslo žádosti
-          th Číslo smlouvy
           th Typ
           th Přijato
           th Stav
           th Výkupní cena
           th Klienti
           th Adresy nemovitostí
+          th Agent
           th Nadřízený Agenta
           th V péči
         - @accords.each do |accord|
           tr class="#{accord.object_state} text-dark"
             td = link_to accord.number, accord_path(accord.id)
-            td = accord.contract_number
             td = accord.kind
             td = accord.created_at_time
             td = accord.state
@@ -51,5 +50,6 @@ div.container-fluid
               - accord.realty.each do |realty|
                 = realty.address.try(:index_name)
                 br
+            td = accord.agent_name
             td = accord.agent_superior
             td = accord.owner_name
