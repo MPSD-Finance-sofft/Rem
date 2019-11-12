@@ -26,12 +26,12 @@
 		    	- else
 		    		- f.each do |object|
 		    			- object.versions.each do |version|
-			    			- a = User.find version.whodunnit
+			    			- a = User.find_by_id version.whodunnit
 			    			- version.changeset.each do |change|
 			    				tr
 			    					td =version.created_at
 			    					td =change.first
 		    						td =change.last.first
 		    						td =change.last.last
-			    					td = a.username
+			    					td = a.try(:username)
 

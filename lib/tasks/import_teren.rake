@@ -1,11 +1,15 @@
 require 'csv'
 namespace :import_teren do
   task :import => :environment do
-  		file = File.open Rails.root.join('tmp', 'teren.csv')
+  		file = File.open Rails.root.join('tmp', 'penb.csv')
   		convert = { 
-		 	'id'=> 'accord_id', 
-  			'resi_agent_id'=> 'agent_id',
-  			'datum_foceni'=> 'date_to_terrain',
+		 	  'zadost_id'=> 'accord_id', 
+  			'datum_vytvoreni'=> 'created_at',
+  			'datum_odeslani'=> 'date_send',
+        'castka'=> 'price',
+        'datum_prijeti_fin'=> 'date_send_tax_office',
+        'datum_platby_dane'=> 'tax_pay_date',
+        'cislo_vkladu'=> 'number',
   			}
   		CSV.foreach(file.path, headers: true, header_converters: lambda { |name| convert[name] }) do |row|
   			h = row.to_hash
@@ -14,9 +18,8 @@ namespace :import_teren do
   			number = h.delete('accord_id')
 			a  = Accord.find_by_number(number)
 			unless a.blank?
-				l = Terrain.new(h)
+				l = TaxReturn.new(h)
 				l.accord_id = a.id
-				l.user_id = 1
 				l.save(validate:false)
 			end
 		end
