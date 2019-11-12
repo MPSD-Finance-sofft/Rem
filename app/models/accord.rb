@@ -56,6 +56,8 @@ class Accord < ApplicationRecord
 
 	validates :state, :inclusion => {:in => states.keys}
 
+	after_create :add_number
+
 	def commission_for_the_contract
 		self.purchase_price.to_f * 0.03
 	end
@@ -78,6 +80,13 @@ class Accord < ApplicationRecord
 
 	def active_terrain?
 		!self.terrains.blank? && self.terrains.last.try(:date_end_terrain).blank?
+	end
+
+	def add_number
+		if self.number.blank?
+			self.number = self.id 
+			self.save
+		end
 	end
 
 	scope :subordinates_accords, -> (user) {where(agent_id: [User.where(superior_id: user.id).pluck(:id)])}
