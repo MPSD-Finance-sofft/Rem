@@ -57,6 +57,11 @@ class LeasingContract < ApplicationRecord
 	def companies
 		self.clients.where(type: "Company")
 	end
+
+	def debt?
+		number = self.repayments.repayment_date_today.sum(:amount).to_f - self.payments.sum(:amount).to_f 
+		number > 0
+	end
 	
 	scope :for_accord, -> (accord_id) {where(accord_id: accord_id)}
 	scope :contract_number, -> (contract_number) {where(id:  contract_number)}

@@ -5,4 +5,5 @@ class Repayment < ApplicationRecord
 	attr_accessor :paid
 
 	scope :for_leasing_contract, -> (leasing_contract_id) {where(leasing_contract_id:  leasing_contract_id)}
+	scope :repayment_date_today, -> {where("repayment_date < ?",Date.today)}
 end
