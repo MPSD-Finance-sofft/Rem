@@ -20,6 +20,7 @@ class User < ApplicationRecord
 	has_one :permission, :dependent => :destroy
 	belongs_to :superior, class_name: "User", foreign_key: "superior_id"
 	has_one :subordinate, class_name: "User", foreign_key: "superior_id"
+	has_many :agent_accords, class_name: "Accord", foreign_key: "agent_id"
 
 	accepts_nested_attributes_for :permission,  reject_if: :all_blank, allow_destroy: true
 	accepts_nested_attributes_for :user_mobile,  reject_if: :all_blank, allow_destroy: true
@@ -87,8 +88,12 @@ class User < ApplicationRecord
 		User.manager_and_user.can_sign_in
 	end
 
-	def user_or_admin_or_self(value)
-		user_or_admin? || self.id == value
+	def count_accord
+		self.agent_accords.count
+	end
+
+	def count_contract
+		self.agent_accords.state('contract').count
 	end
 
 	def encrypted_password=(value)

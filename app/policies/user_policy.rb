@@ -27,7 +27,7 @@ class UserPolicy < ApplicationPolicy
    
     	def resolve
     		if user.admin?
-      			scope.all.order(username: :desc)
+      			scope.includes(:superior).includes(:agent_accords).joins(:permission).order(username: :desc)
     		elsif user.agent? || user.manager?
             scope.subordinates(user).order(username: :desc)
         elsif user.user?
