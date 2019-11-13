@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
 	def edit
 		authorize @user
+		@user = @user.decorate
 	end
 
 	def update

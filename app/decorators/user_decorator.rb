@@ -1,8 +1,7 @@
-
 class UserDecorator < ApplicationDecorator
   delegate_all
 
- 	def permission
+ 	def permission_to_s
  		object.permission.try(:kind)
  	end
 
@@ -20,5 +19,9 @@ class UserDecorator < ApplicationDecorator
  	
  	def birthdate
  		format_date(object.birthdate)
+ 	end
+
+ 	def date_of_cooperation
+ 		format_date(object.date_of_cooperation)
  	end
 end
