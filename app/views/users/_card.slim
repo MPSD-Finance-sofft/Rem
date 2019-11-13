@@ -9,7 +9,7 @@
 					button.btn.btn-primary data-target="#of_notice" data-toggle="modal" type="button" 
 	        			| Výpověd
 	        	.col-md-3.nopadding.text-right.panel-title
-					=button_to "Změny", changes_users_path(id: user.id), {type: "button", class: "btn btn-primary"}
+					=link_to "Změny", changes_users_path(id: user.id), {type: "button", class: "btn btn-primary"}
 		.card-body
 			div.col-md-5
 				= image_tag user.avatar if user.avatar.try(:attachment)

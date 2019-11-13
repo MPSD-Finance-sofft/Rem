@@ -75,7 +75,6 @@ class User < ApplicationRecord
 		self.permission.try(:kind) == "user" || self.permission.try(:kind) == "admin"
 	end
 
-
 	def self.can_create_accord
 		User.manager_and_agents.can_sign_in.select(&:not_runing_notice?)
 	end
@@ -86,6 +85,10 @@ class User < ApplicationRecord
 
 	def self.user_can_sign_id
 		User.manager_and_user.can_sign_in
+	end
+
+	def user_or_admin_or_self(value)
+		user_or_admin? || self.id == value
 	end
 
 	def encrypted_password=(value)

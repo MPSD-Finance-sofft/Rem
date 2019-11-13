@@ -37,7 +37,7 @@ class UsersController < ApplicationController
  	end
 
  	def card
- 		authorize current_user
+ 		authorize @user
  		@superior = @user.try(:superior).try(:decorate)
  		@user = @user.decorate
  	end

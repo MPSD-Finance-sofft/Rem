@@ -71,11 +71,16 @@ div.container-fluid
 				th Říjen
 				th Listopad
 				th Prosinec
+			tr
+				td
+				td = @leasing_contracts.map(&:object_monthly_rend).sum
+				td
+				td
 			tbody.collapse id="colapseReimbursementPlan"
 				- @leasing_contracts.each do |leasing_contract|
 					tr
-						td =leasing_contract.address
-					 	td =leasing_contract.monthly_rent
+						td = leasing_contract.address
+					 	td = leasing_contract.monthly_rent
 					 	td = leasing_contract.expected_date_of_signature
 					 	td = leasing_contract.payment_day
 .col-xl-12.col-lg-12

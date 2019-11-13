@@ -53,6 +53,10 @@ class LeasingContractDecorator < ApplicationDecorator
 		object.realty.first.try(:address).try(:village)
 	end
 
+	def object_monthly_rend
+		object.monthly_rent
+	end
+
 	def monthly_rent
 		format_number object.monthly_rent
 	end

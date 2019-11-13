@@ -11,4 +11,8 @@ module LeasingContract::RepaymentCalendar
 		end
 		repayments.map{|a| a.decorate}
 	end
+
+	def calendar_for_year(year)
+		repayments.select{|a| a.for_year?(year)}
+	end
 end

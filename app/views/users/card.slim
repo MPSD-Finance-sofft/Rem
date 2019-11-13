@@ -5,7 +5,7 @@ div.col-md-12
 				b
 				| Karta uživatele
 				li.breadcrumb-item
-					= current_user.username		
+					= @user.username		
 	.col-xl-6.col-lg-6
 		= render partial: "card", locals:{user: @user}
 	.col-xl-6.col-lg-6

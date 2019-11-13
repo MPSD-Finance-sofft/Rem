@@ -17,31 +17,33 @@ hr
 	      h6.m-0.font-weight-bold.text-primary Detail účtu
 	    .card-body.row
 			.form-group.col-xl-5.col-lg-5
-				= f.label :avatar
-				= f.file_field :avatar
-			.form-group.col-xl-5.col-lg-5
-				= f.label :username, "Přihlašovací jméno"
-				= f.text_field :username, {class: "form-control",  required: true}
-			.form-group.col-xl-5.col-lg-5
 				= f.label :password, "Heslo"
 				= f.password_field :password,{class: "form-control " ,autocomplete: "new-password", type:"password"}
 			.form-group.col-xl-5.col-lg-5
 				= f.label :password_confirmation
 				= f.password_field :password_confirmation, { class: "form-control " ,autocomplete: "new-password", type:"password"}
-			- f.object.build_permission if f.object.permission.blank?
-			= f.fields_for :permission do |f|
+			.form-group.col-xl-5.col-lg-5
+				= f.label :avatar
+				= f.file_field :avatar
+			- if @current_user.user_or_admin?
 				.form-group.col-xl-5.col-lg-5
-					= f.label :kind, "Role"
-					= f.select :kind, Permission.kinds.keys.map{|a| [a,a]},{include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true",  required: true}
-			.form-group.col-xl-5.col-lg-5
-				= f.label :superior_id, "Nadřízený"
-				= f.select :superior_id, User.all.map{|a| [a.all_name,a.id]},{include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true"}
-			.form-group.col-xl-5.col-lg-5
-				= f.label :short_name, "Pozice"
-				= f.text_field :short_name, class: "form-control"
-			.form-group
-				//= f.label :identity_card_number. "rč"
-				//= f.text_field :identity_card_number, class: "form-control"
+					= f.label :username, "Přihlašovací jméno"
+					= f.text_field :username, {class: "form-control",  required: true}
+			- if @current_user.user_or_admin?
+				- f.object.build_permission if f.object.permission.blank?
+				= f.fields_for :permission do |f|
+					.form-group.col-xl-5.col-lg-5
+						= f.label :kind, "Role"
+						= f.select :kind, Permission.kinds.keys.map{|a| [a,a]},{include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true",  required: true}
+				.form-group.col-xl-5.col-lg-5
+					= f.label :superior_id, "Nadřízený"
+					= f.select :superior_id, User.all.map{|a| [a.all_name,a.id]},{include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true"}
+				.form-group.col-xl-5.col-lg-5
+					= f.label :short_name, "Pozice"
+					= f.text_field :short_name, class: "form-control"
+				.form-group
+					//= f.label :identity_card_number. "rč"
+					//= f.text_field :identity_card_number, class: "form-control"
 	.col-xl-6.col-lg-6
 	  .card.shadow.mb-4
 	    /! Card Header - Dropdown
@@ -116,17 +118,18 @@ hr
 		    		- f.object.user_address.build if f.object.user_address.blank?
 	            	= f.fields_for :user_address do |user_address|
 	              		= render 'user_address_fields', f: user_address
-	.col-xl-6.col-lg-6
-		.card.shadow.mb-4
-			.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
-				h6.m-0.font-weight-bold.text-primary Systémové údaje
-			.card-body
-				.form-group.col-xl-4.col-lg-4
-					= f.label :can_sign_in, "Může se přihlásit"
-					= f.check_box :can_sign_in, class: "form-control"
-				.form-group.col-xl-4.col-lg-4
-					= f.label :complate_documentation, "Kompletní dokumentace"
-					= f.check_box :complate_documentation, class: "form-control"
+	- if @current_user.user_or_admin?
+		.col-xl-6.col-lg-6
+			.card.shadow.mb-4
+				.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+					h6.m-0.font-weight-bold.text-primary Systémové údaje
+				.card-body
+					.form-group.col-xl-4.col-lg-4
+						= f.label :can_sign_in, "Může se přihlásit"
+						= f.check_box :can_sign_in, class: "form-control"
+					.form-group.col-xl-4.col-lg-4
+						= f.label :complate_documentation, "Kompletní dokumentace"
+						= f.check_box :complate_documentation, class: "form-control"
 	.action
 	    = f.submit "Odešli" , class: "btn btn-default", type: "submit"
 	    = link_to 'Zpět', root_path, class: "btn btn-default"
