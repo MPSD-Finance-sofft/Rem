@@ -28,7 +28,7 @@ div.container-fluid
 			tbody
 				- @users.each do |user|
 					tr
-						td =user.permission
+						td =user.permission_to_s
 						td
 							- if user.can_login?
 								= link_to masquerade_path(user) do 
