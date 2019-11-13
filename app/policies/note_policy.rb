@@ -18,13 +18,13 @@ class NotePolicy < ApplicationPolicy
 
     	def resolve
     		if user.admin?
-      			scope.for_accord(accord_id).all
+      			scope.order(created_at: :desc).for_accord(accord_id).all
     		elsif user.manager?
-            	scope.for_accord(accord_id).for_manager
+            	scope.order(created_at: :desc).for_accord(accord_id).for_manager
         	elsif user.agent?
-        		scope.for_accord(accord_id).for_agent
+        		scope.order(created_at: :desc).for_accord(accord_id).for_agent
         	elsif user.user?
-            	scope.for_accord(accord_id).all
+            	scope.order(created_at: :desc).for_accord(accord_id).all
         	end
     	end
   	end
