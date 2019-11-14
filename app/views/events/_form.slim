@@ -3,7 +3,7 @@
     = hidden_field_tag 'accord_id', @accord_id
     .form-group
       = f.label :title, 'Popis'
-      = f.select :title, EventType.all_description_for_select,{}, class: "selectpicker form-control", "data-live-search" => "true"
+      = f.select :title, EventType.all_description_for_select,{}, class: "form-control"
     .form-group
       = f.text_field :date_range, class: "string optional form-control input-sm date-range-picker"
       = f.hidden_field :start, value: Date.today,class: 'form-control input-sm start_hidden' 
