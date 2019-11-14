@@ -1,8 +1,7 @@
 class ContractsController < ApplicationController
 
 	def index
-		@accords = Accord.state("contract").order(contract_number: :desc)
-		authorize @accords, policy_class: ContractPolicy 
+		@accords = policy_scope(Accord).state("contract").order(contract_number: :desc)
 	    @accords =  IndexFilter::IndexServices.new(@accords,params).perform
 	    @accords = @accords.decorate
 	    respond_to do |format|
