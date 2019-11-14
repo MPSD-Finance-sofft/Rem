@@ -66,6 +66,10 @@ class LeasingContract < ApplicationRecord
 	def active?
 		!debt? && self.state != 'ended'
 	end
+
+	def added?
+		self.state != 'ended' && self.repayments.sum(:amount).to_f == self.payments.sum(:amount).to_f 
+	end
 	
 	scope :for_accord, -> (accord_id) {where(accord_id: accord_id)}
 	scope :contract_number, -> (contract_number) {where(id:  contract_number)}
