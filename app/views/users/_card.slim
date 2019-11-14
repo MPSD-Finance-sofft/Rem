@@ -5,11 +5,12 @@
 			.col-md-8.nopadding.text-right.panel-title
 				div.col-md-3.nopadding.text-right.panel-title
 					=link_to "Upravit", edit_user_path(user),{ type: "button", class: "btn btn-primary"}
-				.col-md-3.nopadding.text-right.panel-title
-					button.btn.btn-primary data-target="#of_notice" data-toggle="modal" type="button" 
-	        			| Výpověd
-	        	.col-md-3.nopadding.text-right.panel-title
-					=link_to "Změny", changes_users_path(id: user.id), {type: "button", class: "btn btn-primary"}
+				- if @current_user.user_or_admin?
+					.col-md-3.nopadding.text-right.panel-title
+						button.btn.btn-primary data-target="#of_notice" data-toggle="modal" type="button" 
+		        			| Výpověd
+		        	.col-md-3.nopadding.text-right.panel-title
+						=link_to "Změny", changes_users_path(id: user.id), {type: "button", class: "btn btn-primary"}
 		.card-body
 			div.col-md-5
 				= image_tag user.avatar if user.avatar.try(:attachment)
