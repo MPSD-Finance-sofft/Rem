@@ -1,3 +1,4 @@
+¨
 .nested-fields
 	.field.form-group
 		- f.object.build_realty unless f.object.realty
@@ -58,3 +59,6 @@
 						.form-group
 							= f.label :catastral_territory, "Katastrální území"
 							= f.text_field :catastral_territory, {class: "form-control input-sm", type: "number"}
+						.form-group
+							= f.label :parcel_number, "Číslo parcely"
+							= f.text_field :parcel_number, {class: "form-control input-sm", type: "number"}
