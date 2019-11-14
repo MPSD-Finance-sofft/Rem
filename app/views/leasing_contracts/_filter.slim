@@ -27,6 +27,9 @@
 			.form-group
 				= label_tag :monthly_rent_max, "Výše nájmu do"
 				= text_field_tag :monthly_rent_max, params[:monthly_rent_max], class: "form-control input-sm"
+			.form-group
+				= label_tag :state, "Stav nájemní smlouvy"
+				= select_tag :state, options_for_select([["K podpisu", "entry"], ["Aktivní", "actions"], ["Dluh", "debt"],["Doplaceno", "added"], ["Ukončeno", "ended"]], params[:state]), {include_blank: true, class: "form-control input-sm selectpicker",data: {"live-search": true} , multiple: true}
 		.col-xl-3
 			.form-group
 				= label_tag :rent_to_start, "Datum konce nájemní smlouvy od"
