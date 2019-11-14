@@ -18,18 +18,21 @@ class LeasingContractsController < ApplicationController
   # GET /leasing_contracts/1
   # GET /leasing_contracts/1.json
   def show  
+    authorize @leasing_contract
     @repayments = @leasing_contract.calendar
     @leasing_constract_notes = NoteLeasingContractPolicy::Scope.new(@leasing_contract.id, current_user, NoteLeasingContract).resolve.decorate
   end
 
   # GET /leasing_contracts/new
   def new
+    authorize @leasing_contract
     @leasing_contract = LeasingContract.new.decorate
     @leasing_contract.accord_id = params[:accord_id]
   end
 
   # GET /leasing_contracts/1/edit
   def edit
+    authorize @leasing_contract
   end
 
   # POST /leasing_contracts
