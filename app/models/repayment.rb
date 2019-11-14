@@ -1,4 +1,5 @@
 class Repayment < ApplicationRecord
+	has_paper_trail ignore: [:updated_at, :id]
 	include RepaymentEnum
 	include RemoveWhiteSpiceFromNumberInput::Amount
 	belongs_to :leasing_contract
