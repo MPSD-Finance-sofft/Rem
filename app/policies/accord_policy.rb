@@ -2,9 +2,9 @@ class AccordPolicy < ApplicationPolicy
 
     def show?       
         if user.agent?
-            (record.agent_id == user.id)  && !record.contract?
+            (record.agent_id == user.id)
         elsif user.manager?
-            (record.agent.try(:superior_id) == user.id) && !record.contract?
+            (record.agent.try(:superior_id) == user.id) 
         elsif user.user? || user.admin?
             true
         else
