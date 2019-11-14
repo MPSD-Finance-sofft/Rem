@@ -40,11 +40,16 @@
 			table.table.text-dark
 				tr.entry
 					th K podpisu
+					td = LeasingContract.state('entry').count
 				tr.actions
 					th Aktivní
+					td = LeasingContract.state('actions').count
 				tr.debt
 					th Dluh
+					td = LeasingContract.state('debt').count
 				tr.added
 					th Doplaceno
+					td = LeasingContract.state('added').count
 				tr.ended
 					th Ukončeno
+					td = LeasingContract.state('ended').count
