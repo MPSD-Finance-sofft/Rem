@@ -76,8 +76,12 @@ class User < ApplicationRecord
 		self.permission.try(:kind) == "user" || self.permission.try(:kind) == "admin"
 	end
 
-	def self.can_create_accord
-		User.manager_and_agents.can_sign_in.select(&:not_runing_notice?)
+	def self.can_create_accord(user)
+		if user.agent?
+			user
+		else
+			User.manager_and_agents.can_sign_in.select(&:not_runing_notice?)
+		end
 	end
 
 	def self.can_create_accord_with_exist(agent_id)
