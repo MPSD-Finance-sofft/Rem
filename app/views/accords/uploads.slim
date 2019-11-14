@@ -54,7 +54,7 @@
 					br
 					= link_to 'Remove', delete_image_accord_url(file_id: file.signed_id, accord_id: @accord.id), method: :delete, data: { confirm: 'Are you sure?' }
 					br
-	-if current_user.user? || current_user.admin?
+	-if current_user.user? || current_user.admin? || current_user.manager?
 		.col-xl-2.border.m-1
 			= form_with(model: @accord, url: create_uploads_accord_path(accord_id: @accord.id), local: true) do |f|
 				- if @accord.errors.any?
