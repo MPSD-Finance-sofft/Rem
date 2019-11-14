@@ -9,12 +9,8 @@ class RewardDecorator < ApplicationDecorator
   	object.agent.try(:all_name)
   end
 
-  def agency_commission
-  	object.agency_commission.to_s + " Kč"
-  end 
-
   def commission_for_the_contract
-  	object.commission_for_the_contract.to_s + " Kč"
+  	format_number commission_for_the_contract
   end
 
   def agent_login
@@ -47,6 +43,14 @@ class RewardDecorator < ApplicationDecorator
   
   def claim_date
     format_date object.claim_date
+  end
+
+  def purchase_price
+    format_number object.purchase_price
+  end
+
+  def agency_commission
+    format_number object.agency_commission
   end
 
 end
