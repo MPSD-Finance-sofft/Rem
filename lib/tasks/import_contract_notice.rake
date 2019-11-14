@@ -14,7 +14,6 @@ namespace :import_contract_notice do
 			number = h.delete('number')
 			accord = Accord.find_by_contract_number number
 			unless accord.blank?
-				binding.pry
 				n = Note.new
 				n.accord_id = accord.id
 				n.user_id = h.delete('username_id')

@@ -77,8 +77,8 @@ class User < ApplicationRecord
 	end
 
 	def self.can_create_accord(user)
-		if user.agent?
-			User.where(id: user.id)
+		if user.agent? || user.manager?
+			User.subordinates(user).or(User.where(id: (user.id)))
 		else
 			User.manager_and_agents.can_sign_in.select(&:not_runing_notice?)
 		end
