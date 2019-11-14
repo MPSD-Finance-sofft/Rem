@@ -151,4 +151,8 @@ class AccordDecorator < ApplicationDecorator
   def village
     object.realty.first.try(:address).try(:village)
   end
+
+  def reward_created_at
+    format_date object.reward.try(:created_at)
+  end
 end
