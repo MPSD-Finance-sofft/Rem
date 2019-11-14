@@ -65,21 +65,22 @@ hr
 			.form-group.col-xl-5.col-lg-5
 				= f.label :birthdate, "Datum narození"
 				= f.text_field :birthdate, class: "form-control datapicker"
-	.col-xl-6.col-lg-6
-	  .card.shadow.mb-4
-	    /! Card Header - Dropdown
-	    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
-	      h6.m-0.font-weight-bold.text-primary Firemní údaje
-	    .card-body
-	    	.form-group.col-xl-5.col-lg-5
-				= f.label :name_company, "Jméno společnosti"
-				= f.text_field :name_company, class: "form-control"
-			.form-group.col-xl-5.col-lg-5
-				= f.label :identity_company_number, "IČ"
-				= f.text_field :identity_company_number, {class: "form-control" ,pattern:"[0-9]{8}"}
-			.form-group.col-xl-5.col-lg-5
-				= f.label :date_of_cooperation, "Datum navázání spolupráce"
-				= f.text_field :date_of_cooperation, class: "form-control datapicker"
+	- if @current_user.user_or_admin?
+		.col-xl-6.col-lg-6
+		  .card.shadow.mb-4
+		    /! Card Header - Dropdown
+		    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+		      h6.m-0.font-weight-bold.text-primary Firemní údaje
+		    .card-body
+		    	.form-group.col-xl-5.col-lg-5
+					= f.label :name_company, "Jméno společnosti"
+					= f.text_field :name_company, class: "form-control"
+				.form-group.col-xl-5.col-lg-5
+					= f.label :identity_company_number, "IČ"
+					= f.text_field :identity_company_number, {class: "form-control" ,pattern:"[0-9]{8}"}
+				.form-group.col-xl-5.col-lg-5
+					= f.label :date_of_cooperation, "Datum navázání spolupráce"
+					= f.text_field :date_of_cooperation, class: "form-control datapicker"
 	.col-xl-6.col-lg-6
 	  .card.shadow.mb-4
 	    /! Card Header - Dropdown
