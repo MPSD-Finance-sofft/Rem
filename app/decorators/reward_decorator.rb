@@ -10,7 +10,7 @@ class RewardDecorator < ApplicationDecorator
   end
 
   def commission_for_the_contract
-  	format_number commission_for_the_contract
+  	format_number object.commission_for_the_contract
   end
 
   def agent_login
