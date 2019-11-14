@@ -13,6 +13,10 @@ div.container-fluid
 		div.col-md-2.nopadding.text-right.panel-title
 			= link_to "Nový uživatel", new_user_users_path()
 	.card-body
+		p
+	        b 
+	          | Počet vyhledaných žádostí: 
+	          = @users.size
 		table.table
 			thead
 				tr
