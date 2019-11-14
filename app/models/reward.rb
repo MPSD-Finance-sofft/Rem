@@ -9,6 +9,7 @@ class Reward < ApplicationRecord
 		self.user_id = accord.agent_id
 		self.agency_commission = accord.agency_commission_price
 		self.commission_for_the_contract = accord.commission_for_the_contract
+		self.claim_date = accord.date_of_ownership
 	end
 
 	

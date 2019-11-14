@@ -30,7 +30,7 @@ div.container-fluid
             td=reward.purchase_price
             td=reward.agency_commission
             td=reward.commission_for_the_contract
-            td=reward.invoice_date
+            td=reward.claim_date
             td= link_to "pdf", invoice_path(id: reward.invoice_id, format: :pdf) unless reward.invoice_id.blank?
             
 

@@ -44,5 +44,9 @@ class RewardDecorator < ApplicationDecorator
   def invoice_date
     format_date object.invoice_date
   end
+  
+  def claim_date
+    format_date object.claim_date
+  end
 
 end
