@@ -25,7 +25,6 @@ class LeasingContractsController < ApplicationController
 
   # GET /leasing_contracts/new
   def new
-    authorize @leasing_contract
     @leasing_contract = LeasingContract.new.decorate
     @leasing_contract.accord_id = params[:accord_id]
   end
