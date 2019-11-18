@@ -9,14 +9,16 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+   def create  
+    super
+    Activity.create(user_id: current_user.id, what: "Uživatel přihlášení: #{current_user.username}", objet: "User", object_id: current_user.id)
+   end
 
   # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+   def destroy
+    Activity.create(user_id: current_user.id, what: "Uživatel odhlášení: #{current_user.username}", objet: "User", object_id: current_user.id)
+    super
+   end
 
   # protected
 
