@@ -104,8 +104,8 @@ class Accord < ApplicationRecord
 	scope :date_of_signature_end, -> (date) {where("accords.date_of_signature < ?", date.to_date)}
 	scope :repurchase_min, -> (number) {where("accords.repurchase > ?", number)}
 	scope :repurchase_max, -> (number) {where("accords.repurchase < ?", number)}
-	scope :client_name, -> (client_name) {joins(:clients).where("clients.name": client_name)}
-	scope :client_last_name, -> (client_last_name) {joins(:clients).where("clients.last_name": client_last_name)}
+	scope :client_name, -> (client_name) {joins(:clients).where("clients.name LIKE ?", "%#{client_name}%")}
+	scope :client_last_name, -> (client_last_name) {joins(:clients).where("clients.last_name LIKE ?", "%#{client_last_name}%")}
 	scope :realty_type, -> (realty_type_id) {joins(:realty).where("realties.realty_type_id": realty_type_id)}
 	scope :superior_id, -> (superior_id) {joins(:agent).where("users.superior_id": superior_id)}
 	scope :realty_adress_street, -> (street) {joins(realty: :address).where("addresses.street LIKE ?", "%#{street}%")}
