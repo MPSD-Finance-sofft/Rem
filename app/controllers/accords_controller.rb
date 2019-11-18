@@ -32,6 +32,7 @@ class AccordsController < ApplicationController
     @month_advances = MonthAdvencePolicy::Scope.new(@accord.id, current_user, MonthAdvence).resolve.decorate
     @leasing_contracts = LeasingContract.for_accord(@accord.id).pluck(:id)
     @terrains = TerrainPolicy::Scope.new(@accord.id, current_user, Terrain).resolve.decorate
+    Activity.create(user_id: current_user.id, what: "Žádost číslo: #{@accord.number}", objet: "Accord", object_id: @accord.id)
   end
 
   # GET /accords/new
