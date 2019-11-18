@@ -91,5 +91,9 @@ class RealtyDecorator < ApplicationDecorator
  		format_number object.purchase_price
  	end
 
+ 	def disposition_text
+ 		object.disposition.try(:name)
+ 	end
+
  	
 end
