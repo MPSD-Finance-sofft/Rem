@@ -66,9 +66,9 @@
 						- c.object.build_permanent_address unless c.object.permanent_address
 						= c.fields_for :permanent_address do |address|	
 							= render 'addresses/field', address: address
-					a href="#collapseContactAddress" class="d-block card-header py-3 collapsed" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseContactAddress"
+					a href="#collapseContactAddress_#{c.object.id}" class="d-block card-header py-3 collapsed" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseContactAddress_#{c.object.id}"
       					h6.m-0.font-weight-bold.text-primary Kontaktní adresa
-    				.card-body.field.form-group#collapseContactAddress.collapse
+    				.card-body.field.form-group.collapse id = "collapseContactAddress_#{c.object.id}"
 						- c.object.build_contact_address unless c.object.contact_address
 						= c.fields_for :contact_address do |address|
 							= render 'addresses/field', address: address
