@@ -13,12 +13,4 @@
 					th Částka
 				tbody id="nested_payments"
 					= f.fields_for :payments do |payments|
-						= render 'payment_fields', f: payments
-
-javascript: 
-	$('#payments').on('cocoon:after-insert', function() {
-	  $('input').datepicker({
-	    language: "cs"
-	  });
-	});
-			
+						= render 'payment_fields', f: payments	
