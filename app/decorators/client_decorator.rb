@@ -16,6 +16,10 @@ class ClientDecorator < ApplicationDecorator
 		end
  	end
 
+ 	def object_type
+ 		object.type
+ 	end
+
  	def select_realationship
  		[['', nil], ['Druh,Družka', 'companion'],['Rozvedený/á', 'divorced'], ['Svobodný/á', 'free'], ['Vdovec/a', 'widow'], ['Ženatý/Vdaná', 'married']]
  	end
