@@ -74,8 +74,10 @@
 							= render 'addresses/field', address: address
 javascript:
 	$(document).on('turbolinks:load', function() {
+		$('select.types_client').each(function(){
+			set_up($(this));
+		});
 		toogle_object();
-		set_up($('select.types_client'));
 	});
 	$('#clients').on('cocoon:after-insert', function() {
 			toogle_object();
