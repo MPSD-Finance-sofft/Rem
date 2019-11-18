@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 	def index
 		@users = policy_scope(User)
 		authorize @users
+		@users =  IndexFilter::IndexServices.new(@users,params).perform
 		@users = UserDecorator.decorate_collection(@users)
 	end
 

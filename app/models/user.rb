@@ -110,6 +110,8 @@ class User < ApplicationRecord
 	end
 	 
 	scope :subordinates, -> (user) {where(superior_id: user.id)}
+	scope :subordinates_id, -> (user_id) {where(superior_id: user_id)}
+	scope :permission_fo_user, -> (permission) {joins(:permission).where('permissions.kind': permission)}
 	scope :agents,   ->{ joins(:permission).where('permissions.kind': 'agent') }
 	scope :manager_and_user,   ->{ joins(:permission).where('permissions.kind': ['manager','user']) }
 	scope :manager_and_agents,   ->{ joins(:permission).where('permissions.kind': ['manager','agent']) }
