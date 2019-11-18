@@ -41,7 +41,7 @@ class UsersController < ApplicationController
  		authorize @user
  		@superior = @user.try(:superior).try(:decorate)
  		@user = @user.decorate
- 		Activity.create(user_id: current_user.id, what: "Uživatel login: #{@user.username}", objet: "User", object_id: @user.id)
+ 		Activity.create(user_id: current_user.id, what: "Zobrazení uživatele login: #{@user.username}", objet: "User", object_id: @user.id)
  	end
 
  	def new_user
