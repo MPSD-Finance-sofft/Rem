@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :activities, only: [:index]
+  resources :activities, only: [:index, :search_index] do 
+    collection do 
+      get :search_index
+    end
+  end
   resources :user_emails
   resources :note_leasing_contracts
   resources :terrains, only: [:create, :update]

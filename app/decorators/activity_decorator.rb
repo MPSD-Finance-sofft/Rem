@@ -10,7 +10,11 @@ class ActivityDecorator < ApplicationDecorator
   #     end
   #   end
 
-  	def created_at
+  def created_at
  		format_date_time(object.created_at)
 	end
+
+  def user
+    object.user.try(:all_name)
+  end
 end
