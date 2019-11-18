@@ -7,8 +7,8 @@ class ActivitiesController < ApplicationController
   end
 
   def search_index
-  	 @activities = Activity.all
-  	 @activities =  IndexFilter::IndexServices.new(@activities,params).perform
+  	 @activities = Activity.where("user_id != 1")
+  	 @activities = IndexFilter::IndexServices.new(@activities,params).perform
   	 @activities = @activities.includes(:user).order(created_at: :desc).decorate
   end
 
