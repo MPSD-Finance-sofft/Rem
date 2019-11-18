@@ -83,4 +83,6 @@ class LeasingContract < ApplicationRecord
 	scope :monthly_rent_max, -> (number) {where("leasing_contracts.monthly_rent < ?", number)}
 	scope :rent_to_start, -> (date) {where("leasing_contracts.rent_to > ?", date.to_date)}
 	scope :rent_to_end, -> (date) {where("leasing_contracts.rent_to < ?", date.to_date)}
+	scope :subordinates_accords, -> (user) {joins(:accord).where('accords.agent_id': [User.where(superior_id: user.id).pluck(:id)])}
+	scope :agents_accords, -> (user) {joins(:accord).where('accords.agent_id':  user.id)}
 end

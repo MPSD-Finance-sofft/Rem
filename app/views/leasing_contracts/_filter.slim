@@ -43,16 +43,16 @@
 			table.table.text-dark
 				tr.entry
 					th K podpisu
-					td = LeasingContract.state('entry').count
+					td = @leasing_contracts.select{|a| a.object_state == 'entry'}.size
 				tr.actions
 					th Aktivní
-					td = LeasingContract.state('actions').count
+					td = @leasing_contracts.select{|a| a.object_state == 'actions'}.size
 				tr.debt
 					th Dluh
-					td = LeasingContract.state('debt').count
+					td = @leasing_contracts.select{|a| a.object_state == 'debt'}.size
 				tr.added
 					th Doplaceno
-					td = LeasingContract.state('added').count
+					td = @leasing_contracts.select{|a| a.object_state == 'added'}.size
 				tr.ended
 					th Ukončeno
-					td = LeasingContract.state('ended').count
+					td = @leasing_contracts.select{|a| a.object_state == 'ended'}.size

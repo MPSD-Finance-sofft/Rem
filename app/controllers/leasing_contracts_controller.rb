@@ -4,8 +4,8 @@ class LeasingContractsController < ApplicationController
   # GET /leasing_contracts
   # GET /leasing_contracts.json
   def index
-    @leasing_contracts = LeasingContract.order(rent_from: :desc)
-    authorize @leasing_contracts, policy_class: LeasingContractPolicy 
+    authorize LeasingContract
+    @leasing_contracts = policy_scope(LeasingContract).order(rent_from: :desc)
     @leasing_contracts.select(&:debt?).map{|a| a.state= "debt"; a.save}
     @leasing_contracts.select(&:active?).map{|a| a.state= "actions"; a.save}
     @leasing_contracts.select(&:added?).map{|a| a.state= "added"; a.save}

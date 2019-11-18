@@ -64,31 +64,30 @@
 				= text_field_tag :realty_adress_village, params[:realty_adress_village], class: "form-control input-sm"
 			.form-group.float-right
 				= submit_tag "Vyhledat"
-		- if current_user.user_or_admin?
-			.col-xl-1
-				table.table.text-dark
-					tr.state_new
-						th Nová
-						td = Accord.state("state_new").count
-					tr.state_eleboration
-						th Rozpracovaná
-						td = Accord.state("state_eleboration").count
-					tr.in_terrain
-						th V terénu
-						td = Accord.state("in_terrain").count
-					tr.returned
-						th Vrácená
-						td = Accord.state("returned").count
-					tr.to_sign
-						th Ke schválení
-						td = Accord.state("to_sign").count
-					tr.contract
-						th Smlouva
-						td = Accord.state("contract").count
-					tr.refuse
-						th Zamítnutá
-						td = Accord.state("refuse").count
-					tr.dowload
-						th Stažená
-						td = Accord.state("dowload").count
-			
+		.col-xl-1
+			table.table.text-dark
+				tr.state_new
+					th Nová
+					td = @accords.select{|a| a.object_state == 'state_new'}.size
+				tr.state_eleboration
+					th Rozpracovaná
+					td = @accords.select{|a| a.object_state == 'state_eleboration'}.size
+				tr.in_terrain
+					th V terénu
+					td = @accords.select{|a| a.object_state == 'in_terrain'}.size
+				tr.returned
+					th Vrácená
+					td = @accords.select{|a| a.object_state == 'returned'}.size
+				tr.to_sign
+					th Ke schválení
+					td = @accords.select{|a| a.object_state == 'to_sign'}.size
+				tr.contract
+					th Smlouva
+					td = @accords.select{|a| a.object_state == 'contract'}.size
+				tr.refuse
+					th Zamítnutá
+					td = @accords.select{|a| a.object_state == 'refuse'}.size
+				tr.dowload
+					th Stažená
+					td = @accords.select{|a| a.object_state == 'dowload'}.size
+		
