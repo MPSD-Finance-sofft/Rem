@@ -16,7 +16,7 @@
 							= f.select :relationship, f.object.select_relationship,{selected: f.object.object_relationship},{class: "selectpicker form-control", "data-live-search" => "true"}
     					.form-group
 							= c.label :type, 'Typ klienta'
-							= c.select :type, c.object.select_kind,{selected: f.object.object_type},{class: "selectpicker form-control types_client", "data-live-search" => "true"}
+							= c.select :type, c.object.select_kind,{selected: c.object.object_type},{class: "selectpicker form-control types_client", "data-live-search" => "true"}
 						.form-group
     						= link_to_add_association('Přidej mobil', c, :client_mobile, :"data-association-insertion-method" => "after")
     						br
