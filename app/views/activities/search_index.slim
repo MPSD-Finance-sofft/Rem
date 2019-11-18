@@ -22,7 +22,7 @@ div.container-fluid
 						= text_field_tag :end_created_at, params[:end_created_at], class: "form-control input-sm datapicker"
 					.form-group
 						= label_tag :user_id, "Uživatel login"
-						= select_tag :user_id, options_for_select(Activity.pluck(:user_id).uniq.map{|a| [User.find_by_id(a).try(:all_name),a]}, params[:user_id]), {include_blank: true, class: "form-control input-sm",data: {"live-search": true}, multiple: true }
+						= select_tag :user_id, options_for_select(Activity.where("user_id != 1").pluck(:user_id).uniq.map{|a| [User.find_by_id(a).try(:all_name),a]}, params[:user_id]), {include_blank: true, class: "form-control input-sm",data: {"live-search": true}, multiple: true }
 				.col-xl-2
 					.form-group
 						= label_tag :objet, "Object"
