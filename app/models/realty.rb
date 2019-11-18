@@ -6,7 +6,7 @@ class Realty < ApplicationRecord
 
   	has_many :realty_record_on_lvs
   	has_many :record_on_lvs, through: :realty_record_on_lvs
-    belongs_to :disposition
+    belongs_to :disposition, required: false
   	belongs_to :realty_type, required: false
   	belongs_to :address, required: false
   	accepts_nested_attributes_for :address,  reject_if: :all_blank, allow_destroy: true
