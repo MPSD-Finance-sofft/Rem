@@ -46,4 +46,6 @@ class ClientDecorator < ApplicationDecorator
  	def object_relation_ship
  		object.relation_ship
  	end
+
+
 end

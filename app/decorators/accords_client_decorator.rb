@@ -22,4 +22,8 @@ class AccordsClientDecorator < Draper::Decorator
  					"nedefinovaný typ vlastnictví"
 		end
  	end
+
+ 	def object_relationship
+ 		object.relationship
+ 	end
 end
