@@ -43,6 +43,10 @@ class UsersController < ApplicationController
  		@superior = @user.try(:superior).try(:decorate)
  		@user = @user.decorate
  		Activity.create(user_id: current_user.id, what: "Zobrazení uživatele login: #{@user.username}", objet: "User", object_id: @user.id)
+ 		respond_to do |format|
+	        format.html {}
+	        format.json {@user}
+    	end
  	end
 
  	def new_user

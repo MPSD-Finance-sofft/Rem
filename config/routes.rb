@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :room_messages
+  resources :rooms
   resources :activities, only: [:index, :search_index] do 
     collection do 
       get :search_index

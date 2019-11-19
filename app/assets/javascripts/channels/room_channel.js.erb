@@ -1,0 +1,46 @@
+$(function() {
+  $('[data-channel-subscribe="room"]').each(function(index, element) {
+    var $element = $(element),
+        room_id = $element.data('room-id')
+        messageTemplate = $('[data-role="message-template"]');
+
+    $element.animate({ scrollTop: $element.prop("scrollHeight")}, 1000)        
+
+    App.cable.subscriptions.create(
+      {
+        channel: "RoomChannel",
+        room: room_id
+      },
+      {
+        received: function(data) {
+          var content = messageTemplate.last();
+          message = document.createElement("div");
+          user = document.createElement("div");
+          time = document.createElement("div");
+          message.innerHTML = data.message
+          time.innerHTML = data.created_at;
+          content.last().append(message);
+          content.last().append(time);
+          a = find_user(data.user_id);
+          console.log(a)
+        }
+      }
+    );
+  });
+});
+
+
+find_user = function(id) {
+   var content = messageTemplate.last();
+      return $.ajax({
+        type: 'GET',
+        url: "/users/" + id + '/card.json',
+        error: function(jqXHR, textStatus, errorThrown) {
+            alert("errors")
+        },
+        success: function(data, textStatus, jqXHR) {
+          user.innerHTML =data.all_name
+          content.last().append(user);
+        }
+    });
+  };

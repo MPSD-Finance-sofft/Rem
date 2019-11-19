@@ -1,0 +1,8 @@
+.message
+	row
+		div.room_message_date data-role="message-date"
+			= room_message.created_at
+		div.room_message_user
+			= room_message.user
+		divroom_message_content class="message-content"
+			= room_message.message

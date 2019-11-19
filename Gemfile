@@ -38,6 +38,7 @@ gem 'mysql2'
 gem 'trix-rails', require: 'trix'
 gem 'font_awesome5_rails'
 gem "sentry-raven"
+gem 'redis'
 
 group :development, :test do
   gem 'byebug', platform: :mri
