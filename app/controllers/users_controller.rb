@@ -42,9 +42,8 @@ class UsersController < ApplicationController
  		authorize @user
  		@superior = @user.try(:superior).try(:decorate)
  		@user = @user.decorate
- 		Activity.create(user_id: current_user.id, what: "Zobrazení uživatele login: #{@user.username}", objet: "User", object_id: @user.id)
  		respond_to do |format|
-	        format.html {}
+	        format.html {Activity.create(user_id: current_user.id, what: "Zobrazení uživatele login: #{@user.username}", objet: "User", object_id: @user.id)}
 	        format.json {@user}
     	end
  	end
