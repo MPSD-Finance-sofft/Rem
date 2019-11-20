@@ -89,6 +89,10 @@ class Accord < ApplicationRecord
 		end
 	end
 
+	def last_active_terrains
+		self.terrains.active.last
+	end
+
 	scope :subordinates_accords, -> (user) {where(agent_id: [User.where(superior_id: user.id).pluck(:id)])}
 	scope :agents_accords, -> (user) {where(agent_id:  user.id)}
 	scope :agent_terrain, -> (user) {where(agent_terrain_id:  user.id)}

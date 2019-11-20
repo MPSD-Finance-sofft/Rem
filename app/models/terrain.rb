@@ -10,4 +10,5 @@ class Terrain < ApplicationRecord
 		self.accord.save
 	end
 	scope :for_accord, -> (accord_id) {where(accord_id: accord_id)}
+	scope :active, -> {where(date_end_terrain: nil)}
 end
