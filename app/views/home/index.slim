@@ -48,14 +48,14 @@
         .card-body
           = render partial: "users/superior_card", locals:{superior: current_user.superior.try(:decorate)} if current_user.superior
 
-javascript:
-  $('.demo').snowfall({
-  flakeCount : 50,
-  flakeColor : '#ffffff',
-  flakeIndex: 999999,
-  minSize : 4,
-  maxSize : 6,
-  minSpeed : 1,
-  maxSpeed : 5,
-  round : true, // makes the snowflakes rounded if the browser supports it.
-  shadow : false})
+// javascript:
+//   $('.demo').snowfall({
+//   flakeCount : 50,
+//   flakeColor : '#ffffff',
+//   flakeIndex: 999999,
+//   minSize : 4,
+//   maxSize : 6,
+//   minSpeed : 1,
+//   maxSpeed : 5,
+//   round : true, // makes the snowflakes rounded if the browser supports it.
+//   shadow : false})
