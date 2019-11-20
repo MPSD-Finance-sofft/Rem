@@ -25,11 +25,10 @@
 //= require sb-admin-2.min
 //= require bootstrap-datepicker
 //= require activestorage
+//= require snowfall.jquery
+//= require snowfall
 //= require trix
 //= require_tree .
-
-
-
 
 (function() {
   $(document).on('click', '.toggle-window', function(e) {

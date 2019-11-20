@@ -1,0 +1,16 @@
+$(function() {
+  $('[data-channel-subscribe="notification"]').each(function(index, element) {
+  	console.log("tets")
+    var $element = $(element);
+    App.cable.subscriptions.create(
+      {
+        channel: "NotificationChannel"
+      },
+      {
+        received: function(data) {
+        	console.log("tets")
+        }
+      }
+    );
+  });
+});
