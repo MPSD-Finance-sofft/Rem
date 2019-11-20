@@ -68,8 +68,9 @@ class AccordDecorator < ApplicationDecorator
  	def first_client_full_name
 		object.clients.first.try(:full_name)
  	end 
+
   def first_realty_address
-    object.realty.first.try(:index_name)
+    object.realty.first.try(:address).try(:index_name)
   end
 
  	def created_at
