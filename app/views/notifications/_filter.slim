@@ -1,0 +1,16 @@
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+		h6.m-0.font-weight-bold.text-primary Filtrace
+	.card-body
+		= link_to "Deaktivování všech notifikací", deactivate_all_notifications_path(),{class: 'btn btn-warning btn-sm', type: 'buttom'}
+		= form_tag(notifications_path(), {method: :get}) do 
+			.row.p-3
+				.col-xl-2
+					.form-group
+						= label_tag :active_state, "Aktivní"
+						br
+						= check_box_tag :active_state, params[:active_state], params[:active_state]
+				.col-xl-2
+					.form-group.float-right
+						= submit_tag "Vyhledat"

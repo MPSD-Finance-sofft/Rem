@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :notifications
+  resources :notifications, only: [:index, :show, :deactivate_all] do 
+    collection do 
+      get :deactivate_all
+    end
+  end
   resources :room_messages
   resources :rooms
   resources :activities, only: [:index, :search_index] do 

@@ -38,7 +38,7 @@
                 <% current_user.notifications.active.decorate.each do |notification| %>
                   <%= render 'notifications/notification_layout', f: notification %>
                 <% end %>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                <a class="dropdown-item text-center small text-gray-500" href="/notifications?utf8=✓&active_state=on">Show All Notification</a>
               </div>
             </li>
             <div class="topbar-divider d-none d-sm-block"></div>

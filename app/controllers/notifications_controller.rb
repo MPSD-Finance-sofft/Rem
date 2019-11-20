@@ -4,63 +4,21 @@ class NotificationsController < ApplicationController
   # GET /notifications
   # GET /notifications.json
   def index
-    @notifications = Notification.all
+    @notifications = Notification.for_user(current_user.id)
+    @notifications =  IndexFilter::IndexServices.new(@notifications,params).perform
+    @notifications = @notifications.decorate
   end
 
   # GET /notifications/1
   # GET /notifications/1.json
   def show
     @notification.deactive
-    redirect_to @notification.object.constantize.find(@notification.object_id), notice: @notification.text
+    redirect_to @notification.object_find, notice: @notification.text
   end
 
-  # GET /notifications/new
-  def new
-    @notification = Notification.new
-  end
-
-  # GET /notifications/1/edit
-  def edit
-  end
-
-  # POST /notifications
-  # POST /notifications.json
-  def create
-    @notification = Notification.new(notification_params)
-
-    respond_to do |format|
-      if @notification.save
-        format.html { redirect_to @notification, notice: 'Notification was successfully created.' }
-        format.json { render :show, status: :created, location: @notification }
-      else
-        format.html { render :new }
-        format.json { render json: @notification.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /notifications/1
-  # PATCH/PUT /notifications/1.json
-  def update
-    respond_to do |format|
-      if @notification.update(notification_params)
-        format.html { redirect_to @notification, notice: 'Notification was successfully updated.' }
-        format.json { render :show, status: :ok, location: @notification }
-      else
-        format.html { render :edit }
-        format.json { render json: @notification.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /notifications/1
-  # DELETE /notifications/1.json
-  def destroy
-    @notification.destroy
-    respond_to do |format|
-      format.html { redirect_to notifications_url, notice: 'Notification was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+  def deactivate_all
+    Notification.for_user(current_user).update_all(active: false)
+    redirect_to notifications_path(active_state: true)
   end
 
   private
