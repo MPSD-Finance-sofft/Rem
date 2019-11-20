@@ -21,6 +21,7 @@ class User < ApplicationRecord
 	belongs_to :superior, class_name: "User", foreign_key: "superior_id"
 	has_one :subordinate, class_name: "User", foreign_key: "superior_id"
 	has_many :agent_accords, class_name: "Accord", foreign_key: "agent_id"
+	has_many :notifications, class_name: "Notification", foreign_key: "user_id"
 
 	accepts_nested_attributes_for :permission,  reject_if: :all_blank, allow_destroy: true
 	accepts_nested_attributes_for :user_mobile,  reject_if: :all_blank, allow_destroy: true
@@ -108,7 +109,7 @@ class User < ApplicationRecord
 		return if value.blank?
 		super
 	end
-	 
+		 
 	scope :subordinates, -> (user) {where(superior_id: user.id)}
 	scope :subordinates_id, -> (user_id) {where(superior_id: user_id)}
 	scope :permission_fo_user, -> (permission) {joins(:permission).where('permissions.kind': permission)}

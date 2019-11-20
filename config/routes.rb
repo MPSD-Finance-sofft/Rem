@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :notifications
   resources :room_messages
   resources :rooms
   resources :activities, only: [:index, :search_index] do 
