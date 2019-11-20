@@ -57,6 +57,7 @@ class Accord < ApplicationRecord
 	validates :state, :inclusion => {:in => states.keys}
 
 	after_create :add_number
+	before_update :add_notification_change_state
 
 	def commission_for_the_contract
 		self.purchase_price.to_f * 0.03
@@ -91,6 +92,10 @@ class Accord < ApplicationRecord
 
 	def last_active_terrains
 		self.terrains.active.last
+	end
+
+	def add_notification_change_state
+		Notification::for_change_state_accord(self) if self.state_changed?
 	end
 
 	scope :subordinates_accords, -> (user) {where(agent_id: [User.where(superior_id: user.id).pluck(:id)])}
