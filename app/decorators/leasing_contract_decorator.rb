@@ -97,4 +97,12 @@ class LeasingContractDecorator < ApplicationDecorator
  				""
 		end
  	end
+
+  	def first_realty_address
+   		object.realty.first.try(:address).try(:index_name)
+  	end
+
+  	def user
+    	object.user.try(:all_name)
+  	end
 end

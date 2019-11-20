@@ -22,6 +22,9 @@ div class="#{@leasing_contract.object_state}"
 					- @leasing_contract.errors.full_messages.each do |message|
 						li= message
 			.form-group
+				= form.label :user_id, "V péči"
+				= form.select :user_id, User::user_can_sign_id.map{|a| [a.all_name, a.id]},{include_blank: true, selected: form.object.user_id},{class: "selectpicker form-control", "data-live-search" => "true"}
+			.form-group
     			= form.label :kind, "Typ"
     			= form.select :kind, form.object.select_kind,{include_blank: true,selected: form.object.object_kind},{class: "selectpicker form-control", "data-live-search" => "true"}
 			.form-group
