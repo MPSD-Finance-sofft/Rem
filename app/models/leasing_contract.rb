@@ -75,6 +75,7 @@ class LeasingContract < ApplicationRecord
 	scope :for_accord, -> (accord_id) {where(accord_id: accord_id)}
 	scope :contract_number, -> (contract_number) {where(id:  contract_number)}
 	scope :state, -> (state) {where(state:  state)}
+	scope :user_id, -> (user_id) {where(user_id:  user_id)}
 	scope :client_name, -> (client_name) {joins(:clients).where("clients.name": client_name)}
 	scope :client_last_name, -> (client_last_name) {joins(:clients).where("clients.last_name": client_last_name)}
 	scope :realty_type, -> (realty_type_id) {joins(:realty).where("realties.realty_type_id": realty_type_id)}
