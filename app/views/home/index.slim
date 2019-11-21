@@ -34,7 +34,7 @@
       /! Card Header - Dropdown
       a href="#colapseFileBoard" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="colapseFileBoard"
         h6.m-0.font-weight-bold.text-primary Nástěnka
-      div class="collapse " id="colapseFileBoard"
+      div class="collapse" id="colapseFileBoard"
         .card-body  
           - FileBoard.validity.show_by_permission(current_user.permission.try(:kind)).each do |board|
             = link_to board.text, rails_blob_path(board.file, disposition: 'attachment')
@@ -47,7 +47,11 @@
       div class="collapse " id="colapseSuperiorCard"
         .card-body
           = render partial: "users/superior_card", locals:{superior: current_user.superior.try(:decorate)} if current_user.superior
-
+javascript:
+  $(document).ready(function() {
+    $("#colapseFileBoard").collapse('show');
+    $("#colapseBoard").collapse('show');
+  });
 // javascript:
 //   $('.demo').snowfall({
 //   flakeCount : 50,
