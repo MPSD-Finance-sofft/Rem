@@ -12,7 +12,7 @@ class FileBoard < ApplicationRecord
 
 	scope :for_agent, ->  {where(permission: "agent")}
 	scope :for_manager, ->  {where(permission: ["agent","manager"])}
-	scope :validity, -> {where("start < ? AND end > ?", Date.today,Date.today)}
+	scope :validity, -> {where("start <= ? AND end >= ?", Date.today,Date.today)}
 	scope :for_permmision, -> (permision) {where(permission: permision)}
 end
 
