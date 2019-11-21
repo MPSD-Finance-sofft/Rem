@@ -37,7 +37,7 @@ div.col-md-12
 					= f.text_field :purchase_price,{class: "form-control", type:"number", step:"any"}
 				.form-group
 			    	= f.label :agent_id, "Agent"
-					= f.select :agent_id, User::can_create_accord(current_user).map{|a| [a.all_name,a.id]},{include_blank: true},{class: "form-control" , data: {"live-search": true}}
+					= f.select :agent_id, User::can_create_accord(current_user).map{|a| [a.all_name,a.id]},{include_blank: true, selected: current_user.id},{class: "form-control" , data: {"live-search": true}}
 				.form-group
 				   = render partial: "accords_realities", locals: {f: f}
 				.form-group
