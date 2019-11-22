@@ -2,7 +2,7 @@ module LeasingContract::RepaymentCalendar
 	
 	def calendar
 		sum_payment = self.payments.sum(:amount)
-		repayments = self.repayments
+		repayments = self.repayments.order(repayment_date: :asc)
 		repayments.each do |repayment|
 			repayment.paid = :not_paid
 			repayment.paid = :debt if repayment.repayment_date < Date.today
