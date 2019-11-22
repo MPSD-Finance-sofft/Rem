@@ -30,15 +30,15 @@ hr
 		tr
 			th % zhodnocení
 			td
-				input.appreciation 
+				input.appreciation value="18"  data-number="18" readonly="true"
 		tr
 			th % prvních nákl.
 			td
-				input.legal_costs
+				input.legal_costs value="3"  data-number="3" eadonly="true"
 		tr
 			th % provozních nákl.
 			td
-				input.operating_costs 
+				input.operating_costs  value="3"  data-number="3" readonly="true"
 		tr
 			th % tipařské provize
 			td
@@ -55,6 +55,7 @@ javascript:
 		add_number_to_data();
 		profit();
 		sum_rent();
+		$('input').css('text-align', 'right')
 	});
 
 	sum_rent = function(){
