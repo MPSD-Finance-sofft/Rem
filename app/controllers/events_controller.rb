@@ -13,7 +13,8 @@ class EventsController < ApplicationController
   end
 
   def new
-    @event = Event.new
+    @event = Event.new.decorate
+    @event.creator = current_user
     @accord_id = params[:accord_id]
   end
 
@@ -21,9 +22,15 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(event_params)
-    @event.user_id = current_user.id
-    @event.save
+    list_of_users = params[:event][:user_id]
+    list_of_users.each do |user|
+      unless user.blank?
+        @event = Event.new(event_params)
+        @event.creator = current_user
+        @event.user_id = user
+        @event.save
+      end
+    end
   end
 
   def create_html
@@ -53,10 +60,10 @@ class EventsController < ApplicationController
 
   private
     def set_event
-      @event = Event.find(params[:id])
+      @event = Event.find(params[:id]).decorate
     end
 
     def event_params
-      params.require(:event).permit(:title, :date_range, :start, :end, :color, :user_id)
+       params.require(:event).permit!
     end
 end

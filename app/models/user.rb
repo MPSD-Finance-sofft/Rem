@@ -79,7 +79,7 @@ class User < ApplicationRecord
 
 	def self.can_create_accord(user)
 		if user.agent? || user.manager?
-			User.subordinates(user).or(User.where(id: (user.id)))
+			User.can_sign_in.subordinates(user).or(User.can_sign_in.where(id: (user.id)))
 		else
 			User.manager_and_agents.can_sign_in.select(&:not_runing_notice?)
 		end
@@ -108,6 +108,14 @@ class User < ApplicationRecord
 	def encrypted_password=(value)
 		return if value.blank?
 		super
+	end
+
+	def self.user_can_permision(user)
+		if user.agent? || user.manager?
+			User.can_sign_in.subordinates(user).or(User.where(id: (user.id)))
+		else
+			User.can_sign_in.select(&:not_runing_notice?)
+		end
 	end
 		 
 	scope :subordinates, -> (user) {where(superior_id: user.id)}

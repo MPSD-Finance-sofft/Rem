@@ -2,6 +2,9 @@
   = form_with(model: @event, remote: true) do |f|
     = hidden_field_tag 'accord_id', @accord_id
     .form-group
+      = f.label :text, 'Text'
+      = f.text_area :text, class: "form-control"
+    .form-group
       = f.label :title, 'Popis'
       = f.select :title, EventType.all_description_for_select,{}, class: "form-control"
     .form-group
@@ -9,10 +12,23 @@
       = f.hidden_field :start, value: Date.today,class: 'form-control input-sm start_hidden' 
       = f.hidden_field :end, value: Date.today,class: 'form-control input-sm end_hidden' 
     .form-group
-      = f.select :color, [['Černá','gray'], ['Zelená','Lightgreen'], ['Červená','red'], ['Růžová', 'pink']],{},class: "selectpicker form-control", "data-live-search" => "true"
+      = f.label :title, 'Barva'
+      = f.color_field :color, {class: "selectpicker form-control", "data-live-search" => "true", type:"color", value:"#ADD8E6"}
+    .form-group
+      = f.label :localite, 'Lokalita'
+      = f.text_field :localite, class: "form-control"
+    .form-group
+      = f.label :done, 'Splněno'
+      = f.check_box :done, class: "form-control" 
+    .form-group
+      = f.label :user_id, 'Pro uživatele'
+      = f.select :user_id, User.user_can_permision(current_user).map{|a| [a.all_name, a.id]}, {selected: current_user.id} , {class: "selectpicker form-control", "data-live-search" => "true", multiple: true}
+    .form-group
+      = f.label :creator_id, 'Vytvořil'
+      = f.text_field :creator_id,{value: f.object.creator, class: "form-control" , readonly:true, disable:true}
     .modal-footer.form-actions
         = link_to 'Delete',  @event,   method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' }, remote: true unless @event.new_record?
         button.btn.btn-primary type="submit"  Odešli
         button.btn.btn-secondary data-dismiss="modal" type="button"  Close
-
-
+javascript:
+  $('select').selectpicker();
