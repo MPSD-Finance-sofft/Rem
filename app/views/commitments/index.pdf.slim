@@ -70,9 +70,9 @@ html xml:lang="cs" xmlns="http://www.w3.org/1999/xhtml"
 				tr
 					td
 						= zavazek.commitment_type
-					td
+					td.text-nowrap
 						= zavazek.amount
-					td
+					td.text-nowrap
 						= zavazek.real_amount
 					td
 						= zavazek.date_of_excepted_payment
@@ -83,9 +83,9 @@ html xml:lang="cs" xmlns="http://www.w3.org/1999/xhtml"
 			tr
 				td
 					| Suma
-				td
+				td.text-nowrap
 					= @commitments_amount_sum
-				td
+				td.text-nowrap
 					= @commitments_real_amount_sum
 				td
 				td
@@ -93,7 +93,7 @@ html xml:lang="cs" xmlns="http://www.w3.org/1999/xhtml"
 			tr
 				td
 					| Rozdíl
-				td
+				td.text-nowrap
 					= @commitments_amount
 				td
 				td

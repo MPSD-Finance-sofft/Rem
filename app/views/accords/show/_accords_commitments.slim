@@ -16,8 +16,8 @@
             		- @commitments.each do |commitment|
             			tr
             				td=commitment.commitment_type
-            				td.amount=commitment.amount
-            				td.real_amount=commitment.real_amount
+            				td.amount.text-nowrap=commitment.amount
+            				td.real_amount.text-nowrap=commitment.real_amount
             				td=commitment.date_of_excepted_payment
             				td=commitment.payout_day
             				td=commitment.description
