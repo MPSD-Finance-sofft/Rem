@@ -27,7 +27,7 @@ class LeasingContract < ApplicationRecord
 	MAX_GENERATE_REPAYMENTS = 100
 
 	def generate_repayments
-		i = 1
+		i = 0
 		exist_repayment_date = Repayment.for_leasing_contract(self.id).pluck(:repayment_date)
 		range  = (self.rent_to.year * 12 + self.rent_to.month) - (self.rent_from.year * 12 + self.rent_from.month)
 		range.times do
