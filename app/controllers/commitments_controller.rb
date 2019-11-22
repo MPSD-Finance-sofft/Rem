@@ -12,7 +12,7 @@ class CommitmentsController < ApplicationController
     @accord = @accord.decorate
     respond_to do |format|
       format.pdf do
-            render  pdf: "index.pdf"
+            render  pdf: "zapocet_ke_smlouve_#{@accord.contract_number}"
           end
         end
   end
