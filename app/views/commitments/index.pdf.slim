@@ -10,7 +10,7 @@ html xml:lang="cs" xmlns="http://www.w3.org/1999/xhtml"
 		h3
 			|  datum podpisu 
 			=  @accord.date_of_signature
-		table class="table text-dark"
+		table class="table text-dark table-bordered"
 			tr
 				th
 					| Typ nemovitosti
@@ -23,44 +23,36 @@ html xml:lang="cs" xmlns="http://www.w3.org/1999/xhtml"
 						= relaty.realty_type
 					td
 						= relaty.address.try(:index_name)
-		table class="table text-dark"
+		table class="table text-dark table-bordered"
 			tr
 				th
-					| Vztah
-				th
-					| Jméno
+					| Jméno a příjmení
 				th
 					| Rodné číslo 
-				th 
-					| Kontaktní adresa
-				th 
-					| Trvalá adresa
-				th
-					| Mobil
 				th
 					| Číslo op 
+				th
+					| Mobil
+				th 
+					| Kontaktní adresa
 
 			- @accord.clients.each  do |client|
 			 	- client = client.decorate
 		    	tr
 		    		td
-		    			= client.relation_ship
-		    		td
 		    			= client.full_name
 		    		td
 		    			= client.personal_identification_number
 		    		td
-		    		 	= client.contact_address.try(:index_name)
-					td
-		    		 	= client.permanent_address.try(:index_name)
+					 	= client.identity_card_number
 					td
 					 	- client.mobile.each do |mobil|
 		                    =mobil.phone_number
 		                    | ,  
 					td
-					 	= client.identity_card_number
+		    		 	= client.address.try(:index_name)
 
-		table class="table text-dark"
+		table class="table text-dark table-bordered"
 			tr
 				th
 					| Typ
@@ -98,7 +90,6 @@ html xml:lang="cs" xmlns="http://www.w3.org/1999/xhtml"
 				td
 				td
 				td
-				td
 			tr
 				td
 					| Rozdíl
@@ -111,7 +102,7 @@ html xml:lang="cs" xmlns="http://www.w3.org/1999/xhtml"
 
 		br
 			| Datum vyhotovení: 
-			=  Date.today 
+			=  ApplicationDecorator.new(nil).format_date_time(Time.now) 
 		p
 			b.float-right.w-25.p-1
 				| Vyhotovil: 
