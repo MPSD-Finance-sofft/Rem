@@ -50,7 +50,6 @@ Rails.application.routes.draw do
   resources :expense_types
   resources :expenses
   resources :commitment_types
-  resources :commitments
   resources :clients
   resources :realties
   resources :realty_types
@@ -73,6 +72,7 @@ Rails.application.routes.draw do
       patch :create_uploads
       delete :delete_image
     end
+    resources :commitments, only: [:index]
   end
   root 'home#index'
   resources :home do 

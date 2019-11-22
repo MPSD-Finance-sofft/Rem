@@ -1,0 +1,121 @@
+doctype 1.1
+html xml:lang="cs" xmlns="http://www.w3.org/1999/xhtml" 
+  head
+    meta content="text/html;charset=UTF-8" http-equiv="content-type" /
+	= wicked_pdf_stylesheet_link_tag 'application'
+    body.text-dark
+		h1
+			| Zápočet ke sml. 
+			= @accord.contract_number
+		h3
+			|  datum podpisu 
+			=  @accord.date_of_signature
+		table class="table text-dark"
+			tr
+				th
+					| Typ nemovitosti
+				th 
+					| Adresa
+			- @accord.realty.each do |relaty|
+				- relaty = relaty.decorate 
+				tr
+					td 
+						= relaty.realty_type
+					td
+						= relaty.address.try(:index_name)
+		table class="table text-dark"
+			tr
+				th
+					| Vztah
+				th
+					| Jméno
+				th
+					| Rodné číslo 
+				th 
+					| Kontaktní adresa
+				th 
+					| Trvalá adresa
+				th
+					| Mobil
+				th
+					| Číslo op 
+
+			- @accord.clients.each  do |client|
+			 	- client = client.decorate
+		    	tr
+		    		td
+		    			= client.relation_ship
+		    		td
+		    			= client.full_name
+		    		td
+		    			= client.personal_identification_number
+		    		td
+		    		 	= client.contact_address.try(:index_name)
+					td
+		    		 	= client.permanent_address.try(:index_name)
+					td
+					 	- client.mobile.each do |mobil|
+		                    =mobil.phone_number
+		                    | ,  
+					td
+					 	= client.identity_card_number
+
+		table class="table text-dark"
+			tr
+				th
+					| Typ
+				th
+					| Částka
+				th
+					| Skutečně vyplacená částka
+				th
+					| Datum předpokládaného termínu vyplacení
+				th
+					| Datum vyplacení
+				th 
+					| Popis
+			- @commitments.each do |zavazek|
+				tr
+					td
+						= zavazek.commitment_type
+					td
+						= zavazek.amount
+					td
+						= zavazek.real_amount
+					td
+						= zavazek.date_of_excepted_payment
+					td
+						= zavazek.payout_day
+					td
+						= zavazek.description
+			tr
+				td
+					| Suma
+				td
+					= @commitments_amount_sum
+				td
+					= @commitments_real_amount_sum
+				td
+				td
+				td
+				td
+			tr
+				td
+					| Rozdíl
+				td
+					= @commitments_amount
+				td
+				td
+				td
+				td
+
+		br
+			| Datum vyhotovení: 
+			=  Date.today 
+		p
+			b.float-right.w-25.p-1
+				| Vyhotovil: 
+			b.float-right.w-25.p-1
+				| Schválil:
+			b.float-right.w-25.p-1
+				| Vyplatil: 
