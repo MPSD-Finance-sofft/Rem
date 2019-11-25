@@ -13,6 +13,7 @@
 #   rake "some:great:rake:task"
 # end
 #
+set :output, "#{path}/log/cron.log"
 every 1.hours do
 	rake "nevim:nevim"
 end
