@@ -14,7 +14,7 @@
 # end
 	set :output, "#{path}/log/cron.log"
 	every 1.minute do
-		runner "User.nevim", :environment => 'production' 
+		rake "nevim:nevim", enviroment: "production"
 	end 
 
 # Learn more: http://github.com/javan/whenever
