@@ -39,7 +39,7 @@ gem 'trix-rails', require: 'trix'
 gem 'font_awesome5_rails'
 gem "sentry-raven"
 gem 'redis'
-gem 'whenever', require: false
+gem 'whenever', '~> 1.0.0'
 
 group :development, :test do
   gem 'byebug', platform: :mri
