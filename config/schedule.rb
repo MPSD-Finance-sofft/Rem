@@ -13,9 +13,8 @@
 #   rake "some:great:rake:task"
 # end
 #
-set :output, "#{path}/log/cron.log"
-every 1.minute do
-	runner "User.nevim"
-end
-
+	set :output, "#{path}/log/cron.log"
+	every 1.minute do
+		runner "User.nevim"
+	end
 # Learn more: http://github.com/javan/whenever
