@@ -23,6 +23,9 @@
 			.form-group
 				= label_tag :end_created_at, "Přijato do"
 				= text_field_tag :end_created_at, params[:end_created_at], class: "datapicker form-control input-sm"
+			.form-group
+				= label_tag :client_personal_identification_number, "Rodné číslo klienta"
+				= text_field_tag :client_personal_identification_number, params[:client_personal_identification_number], class: "form-control input-sm"
 		.col-xl-2	
 			.form-group
 				= label_tag :date_to_terrain_start, "Posláno do terénu od"
