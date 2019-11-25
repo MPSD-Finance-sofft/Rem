@@ -343,7 +343,7 @@ DEPENDENCIES
   pry-rails
   pry-rescue
   pry-stack_explorer
-  puma (~> 3.11)
+  puma
   pundit
   rails (~> 5.2.2)
   rails-erd
