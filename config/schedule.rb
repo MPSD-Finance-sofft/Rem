@@ -14,7 +14,7 @@
 # end
 #
 set :output, "#{path}/log/cron.log"
-every 1.hours do
+every 1.minutes do
 	rake "nevim:nevim"
 end
 
