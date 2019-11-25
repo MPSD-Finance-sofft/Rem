@@ -5,5 +5,7 @@ tr.nested-fields
 	td
 		= f.text_field :amount, {class: "form-control  text-right"}
 	td
+		= f.select :repayment_type_id, RepaymetType.all.map{|a| [a.description, a.id]},{include_blank: true},{class: "selectpicker form-control input-sm", "data-live-search" => "true"}
+	td
 		= link_to_remove_association "Odstranění splátky", f, class: 'btn btn-primary btn-danger'
 	

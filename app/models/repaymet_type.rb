@@ -1,0 +1,2 @@
+class RepaymetType < ApplicationRecord
+end
