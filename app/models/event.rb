@@ -13,4 +13,7 @@ class Event < ApplicationRecord
   		#self.title = self.title + "<a href='/accords/#{accord_id}'>Žádost</a>"
   	end
 	scope :for_user, -> (user_id) {where(user_id:  user_id)} 
+  scope :done, -> (done) {where(done:  done)} 
+  scope :title, -> (title) {where(title:  title)} 
+  scope :creator, -> (creator_id) {where(creator:  creator_id)} 
 end

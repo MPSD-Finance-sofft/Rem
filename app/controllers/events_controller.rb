@@ -60,7 +60,7 @@ class EventsController < ApplicationController
 
   def all_list
     authorize Event
-    @events = Event.all.decorate
+    @events =  IndexFilter::IndexServices.new(Event.all,params).perform.decorate
   end
 
   private
