@@ -3,6 +3,7 @@ class Event < ApplicationRecord
   	attr_accessor :date_range
 
   	belongs_to :creator, class_name: "User", foreign_key: 'creator_id'
+    belongs_to :user, class_name: "User", foreign_key: 'user_id'
 
   	def all_day_event?
     	self.start == self.start.midnight && self.end == self.end.midnight ? true : false

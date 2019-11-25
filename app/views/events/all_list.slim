@@ -1,0 +1,38 @@
+div.container-fluid
+	ol.breadcrumb
+		li.breadcrumb-item
+			b
+				| Události
+		li.breadcrumb-item
+			| Přehled událostí
+
+.col-xl-12.col-lg-12
+	.card.shadow.mb-4
+		.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+	  		h6.m-0.font-weight-bold.text-primary Přehled 
+		.card-body
+			table.table
+				thead
+					tr
+						th | Hotovo
+						th | Datum vytvoření
+						th | Datum Od
+						th | Datum Do
+						th | Popis
+						th | Text
+						th | Lokalita
+						th | Pro uživatele
+						th | Vytvořil
+				- @events.each do |event|
+					tbody
+						tr
+							td = event.done
+							td = event.created_at
+							td = event.start
+							td = event.end
+							td = event.title.html_safe
+							td = event.text
+							td = event.localite
+							td = event.user
+							td = event.creator
+

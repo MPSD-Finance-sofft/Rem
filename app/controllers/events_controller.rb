@@ -58,6 +58,11 @@ class EventsController < ApplicationController
     @event.destroy
   end
 
+  def all_list
+    authorize Event
+    @events = Event.all.decorate
+  end
+
   private
     def set_event
       @event = Event.find(params[:id]).decorate

@@ -84,6 +84,7 @@ Rails.application.routes.draw do
     collection do 
         post :create_html
         get :index_list
+        get :all_list
     end
   end
   resources :conversations, only: [:create,:index] do

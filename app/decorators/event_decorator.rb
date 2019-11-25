@@ -16,9 +16,17 @@ class EventDecorator < ApplicationDecorator
   	def end
   		format_date_time object.end
   	end
+    
+    def created_at
+      format_date_time object.created_at
+    end
 
     def creator
       object.creator.try(:all_name)
+    end
+
+    def user
+      object.user.try(:all_name)
     end
 
 end
