@@ -10,6 +10,8 @@ class RepaymentDecorator < ApplicationDecorator
 	end
 	
 	def type
-		object.repayment_type.try(:description)
+		typ = object.repayment_type.try(:description)
+		typ = "Předpis úhrady" if typ.blank?
+		typ
 	end	
 end
