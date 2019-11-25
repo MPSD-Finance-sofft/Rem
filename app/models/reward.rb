@@ -2,7 +2,7 @@ class Reward < ApplicationRecord
 	has_paper_trail ignore: [:updated_at]
 	belongs_to :accord
 	belongs_to :invoice, required: false
-	belongs_to :agent, foreign_key: 'user_id', class_name: 'User' ,  required: false
+	belongs_to :agent, foreign_key: 'user_id', class_name: 'User'
 
 	def create_reward(accord)
 		self.accord_id= accord.id
