@@ -13,11 +13,11 @@
 #   rake "some:great:rake:task"
 # end
 	set :output, "#{path}/log/cron.log"
-	every 1.minute do
+	every 1.year do
 		runner "User.nevim", :environment => 'production' 
 	end 
 
-	every 1.hours do
+	every 1.day do
 		runner "User.nevim", :environment => 'production' 
 	end
 # Learn more: http://github.com/javan/whenever
