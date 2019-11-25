@@ -3,6 +3,7 @@ class Repayment < ApplicationRecord
 	include RepaymentEnum
 	include RemoveWhiteSpiceFromNumberInput::Amount
 	belongs_to :leasing_contract
+	belongs_to :repayment_type, class_name: "RepaymetType", foreign_key:"repayment_type_id", required: false
 	attr_accessor :paid
 
 

@@ -9,4 +9,7 @@ class RepaymentDecorator < ApplicationDecorator
 		format_number(object.amount)
 	end
 	
+	def type
+		object.repayment_type.try(:description)
+	end	
 end
