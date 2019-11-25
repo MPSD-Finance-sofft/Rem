@@ -24,7 +24,9 @@ set :ssh_options,     { forward_agent: true, user: fetch(:user), keys: %w(~/.ssh
 set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, false  # Change to true if using ActiveRecord
-set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
+set :whenever_environment, ->{ fetch(:rails_env) }
+set :whenever_identifier,  ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
+set :whenever_command,     ->{ "cd #{fetch(:release_path)} && bundle exec whenever" }
 
 namespace :puma do
   desc 'Create Directories for Puma Pids and Socket'
@@ -62,7 +64,6 @@ namespace :deploy do
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
       invoke 'puma:restart'
-      set :whenever_command, "bundle exec whenever"
     end
   end
 
