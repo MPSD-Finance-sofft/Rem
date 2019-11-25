@@ -12,9 +12,12 @@
 #   runner "MyModel.some_method"
 #   rake "some:great:rake:task"
 # end
-#
 	set :output, "#{path}/log/cron.log"
 	every 1.minute do
-		runner "User.nevim"
+		runner "User.nevim",, :environment => 'production' 
+	end 
+	
+	every 1.hours do
+		runner "User.nevim",, :environment => 'production' 
 	end
 # Learn more: http://github.com/javan/whenever
