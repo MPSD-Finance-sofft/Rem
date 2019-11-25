@@ -119,6 +119,7 @@ GEM
       request_store (>= 1.0)
     erubi (1.8.0)
     execjs (2.7.0)
+    executable-hooks (1.6.0)
     faker (1.9.3)
       i18n (>= 0.7)
     faraday (0.11.0)
@@ -328,6 +329,7 @@ DEPENDENCIES
   devise
   devise_masquerade
   draper
+  executable-hooks
   faker
   font_awesome5_rails
   fullcalendar-rails
