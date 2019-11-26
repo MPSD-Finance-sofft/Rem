@@ -117,12 +117,6 @@ class User < ApplicationRecord
 			User.can_sign_in.select(&:not_runing_notice?)
 		end
 	end
-
-	def self.nevim
-		u = User.first
-  		u.name = Time.now
-  		u.save(validate:false)	
-	end
 		 
 	scope :subordinates, -> (user) {where(superior_id: user.id)}
 	scope :subordinates_id, -> (user_id) {where(superior_id: user_id)}
