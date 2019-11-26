@@ -29,7 +29,7 @@ class RepaymentsController < ApplicationController
 
     respond_to do |format|
       if @repayment.save
-        format.html { redirect_to @repayment, notice: 'Repayment was successfully created.' }
+        format.html { redirect_to @leasing_contract, notice: 'Repayment was successfully created.'  }
         format.json { render :show, status: :created, location: @repayment }
       else
         format.html { render :new }
