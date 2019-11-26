@@ -27,7 +27,6 @@ set :puma_init_active_record, false  # Change to true if using ActiveRecord
 set :whenever_roles,  :app
 set :whenever_environment, ->{ fetch(:rails_env) }
 set :whenever_identifier,  ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
-set :rvm_ruby_version, '2.5.1@rem'
 
 namespace :puma do
   desc 'Create Directories for Puma Pids and Socket'
