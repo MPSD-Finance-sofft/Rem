@@ -26,7 +26,7 @@ div.container-fluid
             td=link_to reward.agent, card_user_path(reward.user_id)
             td=reward.agent_superior
             td=link_to reward.contract, accord_path(reward.accord)
-            td
+            td=reward.first_client
             td=reward.purchase_price
             td=reward.agency_commission
             td=reward.commission_for_the_contract

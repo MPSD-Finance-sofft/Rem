@@ -1,5 +1,5 @@
 h1 Faktura
-table.table
+table class="table text-dark table-bordered"
 	tr
 		th forma úhrady 
 		th variabilní symbol
@@ -13,7 +13,7 @@ table.table
 		td = @invoice.created_at
 		td = @invoice.excepted_payment_day
 		td
-table.table
+table class="table text-dark table-bordered"
 	tr
 		th
 			h4.col-xl-5.col-lg-5 dodavatel
@@ -42,23 +42,63 @@ h3
 	| Fakturujeme Vám provizi za:    
 	= @invoice.period
 br
-table.table
+table class="table text-dark table-bordered"
+			tr
+				th
+					| Typ nemovitosti
+				th 
+					| Adresa
+			- @invoice.rewards.each do |reward|
+				- reward.accord.realty.each do |relaty|
+					- relaty = relaty.decorate 
+					tr
+						td 
+							= relaty.realty_type
+						td
+							= relaty.address.try(:index_name)
+table class="table text-dark table-bordered"
+	tr
+		th
+			| Jméno a příjmení
+		th
+			| Rodné číslo 
+		th
+			| Číslo op 
+		th
+			| Mobil
+		th 
+			| Kontaktní adresa
+
+	- @invoice.rewards.each do |reward|
+		- reward.accord.clients.each  do |client|
+		 	- client = client.decorate
+	    	tr
+	    		td
+	    			= client.full_name
+	    		td
+	    			= client.personal_identification_number
+	    		td
+				 	= client.identity_card_number
+				td
+				 	- client.mobile.each do |mobil|
+	                    =mobil.phone_number
+	                    | ,  
+				td
+	    		 	= client.address.try(:index_name)
+table class="table text-dark table-bordered"
 	tr
 		th číslo smlouvy
-		th klient
 		th výkupní cena
 		th provize
 	- @invoice.rewards.each do |reward|
 		tr
 			td = reward.accord.contract_number
-			td
 			td = reward.accord.purchase_price
 			td = reward.commission_for_the_contract
 	tr
 		td 
+		td
 			b celkem
-		td
-		td
 		td
 			b = @invoice.rewards.sum(:commission_for_the_contract)
 h5 fakturoval

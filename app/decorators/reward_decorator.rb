@@ -53,4 +53,8 @@ class RewardDecorator < ApplicationDecorator
     format_number object.agency_commission
   end
 
+  def first_client
+    object.accord.try(:clients).try(:first).try(:full_name)
+  end
+
 end
