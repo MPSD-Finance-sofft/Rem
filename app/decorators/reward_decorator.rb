@@ -57,4 +57,8 @@ class RewardDecorator < ApplicationDecorator
     object.accord.try(:clients).try(:first).try(:full_name)
   end
 
+  def object_accord
+    object.accord
+  end
+
 end

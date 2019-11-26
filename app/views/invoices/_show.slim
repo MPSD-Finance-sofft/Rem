@@ -77,16 +77,18 @@ table class="table text-dark table-bordered"
 		th výkupní cena
 		th provize
 	- @invoice.rewards.each do |reward|
+		- reward = reward.decorate
 		tr
-			td = reward.accord.contract_number
-			td = reward.accord.purchase_price
+			td = reward.object_accord.contract_number
+			td = reward.purchase_price
 			td = reward.commission_for_the_contract
 	tr
 		td 
+			b celkem 
 		td
-			b celkem
-		td
-			b = @invoice.rewards.sum(:commission_for_the_contract)
+			b = @invoice.purchase_price
+		td 
+			b = @invoice.commission_for_the_contract
 h5 fakturoval
 hr
 
