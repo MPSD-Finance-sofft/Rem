@@ -12,8 +12,12 @@
 #   runner "MyModel.some_method"
 #   rake "some:great:rake:task"
 # end
-	set :output, "#{path}/log/cron.log"
-	every 1.minute do
-		runner "User::nevim", :environment => 'production' 
-	end 
+set :chronic_options, hours24: true
+set :environment, ENV['RAILS_ENV']
+set :output, "#{path}/log/cron.log"
+set :bundle_command, 'bundle exec'
+job_type :runner, "cd :path && :bundle_command rails runner -e :environment ':task' :output"
+every 1.minute do
+	runner "User::nevim", :environment => 'production' 
+end 
 # Learn more: http://github.com/javan/whenever
