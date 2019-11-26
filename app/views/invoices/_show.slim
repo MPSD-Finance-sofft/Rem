@@ -9,10 +9,10 @@ table class="table text-dark table-bordered"
 	tr
 		td
 			b převodem
-		td
+		td = 
 		td = @invoice.created_at
 		td = @invoice.excepted_payment_day
-		td
+		td = @invoice.id
 table class="table text-dark table-bordered"
 	tr
 		th
@@ -24,9 +24,10 @@ table class="table text-dark table-bordered"
 			p
 				b = @invoice.agent_company
 				br
+				| IČ: 
 				= @invoice.agent_identity_company_number
 				br
-				| fakturační adresa
+					| fakturační adresa
 				br
 				b Číslo účtu: 
 				= @invoice.agnet_bank_number
@@ -60,29 +61,14 @@ table class="table text-dark table-bordered"
 	tr
 		th
 			| Jméno a příjmení
-		th
-			| Rodné číslo 
-		th
-			| Číslo op 
-		th
-			| Mobil
 		th 
 			| Kontaktní adresa
-
 	- @invoice.rewards.each do |reward|
 		- reward.accord.clients.each  do |client|
 		 	- client = client.decorate
 	    	tr
 	    		td
 	    			= client.full_name
-	    		td
-	    			= client.personal_identification_number
-	    		td
-				 	= client.identity_card_number
-				td
-				 	- client.mobile.each do |mobil|
-	                    =mobil.phone_number
-	                    | ,  
 				td
 	    		 	= client.address.try(:index_name)
 table class="table text-dark table-bordered"

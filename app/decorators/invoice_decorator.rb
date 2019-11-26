@@ -34,7 +34,7 @@ class InvoiceDecorator < ApplicationDecorator
   end
 
   def agnet_bank_number
-     object.agent.try(:account_number).to_s + " / " +  object.agent.try(:identity_company_number).to_s
+     object.agent.try(:account_number).to_s + " / " +  object.agent.try(:bank_code).to_s
   end
 
   def purchase_price
