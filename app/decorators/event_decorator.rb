@@ -9,13 +9,6 @@ class EventDecorator < ApplicationDecorator
   #       object.created_at.strftime("%a %m/%d/%y")
   #     end
   #   end
-  	def start
-  		format_date_time object.start
-  	end
-
-  	def end
-  		format_date_time object.end
-  	end
     
     def created_at
       format_date_time object.created_at

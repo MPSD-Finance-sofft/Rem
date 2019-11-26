@@ -20,9 +20,10 @@
     .form-group
       = f.label :done, 'Splněno'
       = f.check_box :done, class: "form-control" 
-    .form-group
-      = f.label :user_id, 'Pro uživatele'
-      = f.select :user_id, User.user_can_permision(current_user).map{|a| [a.all_name, a.id]}, {selected: current_user.id} , {class: "selectpicker form-control", "data-live-search" => "true", multiple: true}
+    - if @event.new_record?
+      .form-group
+        = f.label :user_id, 'Pro uživatele'
+        = f.select :user_id, User.user_can_permision(current_user).map{|a| [a.all_name, a.id]}, {selected: current_user.id} , {class: "selectpicker form-control", "data-live-search" => "true", multiple: true}
     .form-group
       = f.label :creator_id, 'Vytvořil'
       = f.text_field :creator_id,{value: f.object.creator, class: "form-control" , readonly:true, disable:true}

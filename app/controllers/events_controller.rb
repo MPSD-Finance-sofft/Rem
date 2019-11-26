@@ -51,6 +51,8 @@ class EventsController < ApplicationController
   end
 
   def update
+    event_params.delete(:creator_id)
+    event_params.delete(:user_id)
     @event.update(event_params)
   end
 

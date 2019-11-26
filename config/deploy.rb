@@ -71,7 +71,7 @@ namespace :deploy do
   after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
   after  :finishing,    :restart
-  set :whenever_command,     ->{ "cd #{fetch(:release_path)} && bundle exec whenever --update-crontab" }
+  set :whenever_command,     ->{ "cd #{fetch(:release_path)} && bundle exec whenever" }
 end
 
 # ps aux | grep puma    # Get puma pid
