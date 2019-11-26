@@ -1,6 +1,6 @@
 class RepaymentsController < ApplicationController
   before_action :set_repayment, only: [:show, :edit, :update, :destroy]
-  before_action :set_leasing_contract, only: [:show, :edit, :update, :destroy, :bulk_create, :delete_all_repayments]
+  before_action :set_leasing_contract, only: [:show, :edit, :update, :destroy, :bulk_create, :delete_all_repayments, :create]
 
   # GET /repayments
   # GET /repayments.json
@@ -95,6 +95,6 @@ class RepaymentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def repayment_params
-      params.require(:repayment).permit(:amount, :repayment_date, :leasing_contract_id)
+      params.require(:repayment).permit(:amount, :repayment_date, :leasing_contract_id, :repayment_type_id)
     end
 end
