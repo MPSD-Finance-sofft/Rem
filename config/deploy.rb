@@ -71,8 +71,6 @@ namespace :deploy do
   after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
   after  :finishing,    :restart
-  set :whenever_command,     ->{ "cd /opt/apps/rem/current && bundle exec whenever -c" }
-  set :whenever_command,     ->{ "cd /opt/apps/rem/current && bundle exec whenever -i" }
 end
 
 # ps aux | grep puma    # Get puma pid
