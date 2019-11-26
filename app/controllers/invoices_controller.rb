@@ -4,7 +4,7 @@ class InvoicesController < ApplicationController
   # GET /invoices
   # GET /invoices.json
   def index
-    @invoices = Invoice.order(created_at: :desc).decorate
+    @invoices = policy_scope(Invoice).order(created_at: :desc).decorate
   end
 
   # GET /invoices/1

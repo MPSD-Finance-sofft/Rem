@@ -5,7 +5,7 @@ class RewardsController < ApplicationController
   # GET /rewards
   # GET /rewards.json
   def index
-    @rewards = Reward.order(created_at: :desc).decorate
+    @rewards = policy_scope(Reward).order(created_at: :desc).decorate
   end
 
   # GET /rewards/1

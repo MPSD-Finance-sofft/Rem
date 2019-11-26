@@ -17,4 +17,8 @@ class Invoice < ApplicationRecord
 	def agent
 		self.rewards.first.try(:agent)
 	end
+
+
+	scope :for_user, -> (user_id) {joins(:rewards).where('rewards.user_id': user_id)}
+	scope :subordinates_invoices, -> (user) {joins(:rewards).where('rewards.user_id': [User.where(superior_id: user.id).pluck(:id)])}
 end

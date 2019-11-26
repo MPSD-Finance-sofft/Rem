@@ -24,5 +24,6 @@ class Reward < ApplicationRecord
 	scope :invoice, -> (invoice_id) {where(invoice_id: invoice_id)}
 	scope :for_user, -> (user_id) {where(user_id: user_id)}
 	scope :without_invoice, ->  {where("invoice_id is NULL")}
+	scope :subordinates_rewards, -> (user) {where(user_id: [User.where(superior_id: user.id).pluck(:id)])}
 
 end
