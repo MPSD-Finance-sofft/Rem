@@ -9,7 +9,7 @@ table class="table text-dark table-bordered"
 	tr
 		td
 			b převodem
-		td = 
+		td = @invoice.agent.username.match('[\d]\w+').to_s
 		td = @invoice.created_at
 		td = @invoice.excepted_payment_day
 		td = @invoice.id
