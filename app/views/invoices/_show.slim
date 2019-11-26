@@ -9,7 +9,7 @@ table class="table text-dark table-bordered"
 	tr
 		td
 			b převodem
-		td = @invoice.agent.username.match('[\d]\w+').to_s
+		td = @invoice.variable
 		td = @invoice.created_at
 		td = @invoice.excepted_payment_day
 		td = @invoice.id
@@ -27,7 +27,7 @@ table class="table text-dark table-bordered"
 				| IČ: 
 				= @invoice.agent_identity_company_number
 				br
-					| fakturační adresa
+				= @invoice.agent_address
 				br
 				b Číslo účtu: 
 				= @invoice.agnet_bank_number

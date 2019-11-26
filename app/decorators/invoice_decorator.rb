@@ -49,4 +49,16 @@ class InvoiceDecorator < ApplicationDecorator
     format_date object.delivery_date
   end
 
+  def variable
+    object.agent.username.match('[\d]\w+').to_s
+  end
+
+  def agent_user_name
+    object.agent.username
+  end
+
+  def agent_address
+    object.agent.user_address.where(kind: :billing).try(:index_name)
+  end
+
 end

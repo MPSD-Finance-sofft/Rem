@@ -12,7 +12,7 @@ class InvoicesController < ApplicationController
   def show
     @invoice = @invoice.decorate
     respond_to do |format|
-      format.pdf { render pdf: "#{@invoice.id}_#{@invoice.agent.username}_invoice_#{@invoice.period_year}_#{@invoice.period_month}"}
+      format.pdf { render pdf: "#{@invoice.id}_#{@invoice.agent_user_name}_invoice_#{@invoice.period_year}_#{@invoice.period_month}"}
     end
   end
 
