@@ -58,7 +58,7 @@ class InvoiceDecorator < ApplicationDecorator
   end
 
   def agent_address
-    object.agent.user_address.where(kind: :billing).try(:index_name)
+    object.user_address.where(kind: 'billing').first.address.index_name
   end
 
 end
