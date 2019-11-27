@@ -19,6 +19,9 @@ div.container-fluid
             th Legenda
             th Částka
             th Procento s nájmu
+            th Datum od
+            th Datum do
+            th Cron ano/ne
         tbody
           - @repaymet_types.each do |repaymet_type|
             tr
@@ -26,4 +29,7 @@ div.container-fluid
               td= repaymet_type.text
               td= repaymet_type.number
               td= repaymet_type.procent
+              td= repaymet_type.start_date
+              td= repaymet_type.end_data
+              td= repaymet_type.cron
               
