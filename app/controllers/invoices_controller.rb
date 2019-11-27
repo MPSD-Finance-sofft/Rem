@@ -38,6 +38,7 @@ class InvoicesController < ApplicationController
   # PATCH/PUT /invoices/1
   # PATCH/PUT /invoices/1.json
   def update
+    authorize @invoice
     respond_to do |format|
       if @invoice.update(invoice_params)
         format.html { redirect_to invoices_url, notice: 'Invoice was successfully updated.' }
