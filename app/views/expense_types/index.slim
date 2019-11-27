@@ -12,13 +12,12 @@ div.container-fluid
       div.col-md-2.nopadding.text-right.panel-title
         = link_to 'Nový typ nákladu', new_expense_type_path
     .card-body
-      .chart-area
-        table.table
+      table.table
+        tr
+          th Popis
+        - @expense_types.each do |expense_type|
           tr
-            th Popis
-          - @expense_types.each do |expense_type|
-            tr
-              td= expense_type.name 
-              td= link_to 'Show', expense_type 
-              td= link_to 'Edit', edit_expense_type_path(expense_type) 
-              td= link_to 'Destroy', expense_type, method: :delete, data: { confirm: 'Are you sure?' }
+            td= expense_type.name 
+            td= link_to 'Show', expense_type 
+            td= link_to 'Edit', edit_expense_type_path(expense_type) 
+            td= link_to 'Destroy', expense_type, method: :delete, data: { confirm: 'Are you sure?' }

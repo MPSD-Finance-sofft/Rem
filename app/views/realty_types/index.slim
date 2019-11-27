@@ -12,13 +12,11 @@ div.container-fluid
       div.col-md-2.nopadding.text-right.panel-title
         = link_to 'Nový typ nemovitosti', new_realty_type_path
     .card-body
-      .chart-area
-        table.table
-          thead
+      table.table
+        thead
+          tr
+            th Jméno
+        tbody
+          - @realty_types.each do |realty_type|
             tr
-              th Jméno
-          tbody
-            - @realty_types.each do |realty_type|
-              tr
-                td= link_to realty_type.name, edit_realty_type_path(realty_type)
-        br
+              td= link_to realty_type.name, edit_realty_type_path(realty_type)
