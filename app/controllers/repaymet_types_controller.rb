@@ -69,6 +69,6 @@ class RepaymetTypesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def repaymet_type_params
-      params.require(:repaymet_type).permit(:description)
+      params.require(:repaymet_type).permit!
     end
 end

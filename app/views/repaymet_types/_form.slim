@@ -1,0 +1,24 @@
+= form_with(model: repaymet_type, local: true) do |form|
+  - if repaymet_type.errors.any?
+    #error_explanation
+      h2
+        = pluralize(repaymet_type.errors.count, "error")
+        | prohibited this repaymet_type from being saved:
+      ul
+        - repaymet_type.errors.full_messages.each do |message|
+          li= message
+  .field
+    = form.label :description
+    = form.text_field :description
+  .field
+    = form.label :text, 'Legenda'
+    = form.text_field :text
+  .field
+    = form.label :number, 'Částka'
+    = form.text_field :number
+  .field
+    = form.label :procent, 'Procento s nájmu'
+    = form.text_field :procent
+  .actions
+    = form.submit
+

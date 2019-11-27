@@ -1,0 +1,29 @@
+div.container-fluid
+  ol.breadcrumb
+    li.breadcrumb-item
+      b
+        | 
+    li.breadcrumb-item
+      | Přehled typů nemovitostí
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary Přehled typů nemovitostí
+      div.col-md-2.nopadding.text-right.panel-title
+        = link_to 'Nový typ splátky', new_repaymet_type_path
+    .card-body
+      table.table
+        thead
+          tr
+            th Jméno
+            th Legenda
+            th Částka
+            th Procento s nájmu
+        tbody
+          - @repaymet_types.each do |repaymet_type|
+            tr
+              td= link_to repaymet_type.description, edit_repaymet_type_path(repaymet_type)
+              td= repaymet_type.text
+              td= repaymet_type.number
+              td= repaymet_type.procent
+              
