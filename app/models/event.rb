@@ -16,4 +16,6 @@ class Event < ApplicationRecord
   scope :done, -> (done) {where(done:  done)} 
   scope :title, -> (title) {where(title:  title)} 
   scope :creator, -> (creator_id) {where(creator:  creator_id)} 
+  scope :end_date, -> (end_date) {where('end <= ?', end_date.to_date + 1.day)} 
+  scope :start_date, -> (start_date) {where('start >= ?', start_date.to_date+ 1.day)} 
 end

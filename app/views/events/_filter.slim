@@ -21,5 +21,12 @@
 						= label_tag :creator, "Vytvořil"
 						= select_tag :creator, options_for_select(User.all.map{|a| [a.all_name,a.id]}, params[:creator]), {include_blank: true, class: "form-control input-sm", multiple: true}
 				.col-xl-2
+					.form-group
+						= label_tag :start_date, "Datum od"
+						= text_field_tag :start_date, params[:start_date], {class: "form-control input-sm datapicker"}
+					.form-group
+						= label_tag :end_date, "Datum do"
+						= text_field_tag :end_date, params[:end_date], {class: "form-control input-sm datapicker"}
+				.col-xl-2
 					.form-group.float-right
 						= submit_tag "Vyhledat"
