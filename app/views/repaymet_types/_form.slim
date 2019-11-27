@@ -19,6 +19,15 @@
   .field
     = form.label :procent, 'Procento s nájmu'
     = form.text_field :procent
+  .field
+    = form.label :start_date, 'Platnost od'
+    = form.text_field :start_date, class: "datapicker"
+  .field
+    = form.label :end_data, 'Platnost do'
+    = form.text_field :end_data, class: "datapicker"
+  .field
+    = form.label :cron, 'Cron ano/ne'
+    = form.check_box :cron
   .actions
     = form.submit
 
