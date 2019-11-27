@@ -12,6 +12,9 @@
 		= address.label :number, "ČP/ČO"
 		= address.text_field :number, class: "form-control number input-sm", readonly: true
 	.form-group
+		= address.label :ev_number, "Evidenční číslo"
+		= address.text_field :ev_number, class: "form-control ev_number input-sm", readonly: true
+	.form-group
 		= address.label :zip, "PSČ"
 		= address.text_field :zip, class: "form-control zip input-sm", readonly: true
 	.form-group
@@ -49,6 +52,7 @@ javascript:
 				locality = $(suggest._input.closest(".find_adress"))
 				position = suggestData.position;
 				data = JSON.parse(suggest._options.provider._responseData.data).result[position].userData;
+				ev_number_arr = data.suggestFirstRow.match(/(ev.)(\s*)(č.)(\s*)(\d*)/g)
 				locality.find(".village").val(data.municipality);
 				locality.find(".street").val(data.street);
 				locality.find(".district").val(data.district);
@@ -58,7 +62,11 @@ javascript:
 				if (data.street == "") {
 					locality.find(".street").val(data.municipality);
 					};
+				if (ev_number_arr) {
+					locality.find(".ev_number").val(ev_number_arr[0])};
 			}).addListener("close", function() {
 				console.log("suggest byl zavren/skryt");
 			});
 		};
+
+		//data.suggestFirstRow.match(/(ev.)(\s*)(č.)(\s*)(\d*)/g)[0]
