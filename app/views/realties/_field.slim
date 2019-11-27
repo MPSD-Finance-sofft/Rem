@@ -11,9 +11,6 @@
 						- f.object.build_address unless f.object.address
 						= f.fields_for :address do |address|
 							= render 'addresses/field', address: address
-						.form-group
-					    	= f.label :date_of_final_building_approval, "Datum kolaudace nemovitosti"
-							= f.text_field :date_of_final_building_approval, class: "form-control datapicker"
 					.col-xl-4.col-lg-4
 						.form-group
 							= f.label :realty_type_id, 'Typ nemovitosti'
@@ -36,6 +33,9 @@
 						.form-group
 							= f.label :property_sheet, "List vlastnictví"
 							= f.text_field :property_sheet, {class: "form-control input-sm", type: "number"}
+						.form-group
+					    	= f.label :date_of_final_building_approval, "Datum kolaudace nemovitosti"
+							= f.text_field :date_of_final_building_approval, class: "form-control datapicker"
 					.col-xl-4.col-lg-4
 						.form-group
 							= f.label :disposition_id, "Dispozice"
