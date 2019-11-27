@@ -4,7 +4,7 @@ class RepaymetTypesController < ApplicationController
   # GET /repaymet_types
   # GET /repaymet_types.json
   def index
-    @repaymet_types = RepaymetType.all
+    @repaymet_types = RepaymetType.all.decorate
   end
 
   # GET /repaymet_types/1
@@ -64,7 +64,7 @@ class RepaymetTypesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_repaymet_type
-      @repaymet_type = RepaymetType.find(params[:id])
+      @repaymet_type = RepaymetType.find(params[:id]).decorate
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
