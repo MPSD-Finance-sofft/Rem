@@ -41,7 +41,7 @@
             <li class="nav-item dropdown no-arrow mx-2">
               <a class="nav-link dropdown-toggle" href="#" id="NotificationDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <% if current_user.notifications.active.count > 0 %>
-                  <i class="fas fa-bell fa-fw style='color:red'"></i>
+                  <i class="fas fa-bell fa-fw" style="color:red"></i>
                   <span class="badge badge-danger badge-counter"><%= current_user.notifications.active.count%></span>
                 <% else %>
                   <i class="fas fa-bell fa-fw" style="color:green"></i>
