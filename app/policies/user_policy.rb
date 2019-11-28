@@ -29,7 +29,7 @@ class UserPolicy < ApplicationPolicy
     		if user.admin?
       			scope.includes(:superior).includes(:agent_accords).joins(:permission).order(username: :desc)
     		elsif user.agent? || user.manager?
-            scope.subordinates(user).order(username: :desc)
+            scope.subordinates(user).or(scope.id(user)).order(username: :desc)
         elsif user.user?
             scope.all_without_user.order(username: :desc)
         end

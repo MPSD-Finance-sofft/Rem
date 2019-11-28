@@ -5,6 +5,7 @@ div.container-fluid
 				| Události
 		li.breadcrumb-item
 			| Přehled událostí
+= render 'filter'
 .col-xl-12.col-lg-12
 	.card.shadow.mb-4
 		.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
@@ -31,8 +32,8 @@ div.container-fluid
 						tr
 							td = check(event.done)
 							td = event.created_at
-							td = event.start
-							td = event.end
+							td = event.start_date
+							td = event.end_date
 							td = event.title.html_safe
 							td = event.text
 							td = event.localite

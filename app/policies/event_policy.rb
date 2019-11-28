@@ -1,9 +1,5 @@
 class EventPolicy < ApplicationPolicy
 
-	def all_list?
-		user.admin? || user.user?
-	end
-
 	class Scope 
 		attr_reader :user, :scope
 
@@ -15,8 +11,10 @@ class EventPolicy < ApplicationPolicy
     	def resolve
     		if user.admin? || user.user?
   				scope.all 
-  			else
-  				scope.where("1=2")
+  			elsif user.manager?
+            	scope.subordinates_events(user).or(scope.for_user(user))
+  			elsif user.agent?
+        		scope.for_user(user.id)
   			end
     	end
   	end

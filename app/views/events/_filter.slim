@@ -16,10 +16,10 @@
 					.col-xl-2
 						.form-group
 							= label_tag :for_user, "Pro uživatele"
-							= select_tag :for_user, options_for_select(User.all.map{|a| [a.all_name,a.id]}, params[:for_user]), {include_blank: true, class: "form-control input-sm", multiple: true}
+							= select_tag :for_user, options_for_select(@users.map{|a| [a.all_name,a.id]}, params[:for_user]), {include_blank: true, class: "form-control input-sm", multiple: true}
 						.form-group
 							= label_tag :creator, "Vytvořil"
-							= select_tag :creator, options_for_select(User.all.map{|a| [a.all_name,a.id]}, params[:creator]), {include_blank: true, class: "form-control input-sm", multiple: true}
+							= select_tag :creator, options_for_select(@creators.map{|a| [a.all_name,a.id]}, params[:creator]), {include_blank: true, class: "form-control input-sm", multiple: true}
 					.col-xl-2
 						.form-group
 							= label_tag :start_date, "Aktivita od"
