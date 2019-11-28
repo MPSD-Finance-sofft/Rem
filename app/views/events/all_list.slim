@@ -30,7 +30,7 @@ div.container-fluid
 				- @events.each do |event|
 					tbody
 						tr
-							td = event.done
+							td = check(event.done)
 							td = event.created_at
 							td = event.start_date
 							td = event.end_date
