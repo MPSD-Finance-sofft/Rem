@@ -1,32 +1,60 @@
 .col-xl-12.col-lg-12
-  .card.shadow.mb-4
-    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
-		h6.m-0.font-weight-bold.text-primary Event
-	.card-body
-		= form_tag(all_list_events_path(), {method: :get}) do 
-			.row.p-3
-				.col-xl-2
-					.form-group
-						= label_tag :title, "Typ události"
-						= select_tag :title, options_for_select(EventType.all.map{|a| [a.description,a.description]}, params[:title]), {include_blank: true, class: "form-control input-sm", multiple: true}
-					.form-group
-						= label_tag :done, "Splněno"
-						br
-						= select_tag :done, options_for_select([['Splněno',true],['Nesplněno',false]], params[:done]), {include_blank: true, class: "form-control input-sm"}
-				.col-xl-2
-					.form-group
-						= label_tag :for_user, "Pro uživatele"
-						= select_tag :for_user, options_for_select(User.all.map{|a| [a.all_name,a.id]}, params[:for_user]), {include_blank: true, class: "form-control input-sm", multiple: true}
-					.form-group
-						= label_tag :creator, "Vytvořil"
-						= select_tag :creator, options_for_select(User.all.map{|a| [a.all_name,a.id]}, params[:creator]), {include_blank: true, class: "form-control input-sm", multiple: true}
-				.col-xl-2
-					.form-group
-						= label_tag :start_date, "Aktivita od"
-						= text_field_tag :start_date, params[:start_date], {class: "form-control input-sm datapicker"}
-					.form-group
-						= label_tag :end_date, "Aktivita do"
-						= text_field_tag :end_date, params[:end_date], {class: "form-control input-sm datapicker"}
-				.col-xl-2
-					.form-group.float-right
-						= submit_tag "Vyhledat"
+	.card.shadow.mb-4
+		.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+			h6.m-0.font-weight-bold.text-primary Event
+		.card-body
+			= form_tag(all_list_events_path(), {method: :get}) do 
+				.row.p-4
+					.col-xl-2
+						.form-group
+							= label_tag :title, "Typ události"
+							= select_tag :title, options_for_select(EventType.all.map{|a| [a.description,a.description]}, params[:title]), {include_blank: true, class: "form-control input-sm", multiple: true}
+						.form-group
+							= label_tag :done, "Splněno"
+							br
+							= select_tag :done, options_for_select([['Splněno',true],['Nesplněno',false]], params[:done]), {include_blank: true, class: "form-control input-sm"}
+					.col-xl-2
+						.form-group
+							= label_tag :for_user, "Pro uživatele"
+							= select_tag :for_user, options_for_select(User.all.map{|a| [a.all_name,a.id]}, params[:for_user]), {include_blank: true, class: "form-control input-sm", multiple: true}
+						.form-group
+							= label_tag :creator, "Vytvořil"
+							= select_tag :creator, options_for_select(User.all.map{|a| [a.all_name,a.id]}, params[:creator]), {include_blank: true, class: "form-control input-sm", multiple: true}
+					.col-xl-2
+						.form-group
+							= label_tag :start_date, "Aktivita od"
+							= text_field_tag :start_date, params[:start_date], {class: "form-control input-sm datapicker"}
+						.form-group
+							= label_tag :end_date, "Aktivita do"
+							= text_field_tag :end_date, params[:end_date], {class: "form-control input-sm datapicker"}
+						.form-group.float-right
+							= submit_tag "Vyhledat"
+					.col-xl-4
+						table.table.text-dark
+							tr
+								td Servisní návštěva
+								td =@events.where(title: 'Servisní návštěva').count
+							tr
+								td Akviziční schůzka
+								td =@events.where(title: 'Akviziční schůzka').count
+							tr
+								td Focení
+								td =@events.where(title: 'Focení').count
+							tr
+								td Podpis
+								td =@events.where(title: 'Podpis').count
+							tr
+								td Podpis NS/dodatku
+								td =@events.where(title: 'Podpis NS/dodatkua').count
+							tr
+								td S klientem v terénu
+								td =@events.where(title: 'S klientem v terénua').count
+							tr
+								td Vyčíslování exekucí/zástav
+								td =@events.where(title: 'Vyčíslování exekucí/zástav').count
+							tr
+								td Administrativa
+								td =@events.where(title: 'Administrativa').count
+							tr
+								td Jiný typ
+								td =@events.where(title: 'Jiný typ').count
