@@ -10,9 +10,9 @@
 						= label_tag :title, "Typ události"
 						= select_tag :title, options_for_select(EventType.all.map{|a| [a.description,a.description]}, params[:title]), {include_blank: true, class: "form-control input-sm", multiple: true}
 					.form-group
-						= label_tag :done, "Hotovo"
+						= label_tag :done, "Splněno"
 						br
-						= check_box_tag :done, params[:done], params[:done]
+						= select_tag :done, options_for_select([['Splněno',true],['Nesplněno',false]], params[:done]), {include_blank: true, class: "form-control input-sm"}
 				.col-xl-2
 					.form-group
 						= label_tag :for_user, "Pro uživatele"

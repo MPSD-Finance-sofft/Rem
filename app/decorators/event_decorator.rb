@@ -22,4 +22,11 @@ class EventDecorator < ApplicationDecorator
       object.user.try(:all_name)
     end
 
+    def start_date
+       format_date_time object.start
+    end
+
+    def end_date
+       format_date_time object.end
+    end
 end
