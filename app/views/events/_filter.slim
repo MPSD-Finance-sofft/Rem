@@ -33,28 +33,55 @@
 						table.table.text-dark
 							tr
 								td Servisní návštěva
-								td =@events.where(title: 'Servisní návštěva').count
+								td 
+									=@events.where(title: 'Servisní návštěva').count
+									| /
+									=@events.where(done: true).where(title: 'Servisní návštěva').count
 							tr
 								td Akviziční schůzka
-								td =@events.where(title: 'Akviziční schůzka').count
+								td 
+									=@events.where(title: 'Akviziční schůzka').count
+									| /
+									=@events.where(done: true).where(title: 'Akviziční schůzka').count
 							tr
 								td Focení
-								td =@events.where(title: 'Focení').count
+								td 
+									=@events.where(title: 'Focení').count
+									| /
+									=@events.where(done: true).where(title: 'Focení').count
 							tr
 								td Podpis
-								td =@events.where(title: 'Podpis').count
+								td 
+									=@events.where(title: 'Podpis').count
+									| /
+									=@events.where(done: true).where(title: 'Podpis').count
 							tr
 								td Podpis NS/dodatku
-								td =@events.where(title: 'Podpis NS/dodatku').count
+								td 
+									=@events.where(title: 'Podpis NS/dodatku').count
+									| /
+									=@events.where(done: true).where(title: 'Podpis NS/dodatku').count
 							tr
 								td S klientem v terénu
-								td =@events.where(title: 'S klientem v terénu').count
+								td 
+									=@events.where(title: 'S klientem v terénu').count
+									| /
+									=@events.where(done: true).where(title: 'S klientem v terénu').count
 							tr
 								td Vyčíslování exekucí/zástav
-								td =@events.where(title: 'Vyčíslování exekucí/zástav').count
+								td 
+									=@events.where(title: 'Vyčíslování exekucí/zástav').count
+									| /
+									=@events.where(done: true).where(title: 'Vyčíslování exekucí/zástav').count
 							tr
 								td Administrativa
-								td =@events.where(title: 'Administrativa').count
+								td 
+									=@events.where(title: 'Administrativa').count
+									| /
+									=@events.where(done: true).where(title: 'Administrativa').count
 							tr
 								td Jiný typ
-								td =@events.where(title: 'Jiný typ').count
+								td 
+									=@events.where(title: 'Jiný typ').count
+									| /
+									=@events.where(done: true).where(title: 'Jiný typ').count
