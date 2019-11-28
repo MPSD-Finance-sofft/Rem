@@ -1,27 +1,41 @@
-div 
-  div.container-fluid
-    ol.breadcrumb
-      li.breadcrumb-item
-        b
-         | Události
-      li.breadcrumb-item
-          | Přehled událostí
-
-col-xl-12.col-lg-12
+div.container-fluid
+	ol.breadcrumb
+		li.breadcrumb-item
+			b
+				| Události
+		li.breadcrumb-item
+			| Přehled událostí
+.col-xl-12.col-lg-12
 	.card.shadow.mb-4
 		.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
 	  		h6.m-0.font-weight-bold.text-primary Přehled 
 		.card-body
+			p
+		        b 
+		          | Počet vyhledaných událostí: 
+		          = @events.size
 			table.table
 				thead
 					tr
-						th | Datum Od
-						th | Datum Do
-						th | Text
+						th Splněno
+						th Datum vytvoření
+						th Aktivita od
+						th Aktivita do
+						th Typ události
+						th Popis události
+						th Lokalita
+						th Pro uživatele
+						th Vytvořil
 				- @events.each do |event|
 					tbody
 						tr
+							td = event.done
+							td = event.created_at
 							td = event.start
 							td = event.end
 							td = event.title.html_safe
+							td = event.text
+							td = event.localite
+							td = event.user
+							td = event.creator
 
