@@ -32,7 +32,8 @@ initialize_calendar = function() {
           event: {
             id: event.id,
             start: event.start.format(),
-            end: event.end.format()
+            end: event.end.format(),
+            done: event.done
           }
         };
         $.ajax({
@@ -41,7 +42,14 @@ initialize_calendar = function() {
             type: 'PATCH'
         });
       },
-      
+     eventRender: function(event, element) {
+      if (event.done) {
+        done = '<i class="fa fa-check" style="color:green"></i>'
+      } else {
+        done = '<i class="fa fa-times" style="color:red"></i>'
+      };
+      $(element).find('.fc-title').html(done +' ' +event.title);
+      },     
       eventClick: function(event, jsEvent, view) {
         $.getScript(event.edit_url, function() {
           $('#event_date_range').val(moment(event.start).format("DD/MM/YYYY HH:mm") + ' - ' + moment(event.end).format("DD/MM/YYYY HH:mm"))
