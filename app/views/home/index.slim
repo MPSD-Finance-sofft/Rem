@@ -6,7 +6,7 @@
         h6.m-0.font-weight-bold.text-primary Novinky Aplikace
       div class="collapse " id="colapseBoard"
         .card-body
-          - Board.show_by_permission(current_user.permission.try(:kind)).each do |board|
+          - Board.validity.show_by_permission(current_user.permission.try(:kind)).each do |board|
             p 
               = board.date
               |   

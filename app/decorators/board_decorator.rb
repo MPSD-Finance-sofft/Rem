@@ -9,5 +9,11 @@ class BoardDecorator < ApplicationDecorator
   #       object.created_at.strftime("%a %m/%d/%y")
   #     end
   #   end
+  def end_date
+  	format_date object.end_date
+  end
 
+  def date
+  	format_date object.date
+  end
 end

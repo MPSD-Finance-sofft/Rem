@@ -10,5 +10,6 @@ class Board < ApplicationRecord
 
 	scope :for_permmision, -> (permision) {where(permission: permision)}
 	scope :for_manager, ->  {where(permission: ["manager", "agent"])}
+	scope :validity, -> {where("date <= ? AND end_date >= ?", Date.today,Date.today)}
 
 end

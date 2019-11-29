@@ -4,7 +4,7 @@ class BoardsController < ApplicationController
   # GET /boards
   # GET /boards.json
   def index
-    @boards = Board.all
+    @boards = Board.all.decorate
   end
 
   # GET /boards/1
@@ -64,11 +64,11 @@ class BoardsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_board
-      @board = Board.find(params[:id])
+      @board = Board.find(params[:id]).decorate
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def board_params
-      params.require(:board).permit(:text, :permission, :date)
+      params.require(:board).permit(:text, :permission, :date, :end_date)
     end
 end

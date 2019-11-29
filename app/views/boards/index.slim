@@ -6,16 +6,25 @@ div.container-fluid
     li.breadcrumb-item
       | Novinky aplikace
 .col-xl-12.col-lg-12
-	.card.shadow.mb-4
-	    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
-	      h6.m-0.font-weight-bold.text-primary Novinky aplikace
-	      div.col-md-2.nopadding.text-right.panel-title
-	        = link_to 'Nová novinka aplikace', new_board_path
-	    .card-body
-		    table#dttb-boards.responsive.nowrap.table.table-hover data-sort="true" data-source=("#{url_for(format: :json)}") 
-			  thead
-			    tr
-			      th data-data="text"  Text
-			      th data-data="permission"  Permission
-			      th.skip-export data-class-name="all" data-data="url" data-orderable="false" data-searchable="false" width="100px" 
-        br
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary Novinky aplikace
+      div.col-md-2.nopadding.text-right.panel-title
+        = link_to 'Nová novinka aplikace', new_board_path
+    .card-body
+      table.table
+        thead
+          tr
+            th id
+            th Datum od
+            th Datum do
+            th Oprávnění
+            th Text
+        tbody
+          - @boards.each do |board|
+            tr
+            	td= link_to board.id, board_path(board)
+             	td= board.date
+             	td= board.end_date
+             	td= board.permission
+             	td= board.text.html_safe
