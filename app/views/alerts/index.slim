@@ -1,0 +1,36 @@
+- title "Přehled hlídaču"
+div.container-fluid
+  ol.breadcrumb
+    li.breadcrumb-item
+      b
+        | Hlídače
+    li.breadcrumb-item
+      | Přehled hlídačů
+//= render 'filter'
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary Přehled hlídačů
+    .card-body
+      p
+        b 
+          | Počet vyhledaných hlídačů: 
+          = @alerts.size
+      table.table 
+        tr.text-dark
+          th Stav
+          th Datum upozornění
+          th Typ
+          th Datum vytvoření
+          th Vytvořil
+          th Poznámka
+          th Pro žádost
+        - @alerts.each do |alert|
+          tr 
+            td = check(alert.done)
+            td = alert.date_alert
+            td = alert.alert_type
+            td = alert.created_at
+            td = alert.creator
+            td = alert.text
+            td = link_to alert.object_id, alert_path(alert)

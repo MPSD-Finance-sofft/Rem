@@ -1,0 +1,27 @@
+= form_with(model: alert, local: true) do |form|
+  - if alert.errors.any?
+    #error_explanation
+      h2
+        = pluralize(alert.errors.count, "error")
+        | prohibited this alert from being saved:
+      ul
+        - alert.errors.full_messages.each do |message|
+          li= message
+  = form.hidden_field :object_id, :value => @accord.id
+  = form.hidden_field :object, :value => 'Accord'
+  = form.hidden_field :creator_id, :value => current_user.id
+  .form-group
+    = form.label :alert_type_id, 'Typ upozornění'
+    = form.select :alert_type_id, AlertType.all.map{|a| [a.description, a.id]},{selected: form.object.alert_type_id},{class: "selectpicker form-control", "data-live-search" => "true"}
+  .form-group
+    = form.label :user_id, 'Pro uživatele'
+    = form.select :alert_type_id, User.all.map{|a| [a.all_name, a.id]},{selected: current_user.id},{class: "selectpicker form-control", "data-live-search" => "true", multiple: true}
+  .form-group
+    = form.label :date_alert, 'Datum prvního upozornění'
+    = form.text_field :date_alert, class: "form-control datapicker"
+  .form-group
+    = form.label :text, 'Poznámka'
+    = form.text_field :text, class: "form-control"
+
+  .action
+    = form.submit

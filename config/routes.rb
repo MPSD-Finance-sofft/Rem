@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :alerts
   resources :alert_types
   resources :repaymet_types
   resources :notifications, only: [:index, :show, :deactivate_all] do 
