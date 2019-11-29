@@ -61,7 +61,7 @@ class EventsController < ApplicationController
   end
 
   def all_list
-    @events = policy_scope(Event).order(created_at: :desc)
+    @events = policy_scope(Event).order(start: :desc)
     @events = IndexFilter::IndexServices.new(@events,params).perform.decorate
     @creators = User.where(id: @events.pluck(:user_id).uniq)
     @users = policy_scope(User)
