@@ -42,7 +42,7 @@
                  <% current_user.alerts.active.limit(5).decorate.each do |alert| %>
                   <%= render 'alerts/alert_layout', f: alert %>
                 <% end %>
-                <a class="dropdown-item text-center small text-gray-500" href="/alerts">Show All Alerts</a>
+                <a class="dropdown-item text-center small text-gray-500" href="/alerts?&done_state=on">Show All Alerts</a>
               </div>
             </li> 
             <li class="nav-item dropdown no-arrow mx-2">

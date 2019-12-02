@@ -1,0 +1,15 @@
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+		h6.m-0.font-weight-bold.text-primary Filtrace
+	.card-body
+		= form_tag(alerts_path(), {method: :get}) do 
+			.row.p-3
+				.col-xl-2
+					.form-group
+						= label_tag :done_state, "Aktivní"
+						br
+						= check_box_tag :done_state, params[:done_state], params[:done_state]
+				.col-xl-2
+					.form-group.float-right
+						= submit_tag "Vyhledat"

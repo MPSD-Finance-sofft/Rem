@@ -4,7 +4,8 @@ class AlertsController < ApplicationController
   # GET /alerts
   # GET /alerts.json
   def index
-    @alerts = Alert.for_user(current_user).decorate
+    @alerts = Alert.for_user(current_user)
+    @alerts = IndexFilter::IndexServices.new(@alerts,params).perform.decorate
   end
 
   # GET /alerts/1
