@@ -11,7 +11,7 @@
         tr
           th | Datum úhrady
           th | Částka
-        - @leasing_contract.payments.order(payment_date: :desc).decorate.each do |payment|
+        - @leasing_contract.payments.order(payment_date: :asc).decorate.each do |payment|
           tr
           	td=payment.payment_date
           	td.amount=payment.amount
