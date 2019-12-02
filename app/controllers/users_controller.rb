@@ -4,8 +4,9 @@ class UsersController < ApplicationController
 	def index
 		@users = policy_scope(User)
 		authorize @users
-		@users =  IndexFilter::IndexServices.new(@users,params).perform
-		@users = UserDecorator.decorate_collection(@users)
+		@filter_users = @users
+		@company = @filter_users.map{|a| [a.name_company,a.name_company]}.uniq
+		@users =  IndexFilter::IndexServices.new(@users,params).perform.decorate
 	end
 
 	def edit

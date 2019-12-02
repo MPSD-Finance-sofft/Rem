@@ -121,7 +121,10 @@ class User < ApplicationRecord
 		 
 
 	scope :subordinates, -> (user) {where(superior_id: user.id)}
+	scope :username, -> (user) {where("users.username LIKE ? ", "%#{user}%")}
 	scope :id, -> (user) {where(id: user.id)}
+	scope :id_user, -> (user) {where(id: user)}
+	scope :company, -> (company) {where(name_company: company)}
 	scope :subordinates_id, -> (user_id) {where(superior_id: user_id)}
 	scope :permission_fo_user, -> (permission) {joins(:permission).where('permissions.kind': permission)}
 	scope :agents,   ->{ joins(:permission).where('permissions.kind': 'agent') }
