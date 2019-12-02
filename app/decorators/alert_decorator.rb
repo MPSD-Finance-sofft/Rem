@@ -15,6 +15,10 @@ class AlertDecorator < ApplicationDecorator
 
   def creator
     object.creator.try(:all_name)
+  end 
+  
+  def user
+    object.user.try(:all_name)
   end
 
   def object_id

@@ -98,6 +98,10 @@ class Accord < ApplicationRecord
 		Notification::for_change_state_accord(self) if self.state_changed?
 	end
 
+	def alerts
+		Alert.where(object_id: self.id).where(object: "Accord")
+	end
+
 	scope :subordinates_accords, -> (user) {where(agent_id: [User.where(superior_id: user.id).pluck(:id)])}
 	scope :agents_accords, -> (user) {where(agent_id:  user.id)}
 	scope :agent_terrain, -> (user) {where(agent_terrain_id:  user.id)}
