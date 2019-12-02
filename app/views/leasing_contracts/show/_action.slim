@@ -13,8 +13,10 @@
         br
         = link_to "Generování splátek", bulk_create_leasing_contract_repayments_path(leasing_contract_id: @leasing_contract.id),{class: 'btn btn-info btn-sm m-1', type: 'buttom'}
         = link_to "Smazaní všech splátek", delete_all_repayments_leasing_contract_repayments_path(leasing_contract_id: @leasing_contract.id),{class: 'btn btn-info btn-sm m-1', type: 'buttom'}
-      br
-       = link_to "Přílohy", uploads_leasing_contract_path(id: @leasing_contract.id) , { class: 'btn btn-info btn-sm float-right m-1', type: 'buttom'}
+        br
+          = link_to "Přílohy", uploads_leasing_contract_path(id: @leasing_contract.id) , { class: 'btn btn-info btn-sm float-right m-1', type: 'buttom'}
+          button.btn.btn-sm.btn-info.m-1 data-target="#alertModal" data-toggle="modal" type="button" 
+            | Přidej hlídače 
       button.btn.btn-primary.btn-sm.m-1 data-target="#exampleModalCenter" data-toggle="modal" type="button" 
         | Přidej poznámku 
 
@@ -80,6 +82,34 @@
           .form-group
             = f.label :repayment_type_id, "Typ"
             = f.select :repayment_type_id, RepaymetType.all.map{|a| [a.description, a.id]},{},{class: "selectpicker form-control input-sm", "data-live-search" => "true"}
+          .modal-footer
+            button.btn.btn-secondary data-dismiss="modal" type="button"  Close
+            button.btn.btn-primary type="submit"  Odešli
+
+#alertModal.modal.fade aria-hidden="true" aria-labelledby="exampleModalCenterTitle" role="dialog" tabindex="-1" 
+  .modal-dialog.modal-dialog-centered role="document" 
+    .modal-content
+      .modal-header
+        h5#exampleModalLongTitle.modal-title.text-dark Přidání hlídače
+        button.close aria-label="Close" data-dismiss="modal" type="button" 
+          span aria-hidden="true"  &times;
+      .modal-body
+        = form_with(model: Alert.new.decorate, local: true) do |form|
+          = form.hidden_field :object_id, :value => @leasing_contract.id
+          = form.hidden_field :object, :value => 'LeasingContract'
+          = form.hidden_field :creator_id, :value => current_user.id
+          .form-group.text-dark
+            = form.label :alert_type_id, 'Typ upozornění'
+            = form.select :alert_type_id, AlertType.all.map{|a| [a.description, a.id]},{},{class: "selectpicker form-control", "data-live-search" => "true"}
+          .form-group.text-dark
+            = form.label :user_id, 'Pro uživatele'
+            = form.select :user_id, User.all.map{|a| [a.all_name, a.id]},{selected: current_user.id},{class: "selectpicker form-control", "data-live-search" => "true", multiple: true}
+          .form-group.text-dark
+            = form.label :date_alert, 'Datum prvního upozornění'
+            = form.text_field :date_alert, class: "form-control datapicker"
+          .form-group.text-dark
+            = form.label :text, 'Poznámka'
+            = form.text_field :text, class: "form-control"
           .modal-footer
             button.btn.btn-secondary data-dismiss="modal" type="button"  Close
             button.btn.btn-primary type="submit"  Odešli

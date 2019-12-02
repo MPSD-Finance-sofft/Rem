@@ -71,6 +71,10 @@ class LeasingContract < ApplicationRecord
 	def added?
 		self.state != 'ended' && self.repayments.sum(:amount).to_f == self.payments.sum(:amount).to_f 
 	end
+
+	def alerts
+		Alert.where(object_id: self.id).where(object: "LeasingContract")
+	end
 	
 	scope :for_accord, -> (accord_id) {where(accord_id: accord_id)}
 	scope :contract_number, -> (contract_number) {where(id:  contract_number)}
