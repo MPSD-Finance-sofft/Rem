@@ -65,7 +65,7 @@ class LeasingContract < ApplicationRecord
 	end
 
 	def active?
-		!debt? && self.state != 'ended'
+		!debt? && self.state != 'ended' && self.expected_date_of_signature <= Date.today
 	end
 
 	def added?
