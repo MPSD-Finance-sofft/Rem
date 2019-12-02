@@ -10,7 +10,7 @@ class AlertsController < ApplicationController
   # GET /alerts/1
   # GET /alerts/1.json
   def show
-    redirect_to @alert.object_find, notice: ''
+    redirect_to @alert.object_find, notice: @alert.to_text
   end
 
   # GET /alerts/new

@@ -1,0 +1,9 @@
+tr id="#{alert.id}"
+	td.check data-done="#{alert.done}" = check(alert.done)
+	td = link_to alert.object_id, alert_path(alert)
+	td = alert.date_alert
+	td = alert.alert_type
+	td = alert.text
+	td = alert.created_at
+	td = alert.creator
+	td = link_to "Smazat", alert_path(id: alert.id), method: :delete, data: { confirm: 'Are you certain you want to delete this?' }

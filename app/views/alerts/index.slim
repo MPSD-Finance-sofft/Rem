@@ -19,18 +19,45 @@ div.container-fluid
       table.table 
         tr.text-dark
           th Stav
+          th Vztahuje se k žádosti
           th Datum upozornění
-          th Typ
+          th Typ hlídače
+          th Poznámka
           th Datum vytvoření
           th Vytvořil
-          th Poznámka
-          th Pro žádost
+          th
         - @alerts.each do |alert|
-          tr 
-            td = check(alert.done)
-            td = alert.date_alert
-            td = alert.alert_type
-            td = alert.created_at
-            td = alert.creator
-            td = alert.text
-            td = link_to alert.object_id, alert_path(alert)
+          = render 'index_alert', alert: alert
+
+javascript: 
+  var check_to_s;
+  $(document).on('click', '.check', function(e) {
+    var id = this.closest('tr').id
+    var a = $(this).data('done')
+    return $.ajax({
+      url: '/alerts/' + id + '.json',
+      type: 'PUT',
+      data: {
+        'alert': {
+          id: id,
+          done: !a,}
+      },
+      success: function(data, textStatus, jqXHR) {
+        pre_tr = $("tr[id=" + data.id+"]")
+        tr = pre_tr.find('.check');
+        tr.find('i').remove();
+        tr.append(check_to_s(data.done));
+        pre_tr.find('td').first().data('done', data.done);
+        },
+    });
+  });
+
+  function check_to_s(check) {
+    if (check) {
+      text = '<i class="fa fa-check" style="color:green data-done"></i>'
+    }
+    else {
+      text = '<i class="fa fa-times" style="color:red"></i>'
+    }
+    return text;
+  };

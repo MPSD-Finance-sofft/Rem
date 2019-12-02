@@ -24,4 +24,8 @@ class AlertDecorator < ApplicationDecorator
   def alert_type
     object.alert_type.try(:description)
   end 
+
+  def date_alert
+    format_date object.date_alert
+  end
 end

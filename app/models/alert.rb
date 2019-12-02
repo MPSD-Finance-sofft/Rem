@@ -8,6 +8,11 @@ class Alert < ApplicationRecord
 		self.object.constantize.find(self.object_id)
 	end
 	
+	def to_text
+		a = self.decorate
+		"U žádosti #{a.object_id} byl hlídač #{a.alert_type} nastaven na #{a.date_alert}. Hlídač vytvořil #{a.creator} #{a.created_at}."
+	end
+
 	scope :for_user, -> (user_id) {where(user_id:  user_id)}
 	scope :active, -> {where(done:  false).where('date_alert <= ?', Date.today)}
 	scope :done_state, ->(done) {where(done:  done)}
