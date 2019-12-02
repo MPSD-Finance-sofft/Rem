@@ -28,4 +28,8 @@ class AlertDecorator < ApplicationDecorator
   def date_alert
     format_date object.date_alert
   end
+
+  def created_at
+    format_date_time object.created_at
+  end
 end
