@@ -18,6 +18,7 @@ div class="#{@accord.object_state} text-dark"
     .col-xl-12.accord_show.bg-primary
       = render partial: "accords/show/accord_action"
       = render partial: "accords/show/accord_data"
+      = render partial: "accords/show/accord_planed_price" if current_user.user_or_admin?
       = render partial: "accords/show/accord_terrains" unless @terrains.blank?
       = render partial: "accords/show/accord_leasing_contracts" unless @leasing_contracts.blank?
       = render partial: "accords/show/reward"

@@ -1,0 +1,42 @@
+<%= form_with(model: planned_price, local: true) do |form| %>
+  <% if planned_price.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(planned_price.errors.count, "error") %> prohibited this planned_price from being saved:</h2>
+
+      <ul>
+      <% planned_price.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :accord_id %>
+    <%= form.number_field :accord_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :advertising_price %>
+    <%= form.text_field :advertising_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :market_price %>
+    <%= form.text_field :market_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :estimated_selling_price %>
+    <%= form.text_field :estimated_selling_price %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

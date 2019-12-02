@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Accord:</strong>
+  <%= @planned_price.accord_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @planned_price.user_id %>
+</p>
+
+<p>
+  <strong>Advertising price:</strong>
+  <%= @planned_price.advertising_price %>
+</p>
+
+<p>
+  <strong>Market price:</strong>
+  <%= @planned_price.market_price %>
+</p>
+
+<p>
+  <strong>Estimated selling price:</strong>
+  <%= @planned_price.estimated_selling_price %>
+</p>
+
+<%= link_to 'Edit', edit_planned_price_path(@planned_price) %> |
+<%= link_to 'Back', planned_prices_path %>

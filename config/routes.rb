@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :planned_prices, only: [:create]
   resources :alerts
   resources :alert_types
   resources :repaymet_types

@@ -1,0 +1,22 @@
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    a href="#colapseAlerts" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="colapseAlerts"
+      h6.m-0.font-weight-bold.text-primary Plán ceny
+    .collapse id="colapseAlerts"
+      .card-body
+      	table.table 
+	        tr.text-dark
+				th Datum vytvoření
+				th Kupní cena
+				th Reálná cena
+				th Inzertní cena
+				th Prodejní cena
+				th Vytvořil
+      		- @accord.planned_prices.decorate.each do |price|
+      			tr
+      				td = price.created_at
+					td = price.market_price
+					td = price.real_price
+					td = price.advertising_price
+					td = price.estimated_selling_price
+					td = price.user

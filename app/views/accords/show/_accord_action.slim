@@ -25,6 +25,8 @@
         = link_to "Stáhnout", accord_path(@accord, accord: {state: 'dowload'}) , {:method=> :put, class: 'btn btn-sm  m-1 dowload text-dark', type: 'buttom'}
         = link_to "Zobraz změny", changes_accords_path(id: @accord.id) , { class: 'btn btn-sm btn-info m-1 float-right text-white', type: 'buttom'}
         br
+        button.btn.btn-sm.btn-info.m-1 data-target="#PlanedPrice" data-toggle="modal" type="button" 
+          | Přidej plánovanou cenu 
         button.btn.btn-sm.btn-info.m-1 data-target="#alertModal" data-toggle="modal" type="button" 
           | Přidej hlídače 
       button.btn.btn-sm.btn-info.m-1 data-target="#exampleModalCenter" data-toggle="modal" type="button" 
@@ -118,6 +120,33 @@
           .form-group.text-dark
             = form.label :text, 'Poznámka'
             = form.text_field :text, class: "form-control"
+          .modal-footer
+            button.btn.btn-secondary data-dismiss="modal" type="button"  Close
+            button.btn.btn-primary type="submit"  Odešli
+
+#PlanedPrice.modal.fade aria-hidden="true" aria-labelledby="exampleModalCenterTitle" role="dialog" tabindex="-1" 
+  .modal-dialog.modal-dialog-centered role="document" 
+    .modal-content
+      .modal-header
+        h5#exampleModalLongTitle.modal-title.text-dark Přidání plánu cen
+        button.close aria-label="Close" data-dismiss="modal" type="button" 
+          span aria-hidden="true"  &times;
+      .modal-body
+        = form_with(model: PlannedPrice.new.decorate, local: true) do |form|
+          = form.hidden_field :accord_id, :value => @accord.id
+          = form.hidden_field :user_id, :value => current_user.id
+          .form-group.text-dark
+            = form.label :market_price, 'Kupní cena'
+            = form.text_field :market_price, class: "form-control "
+          .form-group.text-dark
+            = form.label :real_price, 'Reálná cena'
+            = form.text_field :real_price, class: "form-control "
+          .form-group.text-dark
+            = form.label :advertising_price, 'Inzertní cena'
+            = form.text_field :advertising_price, class: "form-control "
+          .form-group.text-dark
+            = form.label :estimated_selling_price, 'Prodejní cena'
+            = form.text_field :estimated_selling_price, class: "form-control "
           .modal-footer
             button.btn.btn-secondary data-dismiss="modal" type="button"  Close
             button.btn.btn-primary type="submit"  Odešli
