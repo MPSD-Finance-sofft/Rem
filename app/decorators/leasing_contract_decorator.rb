@@ -98,6 +98,10 @@ class LeasingContractDecorator < ApplicationDecorator
 		end
  	end
 
+ 	def debt
+ 		format_number object.debt
+ 	end
+
   	def first_realty_address
    		object.realty.first.try(:address).try(:index_name)
   	end
