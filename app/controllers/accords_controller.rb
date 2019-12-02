@@ -101,6 +101,7 @@ class AccordsController < ApplicationController
   def create_uploads
     respond_to do |format|
       if @accord.update(accord_params)
+        Notification::for_upload_accord(@accord,current_user)
         format.html { redirect_to uploads_accord_path(accord_id: @accord), notice: 'Přílohy přidány' }
         format.json { render :show, status: :ok, location: @accord }
       else

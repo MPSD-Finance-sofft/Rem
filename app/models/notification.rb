@@ -22,6 +22,18 @@ class Notification < ApplicationRecord
 		end
 	end
 
+	def self.for_upload_accord(accord,user)
+		users = []
+		users << accord.user_id if accord.user_id != user.id
+		users << accord.agent.try(:superior_id) if accord.agent.try(:superior_id) != user.id
+		users << accord.last_active_terrains.try(:agent_id) if accord.last_active_terrains.try(:agent_id) != user.id
+		users.compact.each do |user_id|
+			n = Notification::new_notification_for_accord_uploads(accord,user)
+			n.user_id = user_id
+			n.save
+		end	
+	end
+
 	def self.for_notice_leasing_contract(object_id, notice)
 		leasing_contract = LeasingContract.find(object_id).decorate
 		users = []
@@ -69,6 +81,15 @@ class Notification < ApplicationRecord
 		notification.object = "LeasingContract"
 		notification.object_id = object_id
 		notification.text = "Na nájmení smlouvu #{leasing_contract.id} ve stavu #{leasing_contract.state} klienta #{leasing_contract.first_client_full_name} (týkající se nemovitosti #{leasing_contract.first_realty_address} byla přidána poznámka. Tuto poznámku zapsal #{notice.autor} #{notice.created_at}"
+		notification.active = true
+		notification
+	end
+
+	def self.new_notification_for_accord_uploads(accord,user)
+		notification = Notification.new
+		notification.object = "Accord"
+		notification.object_id = accord.id
+		notification.text = "Na žádost #{accord.id} ve stavu #{accord.state} klienta #{accord.first_client_full_name} (týkající se nemovitosti #{accord.first_realty_address}) byla přidána příloha. Tuto přílohu zapsal #{user.all_name} #{Time.now.strftime('%d.%m.%Y %T')}."
 		notification.active = true
 		notification
 	end
