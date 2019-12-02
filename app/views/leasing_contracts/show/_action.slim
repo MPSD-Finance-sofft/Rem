@@ -5,7 +5,7 @@
       h6.m-0.font-weight-bold.text-primary Akce
     .card-body
       - if current_user.user_or_admin?
-        = link_to "Úprava", edit_leasing_contract_path(@leasing_contract.id),{class: 'btn btn-info btn-sm  m-1', type: 'buttom'}
+        = link_to "Úprava", edit_leasing_contract_path(@leasing_contract.id),{class: 'btn btn-info btn-sm m-1 text-white', type: 'buttom'}
         button.btn.btn-primary.btn-sm.m-1 data-target="#paymentModal" data-toggle="modal" type="button" 
           | Přidej úhradu
         button.btn.btn-primary.btn-sm.m-1 data-target="#repaymentModal" data-toggle="modal" type="button" 
