@@ -38,9 +38,9 @@ class AccordPolicy < ApplicationPolicy
     		if user.admin? || user.user?
       			scope.includes(:owner).includes(realty: :address).includes(agent: :superior).includes(:clients)
     		elsif user.manager?
-            	scope.subordinates_accords(user).or(scope.agents_accords(user))
+            	scope.subordinates_accords(user).or(scope.agents_accords(user)).includes(:owner).includes(realty: :address).includes(agent: :superior).includes(:clients)
         	elsif user.agent?
-        		scope.agents_accords(user)
+        		scope.agents_accords(user).includes(:owner).includes(realty: :address).includes(agent: :superior).includes(:clients)
         	end
     	end
   	end

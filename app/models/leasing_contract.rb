@@ -4,8 +4,8 @@ class LeasingContract < ApplicationRecord
 	include LeasingContract::RepaymentCalendar
 	include RemoveWhiteSpiceFromNumberInput::LeasingContract
 
-	has_many :payments, :dependent => :destroy
-	has_many :repayments, :dependent => :destroy
+	has_many :payments, -> {order 'payment_date asc'}, :dependent => :destroy
+	has_many :repayments, -> {order 'repayment_date asc'},  :dependent => :destroy
 	has_many :leasing_contract_clients, :dependent => :destroy
 	has_many :leasing_contract_realty, :dependent => :destroy
 

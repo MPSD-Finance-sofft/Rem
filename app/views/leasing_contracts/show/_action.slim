@@ -9,7 +9,7 @@
         button.btn.btn-info.btn-sm.m-1 data-target="#paymentModal" data-toggle="modal" type="button" 
           | Přidej úhradu
         button.btn.btn-info.btn-sm.m-1 data-target="#repaymentModal" data-toggle="modal" type="button" 
-          | Přidej Splátku
+          | Přidej pokutu
         br
         = link_to "Generování splátek", bulk_create_leasing_contract_repayments_path(leasing_contract_id: @leasing_contract.id),{class: 'btn btn-info btn-sm m-1', type: 'buttom'}
         = link_to "Smazaní všech splátek", delete_all_repayments_leasing_contract_repayments_path(leasing_contract_id: @leasing_contract.id),{class: 'btn btn-info btn-sm m-1', type: 'buttom'}
@@ -67,21 +67,18 @@
   .modal-dialog.modal-dialog-centered role="document" 
     .modal-content
       .modal-header
-        h5#exampleModalLongTitle.modal-title Přidání úhrady
+        h5#exampleModalLongTitle.modal-title Přidání pokuty
         button.close aria-label="Close" data-dismiss="modal" type="button" 
           span aria-hidden="true"  &times;
       .modal-body
         = form_with(model: [@leasing_contract,Repayment.new.decorate], local: true) do |f|
           = f.hidden_field :leasing_contract_id, value: @leasing_contract.id
           .form-group
-            = f.label :amount, 'Částka'
-            = f.text_field :amount, class: "form-control"
-          .form-group
             = f.label :repayment_date, "Datum platby"
             = f.text_field :repayment_date, class: "form-control datapicker"
           .form-group
             = f.label :repayment_type_id, "Typ"
-            = f.select :repayment_type_id, RepaymetType.all.map{|a| [a.description, a.id]},{},{class: "selectpicker form-control input-sm", "data-live-search" => "true"}
+            = f.select :repayment_type_id, RepaymetType.not_for_cron.repayment_for_date(@leasing_contract.expected_date_of_signature).map{|a| [a.description, a.id]},{},{class: "selectpicker form-control input-sm", "data-live-search" => "true"}
           .modal-footer
             button.btn.btn-secondary data-dismiss="modal" type="button"  Close
             button.btn.btn-primary type="submit"  Odešli

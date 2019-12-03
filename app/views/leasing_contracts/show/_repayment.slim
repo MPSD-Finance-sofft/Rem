@@ -6,11 +6,11 @@
       table.table
         tr
           th Sum
-          th =@leasing_contract.repayments_sum
+          th.text-nowrap =@leasing_contract.repayments_sum
           th 
         tr
           th Dluh
-          th =@leasing_contract.debt
+          th.text-nowrap =@leasing_contract.debt
         tr
           th Datum splatnosti
           th Částka
@@ -18,7 +18,7 @@
         - @repayments.each do |repayment|
           tr class="#{repayment.paid}"
             td=repayment.repayment_date
-            td.amount=repayment.amount
+            td.amount.text-nowrap=repayment.amount
             td=repayment.type
 
 
