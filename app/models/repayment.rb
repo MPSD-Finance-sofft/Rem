@@ -13,9 +13,11 @@ class Repayment < ApplicationRecord
 	end
 
 	def amount_from_repayment_type
-		procent = self.repayment_type.try(:procent).to_f
-		number = self.repayment_type.try(:number).to_f
-		self.amount = self.leasing_contract.monthly_rent * procent / 100 + number
+		unless self.repayment_type.blank?
+			procent = self.repayment_type.try(:procent).to_f
+			number = self.repayment_type.try(:number).to_f
+			self.amount = self.leasing_contract.monthly_rent * procent / 100 + number
+		end
 	end
 
 	scope :for_leasing_contract, -> (leasing_contract_id) {where(leasing_contract_id:  leasing_contract_id)}
