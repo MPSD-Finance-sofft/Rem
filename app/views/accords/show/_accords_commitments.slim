@@ -6,22 +6,22 @@
         .card-body
             table.table
             	tr
-            		th | Typ závazku
-            		th | Částka
-            		th | Skutečná částka
-            		th | Datum předpokládaného termínu vyplacení
-            		th | Datum skutečného vyplacení
-            		th | Popis
+            		th Typ závazku
+            		th.text-right Částka
+            		th.text-right Skutečná částka
+            		th.text-right Datum předpokládaného termínu vyplacení
+            		th.text-right Datum skutečného vyplacení
+            		th Popis
             	tr
             		- @commitments.each do |commitment|
             			tr
             				td=commitment.commitment_type
-            				td.amount.text-nowrap=commitment.amount
-            				td.real_amount.text-nowrap=commitment.real_amount
-            				td=commitment.date_of_excepted_payment
-            				td=commitment.payout_day
+            				td.text-nowrap.text-right=commitment.amount
+            				td.text-nowrap.text-right=commitment.real_amount
+            				td.text-right=commitment.date_of_excepted_payment
+            				td.text-right=commitment.payout_day
             				td=commitment.description
-            	tr
-            		td | Výsledek
-            		td#sum_amount
-            		td#sum_real_amount
+                tr
+                    td Součet
+                    td.text-nowrap.text-right= number_to_currency(@commitments.sum(&:object_amount), unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+                    td.text-nowrap.text-right= number_to_currency(@commitments.sum(&:object_real_amount), unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)

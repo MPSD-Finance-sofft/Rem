@@ -28,4 +28,12 @@ class CommitmentDecorator < ApplicationDecorator
  	def real_amount
  		format_number object.real_amount
  	end
+
+ 	def object_amount
+ 		object.amount.to_f
+ 	end
+
+ 	def object_real_amount
+ 		object.real_amount.to_f
+ 	end
 end
