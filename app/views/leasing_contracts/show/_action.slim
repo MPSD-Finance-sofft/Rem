@@ -9,7 +9,7 @@
         button.btn.btn-info.btn-sm.m-1 data-target="#paymentModal" data-toggle="modal" type="button" 
           | Přidej úhradu
         button.btn.btn-info.btn-sm.m-1 data-target="#repaymentModal" data-toggle="modal" type="button" 
-          | Přidej pokutu
+          | Přidej sankci
         br
         = link_to "Generování splátek", bulk_create_leasing_contract_repayments_path(leasing_contract_id: @leasing_contract.id),{class: 'btn btn-info btn-sm m-1', type: 'buttom'}
         = link_to "Smazaní všech splátek", delete_all_repayments_leasing_contract_repayments_path(leasing_contract_id: @leasing_contract.id),{class: 'btn btn-info btn-sm m-1', type: 'buttom'}
