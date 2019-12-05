@@ -12,8 +12,11 @@ class Notification < ApplicationRecord
 	def self.for_notice_accord(object_id, notice)
 		accord = Accord.find(object_id).decorate
 		users = []
+		# user
 		users << accord.user_id if accord.user_id != notice.user_id
+		#manager
 		users << accord.agent.try(:superior_id) if accord.agent.try(:superior_id) != notice.user_id
+		#agent v terénu
 		users << accord.last_active_terrains.try(:agent_id) if accord.last_active_terrains.try(:agent_id) != notice.user_id
 		users.compact.each do |user_id|
 			n = Notification::new_notification_for_accord_notice(object_id, notice,accord)
@@ -71,7 +74,7 @@ class Notification < ApplicationRecord
 		notification = Notification.new
 		notification.object = "Accord"
 		notification.object_id = object_id
-		notification.text = "U žádosti #{accord.id} typu #{accord.kind} klienta #{accord.first_client_full_name} (týkající se nemovitosti #{accord.first_realty_address} byla provedena změna stavu na #{accord.state}"
+		notification.text = "U žádosti #{accord.id} typu #{accord.kind} klienta #{accord.first_client_full_name} (týkající se nemovitosti #{accord.first_realty_address} byla provedena změna stavu na #{accord.state} #{Time.now.strftime('%d.%m.%Y %T')}"
 		notification.active = true
 		notification
 	end

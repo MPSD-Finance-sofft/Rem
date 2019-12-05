@@ -4,7 +4,7 @@ class AccordPolicy < ApplicationPolicy
         if user.agent?
             (record.agent_id == user.id)
         elsif user.manager?
-            (record.agent.try(:superior_id) == user.id) || (record.agent_id == user.id)
+            (record.agent.try(:superior_id) == user.id) || (record.agent_id == user.id) || (record.last_active_terrains.try(:agent_id) == user.id)
         elsif user.user? || user.admin?
             true
         else
@@ -38,7 +38,7 @@ class AccordPolicy < ApplicationPolicy
     		if user.admin? || user.user?
       			scope.includes(:owner).includes(realty: :address).includes(agent: :superior).includes(:clients)
     		elsif user.manager?
-            	scope.subordinates_accords(user).or(scope.agents_accords(user)).includes(:owner).includes(realty: :address).includes(agent: :superior).includes(:clients)
+            	scope.accord_for_manager(user).includes(:owner).includes(realty: :address).includes(agent: :superior).includes(:clients)
         	elsif user.agent?
         		scope.agents_accords(user).includes(:owner).includes(realty: :address).includes(agent: :superior).includes(:clients)
         	end

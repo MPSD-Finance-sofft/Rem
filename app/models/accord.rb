@@ -130,4 +130,5 @@ class Accord < ApplicationRecord
 	scope :date_end_terrain_start, -> (date) {joins(:terrains).distinct.where("terrains.date_end_terrain > ?", date.to_date)}
 	scope :date_end_terrain_end, -> (date) {joins(:terrains).distinct.where("terrains.date_end_terrain < ?", date.to_date)}
 	scope :agent_in_terrain, -> (agent) {joins(:terrains).distinct.where("terrains.agent_id": agent)}
+	scope :accord_for_manager, -> (manager) {eager_load(:terrains).where("terrains.agent_id = ? OR accords.agent_id = ? OR accords.agent_id IN (?)", manager.id,manager.id,User.where(superior_id: manager.id).pluck(:id))}
 end
