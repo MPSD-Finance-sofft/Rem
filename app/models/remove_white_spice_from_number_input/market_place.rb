@@ -1,7 +1,7 @@
 module RemoveWhiteSpiceFromNumberInput::MarketPlace
 
-	def market_place=(value)
-		self[:market_place] = value.to_s.delete(" ")
+	def market_price=(value)
+		self[:market_price] = value.to_s.delete(" ")
 	end
 
 end
