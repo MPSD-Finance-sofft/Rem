@@ -12,4 +12,8 @@ class ExpertEvidenceDecorator < ApplicationDecorator
   	def delivery_date
  		format_date(object.delivery_date)
 	end
+
+	def market_price
+		format_number object.market_price
+	end
 end
