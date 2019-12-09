@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :revisions
   resources :revision_types
   resources :planned_prices, only: [:create]
   resources :alerts

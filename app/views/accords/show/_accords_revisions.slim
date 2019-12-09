@@ -1,0 +1,30 @@
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    a href="#colapseRevisions" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="colapseRevisions"
+      h6.m-0.font-weight-bold.text-primary Revize
+    .collapse id="colapseRevisions"
+        .card-body
+            table.table
+            	tr
+            		th Hotovo
+            		th Typ revize
+            		th Datum platnosti od
+					th Datum platnosti do
+					th Datum předepsané kontroli
+					th Datum dodání revizní zprávy
+					th Náklady spojené s provedením revize
+					th Vytvořil	
+					th Datum vytvoření
+            		
+            	tr
+            		- @revisions.each do |revision|
+            			td = check(revision.done)
+            			td = revision.revision_type
+            			td = revision.valididity_from_report	
+            			td = revision.expiration_report	
+            			td = revision.datecontrol	
+            			td = revision.delivery_report	
+            			td = revision.amount	
+            			td = revision.user
+            			td = revision.created_at
+            		

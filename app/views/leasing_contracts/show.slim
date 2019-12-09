@@ -15,6 +15,7 @@ div class="#{@leasing_contract.object_state} leasing_contract_show"
     = render partial: "leasing_contracts/show/repayment"
     = render partial: "leasing_contracts/show/client"
     = render partial: "leasing_contracts/show/realty"
+    = render partial: "accords/show/accords_revisions" unless @revisions.blank?
     = render partial: "leasing_contracts/show/alerts" if current_user.user_or_admin?
     = render partial: "leasing_contracts/show/notice"
 javascript:
