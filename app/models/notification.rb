@@ -9,6 +9,10 @@ class Notification < ApplicationRecord
 		self.object.constantize.find(self.object_id)
 	end
 
+	def for_user?
+		self.object == "User"
+	end
+
 	def self.for_notice_accord(object_id, notice)
 		accord = Accord.find(object_id).decorate
 		users = []
@@ -95,6 +99,16 @@ class Notification < ApplicationRecord
 		notification.text = "Na žádost #{accord.id} ve stavu #{accord.state} klienta #{accord.first_client_full_name} (týkající se nemovitosti #{accord.first_realty_address}) byla přidána příloha. Tuto přílohu zapsal #{user.all_name} #{Time.now.strftime('%d.%m.%Y %T')}."
 		notification.active = true
 		notification
+	end
+
+	def self.new_notification_for_agents(user,agent)
+		notification = Notification.new
+		notification.object = "User"
+		notification.object_id = agent.id
+		notification.text = "U agenta #{agent.all_name} ,který je Vaším přímým podřízeným, byla uložena změna"
+		notification.active = true
+		notification.user_id = user.id
+		notification.save
 	end
 
 	scope :for_user, -> (user_id) {where(user_id:  user_id)}

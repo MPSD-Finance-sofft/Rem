@@ -13,7 +13,11 @@ class NotificationsController < ApplicationController
   # GET /notifications/1.json
   def show
     @notification.deactive
-    redirect_to @notification.object_find, notice: @notification.text
+    if @notification.for_user?
+      return redirect_to card_user_path(@notification.object_find), notice: @notification.text
+    else
+      return redirect_to @notification.object_find, notice: @notification.text
+    end
   end
 
   def deactivate_all
