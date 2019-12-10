@@ -1,5 +1,5 @@
 = form_tag(agents_reports_path(), {method: :get}) do 
-	.col-xl-1.col-lg-1
+	.col-xl-3.col-lg-3
 	  .card.shadow.mb-4
 	    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
 	      h6.m-0.font-weight-bold.text-primary Sloupce
@@ -7,7 +7,7 @@
 	    	.form-group
 				= label_tag :columns, "Sloupce"
 				= select_tag :colums, options_for_select(@colums, params[:colums]), {class: "form-control input-sm",data: {"live-search": true}, multiple: true }
-	.col-xl-11.col-lg-11
+	.col-xl-9.col-lg-9
 	  .card.shadow.mb-4
 	    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
 	      h6.m-0.font-weight-bold.text-primary Filter
