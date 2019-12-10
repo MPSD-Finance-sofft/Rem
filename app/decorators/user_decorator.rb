@@ -28,4 +28,8 @@ class UserDecorator < ApplicationDecorator
  	def date_of_last_create_accord
  		format_date(object.date_of_last_create_accord)
  	end
+
+ 	def  full_bank_code
+ 		object.try(:account_number).to_s + '/' + object.try(:bank_code).to_s
+ 	end
 end
