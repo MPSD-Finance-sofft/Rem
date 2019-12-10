@@ -4,7 +4,7 @@ class NotificationsController < ApplicationController
   # GET /notifications
   # GET /notifications.json
   def index
-    @notifications = Notification.for_user(current_user.id)
+    @notifications = Notification.for_user(current_user.id).order(created_at: :desc)
     @notifications =  IndexFilter::IndexServices.new(@notifications,params).perform
     @notifications = @notifications.decorate
   end
