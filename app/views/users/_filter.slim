@@ -18,7 +18,7 @@
 						= select_tag :permission_fo_user, options_for_select(Permission.kinds.keys.map{|a| [a,a]}, params[:permission_fo_user]), {include_blank: true, class: "form-control input-sm",data: {"live-search": true}, multiple: true }
 					.form-group
 						= label_tag :id_user, "User"
-						= select_tag :id_user, options_for_select(@filter_users.map{|a| [a.all_name,a.id]}, params[:id_user]), {include_blank: true, class: "form-control input-sm",data: {"live-search": true}, multiple: true }
+						= select_tag :id_user, options_for_select(User.all.map{|a| [a.all_name,a.id]}, params[:id_user]), {include_blank: true, class: "form-control input-sm",data: {"live-search": true}, multiple: true }
 					.form-group
 						= label_tag :company, "Společnost Agenta"
 						= select_tag :company, options_for_select(@company, params[:company]), {include_blank: true, class: "form-control input-sm",data: {"live-search": true}, multiple: true }

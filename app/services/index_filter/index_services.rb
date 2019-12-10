@@ -7,6 +7,7 @@ module IndexFilter
      	params.delete("controller")
      	params.delete("action")
         params.delete("template")
+        params.delete("colums")
      	@params = params
     end
 
