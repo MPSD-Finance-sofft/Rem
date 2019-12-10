@@ -27,8 +27,8 @@
         br
         button.btn.btn-sm.btn-info.m-1 data-target="#PlanedPrice" data-toggle="modal" type="button" 
           | Přidej plánovanou cenu 
-        button.btn.btn-sm.btn-info.m-1 data-target="#alertModal" data-toggle="modal" type="button" 
-          | Přidej hlídače 
+      button.btn.btn-sm.btn-info.m-1 data-target="#alertModal" data-toggle="modal" type="button" 
+        | Přidej hlídače 
       button.btn.btn-sm.btn-info.m-1 data-target="#exampleModalCenter" data-toggle="modal" type="button" 
         | Přidej poznámku 
       = link_to "Přílohy", uploads_accord_path(id: @accord.id) , { class: 'btn btn-info btn-sm float-right m-1', type: 'buttom'}
@@ -113,7 +113,7 @@
             = form.select :alert_type_id, AlertType.all.map{|a| [a.description, a.id]},{},{class: "selectpicker form-control", "data-live-search" => "true"}
           .form-group.text-dark
             = form.label :user_id, 'Pro uživatele'
-            = form.select :user_id, User.all.map{|a| [a.all_name, a.id]},{selected: current_user.id},{class: "selectpicker form-control", "data-live-search" => "true", multiple: true}
+            = form.select :user_id, User.user_can_permision(current_user).map{|a| [a.all_name, a.id]},{selected: current_user.id},{class: "selectpicker form-control", "data-live-search" => "true", multiple: true}
           .form-group.text-dark
             = form.label :date_alert, 'Datum prvního upozornění'
             = form.text_field :date_alert, class: "form-control datapicker"
