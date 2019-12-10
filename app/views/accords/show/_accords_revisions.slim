@@ -15,16 +15,15 @@
 					th Náklady spojené s provedením revize
 					th Vytvořil	
 					th Datum vytvoření
-            		
-            	tr
-            		- @revisions.each do |revision|
-            			td = check(revision.done)
-            			td = revision.revision_type
-            			td = revision.valididity_from_report	
-            			td = revision.expiration_report	
-            			td = revision.datecontrol	
-            			td = revision.delivery_report	
-            			td = revision.amount	
-            			td = revision.user
-            			td = revision.created_at
+        		- @revisions.each do |revision|
+                    tr
+                        td = check(revision.done)
+                        td = revision.revision_type
+                        td = revision.valididity_from_report	
+                        td = revision.expiration_report	
+                        td = revision.datecontrol	
+                        td = revision.delivery_report	
+                        td = revision.amount	
+                        td = revision.user
+                        td = revision.created_at
             		
