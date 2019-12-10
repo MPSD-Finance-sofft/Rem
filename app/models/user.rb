@@ -1,4 +1,3 @@
-require 'csv'
 class User < ApplicationRecord
 	extend FilteringColums::User
 	attr_accessor :current_user
@@ -115,24 +114,6 @@ class User < ApplicationRecord
 		return if value.blank?
 		super
 	end
-
-	def self.user_can_permision(user)
-		if user.agent? || user.manager?
-			User.can_sign_in.subordinates(user).or(User.where(id: (user.id)))
-		else
-			User.order(username: :desc).can_sign_in.select(&:not_runing_notice?)
-		end
-	end
-
-	def self.to_csv(attributes)
-    	CSV.generate(headers: true) do |csv|
-      	csv << attributes.map{|a| User::filtering_attributes[a]}
-      	all.decorate.each do |user|
-        	csv << attributes.map{ |attr| user.send(attr) }
-      	end
-    	end
-  	end
-
 		
 	scope :subordinates, -> (user) {where(superior_id: user.id)}
 	scope :username, -> (user) {where("users.username LIKE ? ", "%#{user}%")}

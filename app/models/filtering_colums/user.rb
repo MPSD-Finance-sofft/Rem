@@ -1,3 +1,4 @@
+require 'csv'
 module FilteringColums::User
 	
 	def filtering_attributes
@@ -33,4 +34,13 @@ module FilteringColums::User
 			"date_of_last_contract"=>'Datum podepsání poslední smlouvy'
 		}
 	end
+
+	def to_csv(attributes)
+    	CSV.generate(headers: true) do |csv|
+	      	csv << attributes.map{|a| User::filtering_attributes[a]}
+	      	all.decorate.each do |user|
+	        	csv << attributes.map{ |attr| user.send(attr) }
+	      	end
+    	end
+  	end
 end
