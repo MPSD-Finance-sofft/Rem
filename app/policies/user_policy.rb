@@ -16,7 +16,7 @@ class UserPolicy < ApplicationPolicy
   end
   
   def card?
-    update?
+    user.admin? || user.user? || record.id == user.id || record.superior == user
   end
   
   def changes?
