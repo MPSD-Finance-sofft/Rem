@@ -6,10 +6,10 @@ class ReportsController < ApplicationController
 		@users = policy_scope(User)
 		@filter_users = @users
 		@company = @filter_users.map{|a| [a.name_company,a.name_company]}.uniq
-		@users =  IndexFilter::IndexServices.new(@users,params.dup).perform.decorate
+		@users =  IndexFilter::IndexServices.new(@users,params.dup).perform
 		respond_to do |format|
-			format.html
-			format.csv { send_data User.to_csv(params[:colums]), filename: "users-#{Date.today}.csv" }
+			format.html{ @users = @users.decorate}
+			format.csv{ send_data @users.to_csv(params[:colums]), filename: "users-#{Date.today}.csv" }
 		end
 	end
 
