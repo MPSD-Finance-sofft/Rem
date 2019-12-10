@@ -6,7 +6,7 @@
 	    .card-body
 	    	.form-group
 				= label_tag :columns, "Sloupce"
-				= select_tag :colums, options_for_select(@colums, params[:colums]), {include_blank: true, class: "form-control input-sm",data: {"live-search": true}, multiple: true }
+				= select_tag :colums, options_for_select(@colums, params[:colums]), {class: "form-control input-sm",data: {"live-search": true}, multiple: true }
 	.col-xl-11.col-lg-11
 	  .card.shadow.mb-4
 	    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between

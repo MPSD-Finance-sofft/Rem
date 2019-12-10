@@ -3,6 +3,7 @@ module FilteringColums::User
 	def filtering_attributes
 		[
 			"id",
+			"all_name",
 			 "created_at",
 			 "updated_at",
 			 "username",
