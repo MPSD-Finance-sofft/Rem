@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   resources :revisions
+  resources :reports do 
+    collection do 
+      get :agents
+    end
+  end
   resources :revision_types
   resources :planned_prices, only: [:create]
   resources :alerts
