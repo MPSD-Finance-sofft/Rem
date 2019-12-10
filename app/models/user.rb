@@ -105,6 +105,11 @@ class User < ApplicationRecord
 		self.agent_accords.last.try(:created_at)
 	end
 
+	def date_of_last_contract
+		self.agent_accords.state('contract').last.try(:date_of_signature)
+	end
+
+
 	def encrypted_password=(value)
 		return if value.blank?
 		super

@@ -32,3 +32,19 @@
 						= select_tag :company, options_for_select(@company, params[:company]), {include_blank: true, class: "form-control input-sm",data: {"live-search": true}, multiple: true }
 	    	.form-group.float-right
 				= submit_tag "Vyhledat"
+
+javascript: 
+	$(document).ready(function () {
+	    $("ul").sortable({
+	        revert: true,
+	        /*update: function (event, ui) {
+	            // Some code to prevent duplicates
+	        }*/
+	    });
+	    $(".draggable").draggable({
+	        connectToSortable: '.sortableList',
+	        cursor: 'pointer',
+	        helper: 'clone',
+	        revert: 'invalid'
+	    });
+	});

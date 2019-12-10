@@ -9,6 +9,10 @@ class ApplicationDecorator < Draper::Decorator
  		format_date(object.created_at)
 	end
 
+ def updated_at
+    format_date_time(object.updated_at)
+  end
+
   def format_number(number)
     number_to_currency(number, unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
   end
