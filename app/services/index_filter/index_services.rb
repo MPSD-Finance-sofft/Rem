@@ -8,6 +8,7 @@ module IndexFilter
      	params.delete("action")
         params.delete("template")
         params.delete("colums")
+        params.delete("format")
      	@params = params
     end
 
