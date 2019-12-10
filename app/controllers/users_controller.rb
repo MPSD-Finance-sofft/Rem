@@ -19,7 +19,7 @@ class UsersController < ApplicationController
 		@user.current_user = current_user
 		respond_to do |format|
 	      if @user.update(user_params)
-	      	Notification.new_notification_for_agents(@user.superior,@user) if @user.changed? && (@user.superior != current_user)
+	      	Notification.new_notification_for_agents(@user.superior,@user) if @user.superior != current_user
 	        format.html { redirect_to card_user_path(@user), notice: 'Accord was successfully updated.' }
 	        format.json { render :show, status: :ok, location: @user }
 	      else
