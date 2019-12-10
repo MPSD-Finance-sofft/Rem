@@ -14,6 +14,7 @@
 					| Číslo znaleckého posudku
 				th
 					| Cena nem. obvyklá (tržní)
+				th Oceňovací kancelář
 			tbody id="nested_expert_evidences"
 				= f.fields_for :expert_evidences do |expert_evidence|
 					= render 'expert_evidence_fields', f: expert_evidence
