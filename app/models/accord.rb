@@ -95,6 +95,10 @@ class Accord < ApplicationRecord
 		self.terrains.active.last
 	end
 
+	def last_terrains
+		self.terrains.last
+	end
+
 	def add_notification_change_state
 		Notification::for_change_state_accord(self) if self.state_changed?
 	end
