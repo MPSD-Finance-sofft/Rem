@@ -68,4 +68,12 @@ class UserDecorator < ApplicationDecorator
  	def permanent_address_district_to_s
  		object.user_address.where(kind: 'permanent').first.try(:address).try(:district)
  	end
+
+ 	def terrain_count
+ 		object.terrains.count
+ 	end
+
+ 	def last_terrain
+ 		format_date object.terrains.last.try(:date_to_terrain)
+ 	end
 end

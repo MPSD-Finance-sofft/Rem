@@ -31,7 +31,9 @@ module FilteringColums::User
 			"count_accord"=>'Celkem žádostí',
 			"date_of_last_create_accord"=>'Datum navedení poslední žádosti',
 			"count_contract"=>'Celkem smluv',
-			"date_of_last_contract"=>'Datum podepsání poslední smlouvy'
+			"date_of_last_contract"=>'Datum podepsání poslední smlouvy',
+			"terrain_count" => 'Počet terénu',
+			"last_terrain" => 'Datum kdy byl naposledy v terénu',
 		}
 	end
 
