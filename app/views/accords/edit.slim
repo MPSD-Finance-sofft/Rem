@@ -37,9 +37,6 @@ div.container-fluid
 					    	= f.label :agent_id, "Agent"
 							= f.select :agent_id, User::can_create_accord_with_exist(f.object.agent_id).map{|a| [a.all_name, a.id]},{include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true"}
 						.form-group
-					    	= f.label :agent_in_signature_id, "Agent"
-							= f.select :agent_in_signature_id, User::can_create_accord_with_exist(f.object.agent_id).map{|a| [a.all_name, a.id]},{include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true"}
-						.form-group
 					    	= f.label :agency_commission, "Zprostředkovatelská provize"
 							= f.text_field :agency_commission,{class: "form-control"}
 						.form-group
@@ -55,7 +52,10 @@ div.container-fluid
 					    	= f.label :date_of_signature, "Datum podpisu"
 							= f.text_field :date_of_signature, class: "form-control datapicker"
 						.form-group
-					    	= f.label :date_of_ownership, "Datum přepisu vlasnictví"
+					    	= f.label :agent_in_signature_id, "Zaměstnanec u podpisu"
+							= f.select :agent_in_signature_id, User::manager_and_user.map{|a| [a.all_name, a.id]},{include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true"}
+						.form-group
+					    	= f.label :date_of_ownership, "Datum přepisu vlastnictví"
 							= f.text_field :date_of_ownership, class: "form-control datapicker"
 						.form-group
 					    	= f.label :excepted_date_of_transfer, "Předpokládané datum předání nemovitosti"

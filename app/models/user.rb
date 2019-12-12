@@ -79,6 +79,10 @@ class User < ApplicationRecord
 		self.permission.try(:kind) == "user" || self.permission.try(:kind) == "admin"
 	end
 
+	def user_or_manager?
+		self.permission.try(:kind) == "user" || self.permission.try(:kind) == "manager"
+	end
+
 	def self.can_create_accord(user)
 		if user.agent? || user.manager?
 			User.can_sign_in.subordinates(user).or(User.can_sign_in.where(id: (user.id)))
