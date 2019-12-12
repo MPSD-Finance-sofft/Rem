@@ -24,6 +24,8 @@ class LeasingContract < ApplicationRecord
 	after_create :add_realty
 	after_create :add_client
 
+	 validates :expected_date_of_signature, presence: true
+
 	MAX_GENERATE_REPAYMENTS = 100
 
 	def generate_repayments
@@ -65,7 +67,7 @@ class LeasingContract < ApplicationRecord
 	end
 
 	def active?
-		!debt? && self.state != 'ended' && self.expected_date_of_signature <= Date.today
+		(self.expected_date_of_signature) && (!debt?) && (self.state != 'ended') && (self.expected_date_of_signature <= Date.today)
 	end
 
 	def added?
