@@ -12,28 +12,32 @@
             td = @accord.created_at
             th Datum podpisu
             td = @accord.date_of_signature
-
           tr
             th Číslo smlouvy
             td = @accord.contract_number
             th Vytvořil
             td = @accord.creator_name
-            th Datum přepisu vlastnictví
-            td = @accord.date_of_ownership
+            th Zaměstnanec u podpisu
+            td = @accord.agent_in_signature_name
           tr
             th Stav žádosti
             td = @accord.state
             th Přímý nadřízený agenta
             td = @accord.agent_superior
-            th Předpokládané datum předání nemovitosti
-            td = @accord.excepted_date_of_transfer
+            th Datum přepisu vlastnictví
+            td = @accord.date_of_ownership
+
           tr
             th Typ žádosti
             td = @accord.kind
             th V péči uživatele
             td = @accord.owner_name 
+            th Předpokládané datum předání nemovitosti
+            td = @accord.excepted_date_of_transfer
+          tr
+            th
+            th
+            th
+            td
             th Skutečné datum předání nemovitosti
             td = @accord.date_of_transfer
-          tr
-            th Zaměstnanec u podpisu
-            td = @accord.agent_in_signature_name
