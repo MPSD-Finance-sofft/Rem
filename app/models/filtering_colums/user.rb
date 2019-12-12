@@ -36,6 +36,8 @@ module FilteringColums::User
 			"last_terrain" => 'Datum obdržení do terénu',
 			"accord_terrain_in_agent_count" => 'Počet žádostí agenta v terénu',
 			"accord_terrain_in_agent" => 'Datum poslední žádosti agenta v terénu',
+			"agent_accords_signature_count" => 'Počet u podpisu',
+			"agent_accords_signature" => 'Datum posledního podpisu',
 		}
 	end
 

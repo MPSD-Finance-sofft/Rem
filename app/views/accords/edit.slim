@@ -37,6 +37,9 @@ div.container-fluid
 					    	= f.label :agent_id, "Agent"
 							= f.select :agent_id, User::can_create_accord_with_exist(f.object.agent_id).map{|a| [a.all_name, a.id]},{include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true"}
 						.form-group
+					    	= f.label :agent_in_signature_id, "Agent"
+							= f.select :agent_in_signature_id, User::can_create_accord_with_exist(f.object.agent_id).map{|a| [a.all_name, a.id]},{include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true"}
+						.form-group
 					    	= f.label :agency_commission, "Zprostředkovatelská provize"
 							= f.text_field :agency_commission,{class: "form-control"}
 						.form-group

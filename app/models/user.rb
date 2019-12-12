@@ -20,6 +20,7 @@ class User < ApplicationRecord
 	belongs_to :superior, class_name: "User", foreign_key: "superior_id"
 	has_one :subordinate, class_name: "User", foreign_key: "superior_id"
 	has_many :agent_accords, class_name: "Accord", foreign_key: "agent_id"
+	has_many :agent_accords_signature, class_name: "Accord", foreign_key: "agent_in_signature_id"
 	has_many :notifications, class_name: "Notification", foreign_key: "user_id"
 	has_many :alerts, class_name: "Alert", foreign_key: "user_id"
 	has_many :terrains, class_name: "Terrain", foreign_key: "agent_id"

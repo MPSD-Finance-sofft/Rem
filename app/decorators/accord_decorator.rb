@@ -92,6 +92,10 @@ class AccordDecorator < ApplicationDecorator
   def agent_name
     object.agent.try(:all_name)
   end
+  
+  def agent_in_signature_name
+    object.agent_in_signature.try(:all_name)
+  end
 
   def agent_company
     object.agent.try(:name_company)
