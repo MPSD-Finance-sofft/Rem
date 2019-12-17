@@ -62,11 +62,11 @@ class Accord < ApplicationRecord
 	before_update :add_notification_change_state
 
 	def commission_for_the_contract
-		self.purchase_price.to_f * 0.03
+		self.reward ? self.reward.commission_for_the_contract.to_f : self.purchase_price.to_f * 0.03 
 	end
 
 	def agency_commission_price
-    	self.purchase_price.to_f * (self.agency_commission.to_f / 100)
+    	self.reward ?  self.reward.agency_commission.to_f : self.purchase_price.to_f * (self.agency_commission.to_f / 100)
   	end
 
   	def contract?
