@@ -5,7 +5,10 @@
     .card-body
       - if current_user.user_or_admin?
         = link_to "Úprava", edit_accord_path(@accord.id),{class: 'btn btn-sm btn-info m-1 text-white', type: 'buttom'}
-        = link_to "Vytvoření provizního nároku", rewards_path(accord_id: @accord) , {:method=> :post, class: 'btn btn-sm btn-info m-1 text-white', type: 'buttom', data: { confirm: "Vytvoření provizního nároku #{@accord.commission_for_the_contract} pro agenta #{@accord.agent_name} za smlouvu #{@accord.contract_number}"}}
+        - if @accord.reward.blank?
+          = link_to "Vytvoření provizního nároku", rewards_path(accord_id: @accord) , {:method=> :post, class: 'btn btn-sm btn-info m-1 text-white', type: 'buttom', data: { confirm: "Vytvoření provizního nároku #{@accord.commission_for_the_contract} pro agenta #{@accord.agent_name} za smlouvu #{@accord.contract_number}"}}
+        - else
+          = link_to "Zrušení provizního nároku", reward_path(id: @accord.reward) , {:method=> :delete, class: 'btn btn-sm btn-info m-1 text-white', type: 'buttom'}
         = link_to 'Nová nájemní smlouva', new_leasing_contract_path(accord_id: @accord.id), {class: 'btn btn-sm btn-info m-1', type: 'buttom'}
         = link_to "Generování zápočtu", accord_commitments_path(accord_id: @accord.id,format: 'pdf') , { class: 'btn btn-sm btn-info m-1 text-white', type: 'buttom'}
         button.btn.btn-sm.btn-info.m-1.float-right type="button"  id='show_all'

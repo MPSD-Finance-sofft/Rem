@@ -59,7 +59,6 @@ class RewardsController < ApplicationController
       end
     end
   end
-
   # DELETE /rewards/1
   # DELETE /rewards/1.json
   def destroy
