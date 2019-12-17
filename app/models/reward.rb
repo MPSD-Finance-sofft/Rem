@@ -1,4 +1,5 @@
 class Reward < ApplicationRecord
+	include RemoveWhiteSpiceFromNumberInput::Reward
 	has_paper_trail ignore: [:updated_at]
 	belongs_to :accord
 	belongs_to :invoice, required: false

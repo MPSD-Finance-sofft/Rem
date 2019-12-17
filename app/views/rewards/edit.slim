@@ -1,0 +1,34 @@
+- title "Úprava provize č. " + @reward.id.to_s
+div.container-fluid
+	ol.breadcrumb
+		li.breadcrumb-item
+			b
+				= link_to 'Provize', rewards_path() 
+		li.breadcrumb-item
+			| úprava provize č.
+			= @reward.id
+	div.panel-body.no-padding
+        = form_with(model: @reward, local: true) do |f|
+			- if @reward.errors.any?
+				#error_explanation
+				h2
+		    		= pluralize(@reward.errors.count, "error")
+		    		| prohibited this reward from being saved:
+				ul
+		    		- @reward.errors.full_messages.each do |message|
+		      			li= message
+			.card.shadow.mb-4
+			    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+					h6.m-0.font-weight-bold.text-primary Data provize
+				.card-body
+						.form-group
+							= f.label :agency_commission, "Zprostředkovatelská provize"
+							= f.text_field :agency_commission, class: "form-control"
+						.form-group
+							= f.label :commission_for_the_contract, "Provize za smlouvu"
+							= f.text_field :commission_for_the_contract, class: "form-control"
+						.form-group
+							= f.label :claim_date, "Datum nároku"
+							= f.text_field :claim_date, class: "form-control datapicker"
+						.action
+				    		= f.submit "Odešli" , class: "btn btn-default", type: "submit"

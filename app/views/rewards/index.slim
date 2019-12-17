@@ -32,5 +32,6 @@ div.container-fluid
             td.text-right=reward.commission_for_the_contract
             td.text-right=reward.claim_date
             td= link_to "pdf", invoice_path(id: reward.invoice_id, format: :pdf) unless reward.invoice_id.blank?
-            
+            -if current_user.user_or_admin?
+              td= link_to "úprava", edit_reward_path(reward)
 

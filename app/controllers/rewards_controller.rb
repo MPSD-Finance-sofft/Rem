@@ -27,6 +27,7 @@ class RewardsController < ApplicationController
 
   # GET /rewards/1/edit
   def edit
+     authorize @reward
   end
 
   # POST /rewards
@@ -51,7 +52,7 @@ class RewardsController < ApplicationController
   def update
     respond_to do |format|
       if @reward.update(reward_params)
-        format.html { redirect_to @reward, notice: 'Reward was successfully updated.' }
+        format.html { redirect_to rewards_url, notice: 'Reward was successfully updated.' }
         format.json { render :show, status: :ok, location: @reward }
       else
         format.html { render :edit }
@@ -72,7 +73,7 @@ class RewardsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_reward
-      @reward = Reward.find(params[:id])
+      @reward = Reward.find(params[:id]).decorate
     end
 
     def set_accord
@@ -81,6 +82,6 @@ class RewardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reward_params
-      #params.require(:reward).permit(:accord_id, :user_id, :agency_commission, :commission_for_the_contract, :invoice_date, :payout_date)
+       params.require(:reward).permit!
     end
 end
