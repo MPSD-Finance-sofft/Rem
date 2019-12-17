@@ -32,11 +32,11 @@ div.container-fluid
 						td = invoice.period
 						td = invoice.agent
 						td = invoice.agent_superior
-						td = invoice.purchase_price
-						td = invoice.commission_for_the_contract
-						td = invoice.created_at
-						td = f.text_field :delivery_date, {class: 'datapicker', form:"edit_invoice_#{invoice.id}"}
-						td = f.text_field :payout_date,{class: 'datapicker', form:"edit_invoice_#{invoice.id}"}
+						td.text-right = invoice.purchase_price
+						td.text-right = invoice.commission_for_the_contract
+						td.text-right = invoice.created_at
+						td.text-right = f.text_field :delivery_date, {class: 'datapicker', form:"edit_invoice_#{invoice.id}"}
+						td.text-right = f.text_field :payout_date,{class: 'datapicker', form:"edit_invoice_#{invoice.id}"}
 						td = f.submit "Odešli" , class: "btn btn-default", type: "submit", form:"edit_invoice_#{invoice.id}"
 					
 /! Modal

@@ -27,10 +27,10 @@ div.container-fluid
             td=reward.agent_superior
             td=link_to reward.contract, accord_path(reward.accord)
             td=reward.first_client
-            td=reward.purchase_price
-            td=reward.agency_commission
-            td=reward.commission_for_the_contract
-            td=reward.claim_date
+            td.text-right=reward.purchase_price
+            td.text-right=reward.agency_commission
+            td.text-right=reward.commission_for_the_contract
+            td.text-right=reward.claim_date
             td= link_to "pdf", invoice_path(id: reward.invoice_id, format: :pdf) unless reward.invoice_id.blank?
             
 
