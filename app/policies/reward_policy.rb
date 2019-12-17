@@ -17,7 +17,7 @@ class RewardPolicy < ApplicationPolicy
     end
 
     def destroy? 
-        user.admin?
+        user.user? || user.admin?
     end
 
     def changes?
