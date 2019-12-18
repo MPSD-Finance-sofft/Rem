@@ -37,10 +37,10 @@ div.container-fluid
             td = link_to leasing_contract.id, leasing_contract_path(leasing_contract)
             td = leasing_contract.kind
             td = leasing_contract.state
-            td = leasing_contract.expected_date_of_signature
-            td = leasing_contract.rent_from
-            td = leasing_contract.rent_to
-            td = leasing_contract.monthly_rent
+            td.text-right = leasing_contract.expected_date_of_signature
+            td.text-right = leasing_contract.rent_from
+            td.text-right = leasing_contract.rent_to
+            td.text-right.text-nowrap = leasing_contract.monthly_rent
             td 
               - leasing_contract.clients.each do |client|
                 = client.full_name
