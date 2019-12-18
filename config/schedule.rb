@@ -21,6 +21,6 @@ job_type :runner, "cd :path && :bundle_command rails runner -e :environment ':ta
 # 	runner "User::nevim", :environment => 'production' 
 # end 
 # Learn more: http://github.com/javan/whenever
-every 24.hour do
-	runner "Client::remove_usseles_clients", :environment => 'production' 
-end 
+every 1.hour do 
+	runner "Client::duplicate_clients", :environment => 'production' 
+end

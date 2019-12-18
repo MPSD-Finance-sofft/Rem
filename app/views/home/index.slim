@@ -12,7 +12,7 @@
               |   
               = board.text.html_safe
               
-  .float-right.w-50.p-1
+  .float-left.w-50.p-1
     .card.shadow.mb-4
       /! Card Header - Dropdown
       h6.m-0.font-weight-bold.text-primary.d-block.card-header.py-3 IT info
@@ -21,6 +21,22 @@
         | Zde jsou 
         a href="https://www.enable-javascript.com/cz/"
           | instrukce jak povolit JavaScript ve Vašem webovém prohlížeči
+  - if current_user.user_or_admin?
+    .float-right.w-50.p-1
+      .card.shadow.mb-4
+        /! Card Header - Dropdown
+        a href="#colapseSchedulerLog" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="colapseSuperiorCard"
+          h6.m-0.font-weight-bold.text-primary Karta přepočtů
+        div class="collapse " id="colapseSchedulerLog"
+          .card-body
+            table.table 
+              tr
+                th Datum přepočtu
+                th Přepočet čeho
+                th List
+              - @scheduler_logs.each do |s|
+                = render partial: "scheduler_logs/field", locals: {f: s}
+
   .float-left.w-50.p-1
     .card.shadow.mb-4
       /! Card Header - Dropdown

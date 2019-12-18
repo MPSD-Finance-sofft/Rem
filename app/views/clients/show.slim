@@ -1,0 +1,61 @@
+div.container-fluid
+  ol.breadcrumb
+    li.breadcrumb-item
+      b
+        | 
+    li.breadcrumb-item
+      | Přehled klienta
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary Přehled klienta
+    .card-body
+      table.table
+        tr
+          th Jméno
+          td = @client.full_name
+          th Rodné číslo
+          td
+        tr
+          th Číslo OP
+          td
+          th Vztah
+          td
+        tr
+          th Mobil
+          td
+          th Email
+          td
+        tr
+          th Adresa
+          td
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary Žádosti klienta
+    .card-body 
+      table.table
+        -@client.accords_client.each do |ac|
+          tr
+            td = ac.created_at
+            td = link_to ac.accord_id, accord_path(ac.accord_id)
+
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary Historie klienta
+    .card-body
+        - VersionDecorator.decorate_collection(@client.versions).each do |version|
+          .card.shadow.mb-4
+            .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+              h6.m-0.font-weight-bold.text-primary 
+                = version.whodunnit
+                br
+                = version.created_at
+            .card-body
+              table
+                  - version.changeset.each do |change|
+                    tr
+                      td =change.first
+                      td =change.last.first
+                      td =change.last.last
+          
+       

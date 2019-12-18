@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :scheduler_logs
   resources :revisions
   resources :reports do 
     collection do 

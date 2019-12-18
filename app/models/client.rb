@@ -35,6 +35,14 @@ class Client < ApplicationRecord
     second_client.leasing_contract_clients.each do |ac|
       ac.client_id = self.id
       ac.save 
+    end 
+    second_client.client_mobile.each do |ac|
+      ac.client_id = self.id
+      ac.save 
+    end 
+    second_client.client_email.each do |ac|
+      ac.client_id = self.id
+      ac.save 
     end
   end
 
@@ -43,10 +51,19 @@ class Client < ApplicationRecord
   end
 
   def self.remove_usseles_clients
-    Client.where(id: Client.select(&:ussles_client?).map{|a| a.id}).delete_all
+    Client.includes(:accords_client).includes(:accords_client).where(id: Client.select(&:usseles_client?).map{|a| a.id}).delete_all
   end
 
   def self.duplicate_clients
-    Client.where('personal_identification_number != ""').select([:personal_identification_number, Client.arel_table[:personal_identification_number].count]).having(Client.arel_table[:personal_identification_number].count.gt(1)).group(:personal_identification_number).pluck(:personal_identification_number)
+    personal_identification_number_list = Client.where('personal_identification_number != ""').select([:personal_identification_number, Client.arel_table[:personal_identification_number].count]).having(Client.arel_table[:personal_identification_number].count.gt(1)).group(:personal_identification_number).pluck(:personal_identification_number)
+    list = []
+    personal_identification_number_list.each do |personal_identification_number|
+      first_client = Client.where(personal_identification_number: personal_identification_number).first
+      last_client = Client.where(personal_identification_number: personal_identification_number).last
+      first_client.joins_clients(last_client)
+      list << first_client.id
+    end
+    SchedulerLog.create(kind: 'Client', list: list) unless list.blank?
+    Client::remove_usseles_clients
   end
 end
