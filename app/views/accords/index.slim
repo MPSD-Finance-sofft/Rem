@@ -41,7 +41,7 @@ div.container-fluid
             td = accord.kind
             td = accord.created_at_time
             td = accord.state
-            td.pushase_price = accord.purchase_price
+            td.pushase_price.text-nowrap = accord.purchase_price
             td 
               - accord.clients.each do |client|
                 = client.full_name
