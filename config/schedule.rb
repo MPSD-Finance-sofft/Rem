@@ -24,3 +24,7 @@ job_type :runner, "cd :path && :bundle_command rails runner -e :environment ':ta
 every 1.hour do 
 	runner "Client::duplicate_clients", :environment => 'production' 
 end
+
+every 24.hour do 
+	runner "Activity::delete_duplicate", :environment => 'production' 
+end
