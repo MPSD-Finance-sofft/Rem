@@ -14,13 +14,13 @@ div.container-fluid
         tr
           th Jméno
           td = @client.full_name
-          th Rodné číslo
-          td
+          th Rodné číslo / IČO
+          td= @client.personal_identification_number
         tr
           th Číslo OP
-          td
+          td = @client.identity_card_number
           th Vztah
-          td
+          td = @client.relation_ship
         tr
           th Mobil
           td
@@ -34,9 +34,10 @@ div.container-fluid
       h6.m-0.font-weight-bold.text-primary Žádosti klienta
     .card-body 
       table.table
-        -@client.accords_client.each do |ac|
+        -@client.accords_client.decorate.each do |ac|
           tr
             td = ac.created_at
+            td = ac.relationship
             td = link_to ac.accord_id, accord_path(ac.accord_id)
 
   .card.shadow.mb-4

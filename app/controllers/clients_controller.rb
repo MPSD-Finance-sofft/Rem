@@ -10,6 +10,8 @@ class ClientsController < ApplicationController
   # GET /clients/1
   # GET /clients/1.json
   def show
+    authorize @client
+    Activity.create(user_id: current_user.id, what: "Klient číslo: #{@client.full_name}", objet: "Client", object_id: @client.id)
   end
 
   # GET /clients/new
@@ -64,7 +66,7 @@ class ClientsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_client
-      @client = Client.find(params[:id])
+      @client = Client.find(params[:id]).decorate
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
