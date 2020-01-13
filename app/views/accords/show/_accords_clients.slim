@@ -43,7 +43,7 @@
                     - @accord.companies.each do |client|
                         - client = client.decorate
                         tr
-                            td=client.name
+                            td=link_to client.name, client_path(client)
                             td=client.identity_card_number
                             td
                                 - client.mobile.each do |mobil|
