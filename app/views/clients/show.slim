@@ -24,11 +24,17 @@ div.container-fluid
         tr
           th Mobil
           td
+            - @client.mobile.each do |mobil|
+                =mobil.phone_number
+                | ,  
           th Email
           td
+            - @client.email.each do |email|
+                =email.email_address
+                | ,
         tr
-          th Adresa
-          td
+          th Adresa  
+          td=@client.address.try(:index_name)
   .card.shadow.mb-4
     .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
       h6.m-0.font-weight-bold.text-primary Žádosti klienta
@@ -39,6 +45,16 @@ div.container-fluid
             td = ac.created_at
             td = ac.relationship
             td = link_to ac.accord_id, accord_path(ac.accord_id)
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary Nájemní smlouvy klienta
+    .card-body 
+      table.table
+        -@client.leasing_contract_clients.decorate.each do |lc|
+          tr
+            td = lc.created_at
+            td = lc.relationship
+            td = link_to lc.leasing_contract_id, leasing_contract_path(lc.leasing_contract)
 
   .card.shadow.mb-4
     .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
