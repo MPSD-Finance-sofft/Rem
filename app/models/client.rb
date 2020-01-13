@@ -1,5 +1,5 @@
 class Client < ApplicationRecord
-  has_paper_trail ignore: [:updated_at]  	
+  has_paper_trail ignore: [:updated_at]
 
   DIFF_ATTRIBUTES = ["permanent_address_id", "contact_address_id", "name", "type", "identity_card_number", "personal_identification_number", "data_box", "last_name", "relation_ship"]
 
@@ -11,7 +11,7 @@ class Client < ApplicationRecord
   has_many :email, through: :client_email
   has_many :accords_client
   has_many :leasing_contract_clients
-  
+
   accepts_nested_attributes_for :permanent_address,  reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :contact_address,  reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :client_mobile,  reject_if: :all_blank, allow_destroy: true
@@ -30,19 +30,19 @@ class Client < ApplicationRecord
     self.update self.diff_without_nil(second_client, DIFF_ATTRIBUTES)
     second_client.accords_client.each do |ac|
       ac.client_id = self.id
-      ac.save 
-    end 
+      ac.save
+    end
     second_client.leasing_contract_clients.each do |ac|
       ac.client_id = self.id
-      ac.save 
-    end 
+      ac.save
+    end
     second_client.client_mobile.each do |ac|
       ac.client_id = self.id
-      ac.save 
-    end 
+      ac.save
+    end
     second_client.client_email.each do |ac|
       ac.client_id = self.id
-      ac.save 
+      ac.save
     end
   end
 

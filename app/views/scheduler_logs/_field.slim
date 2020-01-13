@@ -1,7 +1,7 @@
 tr
 	td = f.created_at
 	td = f.kind
-	td 
+	td
 		- f.list_arr.each do |a|
-			= link_to a, client_path(a) 
-			|  
+			= link_to a, client_path(a)
+			|
