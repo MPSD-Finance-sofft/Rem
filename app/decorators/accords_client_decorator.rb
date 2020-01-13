@@ -1,4 +1,4 @@
-class AccordsClientDecorator < Draper::Decorator
+class AccordsClientDecorator < ApplicationDecorator
   delegate_all
 
 	def relationship
@@ -25,5 +25,9 @@ class AccordsClientDecorator < Draper::Decorator
 
  	def object_relationship
  		object.relationship
+ 	end
+
+ 	def created_at
+ 		format_date_time object.created_at
  	end
 end
