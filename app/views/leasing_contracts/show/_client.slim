@@ -44,7 +44,7 @@
                         - client = client.decorate
                         tr
                             td=client.name
-                            td=identity_card_number
+                            td=client.identity_card_number
                             td
                                 - client.mobile.each do |mobil|
                                     =mobil.phone_number

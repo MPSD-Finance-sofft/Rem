@@ -46,9 +46,9 @@ class LeasingContract < ApplicationRecord
 	end
 
 	def add_client
-		self.accord.clients.each do |client|
-			id =  client.id
-			LeasingContractClient.create(client_id: client.id, leasing_contract_id: self.id, relationship: client.accords_client.relationship)
+		self.accord.accords_clients.each do |accords_client|
+			client = accords_client.client
+			LeasingContractClient.create(client_id: client.id, leasing_contract_id: self.id, relationship: accords_client.relationship)
     		self.save
     	end
 	end
