@@ -1,9 +1,7 @@
 class AccordPolicy < ApplicationPolicy
 
-    def show?       
-        if user.agent?
-            (record.agent_id == user.id)
-        elsif user.manager?
+    def show?
+        if user.manager? || user.agent?
             (record.agent.try(:superior_id) == user.id) || (record.agent_id == user.id) || (record.last_active_terrains.try(:agent_id) == user.id)
         elsif user.user? || user.admin?
             true
@@ -16,7 +14,7 @@ class AccordPolicy < ApplicationPolicy
         user.user? || user.admin?
     end
 
-    def destroy? 
+    def destroy?
         user.admin?
     end
 
@@ -31,16 +29,14 @@ class AccordPolicy < ApplicationPolicy
     def delete_image?
         update?
     end
-    
+
 	class Scope < Scope
-   
+
     	def resolve
     		if user.admin? || user.user?
       			scope.includes(:owner).includes(realty: :address).includes(agent: :superior).includes(:clients)
-    		elsif user.manager?
+    		elsif user.manager? || user.agent?
             	scope.accord_for_manager(user).includes(:owner).includes(realty: :address).includes(agent: :superior).includes(:clients)
-        	elsif user.agent?
-        		scope.agents_accords(user).includes(:owner).includes(realty: :address).includes(agent: :superior).includes(:clients)
         	end
     	end
   	end

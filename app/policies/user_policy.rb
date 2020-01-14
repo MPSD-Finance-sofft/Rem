@@ -14,17 +14,17 @@ class UserPolicy < ApplicationPolicy
   def new_user?
     update?
   end
-  
+
   def card?
     user.admin? || user.user? || record.id == user.id || record.superior == user
   end
-  
+
   def changes?
     update?
   end
 
  	class Scope < Scope
-   
+
     	def resolve
     		if user.admin?
       			scope.includes(:superior).includes(:agent_accords).joins(:permission).order(username: :desc)
