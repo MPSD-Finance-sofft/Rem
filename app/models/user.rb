@@ -128,7 +128,7 @@ class User < ApplicationRecord
 			User.order(username: :desc).can_sign_in.select(&:not_runing_notice?)
 		end
 	end
-		
+
 	scope :subordinates, -> (user) {where(superior_id: user.id)}
 	scope :username, -> (user) {where("users.username LIKE ? ", "%#{user}%")}
 	scope :id, -> (user) {where(id: user.id)}

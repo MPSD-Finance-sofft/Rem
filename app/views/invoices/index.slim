@@ -10,8 +10,8 @@ div.container-fluid
     .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
   		h6.m-0.font-weight-bold.text-primary Přehled faktur
       	div.col-md-2.nopadding.text-right.panel-title
-    		button.btn.btn-primary data-target="#exampleModalCenter" data-toggle="modal" type="button" 
-        		| Vytvoř faktury 
+    		button.btn.btn-primary data-target="#exampleModalCenter" data-toggle="modal" type="button"
+        		| Vytvoř faktury
     .card-body
 		table.table
 			tr
@@ -26,7 +26,7 @@ div.container-fluid
 				th Datum vyplaceni faktury
 				th
 			- @invoices.each do |invoice|
-				= form_for invoice, url: invoice_path(invoice), method: 'put' do |f| 
+				= form_for invoice, url: invoice_path(invoice), method: 'put' do |f|
 					tr
 						td = link_to "pdf", invoice_path(id: invoice.id, format: :pdf)
 						td = invoice.period
@@ -38,18 +38,18 @@ div.container-fluid
 						td.text-right = f.text_field :delivery_date, {class: 'datapicker text-right', form:"edit_invoice_#{invoice.id}"}
 						td.text-right = f.text_field :payout_date,{class: 'datapicker text-right', form:"edit_invoice_#{invoice.id}"}
 						td = f.submit "Odešli" , class: "btn btn-default", type: "submit", form:"edit_invoice_#{invoice.id}"
-					
+
 /! Modal
-#exampleModalCenter.modal.fade aria-hidden="true" aria-labelledby="exampleModalCenterTitle" role="dialog" tabindex="1" 
-		.modal-dialog.modal-dialog-centered role="document" 
+#exampleModalCenter.modal.fade aria-hidden="true" aria-labelledby="exampleModalCenterTitle" role="dialog" tabindex="1"
+		.modal-dialog.modal-dialog-centered role="document"
 			.modal-content
 				.modal-header
 					h5#exampleModalLongTitle.modal-title Vytvoření faktury pro uživatele
-					button.close aria-label="Close" data-dismiss="modal" type="button" 
+					button.close aria-label="Close" data-dismiss="modal" type="button"
 						span aria-hidden="true"  &times;
 				.modal-body
 					= form_with(model: Invoice, local: true) do |f|
-						= select_tag :agent_id , options_for_select(User.agents.map{|a| [a.all_name,a.id]}), data: {"live-search": true}
+						= select_tag :agent_id , options_for_select(User.agents.user_can_permision(current_user).map{|a| [a.all_name,a.id]}), data: {"live-search": true}
 						.modal-footer
 							button.btn.btn-secondary data-dismiss="modal" type="button"  Close
 							button.btn.btn-primary type="submit"  Odešli
