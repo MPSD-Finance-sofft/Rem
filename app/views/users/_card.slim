@@ -122,7 +122,7 @@
 						- user.user_address.decorate.each do |ua|
 							tr
 								td = ua.kind
-								td = ua.address.full_name
+								td = ua.address.try(:full_name)
 						
 #of_notice.modal.fade aria-hidden="true" aria-labelledby="exampleModalCenterTitle" role="dialog" tabindex="-1" 
 	.modal-dialog.modal-dialog-centered role="document" 

@@ -31,6 +31,14 @@ class User < ApplicationRecord
 	accepts_nested_attributes_for :user_email,  reject_if: :all_blank, allow_destroy: true
 	validates_confirmation_of :password
 
+	after_save :remove_with_zero_adress
+
+	def remove_with_zero_adress
+		self.user_address.each do |ua|
+			ua.destroy if ua.address_id.nil?
+		end
+	end
+
 	def all_name
 	 self.title_before.to_s + ' ' + self.last_name.to_s + ' ' +  self.name.to_s + ' ' + self.title_last.to_s + ' (' + self.username.to_s + ')'
 	end
