@@ -1,0 +1,24 @@
+div.container-fluid
+  ol.breadcrumb
+    li.breadcrumb-item
+      b
+        | 
+    li.breadcrumb-item
+      | Přehled přepočtů
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary Přehled přepočtů
+    .card-body
+      table.table
+        thead
+          tr
+          	th Čas
+            th Druh
+            th Text
+        tbody
+          - @scheduler_logs.each do |scheduler_log|
+            tr
+              td= scheduler_log.created_at
+              td= scheduler_log.kind
+              td= scheduler_log.list_arr.join(', ')

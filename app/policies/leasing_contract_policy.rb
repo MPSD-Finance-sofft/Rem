@@ -1,10 +1,10 @@
 class LeasingContractPolicy < ApplicationPolicy
-	
+
     def index?
         !user.agent?
     end
 
-	def show?       
+	def show?
         if user.agent?
             false
         elsif user.manager?
@@ -20,7 +20,7 @@ class LeasingContractPolicy < ApplicationPolicy
         user.user? || user.admin?
     end
 
-    def destroy? 
+    def destroy?
         user.admin?
     end
 
@@ -35,12 +35,12 @@ class LeasingContractPolicy < ApplicationPolicy
     def delete_image?
         update?
     end
-    
+
     class Scope < Scope
-   
+
         def resolve
             if user.admin? || user.user?
-                scope
+                scope.joins(:accord).includes(:user).includes(:clients).includes(realty: :address).includes(:payments).includes(:repayments)
             elsif user.manager?
                 scope.subordinates_accords(user).or(scope.agents_accords(user))
             elsif user.agent?
@@ -48,5 +48,5 @@ class LeasingContractPolicy < ApplicationPolicy
             end
         end
     end
-    
+
 end

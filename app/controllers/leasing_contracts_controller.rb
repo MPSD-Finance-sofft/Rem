@@ -17,7 +17,7 @@ class LeasingContractsController < ApplicationController
 
   # GET /leasing_contracts/1
   # GET /leasing_contracts/1.json
-  def show  
+  def show
     authorize @leasing_contract
     @repayments = @leasing_contract.calendar
     @leasing_constract_notes = NoteLeasingContractPolicy::Scope.new(@leasing_contract.id, current_user, NoteLeasingContract).resolve.decorate 

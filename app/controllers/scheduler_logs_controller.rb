@@ -4,7 +4,7 @@ class SchedulerLogsController < ApplicationController
   # GET /scheduler_logs
   # GET /scheduler_logs.json
   def index
-    @scheduler_logs = SchedulerLog.all
+    @scheduler_logs = SchedulerLog.order(created_at: :desc).decorate
   end
 
   # GET /scheduler_logs/1
