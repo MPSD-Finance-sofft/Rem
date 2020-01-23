@@ -89,6 +89,10 @@ class AccordDecorator < ApplicationDecorator
  		object.owner.try(:all_name)
  	end
 
+  def owner_name_tel
+    object.owner.try(:mobile).try(:last).try(:phone_number)
+  end
+
   def agent_name
     object.agent.try(:all_name)
   end
