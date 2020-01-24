@@ -28,7 +28,22 @@ initialize_calendar = function() {
       },
 
       eventDrop: function(event, delta, revertFunc) {
-        event_data = { 
+        event_data = {
+          event: {
+            id: event.id,
+            start: event.start.format(),
+            end: event.end.format(),
+            done: event.done
+          }
+        };
+        $.ajax({
+            url: event.update_url,
+            data: event_data,
+            type: 'PATCH'
+        });
+      },
+      eventResize: function(event, delta, revertFunc) {
+        event_data = {
           event: {
             id: event.id,
             start: event.start.format(),
@@ -49,7 +64,7 @@ initialize_calendar = function() {
         done = '<i class="fa fa-times" style="color:red"></i>'
       };
       $(element).find('.fc-title').html(done +' ' +event.title);
-      },     
+      },
       eventClick: function(event, jsEvent, view) {
         $.getScript(event.edit_url, function() {
           $('#event_date_range').val(moment(event.start).format("DD/MM/YYYY HH:mm") + ' - ' + moment(event.end).format("DD/MM/YYYY HH:mm"))
