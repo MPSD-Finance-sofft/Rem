@@ -3,12 +3,15 @@ div class="#{@leasing_contract.object_state} leasing_contract_show"
     ol.breadcrumb
       li.breadcrumb-item
         b
-          = link_to 'Nájemní smlouva', leasing_contracts_path()  
+          = link_to 'Nájemní smlouva', leasing_contracts_path()
       li.breadcrumb-item
         | Nájemní smlouva č.
         = @leasing_contract.id
-        |  pro žádost č. 
+        |  pro žádost č.
         = link_to @leasing_contract.accord_id, accord_path(@leasing_contract.accord_id)
+        i.text-righ
+          |  / poslední přepočet:
+          = @leasing_contract.last_recalculation
     = render partial: "leasing_contracts/show/action"
     = render partial: "leasing_contracts/show/data"
     = render partial: "leasing_contracts/show/payment"

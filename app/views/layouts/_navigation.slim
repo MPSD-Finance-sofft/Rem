@@ -48,10 +48,14 @@
         #headingOverview.collapse aria-labelledby="headingOverview" data-parent="#accordionFirstSidebar" 
           .bg-white.py-2.collapse-inner.rounded
             h6.collapse-header Přehledy v  aplikace:
-            a.collapse-item href="/leasing_contracts?template=summary_of_payments"
-              | Plán 
+            a.collapse-item href="/leasing_contracts?template=with_debt&state%5B%5D=debt"
+              | Dlužné nájmení
               br
-              | úhrad 
+              | smlouvy
+            a.collapse-item href="/leasing_contracts?template=summary_of_payments"
+              | Plán
+              br
+              | úhrad
             a.collapse-item href="/activities/search_index"
               | Activity  
             a.collapse-item href="/events/all_list"

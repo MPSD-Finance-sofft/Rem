@@ -109,4 +109,16 @@ class LeasingContractDecorator < ApplicationDecorator
   	def user
     	object.user.try(:all_name)
   	end
+
+  	def last_recalculation
+  		format_date_time object.last_recalculation
+  	end
+
+  	def start_date_debt
+  		format_date object.start_date_debt
+  	end
+
+	def debt_more_then_ten_day
+  		"debt" if object.debt_more_then_ten_day?
+  	end
 end

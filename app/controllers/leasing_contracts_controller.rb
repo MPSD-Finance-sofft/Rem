@@ -6,9 +6,6 @@ class LeasingContractsController < ApplicationController
   def index
     authorize LeasingContract
     @leasing_contracts = policy_scope(LeasingContract).order(rent_from: :desc)
-    @leasing_contracts.select(&:debt?).map{|a| a.state= "debt"; a.save}
-    @leasing_contracts.select(&:active?).map{|a| a.state= "actions"; a.save}
-    @leasing_contracts.select(&:added?).map{|a| a.state= "added"; a.save}
     template = LeasingContracts::IndexServices.new(params).perform
     @leasing_contracts =  IndexFilter::IndexServices.new(@leasing_contracts,params).perform
     @leasing_contracts = @leasing_contracts.decorate

@@ -8,6 +8,8 @@ module LeasingContracts
       case @template
         when 'summary_of_payments'
           'leasing_contracts/index/summary_of_payments.slim'
+        when 'with_debt'
+          'leasing_contracts/index/with_debt.slim'
       	else 'leasing_contracts/index/index.slim'
        end
     end

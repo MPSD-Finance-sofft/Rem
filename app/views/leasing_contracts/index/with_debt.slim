@@ -1,0 +1,41 @@
+div.container-fluid
+  ol.breadcrumb
+    li.breadcrumb-item
+      b
+        | Nájemní smlouvy
+    li.breadcrumb-item
+      | Přehled dluhů na nájemních smlouvách
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary Přehled dluhů na nájemních smlouvách
+    .card-body
+		p
+			b
+				| Počet dlužných smluv:
+				= @leasing_contracts.size
+		table.table
+			th Číslo nájemní smlouvy
+			th Datum podpisu
+			th Měsíční nájemné
+			th Dluh od
+			th Dluh částka
+			th Klient
+			th Adresa Nemovitosti
+			th V péči
+			- @leasing_contracts.each do |leasing_contract|
+				tr class="#{leasing_contract.debt_more_then_ten_day} text-dark"
+					td = link_to leasing_contract.id, leasing_contract_path(leasing_contract)
+					td.text-right = leasing_contract.expected_date_of_signature
+					td.text-right.text-nowrap = leasing_contract.monthly_rent
+					td.text-righ = leasing_contract.start_date_debt
+					td.text-right.text-nowrap = leasing_contract.debt
+					td
+						- leasing_contract.clients.each do |client|
+							= client.full_name
+							br
+					td
+						- leasing_contract.realty.each do |realty|
+							= realty.address.try(:index_name)
+							br
+					td = leasing_contract.user

@@ -18,13 +18,21 @@ set :output, "#{path}/log/cron.log"
 set :bundle_command, 'bundle exec'
 job_type :runner, "cd :path && :bundle_command rails runner -e :environment ':task' :output"
 # every 1.minute do
-# 	runner "User::nevim", :environment => 'production' 
-# end 
+# 	runner "User::nevim", :environment => 'production'
+# end
 # Learn more: http://github.com/javan/whenever
-every 1.hour do 
-	runner "Client::duplicate_clients", :environment => 'production' 
+every 1.hour do
+	runner "Client::duplicate_clients", :environment => 'production'
 end
 
-every 24.hour do 
-	runner "Activity::delete_duplicate", :environment => 'production' 
+every 1.hour do
+	runner "LeasingContract::recalculation_payments", :environment => 'production'
+end
+
+every 1.hour do
+	runner "LeasingContract::change_state", :environment => 'production'
+end
+
+every 24.hour do
+	runner "Activity::delete_duplicate", :environment => 'production'
 end

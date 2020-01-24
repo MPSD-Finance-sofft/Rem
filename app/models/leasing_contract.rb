@@ -11,7 +11,7 @@ class LeasingContract < ApplicationRecord
 
 	has_many :realty, through: :leasing_contract_realty
 	has_many :clients, through: :leasing_contract_clients
-	
+
 	belongs_to :accord
 	belongs_to :user,  required: false
 	has_many_attached :uploads
@@ -20,7 +20,7 @@ class LeasingContract < ApplicationRecord
 	accepts_nested_attributes_for :payments,  reject_if: :all_blank, allow_destroy: true
 	accepts_nested_attributes_for :leasing_contract_clients,  reject_if: :all_blank, allow_destroy: true
 	accepts_nested_attributes_for :leasing_contract_realty,  reject_if: :all_blank, allow_destroy: true
-	
+
 	after_create :add_realty
 	after_create :add_client
 
@@ -63,15 +63,15 @@ class LeasingContract < ApplicationRecord
 
 	def debt?
 		number = self.debt
-		number > 0 && self.state != 'ended'
+		number > 0
 	end
 
 	def active?
-		(self.expected_date_of_signature) && (!debt?) && (self.state != 'ended') && (self.expected_date_of_signature <= Date.today)
+		(self.expected_date_of_signature) && (!debt?) && (self.expected_date_of_signature <= Date.today)
 	end
 
 	def added?
-		self.state != 'ended' && self.repayments.sum(:amount).to_f == self.payments.sum(:amount).to_f 
+		self.repayments.sum(:amount).to_f == self.payments.sum(:amount).to_f
 	end
 
 	def alerts
@@ -79,9 +79,75 @@ class LeasingContract < ApplicationRecord
 	end
 
 	def debt
-		self.repayments.repayment_date_today.sum(:amount).to_f - self.payments.sum(:amount).to_f 
+		self.repayments.includes(:repayment_payment).repayment_date_today.not_paid.sum{|a| a.missing_to_pay}
 	end
-	
+
+	def start_date_debt
+		self.repayments.includes(:repayment_payment).repayment_date_today.not_paid.first.repayment_date
+	end
+
+	def recalculation_payments
+		new_repayment_payment = false
+		self.repayments.each do |repayment|
+			payments = self.payments.not_paid
+
+			return new_repayment_payment if payments.blank?
+			next if repayment.paid?
+
+			payment = payments.first
+			result = repayment.missing_to_pay - payment.to_be_paid
+			result < 0 ? result = repayment.missing_to_pay : result  = payment.to_be_paid
+
+			RepaymentPayment.create(payment_id: payment.id, repayment_id: repayment.id, amount: result)
+			new_repayment_payment = true
+		end
+		new_repayment_payment
+	end
+
+	def change_state
+		return state == 'ended'
+
+		if debt?
+			help_state = 'debt'
+		elsif active?
+			help_state = 'actions'
+		elsif added?
+			help_state = 'added'
+		end
+
+		if help_state != state
+			state = help_state
+			self.save
+			true
+		else
+			false
+		end
+	end
+
+	def debt_more_then_ten_day?
+		Date.today - start_date_debt > 10
+	end
+
+	def self.recalculation_payments
+		list = []
+		LeasingContract.all.each do |leasing_contract|
+			list << leasing_contract.id if leasing_contract.recalculation_payments
+		end
+		SchedulerLog.create(kind: 'LeasigContractRecalculationPayments', list: list) unless list.blank?
+	end
+
+	def self.change_state
+		list = []
+		 LeasingContract.all.each do |leasing_contract|
+			list << leasing_contract.id if leasing_contract.change_state
+		end
+		SchedulerLog.create(kind: 'LeasigContractChangeState', list: list) unless list.blank?
+	end
+
+	def last_recalculation
+		SchedulerLog.for_leasig_contract.where("list LIKE ?", "%#{self.id}%").order(created_at: :desc).select{|a| a.list.match(/\D#{self.id}\D/)}.first.try(:created_at)
+	end
+
 	scope :for_accord, -> (accord_id) {where(accord_id: accord_id)}
 	scope :contract_number, -> (contract_number) {where(id:  contract_number)}
 	scope :state, -> (state) {where(state:  state)}
