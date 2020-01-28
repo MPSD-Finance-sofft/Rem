@@ -121,4 +121,8 @@ class LeasingContractDecorator < ApplicationDecorator
 	def debt_more_then_ten_day
   		"debt" if object.debt_more_then_ten_day?
   	end
+
+  	def all_debt
+  		format_number LeasingContract::all_debt
+  	end
 end

@@ -14,6 +14,9 @@ div.container-fluid
 			b
 				| Počet dlužných smluv:
 				= @leasing_contracts.size
+				i
+					|  ,s celkovým dluhem: 
+					= @leasing_contracts.first.all_debt
 		table.table
 			th Číslo nájemní smlouvy
 			th Datum podpisu

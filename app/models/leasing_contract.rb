@@ -128,6 +128,10 @@ class LeasingContract < ApplicationRecord
 		Date.today - start_date_debt > 10
 	end
 
+	def self.all_debt
+		LeasingContract.includes(repayments: :repayment_payment).state('debt').sum(&:debt)
+	end
+
 	def self.recalculation_payments
 		list = []
 		LeasingContract.all.each do |leasing_contract|

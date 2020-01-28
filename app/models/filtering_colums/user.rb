@@ -23,7 +23,6 @@ module FilteringColums::User
 			"short_name"=>'Pozice',
 			"date_of_cooperation"=>'Datum navázání spolupráce',
 			"can_sign_in"=>'Muže se přihlásit',
-			"can_sign_in"=>'Běží výpověď',
 			"complate_documentation"=>'Kompletní dokumentace',
 			"web"=>'Web',
 			"created_at"=>'Datum založení',
