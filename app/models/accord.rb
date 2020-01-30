@@ -4,7 +4,7 @@ class Accord < ApplicationRecord
 	include RemoveWhiteSpiceFromNumberInput::Accord
 	validates_with AccordValidator
 	attr_accessor :current_user
-	
+
 	has_many :accords_realty, :dependent => :destroy
 	has_many :accords_clients, :dependent => :destroy
 
@@ -39,7 +39,7 @@ class Accord < ApplicationRecord
 	has_many_attached :constract_file
 	has_many_attached :documents
 	has_many_attached :reminders
-	
+
 	accepts_nested_attributes_for :accords_realty,  reject_if: :all_blank, allow_destroy: true
 	accepts_nested_attributes_for :accords_clients,  reject_if: :all_blank, allow_destroy: true
 	accepts_nested_attributes_for :commitments,  reject_if: :all_blank, allow_destroy: true
@@ -87,7 +87,7 @@ class Accord < ApplicationRecord
 
 	def add_number
 		if self.number.blank?
-			self.number = self.id 
+			self.number = self.id
 			self.save
 		end
 	end

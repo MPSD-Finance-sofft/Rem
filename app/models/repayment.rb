@@ -26,7 +26,7 @@ class Repayment < ApplicationRecord
 	end
 
 	def missing_to_pay
-		amount - repayment_payment.sum(:amount).to_f
+		amount.to_f - repayment_payment.sum(:amount).to_f
 	end
 
 	def self.not_paid

@@ -83,7 +83,7 @@ class LeasingContract < ApplicationRecord
 	end
 
 	def start_date_debt
-		self.repayments.includes(:repayment_payment).repayment_date_today.not_paid.first.repayment_date
+		self.repayments.includes(:repayment_payment).repayment_date_today.not_paid.first.try(:repayment_date)
 	end
 
 	def recalculation_payments
@@ -125,6 +125,7 @@ class LeasingContract < ApplicationRecord
 	end
 
 	def debt_more_then_ten_day?
+		return if start_date_debt.nil?
 		Date.today - start_date_debt > 10
 	end
 
