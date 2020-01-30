@@ -116,7 +116,7 @@ class LeasingContract < ApplicationRecord
 		end
 
 		if help_state != state
-			state = help_state
+			self.state = help_state
 			self.save
 			true
 		else
