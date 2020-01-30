@@ -45,6 +45,10 @@ class UserDecorator < ApplicationDecorator
  		object.email.map{|a| a.email_address}.join(" ")
  	end
 
+ 	def first_email_to_s
+ 		object.email.first.try(:email_address)
+ 	end
+
  	def billing_address_to_s
  		object.user_address.where(kind: 'billing').first.try(:address).try(:index_name)
  	end

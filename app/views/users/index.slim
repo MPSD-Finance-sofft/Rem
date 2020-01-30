@@ -42,7 +42,7 @@ div.container-fluid
 									i class="fa fa-lock " style="color:red"
 							=link_to edit_user_path(user) do
 								i class="fas fa-user-edit"
-							a href="mailto:#{user.email}"
+							a href="mailto:#{user.first_email_to_s}"
 								i class="fas fa-at"
 						td = user.date_of_cooperation
 						td.font-weight-bold
