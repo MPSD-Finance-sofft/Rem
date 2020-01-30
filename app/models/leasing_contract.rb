@@ -105,7 +105,7 @@ class LeasingContract < ApplicationRecord
 	end
 
 	def change_state
-		return state == 'ended'
+		return false if state == 'ended'
 
 		if debt?
 			help_state = 'debt'
