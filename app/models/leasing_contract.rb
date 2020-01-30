@@ -67,11 +67,13 @@ class LeasingContract < ApplicationRecord
 	end
 
 	def active?
-		(self.expected_date_of_signature) && (!debt?) && (self.expected_date_of_signature <= Date.today)
+		return false if self.added?
+		return false if self.debt?
+		(self.expected_date_of_signature) && (self.expected_date_of_signature <= Date.today)
 	end
 
 	def added?
-		self.repayments.sum(:amount).to_f == self.payments.sum(:amount).to_f
+		self.repayments.sum(:amount).to_f <= self.payments.sum(:amount).to_f
 	end
 
 	def alerts
@@ -109,10 +111,10 @@ class LeasingContract < ApplicationRecord
 
 		if debt?
 			help_state = 'debt'
-		elsif active?
-			help_state = 'actions'
 		elsif added?
 			help_state = 'added'
+		elsif active?
+			help_state = 'actions'
 		end
 
 		if help_state != state
