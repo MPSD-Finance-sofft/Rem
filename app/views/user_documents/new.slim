@@ -1,0 +1,15 @@
+= form_with(model: [@user,@user_document], local: true, html: {multipart:true}) do |f|
+	- if @user_document.errors.any?
+		#error_explanation
+			h2
+				= pluralize(@user_document.errors.count, "error")
+				| prohibited this accord from being saved:
+			ul
+				- @user_document.errors.full_messages.each do |message|
+					li= message
+	= f.label :document_type_id
+	= f.select :document_type_id, DocumentType.select([:id,:description]).map{|a| [a.description, a.id]},{ include_blank: true },{class: "selectpicker form-control", "data-live-search" => "true"}
+	= f.label :files, "Přílohy agenta"
+	= f.file_field :files, multiple: true, required: true
+	= f.hidden_field :user_id, value: @user.id
+	= f.submit

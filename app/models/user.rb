@@ -24,6 +24,7 @@ class User < ApplicationRecord
 	has_many :notifications, class_name: "Notification", foreign_key: "user_id"
 	has_many :alerts, class_name: "Alert", foreign_key: "user_id"
 	has_many :terrains, class_name: "Terrain", foreign_key: "agent_id"
+	has_many :user_documents
 
 	accepts_nested_attributes_for :permission,  reject_if: :all_blank, allow_destroy: true
 	accepts_nested_attributes_for :user_mobile,  reject_if: :all_blank, allow_destroy: true
@@ -44,11 +45,11 @@ class User < ApplicationRecord
 	end
 
 	def admin?
-		self.permission.try(:kind) == "admin" 
+		self.permission.try(:kind) == "admin"
 	end
-	
+
 	def not_admin?
-		self.permission.try(:kind) != "admin" 
+		self.permission.try(:kind) != "admin"
 	end
 
 	def user?

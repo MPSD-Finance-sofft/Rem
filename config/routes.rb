@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :document_types
   resources :scheduler_logs
   resources :revisions
   resources :reports do 
@@ -73,6 +74,11 @@ Rails.application.routes.draw do
     end
     member do 
       get :card
+    end
+    resources :user_documents do
+      member do
+        patch :uploads
+      end
     end
   end
   resources :accords do

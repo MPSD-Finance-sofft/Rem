@@ -1,0 +1,27 @@
+- title "Přílohy pro uživatele: " + @user.all_name.to_s
+.container-fluid
+	ol.breadcrumb
+		li.breadcrumb-item
+			= link_to 'Uživatelé', users_path()
+		li.breadcrumb-item
+			| Přílohy k uživateli
+			= @user.all_name.to_s
+.col-xl-12.col-lg-12
+	.card.shadow.mb-4
+		.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+			h6.m-0.font-weight-bold.text-primary
+				| Přehled příloh k uživateli,
+				i
+					|  vytvořených: 
+					= @user_document.created_at
+					|  , typu: 
+					= @user_document.document_type
+			div.col-md-2.nopadding.text-right.panel-title
+	.card-body
+		- @user_document.files.each do |file|
+			.p-1.border
+				= link_to (image_tag(file)), file
+				= link_to file.filename, rails_blob_path(file, disposition: 'attachment')
+				br
+				
+				br
