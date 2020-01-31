@@ -5,6 +5,10 @@
       h6.m-0.font-weight-bold.text-primary Přehled Pro Agenty
     .card-body
     	- unless params[:colums].blank?
+    		p
+		        b
+		          | Počet vyhledaných agentu:
+		          = @users.size
 	    	table.table.table-striped style="overflow: auto; display:inline-block"
 	    		tr
 		    		- params[:colums].each do |colum|
