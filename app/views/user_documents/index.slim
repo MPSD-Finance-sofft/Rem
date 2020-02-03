@@ -28,3 +28,4 @@
 				       	- user_document.files.each do |file|
 							= link_to file.filename, rails_blob_path(file, disposition: 'attachment')
 							|  
+					td= link_to 'Smaž', user_user_document_path(id: user_document.id, user_id: user_document.user_id), method: :delete, data: { confirm: 'Are you sure?' }

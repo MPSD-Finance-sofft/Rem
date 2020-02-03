@@ -11,6 +11,8 @@
 		        			| Výpověd
 		        	.col-md-3
 						=link_to "Změny", changes_users_path(id: user.id), type: "btn", class: "btn btn-primary text-white"
+					.col-md-3
+						=link_to "Přílohy", user_user_documents_path(user_id: user.id), type: "btn", class: "btn btn-primary text-white"
 		.card-body
 			div.col-md-5
 				= image_tag user.avatar if user.avatar.try(:attachment)

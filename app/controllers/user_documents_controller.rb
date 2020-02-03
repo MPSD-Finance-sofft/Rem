@@ -1,5 +1,6 @@
 class UserDocumentsController < ApplicationController
 	before_action :set_user
+	before_action :set_user_document, only: [:show,:destroy]
 
 	def index
 		@user_documents = @user.user_documents
@@ -23,12 +24,23 @@ class UserDocumentsController < ApplicationController
 	end
 
 	def show
-		@user_document = UserDocument.find params[:id]
+	end
+
+	def destroy
+		@user_document.destroy
+    	respond_to do |format|
+      		format.html { redirect_to user_user_documents_path(user_id: @user.id), notice: 'Přílohy uspěšně smazány' }
+      		format.json { head :no_content }
+    	end
 	end
 
 	private
 		def set_user
 			@user = User.find(params[:user_id])
+		end
+
+		def set_user_document
+			@user_document = UserDocument.find params[:id]
 		end
 
 		def user_document_params

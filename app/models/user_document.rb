@@ -3,4 +3,10 @@ class UserDocument < ApplicationRecord
 
 	belongs_to :user
 	belongs_to :document_type
+	after_destroy :removes_files
+
+	def removes_files
+		self.files.map{|a| a.purge}
+	end
+
 end
