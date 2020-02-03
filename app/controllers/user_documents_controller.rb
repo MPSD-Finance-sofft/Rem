@@ -3,7 +3,7 @@ class UserDocumentsController < ApplicationController
 	before_action :set_user_document, only: [:show,:destroy]
 
 	def index
-		@user_documents = @user.user_documents
+		@user_documents = @user.user_documents.decorate
 	end
 
 	def new
@@ -40,7 +40,7 @@ class UserDocumentsController < ApplicationController
 		end
 
 		def set_user_document
-			@user_document = UserDocument.find params[:id]
+			@user_document = UserDocument.find(params[:id]).decorate
 		end
 
 		def user_document_params
