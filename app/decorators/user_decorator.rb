@@ -16,7 +16,7 @@ class UserDecorator < ApplicationDecorator
  	def date_of_cooperation
  		format_date(object.date_of_cooperation)
  	end
- 	
+
  	def birthdate
  		format_date(object.birthdate)
  	end
@@ -24,7 +24,7 @@ class UserDecorator < ApplicationDecorator
  	def date_of_cooperation
  		format_date(object.date_of_cooperation)
  	end
- 	
+
  	def date_of_last_create_accord
  		format_date(object.date_of_last_create_accord)
  	end
@@ -63,7 +63,7 @@ class UserDecorator < ApplicationDecorator
 
  	def mailing_address_district_to_s
  		object.user_address.where(kind: 'mailing').first.try(:address).try(:district)
- 	end	
+ 	end
 
  	def permanent_address_to_s
  		object.user_address.where(kind: 'permanent').first.try(:address).try(:index_name)
@@ -95,5 +95,21 @@ class UserDecorator < ApplicationDecorator
 
  	def agent_accords_signature
  		format_date object.agent_accords_signature.last.try(:date_of_signature)
+ 	end
+
+ 	def contract_volume_bussines
+ 		format_number object.contract_volume_bussines
+ 	end
+
+  	def sum_contract_one_of_payment
+ 		format_number object.sum_contract_one_of_payment
+ 	end
+
+  	def contract_volume_servise
+ 		format_number object.contract_volume_servise
+ 	end
+
+ 	def sum_contract_one_of_payment_service
+ 		format_number object.sum_contract_one_of_payment_service
  	end
 end

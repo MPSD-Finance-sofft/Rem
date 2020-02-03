@@ -1,5 +1,6 @@
 class User < ApplicationRecord
 	extend FilteringColums::User
+	include Reports::User
 	attr_accessor :current_user
 	validates_with UserValidator
 	has_paper_trail ignore: [:updated_at, :id, :encrypted_password]
@@ -118,6 +119,11 @@ class User < ApplicationRecord
 
 	def date_of_last_create_accord
 		self.agent_accords.last.try(:created_at)
+	end
+
+	def date_of_last_create_accord_smaller_then_60?
+		return false if date_of_last_create_accord.nil?
+		Time.now - date_of_last_create_accord <= 60.day
 	end
 
 	def date_of_last_contract
