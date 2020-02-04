@@ -1,7 +1,26 @@
 require 'csv'
 module FilteringColums::User
 
-	def filtering_attributes
+	def filtering_attributes_admin
+		{
+			"contract_volume_bussines" => 'Objem smluv - OBCHOD',
+			"count_contract_bussines" => 'KS smluv - OBCHOD',
+			"sum_contract_one_of_payment" => 'Jednorázově vyplaceno" - OBCHOD',
+			"events_for_the_period" => 'Přiřazené události',
+			"events_meeting_with_advisors" => 'Splněné schůzky s poradci',
+			"count_accord_for_user_in_interval" => 'Navedeno žádostí',
+			"count_accord_to_terrain" => 'Zasláno do terénu',
+			"count_new_cooperation" => 'Nová spolupráce',
+			"count_not_termination_cooperation" => 'Smlouvy bez výpovědí',
+			"count_active_cooperation" => 'Aktivní poradci',
+			"count_not_termination_incomplate_cooperation" => 'Nekompletní dokumentace',
+			"contract_volume_servise" => 'Objem smluv - SERVIS',
+			"count_contract_servise" => 'KS smluv - SERVIS',
+			"sum_contract_one_of_payment_service" => 'Jednorázově vyplaceno  - SERVIS',
+		}
+	end
+
+	def filtering_attributes_manager
 		{
 			"all_name" => 'Celé jméno',
 			"name_company" => 'Jméno společnost',
@@ -37,20 +56,12 @@ module FilteringColums::User
 			"accord_terrain_in_agent" => 'Datum poslední žádosti agenta v terénu',
 			"agent_accords_signature_count" => 'Počet u podpisu',
 			"agent_accords_signature" => 'Datum posledního podpisu',
-			"contract_volume_bussines" => 'Objem smluv - OBCHOD',
-			"count_contract_bussines" => 'KS smluv - OBCHOD',
-			"sum_contract_one_of_payment" => 'Jednorázově vyplaceno" - OBCHOD',
-			"events_for_the_period" => 'Přiřazené události',
-			"events_meeting_with_advisors" => 'Splněné schůzky s poradci',
-			"count_accord_for_user_in_interval" => 'Navedeno žádostí',
-			"count_accord_to_terrain" => 'Zasláno do terénu',
-			"count_new_cooperation" => 'Nová spolupráce',
-			"count_not_termination_cooperation" => 'Smlouvy bez výpovědí',
-			"count_active_cooperation" => 'Aktivní poradci',
-			"count_not_termination_incomplate_cooperation" => 'Nekompletní dokumentace',
-			"contract_volume_servise" => 'Objem smluv - SERVIS',
-			"count_contract_servise" => 'KS smluv - SERVIS',
-			"sum_contract_one_of_payment_service" => 'Jednorázově vyplaceno" - SERVIS',
+		}
+	end
+
+	def filtering_attributes_agent
+		{
+
 		}
 	end
 

@@ -2,7 +2,7 @@ class ReportsController < ApplicationController
 
 	def agents
 		request.format = 'csv' if params[:commit] == 'CSV'
-		@colums = Report::colums
+		@colums = Report::colums(current_user)
 		@users = policy_scope(User)
 		@filter_users = @users
 		@company = @filter_users.map{|a| [a.name_company,a.name_company]}.uniq
