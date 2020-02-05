@@ -61,8 +61,11 @@ module FilteringColums::User
 
 	def filtering_attributes_agent
 		{
-
 		}
+	end
+
+	def filtering_attributes
+		filtering_attributes_admin.merge(filtering_attributes_manager).merge(filtering_attributes_agent)
 	end
 
 	def to_csv(attributes)
@@ -72,5 +75,21 @@ module FilteringColums::User
 	        	csv << attributes.map{ |attr| user.send(attr) }
 	      	end
     	end
+  	end
+
+  	def between_count_accords(arr)
+  		where(id: Accord.where('accords.created_at': arr.first.to_date..arr.last.to_date).pluck(:agent_id))
+  	end
+
+  	def between_date_of_last_accord(arr)
+  		where(id: (User.select{|a| (!a.date_of_last_create_accord.nil?) && (a.date_of_last_create_accord >= arr.first.to_date)&& (a.date_of_last_create_accord < arr.last.to_date)}.map{|a| a.id}))
+  	end
+
+  	def between_received_terrain(arr)
+  		where(id: (Terrain.where(date_to_terrain: arr.first.to_date..arr.last.to_date).pluck(:agent_id)))
+  	end
+
+  	def between_date_ol_last_terrain(arr)
+
   	end
 end

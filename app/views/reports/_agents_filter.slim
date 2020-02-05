@@ -14,6 +14,28 @@
 	    .card-body
 	    	.row.p-3
 				.col-xl-2
+					.input-group
+						= label_tag :between_count_accords, "Celkem žádostí"
+						br
+						= text_field_tag "between_count_accords[]",first_or_nil(params[:between_count_accords]), class: "form-control input-sm col-xl-6"
+						= text_field_tag "between_count_accords[]",last_or_nil(params[:between_count_accords]), class: "form-control input-sm col-xl-6"
+					.input-group
+						= label_tag :between_count_accords, "Datum navedení poslední žádosti"
+						br
+						= text_field_tag "between_date_of_last_accord[]",first_or_nil(params[:between_date_of_last_accord]), class: "form-control input-sm col-xl-6"
+						= text_field_tag "between_date_of_last_accord[]",last_or_nil(params[:between_date_of_last_accord]), class: "form-control input-sm col-xl-6"
+					.input-group
+						= label_tag :between_received_terrain, "Datum obdrženo do terénu"
+						br
+						= text_field_tag "between_received_terrain[]",first_or_nil(params[:between_received_terrain]), class: "form-control input-sm col-xl-6"
+						= text_field_tag "between_received_terrain[]",last_or_nil(params[:between_received_terrain]), class: "form-control input-sm col-xl-6"
+					.input-group
+						= label_tag :between_date_ol_last_terrain, "Datum obdrženo do terénu"
+						br
+						= text_field_tag "between_date_ol_last_terrain[]",first_or_nil(params[:between_date_ol_last_terrain]), class: "form-control input-sm col-xl-6"
+						= text_field_tag "between_date_ol_last_terrain[]",last_or_nil(params[:between_date_ol_last_terrain]), class: "form-control input-sm col-xl-6"
+			.row.p-3
+				.col-xl-2
 					.form-group
 						= label_tag :subordinates_id, "Nadřízený"
 						= select_tag :subordinates_id, options_for_select(User.where("id != 1").pluck(:superior_id).uniq.map{|a| [User.find_by_id(a).try(:all_name),a]}, params[:subordinates_id]), {include_blank: true, class: "form-control input-sm",data: {"live-search": true}, multiple: true }

@@ -14,6 +14,7 @@ module IndexFilter
 
     def perform
     	@params.each do |key, value|
+            value = value.reject(&:empty?) if value.is_a?(Array)
     		@object = @object.send(key,value) unless value.blank?
     	end unless @params.blank?
      	@object
