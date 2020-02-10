@@ -144,7 +144,18 @@ class User < ApplicationRecord
 		end
 	end
 
-	scope :subordinates, -> (user) {where(superior_id: user.id)}
+	def self.all_subordinates(user)
+		User.my_subordinates(user).each do |subordinate|
+			next if User.my_subordinates(subordinate).blank? || subordinate == user
+			return User.my_subordinates(user) + User::all_subordinates(subordinate)
+		end
+	end
+
+	def self.subordinates(user)
+		User.where(id: all_subordinates(user))
+	end
+
+	scope :my_subordinates, -> (user) {where(superior_id: user.id)}
 	scope :username, -> (user) {where("users.username LIKE ? ", "%#{user}%")}
 	scope :id, -> (user) {where(id: user.id)}
 	scope :id_user, -> (user) {where(id: user)}
