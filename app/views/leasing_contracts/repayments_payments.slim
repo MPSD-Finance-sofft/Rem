@@ -1,0 +1,16 @@
+table
+	- @leasing_contract.repayments.each do |payment|
+		- payment.repayment_payment.each do |rp|
+			tr
+				td = rp.amount
+				td = rp.repayment
+				td = rp.payment
+br
+br
+table
+	- @leasing_contract.payments.each do |payment|
+		- payment.repayment_payment.each do |rp|
+			tr
+				td = rp.amount
+				td = rp.repayment
+				td = rp.payment

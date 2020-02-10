@@ -1,0 +1,7 @@
+.tooltip
+	table.table
+		- f.object.attribut_changes(changes_attributes).each do |a|
+			tr
+				td = a.first
+				td = a.second
+				td = a.last

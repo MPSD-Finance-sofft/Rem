@@ -67,4 +67,8 @@ module Reports::User
 	def sum_contract_one_of_payment_service
 		accord_for_user_in_interval_in_signature.joins(:commitments).where('commitments.commitment_type_id': [4,5,6]).sum(:amount)
 	end
+
+	def count_active_state
+		Accord.where(agent_id: accord_for_user_in_interval.pluck(:id)).select(&:active_state_between_date?)
+	end
 end

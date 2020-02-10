@@ -1,5 +1,5 @@
 class LeasingContractsController < ApplicationController
-  before_action :set_leasing_contract, only: [:show, :edit, :update, :destroy ,:uploads, :create_uploads, :delete_image]
+  before_action :set_leasing_contract, only: [:show, :edit, :update, :destroy ,:uploads, :create_uploads, :delete_image, :repayments_payments]
 
   # GET /leasing_contracts
   # GET /leasing_contracts.json
@@ -93,6 +93,9 @@ class LeasingContractsController < ApplicationController
     @file = ActiveStorage::Blob.find_signed(params[:file_id])
     @file.attachments.first.purge
     redirect_to uploads_leasing_contract_path(leasing_contract_id: @leasing_contract)
+  end
+
+  def repayments_payments
   end
 
   private

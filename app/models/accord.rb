@@ -2,6 +2,7 @@ class Accord < ApplicationRecord
 	has_paper_trail ignore: [:updated_at, :id]
 	include AccordsEnum
 	include RemoveWhiteSpiceFromNumberInput::Accord
+	include Versions::Base
 	validates_with AccordValidator
 	attr_accessor :current_user
 
@@ -61,6 +62,8 @@ class Accord < ApplicationRecord
 	after_create :add_number
 	before_update :add_notification_change_state
 
+	ACTIVE_STATE = ['state_new', 'state_eleboration', 'in_terrain', 'returned', 'to_sign']
+
 	def commission_for_the_contract
 		self.reward ? self.reward.commission_for_the_contract.to_f : self.purchase_price.to_f * 0.03 
 	end
@@ -106,6 +109,10 @@ class Accord < ApplicationRecord
 
 	def alerts
 		Alert.where(object_id: self.id).where(object: "Accord")
+	end
+
+	def active_state_between_date?(arr)
+		!(self.object_attributes_valuee_in_between(arr,'state') & ACTIVE_STATE).blank?
 	end
 
 	scope :subordinates_accords, -> (user) {where(agent_id: [User.where(superior_id: user.id).pluck(:id)])}

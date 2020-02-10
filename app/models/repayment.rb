@@ -4,7 +4,7 @@ class Repayment < ApplicationRecord
 	include RemoveWhiteSpiceFromNumberInput::Amount
 	belongs_to :leasing_contract
 	belongs_to :repayment_type, class_name: "RepaymetType", foreign_key:"repayment_type_id", required: false
-	has_many :repayment_payment
+	has_many :repayment_payment, :dependent => :destroy
 	attr_accessor :paid
 
 	before_create :amount_from_repayment_type

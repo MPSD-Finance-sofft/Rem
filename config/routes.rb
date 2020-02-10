@@ -50,6 +50,7 @@ Rails.application.routes.draw do
     resources :payments
     member do
       get :uploads
+      get :repayments_payments
       patch :create_uploads
       delete :delete_image
     end
