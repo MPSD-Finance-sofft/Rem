@@ -55,7 +55,7 @@
 		.col-xl-2
 			.form-group
 			 	= label_tag :agent_in_terrain, "V terénu zpracovává"
-			 	= select_tag :agent_in_terrain, options_for_select( User.manager.map{|a| [a.all_name, a.id]}, params[:agent_in_terrain]) ,{include_blank: true, class: "form-control input-sm", data: {"live-search": true}}
+			 	= select_tag :agent_in_terrain, options_for_select( User.manager.map{|a| [a.all_name, a.id]}, params[:agent_in_terrain]) ,{include_blank: true, class: "form-control input-sm", data: {"live-search": true}, multiple: true}
 			.form-group
 				= label_tag :realty_type, "Typ nemovitosti"
 				= select_tag :realty_type, options_for_select(RealtyType.select([:id,:name]).map{|a| [a.name,a.id]}, params[:realty_type]), {include_blank: true, class: "form-control input-sm",data: {"live-search": true} ,multiple: true}
