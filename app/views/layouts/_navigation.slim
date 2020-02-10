@@ -14,10 +14,9 @@
       a.nav-link href="/accords"
         i.fas.fa-fw.fa-table
         span Všechny Žádosti
-      - if current_user.admin?
-        a.nav-link href="/accords?utf8=✓&state%5B%5D=state_new&state%5B%5D=state_eleboration&state%5B%5D=in_terrain&state%5B%5D=returned&state%5B%5D=to_sign"
-          i.fas.fa-fw.fa-table
-          span Žádosti
+      a.nav-link href="/accords?utf8=✓&state%5B%5D=state_new&state%5B%5D=state_eleboration&state%5B%5D=in_terrain&state%5B%5D=returned&state%5B%5D=to_sign"
+        i.fas.fa-fw.fa-table
+        span Žádosti
       a.nav-link href="/contracts" 
         i.fas.fa-fw.fa-table
         span Smlouvy 
