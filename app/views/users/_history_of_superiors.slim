@@ -1,0 +1,17 @@
+.col-xl-6.col-lg-6
+	.card.shadow.mb-4
+		.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+			h6.m-0.font-weight-bold.text-primary Historie nadřízených
+		.card-body
+			table.table
+				tr
+					th Datum změny
+					th Původní nadřízený
+					th Nový nadřízený
+					th Změnil
+				- user.superiors_attribut_changes.each do |history|
+					tr
+						td= history[:date]
+						td= history[:user_first]
+						td= history[:user_last]
+						td= history[:creator]

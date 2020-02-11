@@ -1,6 +1,4 @@
 module Versions::Base
-
-
 	def attribut_changes(attribute)
 		self.versions.select{|a| a.object_changes && a.object_changes.include?(attribute)}.map{|a| [a.whodunnit, a.changeset[attribute], a.created_at]}
 	end

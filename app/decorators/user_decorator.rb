@@ -112,4 +112,14 @@ class UserDecorator < ApplicationDecorator
  	def sum_contract_one_of_payment_service
  		format_number object.sum_contract_one_of_payment_service
  	end
+
+ 	def superiors_attribut_changes
+ 		result = []
+ 		attribut_changes('superior_id').each do |h|
+ 			user_first = User.find_by_id(h.second.first).try(:all_name)
+ 			user_last = User.find_by_id(h.second.last).try(:all_name)
+ 			result << { date: format_date_time(h.last), creator: User.find_by_id(h.first).try(:all_name), user_first: user_first, user_last: user_last }
+ 		end
+ 		result
+ 	end
 end

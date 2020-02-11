@@ -1,6 +1,7 @@
 class User < ApplicationRecord
 	extend FilteringColums::User
 	include Reports::User
+	include Versions::Base
 	attr_accessor :current_user
 	validates_with UserValidator
 	has_paper_trail ignore: [:updated_at, :id, :encrypted_password]
