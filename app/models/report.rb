@@ -12,4 +12,6 @@ class Report
 			User.filtering_attributes_agent
 		end
 	end
+
+	
 end

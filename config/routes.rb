@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :reports do 
     collection do 
       get :agents
+      get :users_jobs
     end
   end
   resources :revision_types

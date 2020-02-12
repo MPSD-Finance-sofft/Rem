@@ -21,5 +21,6 @@ class Note < ApplicationRecord
 	scope :for_agent, ->  {where(permission: "agent")}
 	scope :for_manager, ->  {where(permission: ["agent","manager"])}
 	scope :for_accord, -> (accord_id) {where(accord_id: accord_id)}
+	scope :user_id, -> (user_id) {where(user_id: user_id)}
 
 end

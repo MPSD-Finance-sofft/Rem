@@ -11,4 +11,5 @@ class Terrain < ApplicationRecord
 	end
 	scope :for_accord, -> (accord_id) {where(accord_id: accord_id)}
 	scope :active, -> {where(date_end_terrain: nil)}
+	scope :user_id, -> (user_id) {where(user_id: user_id)}
 end

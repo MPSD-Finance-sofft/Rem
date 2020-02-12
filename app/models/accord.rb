@@ -115,6 +115,10 @@ class Accord < ApplicationRecord
 		!(self.object_attributes_valuee_in_between(arr,'state') & ACTIVE_STATE).blank?
 	end
 
+	def self.count_account_total_unfinished_state(user)
+		Accord.state(Accord::ACTIVE_STATE).user_id(user.id).count
+	end
+
 	scope :subordinates_accords, -> (user) {where(agent_id: [User.where(superior_id: user.id).pluck(:id)])}
 	scope :agents_accords, -> (user) {where(agent_id:  user.id)}
 	scope :agent_terrain, -> (user) {where(agent_terrain_id:  user.id)}

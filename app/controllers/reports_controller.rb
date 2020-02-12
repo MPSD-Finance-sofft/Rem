@@ -13,4 +13,8 @@ class ReportsController < ApplicationController
 		end
 	end
 
+	def users_jobs
+
+	end
+
 end

@@ -16,4 +16,5 @@ class Alert < ApplicationRecord
 	scope :for_user, -> (user_id) {where(user_id:  user_id)}
 	scope :active, -> {where(done:  false).where('date_alert <= ?', Date.today)}
 	scope :done_state, ->(done) {where(done:  !done)}
+	scope :creator_id, -> (user_id) {where(creator_id:  user_id)}
 end
