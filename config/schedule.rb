@@ -26,6 +26,10 @@ every 1.hour do
 end
 
 every 1.hour do
+	runner "RepaymentPayment::remove_ussles", :environment => 'production'
+end
+
+every 1.hour do
 	runner "LeasingContract::recalculation_payments", :environment => 'production'
 end
 

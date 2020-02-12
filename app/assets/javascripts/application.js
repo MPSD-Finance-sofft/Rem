@@ -28,6 +28,8 @@
 //= require snowfall.jquery
 //= require snowfall
 //= require trix
+//= require chartkick
+//= require Chart.bundle
 //= require_tree .
 
 (function() {

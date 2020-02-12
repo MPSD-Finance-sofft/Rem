@@ -40,6 +40,7 @@ gem 'font_awesome5_rails'
 gem "sentry-raven"
 gem 'redis'
 gem 'whenever', '~> 0.9.7'
+gem "chartkick"
 
 group :development, :test do
   gem 'byebug', platform: :mri

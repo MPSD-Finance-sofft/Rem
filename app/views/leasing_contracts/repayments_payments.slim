@@ -1,16 +1,11 @@
-table
-	- @leasing_contract.repayments.each do |payment|
-		- payment.repayment_payment.each do |rp|
-			tr
-				td = rp.amount
-				td = rp.repayment
-				td = rp.payment
-br
-br
-table
-	- @leasing_contract.payments.each do |payment|
-		- payment.repayment_payment.each do |rp|
-			tr
-				td = rp.amount
-				td = rp.repayment
-				td = rp.payment
+- @leasing_contract.repayments.decorate.each do |repayment|
+	.col-xl-2.col-lg-2
+		.card.shadow.mb-4
+			h6.m-0.font-weight-bold.text-primary class="d-block card-header py-3"
+				| Splátka
+				br
+				= repayment.amount
+				br
+				= repayment.repayment_date
+		.card-body
+			= pie_chart repayment.repayment_payment.map{|a| [a.payment.payment_date, a.amount]}

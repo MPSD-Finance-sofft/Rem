@@ -90,11 +90,13 @@ class LeasingContract < ApplicationRecord
 
 	def recalculation_payments
 		new_repayment_payment = false
-		self.repayments.each do |repayment|
+		i = 0
+		while self.repayments.size >= i do
+			repayment = self.repayments[i]
 			payments = self.payments.not_paid
 
 			return new_repayment_payment if payments.blank?
-			next if repayment.paid?
+			next  i = i + 1 if repayment.paid?
 
 			payment = payments.first
 			result = repayment.missing_to_pay - payment.to_be_paid
