@@ -53,6 +53,7 @@ Rails.application.routes.draw do
       get :repayments_payments
       patch :create_uploads
       delete :delete_image
+      get :reset_rent
     end
   end
   resources :permissions

@@ -13,6 +13,8 @@
         br
         = link_to "Generování splátek", bulk_create_leasing_contract_repayments_path(leasing_contract_id: @leasing_contract.id),{class: 'btn btn-info btn-sm m-1', type: 'buttom'}
         = link_to "Smazaní všech splátek", delete_all_repayments_leasing_contract_repayments_path(leasing_contract_id: @leasing_contract.id),{class: 'btn btn-info btn-sm m-1', type: 'buttom'}
+        = link_to "Přegenerování hrazení", reset_rent_leasing_contract_path(@leasing_contract.id),{class: 'btn btn-info btn-sm m-1', type: 'buttom'}
+        = link_to "Zobrazení hrazení",  repayments_payments_leasing_contract_path(@leasing_contract.id),{class: 'btn btn-info btn-sm m-1', type: 'buttom'}
         br
           = link_to "Přílohy", uploads_leasing_contract_path(id: @leasing_contract.id) , { class: 'btn btn-info btn-sm float-right m-1', type: 'buttom'}
           button.btn.btn-sm.btn-info.m-1 data-target="#alertModal" data-toggle="modal" type="button" 

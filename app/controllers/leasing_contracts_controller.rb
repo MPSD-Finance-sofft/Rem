@@ -1,5 +1,5 @@
 class LeasingContractsController < ApplicationController
-  before_action :set_leasing_contract, only: [:show, :edit, :update, :destroy ,:uploads, :create_uploads, :delete_image, :repayments_payments]
+  before_action :set_leasing_contract, only: [:show, :edit, :update, :destroy ,:uploads, :create_uploads, :delete_image, :repayments_payments, :reset_rent]
 
   # GET /leasing_contracts
   # GET /leasing_contracts.json
@@ -96,6 +96,11 @@ class LeasingContractsController < ApplicationController
   end
 
   def repayments_payments
+  end
+
+  def reset_rent
+    @leasing_contract.reset_rent
+    redirect_to leasing_contract_path(id: @leasing_contract)
   end
 
   private
