@@ -111,6 +111,7 @@ class LeasingContract < ApplicationRecord
 	def reset_rent
 		RepaymentPayment.where(id: payments.map{|a| a.repayment_payment.ids}.flatten).delete_all
 		recalculation_payments
+		change_state
 	end
 
 	def change_state
