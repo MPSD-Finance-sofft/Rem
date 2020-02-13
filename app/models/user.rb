@@ -2,6 +2,7 @@ class User < ApplicationRecord
 	extend FilteringColums::User
 	include Reports::User
 	include Versions::Base
+	include ConnectionAres::User
 	attr_accessor :current_user
 	validates_with UserValidator
 	has_paper_trail ignore: [:updated_at, :id, :encrypted_password]
@@ -28,6 +29,7 @@ class User < ApplicationRecord
 	has_many :alerts, class_name: "Alert", foreign_key: "user_id"
 	has_many :terrains, class_name: "Terrain", foreign_key: "agent_id"
 	has_many :user_documents
+	has_many :ares, class_name: "Ares", foreign_key: "user_id"
 
 	accepts_nested_attributes_for :permission,  reject_if: :all_blank, allow_destroy: true
 	accepts_nested_attributes_for :user_mobile,  reject_if: :all_blank, allow_destroy: true
@@ -154,6 +156,14 @@ class User < ApplicationRecord
 
 	def self.subordinates(user)
 		User.where(id: all_subordinates(user))
+	end
+
+	def self.downalod_data_from_ares
+		list = []
+		 User.all.each do |user|
+			list << user.id if user.downalod_data_from_ares
+		end
+		SchedulerLog.create(kind: 'UserDownloadDataFromAres', list: list) unless list.blank?
 	end
 
 	scope :my_subordinates, -> (user) {where(superior_id: user.id)}

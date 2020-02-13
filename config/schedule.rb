@@ -40,3 +40,7 @@ end
 every 24.hour do
 	runner "Activity::delete_duplicate", :environment => 'production'
 end
+
+every 24.hour do
+	runner "User::downalod_data_from_ares", :environment => 'production'
+end
