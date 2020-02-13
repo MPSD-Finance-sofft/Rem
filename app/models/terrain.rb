@@ -4,11 +4,13 @@ class Terrain < ApplicationRecord
 	belongs_to :accord
 	belongs_to :user
 	belongs_to :agent, foreign_key: 'agent_id', class_name: 'User' ,  required: false
+	validates :date_to_terrain, presence: true
 
 	def set_state_accord
 		self.accord.state = self.date_end_terrain.blank? ? :in_terrain : :state_eleboration
 		self.accord.save
 	end
+
 	scope :for_accord, -> (accord_id) {where(accord_id: accord_id)}
 	scope :active, -> {where(date_end_terrain: nil)}
 	scope :user_id, -> (user_id) {where(user_id: user_id)}
