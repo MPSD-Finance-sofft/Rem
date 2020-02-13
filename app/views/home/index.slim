@@ -7,7 +7,13 @@ div
         | Pro plnou funkčnost těchto stránek je nutné povolit JavaScript.
         | Zde jsou
         a href="https://www.enable-javascript.com/cz/"
-          |  instrukce jak povolit JavaScript ve Vašem webovém prohlížeči
+  - if current_user.admin?
+    .p-1
+      .card.shadow.mb-4
+        /! Card Header - Dropdown
+        h6.m-0.font-weight-bold.text-primary.d-block.card-header.py-3 Počet navedených žádostí
+        .card-body
+          = line_chart @accords, download: true
   .float-right.w-50.p-1
     .card.shadow.mb-4
       /! Card Header - Dropdown
