@@ -7,7 +7,7 @@ div
         | Pro plnou funkčnost těchto stránek je nutné povolit JavaScript.
         | Zde jsou
         a href="https://www.enable-javascript.com/cz/"
-  - if current_user.admin?
+  - unless @chart.blank?
     .p-1
       .card.shadow.mb-4
         /! Card Header - Dropdown
