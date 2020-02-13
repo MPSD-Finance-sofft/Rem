@@ -1,19 +1,13 @@
 module ConnectionAres::User
 
 	def downalod_data_from_ares
-
 		return remove_from_ares if self.identity_company_number.blank?
 
-		uri = URI.escape("http://wwwinfo.mfcr.cz/cgi-bin/ares/darv_bas.cgi?ico=#{self.identity_company_number}")
-		uri = URI.parse(uri)
-		res = Net::HTTP.get_response(uri)
-		body = Hash.from_xml(res.body)
+		body = conection_to_ares
 
-		help = body['Ares_odpovedi']['Odpoved']['VBAS']
+		return remove_from_ares if body.blank?
 
-		return remove_from_ares if help.blank?
-
-		trades_help = help['Obory_cinnosti']
+		trades_help = body['Obory_cinnosti']
 
 		return remove_from_ares if trades_help.blank?
 
@@ -33,4 +27,33 @@ module ConnectionAres::User
 		Ares.where(user_id: self.id).delete_all
 		false
 	end
+
+	def change_name_company
+		return false if self.identity_company_number.blank?
+
+		body = conection_to_ares
+
+		return false if body.blank?
+
+		company_name = body['OF']
+
+		return false if company_name.blank?
+
+		if self.name_company != company_name
+			self.name_company = company_name
+			self.save(validate: false)
+		else
+			false
+		end
+	end
+
+	def conection_to_ares
+		uri = URI.escape("http://wwwinfo.mfcr.cz/cgi-bin/ares/darv_bas.cgi?ico=#{self.identity_company_number}")
+		uri = URI.parse(uri)
+		res = Net::HTTP.get_response(uri)
+		body = Hash.from_xml(res.body)
+		body['Ares_odpovedi']['Odpoved']['VBAS']
+	end
+
+
 end

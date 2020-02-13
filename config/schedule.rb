@@ -44,3 +44,7 @@ end
 every 24.hour do
 	runner "User::downalod_data_from_ares", :environment => 'production'
 end
+
+every 24.hour do
+	runner "User::company_name_from_ares", :environment => 'production'
+end

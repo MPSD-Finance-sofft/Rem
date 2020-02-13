@@ -166,6 +166,14 @@ class User < ApplicationRecord
 		SchedulerLog.create(kind: 'UserDownloadDataFromAres', list: list) unless list.blank?
 	end
 
+	def self.company_name_from_ares
+		list = []
+		 User.all.each do |user|
+			list << user.id if user.change_name_company
+		end
+		SchedulerLog.create(kind: 'UserChangeCompynNameFromAres', list: list) unless list.blank?
+	end
+
 	scope :my_subordinates, -> (user) {where(superior_id: user.id)}
 	scope :username, -> (user) {where("users.username LIKE ? ", "%#{user}%")}
 	scope :id, -> (user) {where(id: user.id)}
