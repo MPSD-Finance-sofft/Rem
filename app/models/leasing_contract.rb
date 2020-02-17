@@ -163,6 +163,14 @@ class LeasingContract < ApplicationRecord
 		SchedulerLog.for_leasig_contract.where("list LIKE ?", "%#{self.id}%").order(created_at: :desc).select{|a| a.list.match(/\D#{self.id}\D/)}.first.try(:created_at)
 	end
 
+	def self.payment_calendar_for_year(year=2020)
+		Payment::for_year(year)
+	end
+
+	def self.repayment_calendar_for_year(year=2020)
+		Repayment::for_year(year)
+	end
+
 	scope :for_accord, -> (accord_id) {where(accord_id: accord_id)}
 	scope :contract_number, -> (contract_number) {where(id:  contract_number)}
 	scope :state, -> (state) {where(state:  state)}

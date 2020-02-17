@@ -15,4 +15,12 @@ class Payment < ApplicationRecord
 	def self.not_paid
 		select{|a| !a.paid?}
 	end
+
+	def self.for_year(year=2020)
+		result = {}
+		where("payment_date >= ? && payment_date <= ?", "1.1.2020".to_date,"31.12.2020".to_date).select("created_at, month(payment_date) as month, year(payment_date) as year, sum(amount) as amount").group(:month,:year).each do |a|
+			result.merge!("#{Date.new(a.year, a.month,1)}": a.amount)
+		end
+		result
+	end
 end

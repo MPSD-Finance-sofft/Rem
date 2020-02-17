@@ -1,5 +1,5 @@
 module LeasingContract::RepaymentCalendar
-	
+
 	def calendar
 		sum_payment = self.payments.sum(:amount)
 		repayments = self.repayments.order(repayment_date: :asc)
@@ -10,9 +10,5 @@ module LeasingContract::RepaymentCalendar
 			sum_payment = sum_payment.to_f - repayment.amount.to_f
 		end
 		repayments.map{|a| a.decorate}
-	end
-
-	def calendar_for_year(year)
-		repayments.select{|a| a.for_year?(year)}
 	end
 end

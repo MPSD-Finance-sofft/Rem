@@ -33,6 +33,14 @@ class Repayment < ApplicationRecord
 		select{|a| !a.paid?}
 	end
 
+	def self.for_year(year=2020)
+		result = {}
+		where("repayment_date >= ? && repayment_date <= ?", "1.1.2020".to_date,"31.12.2020".to_date).select("created_at, month(repayment_date) as month, year(repayment_date) as year, sum(amount) as amount").group(:month,:year).each do |a|
+			result.merge!("#{Date.new(a.year, a.month,1)}": a.amount)
+		end
+		result
+	end
+
 	scope :for_leasing_contract, -> (leasing_contract_id) {where(leasing_contract_id:  leasing_contract_id)}
 	scope :repayment_date_today, -> {where("repayment_date < ?",Date.today)}
 end
