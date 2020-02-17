@@ -9,6 +9,7 @@ class LeasingContractsController < ApplicationController
     template = LeasingContracts::IndexServices.new(params).perform
     @leasing_contracts =  IndexFilter::IndexServices.new(@leasing_contracts,params).perform
     @leasing_contracts = @leasing_contracts.decorate
+    @chart = [{name: 'Předpis úhrad', data: LeasingContract::repayment_calendar_for_year }, {name: 'Přišlé úhrady', data: LeasingContract::payment_calendar_for_year }]
     render template
   end
 
@@ -17,7 +18,7 @@ class LeasingContractsController < ApplicationController
   def show
     authorize @leasing_contract
     @repayments = @leasing_contract.calendar
-    @leasing_constract_notes = NoteLeasingContractPolicy::Scope.new(@leasing_contract.id, current_user, NoteLeasingContract).resolve.decorate 
+    @leasing_constract_notes = NoteLeasingContractPolicy::Scope.new(@leasing_contract.id, current_user, NoteLeasingContract).resolve.decorate
     @revisions = RevisionPolicy::Scope.new(@leasing_contract.accord, current_user, Revision).resolve.decorate
     Activity.create(user_id: current_user.id, what: "Nájemní smlouva číslo: #{@leasing_contract.id}", objet: "LeasingContract", object_id: @leasing_contract.id)
   end

@@ -53,50 +53,53 @@ div.container-fluid
     a href="#colapseReimbursementPlan" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="colapseReimbursementPlan"
       h6.m-0.font-weight-bold.text-primary Plán úhrad
     .card-body
+	 	= line_chart @chart, download: true
+	 	br
+	 	br
 		table.table
 			tr
 				th
-				th Leden
-				th Únor
-				th Březen
-				th Duben
-				th Květen
-				th Červen
-				th Červenec
-				th Srpen
-				th Září
-				th Říjen
-				th Listopad
-				th Prosinec
+				th.text-nowrap.text-right Leden
+				th.text-nowrap.text-right Únor
+				th.text-nowrap.text-right Březen
+				th.text-nowrap.text-right Duben
+				th.text-nowrap.text-right Květen
+				th.text-nowrap.text-right Červen
+				th.text-nowrap.text-right Červenec
+				th.text-nowrap.text-right Srpen
+				th.text-nowrap.text-right Září
+				th.text-nowrap.text-right Říjen
+				th.text-nowrap.text-right Listopad
+				th.text-nowrap.text-right Prosinec
 			tr
 				td
 					b Předpis
 				- repayment_calendar_for_year =  LeasingContract::repayment_calendar_for_year
-				td = number_to_currency(repayment_calendar_for_year[:"2020-01-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
-				td =number_to_currency(repayment_calendar_for_year[:"2020-02-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
-				td =number_to_currency(repayment_calendar_for_year[:"2020-03-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
-				td =number_to_currency(repayment_calendar_for_year[:"2020-04-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
-				td =number_to_currency(repayment_calendar_for_year[:"2020-05-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
-				td =number_to_currency(repayment_calendar_for_year[:"2020-06-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
-				td =number_to_currency(repayment_calendar_for_year[:"2020-07-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
-				td =number_to_currency(repayment_calendar_for_year[:"2020-08-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
-				td =number_to_currency(repayment_calendar_for_year[:"2020-09-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
-				td =number_to_currency(repayment_calendar_for_year[:"2020-10-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
-				td =number_to_currency(repayment_calendar_for_year[:"2020-11-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
-				td =number_to_currency(repayment_calendar_for_year[:"2020-12-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+				td.text-nowrap.text-right = number_to_currency(repayment_calendar_for_year[:"2020-01-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+				td.text-nowrap.text-right =number_to_currency(repayment_calendar_for_year[:"2020-02-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+				td.text-nowrap.text-right =number_to_currency(repayment_calendar_for_year[:"2020-03-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+				td.text-nowrap.text-right =number_to_currency(repayment_calendar_for_year[:"2020-04-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+				td.text-nowrap.text-right =number_to_currency(repayment_calendar_for_year[:"2020-05-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+				td.text-nowrap.text-right =number_to_currency(repayment_calendar_for_year[:"2020-06-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+				td.text-nowrap.text-right =number_to_currency(repayment_calendar_for_year[:"2020-07-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+				td.text-nowrap.text-right =number_to_currency(repayment_calendar_for_year[:"2020-08-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+				td.text-nowrap.text-right =number_to_currency(repayment_calendar_for_year[:"2020-09-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+				td.text-nowrap.text-right =number_to_currency(repayment_calendar_for_year[:"2020-10-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+				td.text-nowrap.text-right =number_to_currency(repayment_calendar_for_year[:"2020-11-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+				td.text-nowrap.text-right =number_to_currency(repayment_calendar_for_year[:"2020-12-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
 			tr
 				td
 					b Přišlo
 				- payment_calendar_for_year =  LeasingContract::payment_calendar_for_year
-				td = number_to_currency(payment_calendar_for_year[:"2020-01-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
-				td =number_to_currency(payment_calendar_for_year[:"2020-02-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
-				td =number_to_currency(payment_calendar_for_year[:"2020-03-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
-				td =number_to_currency(payment_calendar_for_year[:"2020-04-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
-				td =number_to_currency(payment_calendar_for_year[:"2020-05-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
-				td =number_to_currency(payment_calendar_for_year[:"2020-06-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
-				td =number_to_currency(payment_calendar_for_year[:"2020-07-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
-				td =number_to_currency(payment_calendar_for_year[:"2020-08-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
-				td =number_to_currency(payment_calendar_for_year[:"2020-09-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
-				td =number_to_currency(payment_calendar_for_year[:"2020-10-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
-				td =number_to_currency(payment_calendar_for_year[:"2020-11-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
-				td =number_to_currency(payment_calendar_for_year[:"2020-12-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+				td.text-nowrap.text-right = number_to_currency(payment_calendar_for_year[:"2020-01-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+				td.text-nowrap.text-right =number_to_currency(payment_calendar_for_year[:"2020-02-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+				td.text-nowrap.text-right =number_to_currency(payment_calendar_for_year[:"2020-03-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+				td.text-nowrap.text-right =number_to_currency(payment_calendar_for_year[:"2020-04-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+				td.text-nowrap.text-right =number_to_currency(payment_calendar_for_year[:"2020-05-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+				td.text-nowrap.text-right =number_to_currency(payment_calendar_for_year[:"2020-06-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+				td.text-nowrap.text-right =number_to_currency(payment_calendar_for_year[:"2020-07-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+				td.text-nowrap.text-right =number_to_currency(payment_calendar_for_year[:"2020-08-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+				td.text-nowrap.text-right =number_to_currency(payment_calendar_for_year[:"2020-09-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+				td.text-nowrap.text-right =number_to_currency(payment_calendar_for_year[:"2020-10-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+				td.text-nowrap.text-right =number_to_currency(payment_calendar_for_year[:"2020-11-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+				td.text-nowrap.text-right =number_to_currency(payment_calendar_for_year[:"2020-12-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
