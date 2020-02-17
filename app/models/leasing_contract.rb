@@ -171,6 +171,14 @@ class LeasingContract < ApplicationRecord
 		Repayment::for_year(year)
 	end
 
+	def self.difference_payment_repayment_calendar(year=2020)
+		result = {}
+		Payment::for_year(year).each do |k,v|
+			result.merge!("#{k}": Repayment::for_year(year)[k] - v)
+		end
+		result
+	end
+
 	scope :for_accord, -> (accord_id) {where(accord_id: accord_id)}
 	scope :contract_number, -> (contract_number) {where(id:  contract_number)}
 	scope :state, -> (state) {where(state:  state)}
