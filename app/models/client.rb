@@ -18,12 +18,17 @@ class Client < ApplicationRecord
   accepts_nested_attributes_for :client_email,  reject_if: :all_blank, allow_destroy: true
 
 	def full_name
+    return "#{self.name}" if self.company?
 		"#{self.name} #{self.last_name}"
 	end
 
   def address
     return self.permanent_address if self.contact_address.blank?
     self.contact_address
+  end
+
+  def company?
+    self.type == 'Company'
   end
 
   def joins_clients(second_client)
