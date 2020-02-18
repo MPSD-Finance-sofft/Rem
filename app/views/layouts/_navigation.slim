@@ -33,6 +33,15 @@
       a.nav-link href="/invoices" 
         i.fas.fa-fw.fa-receipt
         span Faktury
+    li.nav-item
+      a.nav-link.collapsed aria-controls="headingExport" aria-expanded="true" data-target="#headingExport" data-toggle="collapse" href="#" data-remote="true"
+        i.fas.fa-file-export
+        span Exporty
+      #headingExport.collapse aria-labelledby="headingExport"
+        .bg-white.py-2.collapse-inner.rounded
+          h6.collapse-header Exports:
+          a.collapse-item href="/reports/agents"
+            | Agenti
     - if current_user.user_or_admin?
       li.nav-item
         a.nav-link.collapsed aria-controls="headingCalculate" aria-expanded="true" data-target="#headingCalculate" data-toggle="collapse" href="#" data-remote="true"
@@ -48,9 +57,9 @@
     - if current_user.user_or_admin?
         li.nav-item
           a.nav-link.collapsed aria-controls="headingOverviewLeasingContract" aria-expanded="true" data-target="#headingOverviewLeasingContract" data-toggle="collapse" href="#" data-remote="true"
-            i.fas.fa-fw.fa-wrench
+            i.fas.fa-hat-wizard
             span
-              | Přehledy pro 
+              |  Přehledy pro 
               br
               | nájemní smlouvy
           #headingOverviewLeasingContract.collapse aria-labelledby="headingOverviewLeasingContract" data-parent="#accordionFirstSidebar"
@@ -67,7 +76,7 @@
     - if current_user.admin?
       li.nav-item
         a.nav-link.collapsed aria-controls="headingOverview" aria-expanded="true" data-target="#headingOverview" data-toggle="collapse" href="#" data-remote="true"
-          i.fas.fa-fw.fa-wrench
+          i.fas.fa-book-dead
           span Přehledy
         #headingOverview.collapse aria-labelledby="headingOverview" data-parent="#accordionFirstSidebar" 
           .bg-white.py-2.collapse-inner.rounded
@@ -76,8 +85,6 @@
               | Activity
             a.collapse-item href="/events/all_list"
               | Události
-            a.collapse-item href="/reports/agents"
-              | Agenti
             a.collapse-item href="/reports/users_jobs"
               | Práce uživatelů
       /! Nav Item - Utilities Collapse Menu
