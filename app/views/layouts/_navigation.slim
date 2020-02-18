@@ -23,6 +23,7 @@
       a.nav-link href="/leasing_contracts?utf8=✓&state%5B%5D=entry&state%5B%5D=actions&state%5B%5D=debt" 
         i.fas.fa-fw.fa-table
         span Nájemní smlouvy
+    li.nav-item
       a.nav-link href="/users" 
         i.fas.fa-fw.fa-user
         span Agenti  
@@ -44,6 +45,26 @@
               | Výpočet 
               br
               | zůstatkové ceny
+    - if current_user.user_or_admin?
+        li.nav-item
+          a.nav-link.collapsed aria-controls="headingOverviewLeasingContract" aria-expanded="true" data-target="#headingOverviewLeasingContract" data-toggle="collapse" href="#" data-remote="true"
+            i.fas.fa-fw.fa-wrench
+            span
+              | Přehledy pro 
+              br
+              | nájemní smlouvy
+          #headingOverviewLeasingContract.collapse aria-labelledby="headingOverviewLeasingContract" data-parent="#accordionFirstSidebar"
+            .bg-white.py-2.collapse-inner.rounded
+              h6.collapse-header Přehledy:
+              a.collapse-item href="/leasing_contracts?template=with_debt&state%5B%5D=debt"
+                | Dlužné nájemní
+                br
+                | smlouvy
+              a.collapse-item href="/leasing_contracts?template=summary_of_payments"
+                | Plán
+                br
+                | úhrad
+    - if current_user.admin?
       li.nav-item
         a.nav-link.collapsed aria-controls="headingOverview" aria-expanded="true" data-target="#headingOverview" data-toggle="collapse" href="#" data-remote="true"
           i.fas.fa-fw.fa-wrench
@@ -51,22 +72,14 @@
         #headingOverview.collapse aria-labelledby="headingOverview" data-parent="#accordionFirstSidebar" 
           .bg-white.py-2.collapse-inner.rounded
             h6.collapse-header Přehledy v  aplikace:
-            a.collapse-item href="/leasing_contracts?template=with_debt&state%5B%5D=debt"
-              | Dlužné nájemní
-              br
-              | smlouvy
-            a.collapse-item href="/leasing_contracts?template=summary_of_payments"
-              | Plán
-              br
-              | úhrad
             a.collapse-item href="/activities/search_index"
-              | Activity  
+              | Activity
             a.collapse-item href="/events/all_list"
-              | Události  
+              | Události
             a.collapse-item href="/reports/agents"
-              | Agenti 
+              | Agenti
             a.collapse-item href="/reports/users_jobs"
-              | Práce uživatelů 
+              | Práce uživatelů
       /! Nav Item - Utilities Collapse Menu
       li.nav-item
         a.nav-link.collapsed aria-controls="collapseUtilities" aria-expanded="true" data-target="#collapseUtilities" data-toggle="collapse" href="#" data-remote="true"
