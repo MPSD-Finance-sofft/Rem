@@ -31,7 +31,7 @@ class AccordDecorator < ApplicationDecorator
       when 'returned'
         'Vrácená'
  			else
- 			"nedefinovaný stav"
+ 			""
  		end
  	end
 
@@ -166,5 +166,15 @@ class AccordDecorator < ApplicationDecorator
 
   def reward_created_at
     format_date object.reward.try(:created_at)
+  end
+
+  def state_attribut_changes
+    result = []
+    attribut_changes('state').each do |h|
+      state_first = state_to_text(h.second.first)
+      state_last = state_to_text(h.second.last)
+      result << { date: format_date_time(h.last), creator: User.find_by_id(h.first).try(:all_name), state_first: state_first, state_last: state_last }
+    end
+    result
   end
 end

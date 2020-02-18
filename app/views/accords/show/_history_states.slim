@@ -1,0 +1,18 @@
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    a href="#colapseHistoryState" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="colapseHistoryState"
+      h6.m-0.font-weight-bold.text-primary Historie stavu žádosti
+    .collapse id="colapseHistoryState"
+      .card-body
+      	table.table
+			tr
+				th Datum změny
+				th Původní stav
+				th Nový stav
+				th Změnil
+			- @accord.state_attribut_changes.each do |history|
+				tr
+					td= history[:date]
+					td= history[:state_first]
+					td= history[:state_last]
+					td= history[:creator]
