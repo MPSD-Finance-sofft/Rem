@@ -46,7 +46,7 @@ class UsersController < ApplicationController
  		@user = @user.decorate
  		@ares = @user.ares
  		respond_to do |format|
-	        format.html {Activity.create(user_id: current_user.id, what: "Zobrazení uživatele login: #{@user.username}", objet: "User", object_id: @user.id)}
+	        format.html {Activity.create(true_user_id: user_masquerade_owner.try(:id), user_id: current_user.id, what: "Zobrazení uživatele login: #{@user.username}", objet: "User", object_id: @user.id)}
 	        format.json {@user}
     	end
  	end

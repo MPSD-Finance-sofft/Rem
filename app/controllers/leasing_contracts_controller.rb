@@ -20,7 +20,7 @@ class LeasingContractsController < ApplicationController
     @repayments = @leasing_contract.calendar
     @leasing_constract_notes = NoteLeasingContractPolicy::Scope.new(@leasing_contract.id, current_user, NoteLeasingContract).resolve.decorate
     @revisions = RevisionPolicy::Scope.new(@leasing_contract.accord, current_user, Revision).resolve.decorate
-    Activity.create(user_id: current_user.id, what: "Nájemní smlouva číslo: #{@leasing_contract.id}", objet: "LeasingContract", object_id: @leasing_contract.id)
+    Activity.create(true_user_id: user_masquerade_owner.try(:id), user_id: current_user.id, what: "Nájemní smlouva číslo: #{@leasing_contract.id}", objet: "LeasingContract", object_id: @leasing_contract.id)
   end
 
   # GET /leasing_contracts/new

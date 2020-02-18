@@ -15,6 +15,7 @@ class ActivityDecorator < ApplicationDecorator
 	end
 
   def user
-    object.user.try(:all_name)
+    return object.user.try(:all_name) if object.true_user.nil?
+    object.user.try(:all_name).to_s + "(#{object.true_user.try(:username)})"
   end
 end

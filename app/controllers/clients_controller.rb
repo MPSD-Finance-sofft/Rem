@@ -11,7 +11,7 @@ class ClientsController < ApplicationController
   # GET /clients/1.json
   def show
     authorize @client
-    Activity.create(user_id: current_user.id, what: "Klient číslo: #{@client.full_name}", objet: "Client", object_id: @client.id)
+    Activity.create(true_user_id: user_masquerade_owner.try(:id),user_id: current_user.id, what: "Klient číslo: #{@client.full_name}", objet: "Client", object_id: @client.id)
   end
 
   # GET /clients/new
