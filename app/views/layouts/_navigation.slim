@@ -33,15 +33,16 @@
       a.nav-link href="/invoices" 
         i.fas.fa-fw.fa-receipt
         span Faktury
-    li.nav-item
-      a.nav-link.collapsed aria-controls="headingExport" aria-expanded="true" data-target="#headingExport" data-toggle="collapse" href="#" data-remote="true"
-        i.fas.fa-file-export
-        span Exporty
-      #headingExport.collapse aria-labelledby="headingExport"
-        .bg-white.py-2.collapse-inner.rounded
-          h6.collapse-header Exports:
-          a.collapse-item href="/reports/agents"
-            | Agenti
+    - unless current_user.agent?
+      li.nav-item
+        a.nav-link.collapsed aria-controls="headingExport" aria-expanded="true" data-target="#headingExport" data-toggle="collapse" href="#" data-remote="true"
+          i.fas.fa-file-export
+          span Exporty
+        #headingExport.collapse aria-labelledby="headingExport"
+          .bg-white.py-2.collapse-inner.rounded
+            h6.collapse-header Exports:
+            a.collapse-item href="/reports/agents"
+              | Agenti
     - if current_user.user_or_admin?
       li.nav-item
         a.nav-link.collapsed aria-controls="headingCalculate" aria-expanded="true" data-target="#headingCalculate" data-toggle="collapse" href="#" data-remote="true"
@@ -87,6 +88,8 @@
               | Události
             a.collapse-item href="/reports/users_jobs"
               | Práce uživatelů
+            a.collapse-item href="/scheduler_logs"
+              | Přepočty
       /! Nav Item - Utilities Collapse Menu
       li.nav-item
         a.nav-link.collapsed aria-controls="collapseUtilities" aria-expanded="true" data-target="#collapseUtilities" data-toggle="collapse" href="#" data-remote="true"
