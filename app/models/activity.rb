@@ -1,7 +1,7 @@
 class Activity < ApplicationRecord
 	has_paper_trail ignore: [:updated_at]
 	belongs_to :user
-	belongs_to :true_user, foreign_key: 'true_user_id', class_name: 'User'
+	belongs_to :true_user, foreign_key: 'true_user_id', class_name: 'User',  required: false
 
 	def self.duplicate
 		Activity.all.group_by(&:filter).select{|k,v| v.size > 1}
