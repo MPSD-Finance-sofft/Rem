@@ -33,7 +33,7 @@ class AccordsController < ApplicationController
     @leasing_contracts = LeasingContract.for_accord(@accord.id).pluck(:id)
     @terrains = TerrainPolicy::Scope.new(@accord.id, current_user, Terrain).resolve.decorate
     @revisions = RevisionPolicy::Scope.new(@accord, current_user, Revision).resolve.decorate
-    @refusals = @accord.accord_reason_refusals.decorate
+    @refusals = @accord.accord_reason_refusals.order(created_at: :desc).decorate
     Activity.create(true_user_id: user_masquerade_owner.try(:id), user_id: current_user.id, what: "Žádost číslo: #{@accord.number}", objet: "Accord", object_id: @accord.id)
   end
 

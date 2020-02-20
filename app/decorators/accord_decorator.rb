@@ -170,7 +170,7 @@ class AccordDecorator < ApplicationDecorator
 
   def state_attribut_changes
     result = []
-    attribut_changes('state').each do |h|
+    attribut_changes('state').reverse.each do |h|
       state_first = state_to_text(h.second.first)
       state_last = state_to_text(h.second.last)
       result << { date: format_date_time(h.last), creator: User.find_by_id(h.first).try(:all_name), state_first: state_first, state_last: state_last }

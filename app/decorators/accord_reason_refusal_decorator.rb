@@ -2,7 +2,7 @@ class AccordReasonRefusalDecorator < ApplicationDecorator
   delegate_all
 
   def created_at
-  	format_date object.created_at
+  	format_date_time object.created_at
   end
 
   def creator
