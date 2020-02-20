@@ -184,6 +184,7 @@ class User < ApplicationRecord
 	scope :agents,   ->{ joins(:permission).where('permissions.kind': 'agent') }
 	scope :permission_user,   ->{ joins(:permission).where('permissions.kind': 'user') }
 	scope :manager_and_user,   ->{ joins(:permission).where('permissions.kind': ['manager','user']) }
+	scope :admin_and_user,   ->{ joins(:permission).where('permissions.kind': ['admin','user']) }
 	scope :manager_and_agents,   ->{ joins(:permission).where('permissions.kind': ['manager','agent']) }
 	scope :manager,   ->{ joins(:permission).where('permissions.kind': 'manager') }
 	scope :can_sign_in, -> {where(can_sign_in: true)}

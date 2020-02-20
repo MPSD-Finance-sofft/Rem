@@ -1,5 +1,5 @@
 class AccordsController < ApplicationController
-  before_action :set_accord, only: [:show, :edit, :update, :destroy, :changes, :uploads, :create_uploads, :delete_image]
+  before_action :set_accord, only: [:show, :edit, :update, :destroy, :changes, :uploads, :create_uploads, :delete_image, :refusal]
 
   # GET /accords
   # GET /accords.json
@@ -33,6 +33,7 @@ class AccordsController < ApplicationController
     @leasing_contracts = LeasingContract.for_accord(@accord.id).pluck(:id)
     @terrains = TerrainPolicy::Scope.new(@accord.id, current_user, Terrain).resolve.decorate
     @revisions = RevisionPolicy::Scope.new(@accord, current_user, Revision).resolve.decorate
+    @refusals = @accord.accord_reason_refusals.decorate
     Activity.create(true_user_id: user_masquerade_owner.try(:id), user_id: current_user.id, what: "Žádost číslo: #{@accord.number}", objet: "Accord", object_id: @accord.id)
   end
 
@@ -117,6 +118,22 @@ class AccordsController < ApplicationController
     @file = ActiveStorage::Blob.find_signed(params[:file_id])
     @file.attachments.first.purge
     redirect_to uploads_accord_path(accord_id: @accord)
+  end
+
+  def refusal
+    refusals = accord_params.delete("accord_reason_refusals_ids")
+    refusals.select{|a| !a.blank?}.each do |refusal|
+      @accord.accord_reason_refusals.build(reason_refusal_type_id: refusal.to_i, user_id: current_user.id)
+    end
+    respond_to do |format|
+      if @accord.update(accord_params)
+        format.html { redirect_to @accord, notice: 'Accord was successfully updated.' }
+        format.json { render :show, status: :ok, location: @accord }
+      else
+        format.html { render :edit }
+        format.json { render json: @accord.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   private

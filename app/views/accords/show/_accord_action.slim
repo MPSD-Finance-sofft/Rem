@@ -24,7 +24,8 @@
         = link_to "Vrácená", accord_path(@accord, accord: {state: 'returned'}) , {:method=> :put, class: 'btn btn-sm m-1 returned text-dark', type: 'buttom'}
         = link_to "Ke schválení", accord_path(@accord, accord: {state: 'to_sign'}) , {:method=> :put, class: 'btn btn-sm m-1 to_sign text-dark', type: 'buttom'}
         = link_to "Smlouva", accord_path(@accord, accord: {state: 'contract'}) , {:method=> :put, class: 'btn btn-sm  m-1 contract text-dark', type: 'buttom'}
-        = link_to "Zamítnout", accord_path(@accord, accord: {state: 'refuse'}) , {:method=> :put, class: 'btn btn-sm  m-1 refuse text-dark', type: 'buttom'}
+        button.btn.btn-sm.m-1.refuse data-target="#ReasonRefusalModalCenter" data-toggle="modal" type="button" 
+          | Zamítnout
         = link_to "Stáhnout", accord_path(@accord, accord: {state: 'dowload'}) , {:method=> :put, class: 'btn btn-sm  m-1 dowload text-dark', type: 'buttom'}
         = link_to "Zobraz změny", changes_accords_path(id: @accord.id) , { class: 'btn btn-sm btn-info m-1 float-right text-white', type: 'buttom'}
         br
@@ -35,7 +36,23 @@
       button.btn.btn-sm.btn-info.m-1 data-target="#exampleModalCenter" data-toggle="modal" type="button" 
         | Přidej poznámku 
       = link_to "Přílohy", uploads_accord_path(id: @accord.id) , { class: 'btn btn-info btn-sm float-right m-1', type: 'buttom'}
-      
+
+/! Modal
+#ReasonRefusalModalCenter.modal.fade aria-hidden="true" aria-labelledby="ReasonRefusalModalCenterTitle" role="dialog" tabindex="-1" 
+  .modal-dialog.modal-dialog-centered role="document" 
+    .modal-content
+      .modal-header
+        h5#ReasonRefusalModalLongTitle.modal-title.text-dark Důvod zamítnutí
+        button.close aria-label="Close" data-dismiss="modal" type="button" 
+          span aria-hidden="true"  &times;
+      .modal-body
+        = form_with(model: @accord, local: true , url: refusal_accord_path) do |f|
+          = f.hidden_field :state, value: 'refuse'
+          = f.label :reason_refusals_ids, 'Důvud Zamítnutí' 
+          = f.collection_select :accord_reason_refusals_ids, ReasonRefusalType.all, :id, :description, {}, {multiple: true,class: "selectpicker form-control", "data-live-search" => "true"}
+          .modal-footer
+            button.btn.btn-secondary data-dismiss="modal" type="button"  Close
+            button.btn.btn-primary type="submit"  Odešli
 /! Modal
 #exampleModalCenter.modal.fade aria-hidden="true" aria-labelledby="exampleModalCenterTitle" role="dialog" tabindex="-1" 
   .modal-dialog.modal-dialog-centered role="document" 

@@ -91,6 +91,7 @@ Rails.application.routes.draw do
     end
     member do
       get :uploads
+      patch :refusal
       patch :create_uploads
       delete :delete_image
     end

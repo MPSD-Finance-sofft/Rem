@@ -1,0 +1,16 @@
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    a href="#colapseRefusal" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="colapseRefusal"
+      h6.m-0.font-weight-bold.text-primary Důvody zamítnutí
+    .collapse id="colapseRefusal"
+      .card-body
+        table.table
+        	tr
+        		th Kdy
+        		th Důvod zamítnutí
+        		th Zamítnul
+        	- @refusals.each do |refusal|
+        		tr
+        			td = refusal.created_at
+        			td = refusal.reason_refusal_type
+        			td = refusal.creator

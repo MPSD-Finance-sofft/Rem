@@ -14,7 +14,7 @@ class ReportsController < ApplicationController
 	end
 
 	def users_jobs
-
+		@users = User.admin_and_user
 	end
 
 end
