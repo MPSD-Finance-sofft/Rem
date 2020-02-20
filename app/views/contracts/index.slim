@@ -30,6 +30,7 @@ div.container-fluid
           th Datum podpisu 
           th Kupní cena
           th Výše zpětné koupě
+          th V péči
         - @accords.each do |accord|
           tr.text-dark
             td = link_to accord.contract_number, accord_path(accord.id)
@@ -42,3 +43,4 @@ div.container-fluid
             td = accord.date_of_signature
             td.pushase_price = accord.purchase_price
             td.pushase_price = accord.repurchase
+            td = accord.owner_name
