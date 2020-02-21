@@ -122,6 +122,7 @@ class AccordsController < ApplicationController
 
   def refusal
     refusals = accord_params.delete("accord_reason_refusals_ids")
+    @accord.user_id = current_user.id if @accord.user_id.blank?
     refusals.select{|a| !a.blank?}.each do |refusal|
       @accord.accord_reason_refusals.build(reason_refusal_type_id: refusal.to_i, user_id: current_user.id)
     end
