@@ -11,6 +11,7 @@
 				tr
 					th Datum splatnosti
 					th Částka
+					th Typ
 				tbody id="nested_payments"
 					= f.fields_for :payments do |payments|
 						= render 'payment_fields', f: payments	

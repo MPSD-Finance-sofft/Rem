@@ -38,7 +38,10 @@
           	= f.text_field :amount, class: "form-control"
           .form-group
           	= f.label :amount, "Datum platby"
-          	= f.text_field :payment_date, class: "form-control datapicker"
+          	= f.text_field :payment_date, class: "form-control datapicker" 
+          .form-group
+            = f.label :kind, "Typ"
+            = f.select :kind, f.object.sel_kind, {}, class: "form-control"
           .modal-footer
             button.btn.btn-secondary data-dismiss="modal" type="button"  Close
             button.btn.btn-primary type="submit"  Odešli

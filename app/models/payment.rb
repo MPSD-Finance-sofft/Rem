@@ -4,6 +4,10 @@ class Payment < ApplicationRecord
 	belongs_to :leasing_contract
 	has_many :repayment_payment, :dependent => :destroy
 
+	PREPAID = 1
+	NORMAL = nil
+	PAYMENT_TYPE = [NORMAL, PREPAID]
+
 	def paid?
 		to_be_paid == 0
 	end
