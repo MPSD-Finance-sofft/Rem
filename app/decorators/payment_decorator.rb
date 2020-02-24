@@ -16,7 +16,7 @@ class PaymentDecorator < ApplicationDecorator
 	def kind_to_s(kind)
 		case kind
 		when nil
-			nil
+			'Normální'
 		when Payment::PREPAID
 			'Předplacená'
 		end
@@ -25,5 +25,9 @@ class PaymentDecorator < ApplicationDecorator
 	def kind
 		kind_to_s(object.kind)
 	end
+
+  def object_kind
+    object.kind
+  end
 
 end

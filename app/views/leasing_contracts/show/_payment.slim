@@ -11,7 +11,9 @@
         tr
           th | Datum úhrady
           th | Částka
+          th | Typ
         - @leasing_contract.payments.decorate.each do |payment|
           tr
           	td=payment.payment_date
           	td.amount=payment.amount
+            td.amount=payment.kind

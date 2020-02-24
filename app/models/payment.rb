@@ -4,6 +4,10 @@ class Payment < ApplicationRecord
 	belongs_to :leasing_contract
 	has_many :repayment_payment, :dependent => :destroy
 
+  validates :amount, presence: true
+  validates :payment_date, presence: true
+
+  
 	PREPAID = 1
 	NORMAL = nil
 	PAYMENT_TYPE = [NORMAL, PREPAID]
