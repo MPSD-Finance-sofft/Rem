@@ -43,7 +43,7 @@ class Repayment < ApplicationRecord
 
   def self.for_year_prepaid(year)
     result = {}
-    where("repayment_date >= ? && repayment_date <= ?", Date.new(year, 1,1), Date.new(year, 12,31)).joins(:repayment_payment).map{|a|
+    where("repayment_date >= ? && repayment_date <= ?", Date.new(year, 1,1), Date.new(year, 12,31)).map{|a|
       [a.repayment_payment.select{|a| a.prepaid_payment?}.map{|a| [a.amount, a.repayment.repayment_date]}]
     }.map{|a| a.flatten}.select{|a| !a.blank?}.group_by{|a| a.second.month}.each do |k,v|
       result.merge!("#{Date.new(year,k,1)}": v.sum{|a| a.first})

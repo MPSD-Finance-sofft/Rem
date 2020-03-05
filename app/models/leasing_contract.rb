@@ -97,8 +97,8 @@ class LeasingContract < ApplicationRecord
 
 			return new_repayment_payment if payments.blank?
 			next  i = i + 1 if repayment.nil? || repayment.paid?
-
 			payment = payments.first
+
 			result = repayment.missing_to_pay - payment.to_be_paid
 			result < 0 ? result = repayment.missing_to_pay : result  = payment.to_be_paid
 
