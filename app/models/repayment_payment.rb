@@ -6,6 +6,10 @@ class RepaymentPayment < ApplicationRecord
 		repayment.blank? || payment.blank?
 	end
 
+  def prepaid_payment?
+    payment.prepaid?
+  end
+
 	def self.remove_ussles
 		RepaymentPayment.where(id: RepaymentPayment.includes(:repayment,:payment).select(&:ussles?).map(&:id)).delete_all
 	end

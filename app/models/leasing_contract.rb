@@ -177,11 +177,16 @@ class LeasingContract < ApplicationRecord
 
 	def self.difference_payment_repayment_calendar(year=2020)
 		result = {}
+    prepaid = Repayment::for_year_prepaid
 		Repayment::for_year(year).each do |k,v|
-			result.merge!("#{k}": v - Payment::for_year(year, Payment::PREPAID)[k].to_f)
+			result.merge!("#{k}": v - prepaid[k].to_f)
 		end
 		result
 	end
+
+  def self.year_prepaid_month(year=2020)
+    Repayment::for_year_prepaid(year)
+  end
 
 	scope :for_accord, -> (accord_id) {where(accord_id: accord_id)}
 	scope :contract_number, -> (contract_number) {where(id:  contract_number)}

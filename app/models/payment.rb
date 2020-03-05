@@ -24,6 +24,10 @@ class Payment < ApplicationRecord
 		select{|a| !a.paid?}
 	end
 
+  def prepaid?
+    kind == PREPAID
+  end
+
 	def self.for_year(year, type= nil)
 		result = {}
 		where(kind: type).where("payment_date >= ? && payment_date <= ?", Date.new(year, 1,1), Date.new(year, 12,31)).select("created_at, month(payment_date) as month, year(payment_date) as year, sum(amount) as amount").group(:month,:year).each do |a|

@@ -41,6 +41,16 @@ class Repayment < ApplicationRecord
 		result
 	end
 
+  def self.for_year_prepaid(year = 2020)
+    result = {}
+    where("repayment_date >= ? && repayment_date <= ?", Date.new(year, 1,1), Date.new(year, 12,31)).joins(:repayment_payment).map{|a|
+      [a.repayment_payment.select{|a| a.prepaid_payment?}.map{|a| [a.amount, a.repayment.repayment_date]}]
+    }.map{|a| a.flatten}.select{|a| !a.blank?}.group_by{|a| a.second.month}.each do |k,v|
+      result.merge!("#{Date.new(year,k,1)}": v.sum{|a| a.first})
+    end
+    result
+  end
+
 	scope :for_leasing_contract, -> (leasing_contract_id) {where(leasing_contract_id:  leasing_contract_id)}
 	scope :repayment_date_today, -> {where("repayment_date < ?",Date.today)}
 end
