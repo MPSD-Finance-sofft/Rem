@@ -177,7 +177,7 @@ class LeasingContract < ApplicationRecord
 
 	def self.difference_payment_repayment_calendar(year=2020)
 		result = {}
-    prepaid = Repayment::for_year_prepaid
+    prepaid = Repayment::for_year_prepaid(year)
 		Repayment::for_year(year).each do |k,v|
 			result.merge!("#{k}": v - prepaid[k].to_f)
 		end

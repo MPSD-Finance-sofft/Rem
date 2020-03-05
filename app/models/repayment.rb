@@ -41,7 +41,7 @@ class Repayment < ApplicationRecord
 		result
 	end
 
-  def self.for_year_prepaid(year = 2020)
+  def self.for_year_prepaid(year)
     result = {}
     where("repayment_date >= ? && repayment_date <= ?", Date.new(year, 1,1), Date.new(year, 12,31)).joins(:repayment_payment).map{|a|
       [a.repayment_payment.select{|a| a.prepaid_payment?}.map{|a| [a.amount, a.repayment.repayment_date]}]
