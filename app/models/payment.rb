@@ -7,7 +7,7 @@ class Payment < ApplicationRecord
   validates :amount, presence: true
   validates :payment_date, presence: true
 
-  
+
 	PREPAID = 1
 	NORMAL = nil
 	PAYMENT_TYPE = [NORMAL, PREPAID]
@@ -24,9 +24,9 @@ class Payment < ApplicationRecord
 		select{|a| !a.paid?}
 	end
 
-	def self.for_year(year=2020)
+	def self.for_year(year=2020, type= nil)
 		result = {}
-		where("payment_date >= ? && payment_date <= ?", "1.1.2020".to_date,"31.12.2020".to_date).select("created_at, month(payment_date) as month, year(payment_date) as year, sum(amount) as amount").group(:month,:year).each do |a|
+		where(kind: type).where("payment_date >= ? && payment_date <= ?", "1.1.2020".to_date,"31.12.2020".to_date).select("created_at, month(payment_date) as month, year(payment_date) as year, sum(amount) as amount").group(:month,:year).each do |a|
 			result.merge!("#{Date.new(a.year, a.month,1)}": a.amount)
 		end
 		result

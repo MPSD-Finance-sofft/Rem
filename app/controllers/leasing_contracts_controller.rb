@@ -9,7 +9,7 @@ class LeasingContractsController < ApplicationController
     template = LeasingContracts::IndexServices.new(params).perform
     @leasing_contracts =  IndexFilter::IndexServices.new(@leasing_contracts,params).perform
     @leasing_contracts = @leasing_contracts.decorate
-    @chart = [{name: 'Předpis úhrad', data: LeasingContract::repayment_calendar_for_year }, {name: 'Přišlé úhrady', data: LeasingContract::payment_calendar_for_year }]
+    @chart = [{name: 'Předpis úhrad', data: LeasingContract::repayment_calendar_for_year }, {name: 'Přišlé úhrady', data: LeasingContract::payment_calendar_for_year }, {name: 'Předepsané úhrady', data: LeasingContract::payment_calendar_for_year_prepaid }, {name: 'Očekávané úhrady', data:  LeasingContract::difference_payment_repayment_calendar }]
     render template
   end
 

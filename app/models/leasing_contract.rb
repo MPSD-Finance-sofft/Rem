@@ -167,14 +167,18 @@ class LeasingContract < ApplicationRecord
 		Payment::for_year(year)
 	end
 
+  def self.payment_calendar_for_year_prepaid(year=2020)
+    Payment::for_year(year, Payment::PREPAID)
+  end
+
 	def self.repayment_calendar_for_year(year=2020)
 		Repayment::for_year(year)
 	end
 
 	def self.difference_payment_repayment_calendar(year=2020)
 		result = {}
-		Payment::for_year(year).each do |k,v|
-			result.merge!("#{k}": Repayment::for_year(year)[k] - v)
+		Repayment::for_year(year).each do |k,v|
+			result.merge!("#{k}": v - Payment::for_year(year, Payment::PREPAID)[k].to_f)
 		end
 		result
 	end
