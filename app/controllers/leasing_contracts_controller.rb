@@ -7,9 +7,10 @@ class LeasingContractsController < ApplicationController
     authorize LeasingContract
     @leasing_contracts = policy_scope(LeasingContract).order(rent_from: :desc)
     template = LeasingContracts::IndexServices.new(params).perform
+    @year = params[:year].to_i ||= 2020
     @leasing_contracts =  IndexFilter::IndexServices.new(@leasing_contracts,params).perform
     @leasing_contracts = @leasing_contracts.decorate
-    @chart = [{name: 'Předpis úhrad', data: LeasingContract::repayment_calendar_for_year }, {name: 'Přišlé úhrady', data: LeasingContract::payment_calendar_for_year }, {name: 'Předepsané úhrady', data: LeasingContract::payment_calendar_for_year_prepaid }, {name: 'Očekávané úhrady', data:  LeasingContract::difference_payment_repayment_calendar }]
+    @chart = [{name: 'Předpis úhrad', data: LeasingContract::repayment_calendar_for_year(@year) }, {name: 'Přijaté úhrady', data: LeasingContract::payment_calendar_for_year(@year) }, {name: 'Předplacené úhrady', data: LeasingContract::payment_calendar_for_year_prepaid(@year) }, {name: 'Očekávané úhrady', data:  LeasingContract::difference_payment_repayment_calendar(@year) }]
     render template
   end
 

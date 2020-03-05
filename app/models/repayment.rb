@@ -33,9 +33,9 @@ class Repayment < ApplicationRecord
 		select{|a| !a.paid?}
 	end
 
-	def self.for_year(year=2020)
+	def self.for_year(year)
 		result = {}
-		where("repayment_date >= ? && repayment_date <= ?", "1.1.2020".to_date,"31.12.2020".to_date).select("created_at, month(repayment_date) as month, year(repayment_date) as year, sum(amount) as amount").group(:month,:year).each do |a|
+		where("repayment_date >= ? && repayment_date <= ?", Date.new(year, 1,1), Date.new(year, 12,31)).select("created_at, month(repayment_date) as month, year(repayment_date) as year, sum(amount) as amount").group(:month,:year).each do |a|
 			result.merge!("#{Date.new(a.year, a.month,1)}": a.amount)
 		end
 		result
