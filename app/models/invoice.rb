@@ -2,7 +2,7 @@ class Invoice < ApplicationRecord
 	has_many :rewards
 
 	def self.create_invoice(agent_id)
-		rewards_arr = Reward.for_user(agent_id).without_invoice.group_by { |t| t.created_at.beginning_of_month }
+		rewards_arr = Reward.for_user(agent_id).without_invoice.group_by{ |t| t.claim_date.beginning_of_month }
 		rewards_arr.each do |date, rewards|
 			Invoice.transaction  do
 				i = Invoice.create(period_year: date.year, period_month: date.month)
