@@ -53,17 +53,15 @@ div.container-fluid
   .card.shadow.mb-4
     a href="#colapseReimbursementPlan" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="colapseReimbursementPlan"
       h6.m-0.font-weight-bold.text-primary Plán úhrad
-    .card-body
-    	= link_to 2017, leasing_contracts_path(template: 'summary_of_payments', year: 2017), {class: 'btn btn-primary btn-xs', type:"button"}
-    	= link_to 2018, leasing_contracts_path(template: 'summary_of_payments', year: 2018), {class: 'btn btn-primary btn-xs', type:"button"}
-    	= link_to 2019, leasing_contracts_path(template: 'summary_of_payments', year: 2019), {class: 'btn btn-primary btn-xs', type:"button"}
-    	= link_to 2020, leasing_contracts_path(template: 'summary_of_payments', year: 2020), {class: 'btn btn-primary btn-xs', type:"button"}
-    	= link_to 2021, leasing_contracts_path(template: 'summary_of_payments', year: 2021), {class: 'btn btn-primary btn-xs', type:"button"}
-    	= link_to 2022, leasing_contracts_path(template: 'summary_of_payments', year: 2022), {class: 'btn btn-primary btn-xs', type:"button"}
-    	= link_to 2023, leasing_contracts_path(template: 'summary_of_payments', year: 2023), {class: 'btn btn-primary btn-xs', type:"button"}
-    	= link_to 2024, leasing_contracts_path(template: 'summary_of_payments', year: 2024), {class: 'btn btn-primary btn-xs', type:"button"}
-    	= link_to 2025, leasing_contracts_path(template: 'summary_of_payments', year: 2025), {class: 'btn btn-primary btn-xs', type:"button"}
-    	= link_to 2026, leasing_contracts_path(template: 'summary_of_payments', year: 2026), {class: 'btn btn-primary btn-xs', type:"button"}
+    .card-body.text-light
+    	= link_to 2017, leasing_contracts_path(template: 'summary_of_payments', year: 2017), {class: 'btn btn-primary btn-xs text-light'}
+    	= link_to 2018, leasing_contracts_path(template: 'summary_of_payments', year: 2018), {class: 'btn btn-primary btn-xs text-light'}
+    	= link_to 2019, leasing_contracts_path(template: 'summary_of_payments', year: 2019), {class: 'btn btn-primary btn-xs text-light'}
+    	= link_to 2020, leasing_contracts_path(template: 'summary_of_payments', year: 2020), {class: 'btn btn-primary btn-xs text-light'}
+    	= link_to 2021, leasing_contracts_path(template: 'summary_of_payments', year: 2021), {class: 'btn btn-primary btn-xs text-light'}
+    	= link_to 2022, leasing_contracts_path(template: 'summary_of_payments', year: 2022), {class: 'btn btn-primary btn-xs text-light'}
+    	= link_to 2023, leasing_contracts_path(template: 'summary_of_payments', year: 2023), {class: 'btn btn-primary btn-xs text-light'}
+    	= link_to 2024, leasing_contracts_path(template: 'summary_of_payments', year: 2024), {class: 'btn btn-primary btn-xs text-light'}
 	 	= line_chart @chart, download: true
 	 	br
 	 	br

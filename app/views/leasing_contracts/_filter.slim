@@ -10,6 +10,9 @@
 			.form-group
 				= label_tag :client_last_name, "Přijmení klienta"
 				= text_field_tag :client_last_name, params[:client_last_name], class: "form-control input-sm"
+			.form-group
+				= label_tag :kind, "Typ"
+    			= select_tag :kind, options_for_select([["Dlouhodobá", "long"], ["Přes FR", "from_reality"], ["Předplacená", "prepaid"]], params[:kind]),{include_blank: true, class: "selectpicker form-control", "data-live-search" => "true"}
 		.col-xl-2
 			.form-group
 				= label_tag :realty_type, "Typ nemovitosti"
