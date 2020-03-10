@@ -23,12 +23,10 @@ class Activity < ApplicationRecord
 		self.created_at.day.to_s + self.created_at.hour.to_s + self.created_at.year.to_s + self.user_id.to_s + self.object_id.to_s + self.objet.to_s
 	end
 
-	scope :for_user, -> (user_id) {where(user_id:  user_id)} 
+	scope :for_user, -> (user_id) {where(user_id:  user_id)}
 	scope :start_created_at, -> (date) {where("activities.created_at > ?", date.to_date)}
 	scope :end_created_at, -> (date) {where("activities.created_at < ?", date.to_date)}
-	scope :user_id, -> (user_id) {where(user_id:  user_id)} 
-	scope :objet, -> (objet) {where(objet:  objet)} 
-	scope :object_id, -> (object_id) {where(object_id:  object_id)} 
-
-
+	scope :user_id, -> (user_id) {where(user_id:  user_id)}
+	scope :objet, -> (objet) {where(objet:  objet)}
+	scope :object_id, -> (object_id) {where(object_id:  object_id)}
 end

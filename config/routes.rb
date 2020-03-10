@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :sales_contracts
   resources :reason_refusal_types
   resources :document_types
   resources :scheduler_logs

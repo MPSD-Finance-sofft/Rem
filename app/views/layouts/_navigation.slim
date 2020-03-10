@@ -23,6 +23,10 @@
       a.nav-link href="/leasing_contracts?utf8=✓&state%5B%5D=entry&state%5B%5D=actions&state%5B%5D=debt" 
         i.fas.fa-fw.fa-table
         span Nájemní smlouvy
+      - if current_user.admin?
+        a.nav-link href="/sales_contracts"
+          i.fas.fa-fw.fa-table
+          span Smlouvy o prodeji
     li.nav-item
       a.nav-link href="/users" 
         i.fas.fa-fw.fa-user

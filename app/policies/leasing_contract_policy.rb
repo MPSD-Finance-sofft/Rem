@@ -1,8 +1,8 @@
 class LeasingContractPolicy < ApplicationPolicy
 
-    def index?
-        !user.agent?
-    end
+  def index?
+   !user.agent?
+  end
 
 	def show?
         if user.agent?
