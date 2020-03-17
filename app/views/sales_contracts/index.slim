@@ -23,3 +23,6 @@ div.container-fluid
       table.table
         tr
           th Číslo prodejní smlouvy
+        - @sales_contracts.each do |sales_contracts|
+          tr
+            td = link_to sales_contracts.id, sales_contract_path(sales_contracts)
