@@ -7,6 +7,9 @@ div
         | Pro plnou funkčnost těchto stránek je nutné povolit JavaScript.
         | Zde jsou
         a href="https://www.enable-javascript.com/cz/"
+        - if current_user.user_or_admin?
+          a class="dropdown-item" href="#{"/users/#{current_user.id}/change_color"}"
+            | pokud by jste měli problémy z barvami poznámek můžete si je nastavit zde
   - unless @chart.blank?
     .p-1
       .card.shadow.mb-4
