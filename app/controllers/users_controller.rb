@@ -70,6 +70,11 @@ class UsersController < ApplicationController
     	end
  	end
 
+  def change_color
+    authorize current_user
+    @user = current_user.decorate
+  end
+
 
  	private
     # Use callbacks to share common setup or constraints between actions.

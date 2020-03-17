@@ -1,0 +1,11 @@
+div.container-fluid
+	ol.breadcrumb
+		li.breadcrumb-item
+			b
+				= link_to 'Smlouvy o prodeji', sales_contracts_path()
+		li.breadcrumb-item
+			| Prodejní smlouva č.
+			= @sales_contract.id
+			|  pro žádost č.
+			= link_to @sales_contract.accord_id, accord_path(@sales_contract.accord_id)
+	= render partial: "sales_contracts/show/action"

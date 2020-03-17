@@ -1,13 +1,14 @@
 class SalesContractDecorator < ApplicationDecorator
   delegate_all
+  def date_of_receipt_of_payment
+    format_date object.date_of_receipt_of_payment
+  end
 
-  # Define presentation-specific methods here. Helpers are accessed through
-  # `helpers` (aka `h`). You can override attributes, for example:
-  #
-  #   def created_at
-  #     helpers.content_tag :span, class: 'time' do
-  #       object.created_at.strftime("%a %m/%d/%y")
-  #     end
-  #   end
+  def date_of_sale_realty
+    format_date object.date_of_sale_realty
+  end
 
+  def amount
+    format_number object.amount
+  end
 end

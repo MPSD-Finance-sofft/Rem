@@ -1,0 +1,45 @@
+= form_with(model: @user, local: true) do |f|
+	- if @user.errors.any?
+		#error_explanation
+			h2
+				= pluralize(@user.errors.count, "error")
+				| prohibited this accord from being saved:
+			ul
+				- @user.errors.full_messages.each do |message|
+						li= message
+	.col-xl-6.col-lg-6
+	  .card.shadow.mb-4
+	    /! Card Header - Dropdown
+	    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+	      h6.m-0.font-weight-bold.text-primary Nastavení barev poznámek účtu
+      .card-body.row
+      	- if current_user.admin?
+			.form-group.col-xl-5.col-lg-5
+				= f.label :admin_note_color, "Poznámky od admina"
+				= f.color_field :admin_note_color,{class: "form-control"}
+			.form-group.col-xl-5.col-lg-5
+				= f.label :admin_note_text_color, "Poznámky od admina text"
+				= f.color_field :admin_note_text_color,{class: "form-control"}
+		- if current_user.user_or_admin?
+			.form-group.col-xl-5.col-lg-5
+				= f.label :user_note_color, "Poznámky od uživatele"
+				= f.color_field :user_note_color,{class: "form-control " }
+			.form-group.col-xl-5.col-lg-5
+				= f.label :user_note_text_color, "Poznámky od uživatele text"
+				= f.color_field :user_note_text_color,{class: "form-control " }
+		- if current_user.user_or_admin? || current_user.manager?
+			.form-group.col-xl-5.col-lg-5
+				= f.label :manager_note_color, "Poznámky od managera"
+				= f.color_field :manager_note_color,{class: "form-control " }
+			.form-group.col-xl-5.col-lg-5
+				= f.label :manager_note_text_color, "Poznámky od managera text"
+				= f.color_field :manager_note_text_color,{class: "form-control " }
+		.form-group.col-xl-5.col-lg-5
+			= f.label :agent_note_color, "Poznámky od agenta"
+			= f.color_field :agent_note_color,{class: "form-control " }
+		.form-group.col-xl-5.col-lg-5
+			= f.label :agent_note_text_color, "Poznámky od agenta text"
+			= f.color_field :agent_note_text_color,{class: "form-control " }
+	  .action
+	    = f.submit "Odešli" , class: "btn btn-default", type: "submit"
+	    = link_to 'Zpět', root_path, class: "btn btn-default"

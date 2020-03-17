@@ -24,7 +24,7 @@ class LeasingContract < ApplicationRecord
 	after_create :add_realty
 	after_create :add_client
 
-	 validates :expected_date_of_signature, presence: true
+	validates :expected_date_of_signature, presence: true
 
 	MAX_GENERATE_REPAYMENTS = 100
 

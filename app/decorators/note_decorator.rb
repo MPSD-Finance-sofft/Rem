@@ -35,4 +35,32 @@ class NoteDecorator < ApplicationDecorator
           "nedefinovaná typ"
     end
   end
+
+  def user_color(user)
+    user = user.decorate
+    case object.permission
+    when 'agent'
+      user.agent_note_color
+    when 'manager'
+      user.manager_note_color
+    when 'user'
+      user.user_note_color
+    when 'admin'
+      user.admin_note_color
+    end
+  end
+
+  def text_color(user)
+     user = user.decorate
+    case object.permission
+    when 'agent'
+      user.agent_note_text_color
+    when 'manager'
+      user.manager_note_text_color
+    when 'user'
+      user.user_note_text_color
+    when 'admin'
+      user.admin_note_text_color
+    end
+  end
 end

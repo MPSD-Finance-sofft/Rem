@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :full_notes
   resources :sales_contracts
   resources :reason_refusal_types
   resources :document_types
@@ -79,6 +80,7 @@ Rails.application.routes.draw do
     end
     member do 
       get :card
+      get :change_color
     end
     resources :user_documents do
       member do

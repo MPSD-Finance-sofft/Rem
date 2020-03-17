@@ -1,0 +1,19 @@
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    a href="#colapseNote" class="d-block card-header py-3 show" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="colapseNote"
+      h6.m-0.font-weight-bold.text-primary Poznámky k Žádosti
+    .collapse.show id="colapseNote"
+      .card-body
+        table.table style="overflow: auto; display:inline-block"
+          tr
+            th | Čas
+            th | Autor
+            th | Text
+            th
+          - @accord_notes.each do |note|
+            - text_color = note.text_color(current_user)
+            tr style="background-color:#{note.user_color(current_user)}" class="text-dark"
+              td style="color:#{text_color}" = note.created_at
+              td style="color:#{text_color}" = note.autor
+              td style="color:#{text_color}" = note.description.html_safe
+              td = link_to 'Remove', note, method: :delete, data: { confirm: 'Are you sure?' }

@@ -23,6 +23,10 @@ class UserPolicy < ApplicationPolicy
     update?
   end
 
+  def change_color?
+    update?
+  end
+
  	class Scope < Scope
 
     	def resolve

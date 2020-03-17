@@ -10,6 +10,7 @@
         - else
           = link_to "Zrušení provizního nároku", reward_path(id: @accord.reward) , {:method=> :delete, class: 'btn btn-sm btn-info m-1 text-white', type: 'buttom'}
         = link_to 'Nová nájemní smlouva', new_leasing_contract_path(accord_id: @accord.id), {class: 'btn btn-sm btn-info m-1', type: 'buttom'}
+        = link_to 'Nová smlouva o prodeji', new_sales_contract_path(accord_id: @accord.id), {class: 'btn btn-sm btn-info m-1', type: 'buttom'}
         = link_to "Generování zápočtu", accord_commitments_path(accord_id: @accord.id,format: 'pdf') , { class: 'btn btn-sm btn-info m-1 text-white', type: 'buttom'}
         button.btn.btn-sm.btn-info.m-1.float-right type="button"  id='show_all'
           | Zobraz vše
@@ -35,6 +36,7 @@
         | Přidej hlídače 
       button.btn.btn-sm.btn-info.m-1 data-target="#exampleModalCenter" data-toggle="modal" type="button" 
         | Přidej poznámku 
+      = link_to "Poznámky", full_notes_path(accord_id: @accord.id) , { class: 'btn btn-info btn-sm float-right m-1', type: 'buttom'} 
       = link_to "Přílohy", uploads_accord_path(id: @accord.id) , { class: 'btn btn-info btn-sm float-right m-1', type: 'buttom'}
 
 /! Modal

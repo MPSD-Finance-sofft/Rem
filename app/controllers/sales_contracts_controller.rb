@@ -16,12 +16,14 @@ class SalesContractsController < ApplicationController
 
   # GET /sales_contracts/new
   def new
-    @sales_contract = SalesContract.new
+    @sales_contract = SalesContract.new.decorate
+    @sales_contract.accord_id = params[:accord_id]
   end
 
   # GET /sales_contracts/1/edit
   def edit
     authorize @sales_contract
+    @sales_contract = @sales_contract.decorate
   end
 
   # POST /sales_contracts

@@ -122,4 +122,44 @@ class UserDecorator < ApplicationDecorator
  		end
  		result
  	end
+
+  def admin_note_color
+    return '#f6b73c' if object.admin_note_color.blank?
+    object.admin_note_color
+  end
+
+  def manager_note_color
+    return '#00FFFF' if object.manager_note_color.blank?
+    object.manager_note_color
+  end
+
+  def user_note_color
+    return '#ff00ff' if object.user_note_color.blank?
+    object.user_note_color
+  end
+
+  def agent_note_color
+    return '#ffff00' if object.agent_note_color.blank?
+    object.agent_note_color
+  end
+
+  def admin_note_text_color
+    return '#000000' if object.admin_note_text_color.blank?
+    object.admin_note_text_color
+  end
+
+  def manager_note_text_color
+    return '#000000' if object.manager_note_text_color.blank?
+    object.manager_note_text_color
+  end
+
+  def user_note_text_color
+    return '#FFFFFF' if object.user_note_text_color.blank?
+    object.user_note_text_color
+  end
+
+  def agent_note_text_color
+    return '#000000' if object.agent_note_text_color.blank?
+    object.agent_note_text_color
+  end
 end

@@ -11,10 +11,11 @@
             th | Text
             th
           - @notes.each do |note|
-            tr style="background-color:#{note.attributes["color"]}" class="#{note.attributes["color"]== 'Fuchsia' ? 'text-white' : 'text-dark'}"
-              td = note.created_at
-              td = note.autor
-              td = note.description.html_safe
+            - text_color = note.text_color(current_user)
+            tr style="background-color:#{note.user_color(current_user)}" class="text-dark"
+              td style="color:#{text_color}" = note.created_at
+              td style="color:#{text_color}" = note.autor
+              td style="color:#{text_color}" = note.description.html_safe
               td = link_to 'Remove', note, method: :delete, data: { confirm: 'Are you sure?' }
 javascript: 
   $(document).ready(function() {

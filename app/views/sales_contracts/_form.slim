@@ -1,0 +1,23 @@
+= form_with(model: @sales_contract, local: true) do |form|
+  - if @sales_contract.errors.any?
+    #error_explanation
+      h2
+        = pluralize(@sales_contract.errors.count, "error")
+        | prohibited this @sales_contract from being saved:
+      ul
+        - @sales_contract.errors.full_messages.each do |message|
+          li= message
+  .form-group
+    = form.label :accord_id, "Prodejní smlouva pro žádost"
+    = form.text_field :accord_id, {class: "form-control ", required: true, readonly: true}
+  .form-group
+    = form.label :date_of_sale_realty, "Datum prodeje nemovitosti"
+    = form.text_field :date_of_sale_realty, {class: "form-control datapicker", required: true}
+  .form-group
+    = form.label :amount, "Částka"
+    = form.text_field :amount,{class: "form-control"}
+  .form-group
+    = form.label :date_of_receipt_of_payment, "Datum přijetí platby"
+    = form.text_field :date_of_receipt_of_payment,{class: "form-control datapicker"}
+  .action
+    = form.submit
