@@ -30,7 +30,7 @@ class SalesContractsController < ApplicationController
   # POST /sales_contracts.json
   def create
     @sales_contract = SalesContract.new(sales_contract_params)
-
+    @sales_contract.user = current_user
     respond_to do |format|
       if @sales_contract.save
         format.html { redirect_to @sales_contract, notice: 'Sales contract was successfully created.' }
@@ -69,7 +69,7 @@ class SalesContractsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_sales_contract
-      @sales_contract = SalesContract.find(params[:id])
+      @sales_contract = SalesContract.find(params[:id]).decorate
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -9,3 +9,6 @@ div.container-fluid
 			|  pro žádost č.
 			= link_to @sales_contract.accord_id, accord_path(@sales_contract.accord_id)
 	= render partial: "sales_contracts/show/action"
+	= render partial: "sales_contracts/show/data"
+	= render partial: "sales_contracts/show/client"
+    = render partial: "sales_contracts/show/realty"

@@ -1,0 +1,56 @@
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    /! Card Header - Dropdown
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary Klienti
+   	.card-body
+        - unless @sales_contract.persons.blank?
+            table.table
+                tr
+                    th | Jméno
+                    th | Přijmení
+                    th | Rodné číslo  
+                    th | Číslo OP       
+                    th | Vztah    
+                    th | Mobil           
+                    th | Email            
+                    th | Kontaktní adresa   
+                - @sales_contract.persons.each do |client|
+                    - client = client.decorate
+                    tr
+                        td=link_to client.name, client_path(client)
+                        td=client.last_name
+                        td=client.personal_identification_number
+                        td=client.identity_card_number
+                        td=client.relation_ship
+                        td
+                            - client.mobile.each do |mobil|
+                                =mobil.phone_number
+                                | ,  
+                        td
+                            - client.email.each do |email|
+                                =email.email_address
+                                | ,  
+                        td=client.address.try(:index_name)
+        - unless @sales_contract.companies.blank?
+            table.table
+                tr
+                    th | Jméno
+                    th | Ičo
+                    th | Mobil  
+                    th | Email
+                    th | Kontaktní adresa
+                - @sales_contract.companies.each do |client|
+                    - client = client.decorate
+                    tr
+                        td=link_to client.name, client_path(client)
+                        td=client.identity_card_number
+                        td
+                            - client.mobile.each do |mobil|
+                                =mobil.phone_number
+                                | ,  
+                        td
+                            - client.email.each do |email|
+                                =email.email_address
+                                | ,  
+                        td=client.address.try(:index_name)

@@ -11,4 +11,8 @@ class SalesContractDecorator < ApplicationDecorator
   def amount
     format_number object.amount
   end
+
+  def user
+    object.user.try(:all_name)
+  end
 end

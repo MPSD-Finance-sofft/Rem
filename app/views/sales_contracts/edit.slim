@@ -1,1 +1,16 @@
-= render partial: "sales_contracts/form"
+= form_with(model: @sales_contract, local: true) do |form|
+	- if @sales_contract.errors.any?
+		#error_explanation
+			h2
+				= pluralize(@sales_contract.errors.count, "error")
+				| prohibited this @sales_contract from being saved:
+			ul
+				- @sales_contract.errors.full_messages.each do |message|
+				li= message
+	= render partial: "sales_contracts/form", locals: {form: form}
+	.form-group
+		= render partial: "sales_contract_clients", locals: {f: form}
+	.form-group
+		= render partial: "sales_contract_realities", locals: {f: form}
+	.action
+    	= form.submit

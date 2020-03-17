@@ -1,0 +1,20 @@
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    /! Card Header - Dropdown
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary Data
+    .card-body
+    	table.table
+    		tr
+    			th Datum prodeje
+    			th Částka
+    			th Datum přijetí platby
+    			th Vytvořil
+    			th Datum vytvoření
+
+    		tr
+    			td =@sales_contract.date_of_sale_realty
+    			td =@sales_contract.amount
+    			td =@sales_contract.date_of_receipt_of_payment
+    			td =@sales_contract.user
+    			td =@sales_contract.created_at

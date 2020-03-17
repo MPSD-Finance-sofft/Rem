@@ -132,8 +132,8 @@ class Accord < ApplicationRecord
 	scope :state, -> (state) {where(state:  state)}
 	scope :start_created_at, -> (date) {where("accords.created_at > ?", date.to_date)}
 	scope :end_created_at, -> (date) {where("accords.created_at < ?", date.to_date)}
-	scope :date_of_signature_start, -> (date) {where("accords.date_of_signature > ?", date.to_date)}
-	scope :date_of_signature_end, -> (date) {where("accords.date_of_signature < ?", date.to_date)}
+	scope :date_of_signature_start, -> (date) {where("accords.date_of_signature >= ?", date.to_date)}
+	scope :date_of_signature_end, -> (date) {where("accords.date_of_signature <= ?", date.to_date)}
 	scope :repurchase_min, -> (number) {where("accords.repurchase > ?", number)}
 	scope :repurchase_max, -> (number) {where("accords.repurchase < ?", number)}
 	scope :client_personal_identification_number, -> (personal_identification_number) {joins(:clients).where("clients.personal_identification_number LIKE ?", "%#{personal_identification_number}%")}
