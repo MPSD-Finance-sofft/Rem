@@ -21,12 +21,14 @@ class SalesContract < ApplicationRecord
     self.accord.accords_clients.each do |accords_client|
       client = accords_client.client
       SalesContractClient.create(client_id: client.id, sales_contract_id: self.id, relationship: accords_client.relationship)
-        self.save
-      end
+    end
   end
 
   def add_realty
-
+    self.accord.accords_realty.each do |accords_realty|
+      realty = accords_realty.realty
+      SalesContractRealty.create(realty_id: realty.id, sales_contract_id: self.id)
+    end
   end
 
   def persons
