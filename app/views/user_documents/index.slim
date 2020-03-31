@@ -5,7 +5,7 @@
 			= link_to 'Uživatelé', users_path()
 		li.breadcrumb-item
 			| Přílohy k uživateli
-			= @user.all_name.to_s
+			= link_to @user.all_name.to_s, card_user_path(@user)
 .col-xl-12.col-lg-12
   .card.shadow.mb-4
     .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
