@@ -125,4 +125,12 @@ class LeasingContractDecorator < ApplicationDecorator
   	def all_debt
   		format_number LeasingContract::all_debt
   	end
+
+    def date_last_payment
+      format_date object.date_last_payment
+    end
+
+    def object_last_paymentrate
+      object.date_last_payment
+    end
 end

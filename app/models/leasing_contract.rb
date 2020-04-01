@@ -139,6 +139,10 @@ class LeasingContract < ApplicationRecord
 		Date.today - start_date_debt > 10
 	end
 
+  def date_last_payment
+    payments.last.try(:payment_date)
+  end
+
 	def self.all_debt
 		LeasingContract.includes(repayments: :repayment_payment).state('debt').sum(&:debt)
 	end
@@ -204,4 +208,7 @@ class LeasingContract < ApplicationRecord
 	scope :rent_to_end, -> (date) {where("leasing_contracts.rent_to <= ?", date.to_date)}
 	scope :subordinates_accords, -> (user) {joins(:accord).where('accords.agent_id': [User.where(superior_id: user.id).pluck(:id)])}
 	scope :agents_accords, -> (user) {joins(:accord).where('accords.agent_id':  user.id)}
+  scope :should_be_paid,-> (month,year) {joins(:repayments).where('repayments.repayment_date': Date.new(year,month,1)..Date.new(year,month,1).end_of_month)}
+  scope :date_of_last_paymnet_from, -> (date) {joins(:payments).where('payments.payment_date >= ?', date)}
+  scope :date_of_last_paymnet_to, -> (date) {joins(:payments).where('payments.payment_date <= ?', date)}
 end
