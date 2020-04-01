@@ -17,6 +17,9 @@ class Client < ApplicationRecord
   accepts_nested_attributes_for :client_mobile,  reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :client_email,  reject_if: :all_blank, allow_destroy: true
 
+   validates_presence_of :name
+   validates_presence_of :last_name, if: :person?
+
 	def full_name
     return "#{self.name}" if self.company?
 		"#{self.name} #{self.last_name}"
@@ -29,6 +32,10 @@ class Client < ApplicationRecord
 
   def company?
     self.type == 'Company'
+  end
+
+  def person?
+    self.type == 'Person'
   end
 
   def joins_clients(second_client)
