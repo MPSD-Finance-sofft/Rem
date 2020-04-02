@@ -44,6 +44,7 @@ Rails.application.routes.draw do
   resources :cooperations
   resources :type_of_notices
   resources :rewards
+  resources :payments
   resources :leasing_contracts do 
     resources :repayments do 
       collection do 

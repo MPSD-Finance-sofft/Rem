@@ -1,0 +1,32 @@
+div.container-fluid
+  ol.breadcrumb
+    li.breadcrumb-item
+      b
+        | Úhrady pro nájemní smlouvy
+    li.breadcrumb-item
+      | Přehled úhrad nájemních smluv
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary = link_to 'Nájemní smlouvy', leasing_contracts_path
+    .card-body
+      //= render 'filter'
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary Přehled nájemních smluv
+    .card-body
+      p
+      b 
+        | Počet vyhledaných smluv: 
+        = @payments.size
+      table.table
+        tr
+          th Číslo nájmení smlouvy
+          th Částka
+          th Datum přijetí úhrady
+        - @payments.each do |payment|
+          tr
+            td = payment.leasing_contract_id
+            td = payment.amount
+            td = payment.payment_date
