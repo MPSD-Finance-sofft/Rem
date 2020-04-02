@@ -18,15 +18,20 @@ div.container-fluid
     .card-body
       p
       b 
-        | Počet vyhledaných smluv: 
+        | Počet vyhledaných úhrad: 
         = @payments.size
       table.table
         tr
           th Číslo nájmení smlouvy
           th Částka
           th Datum přijetí úhrady
+          th Adresa nemovitosti
         - @payments.each do |payment|
           tr
-            td = payment.leasing_contract_id
-            td = payment.amount
-            td = payment.payment_date
+            td = link_to payment.leasing_contract_id, leasing_contract_path(payment.leasing_contract_id)
+            td.text-right = payment.amount
+            td.text-right = payment.payment_date
+            td  
+              - payment.leasing_contract.realty.each do |realty|
+                = realty.address.try(:index_name)
+                br

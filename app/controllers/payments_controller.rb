@@ -5,7 +5,7 @@ class PaymentsController < ApplicationController
   # GET /payments
   # GET /payments.json
   def index
-    @payments = Payment.order(payment_date: :desc).decorate
+    @payments = Payment.order(payment_date: :desc).joins(leasing_contract: :realty).decorate
   end
 
   # GET /payments/1
