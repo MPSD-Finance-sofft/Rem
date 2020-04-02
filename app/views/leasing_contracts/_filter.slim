@@ -23,9 +23,6 @@
 			.form-group
 				= label_tag :realty_adress_village, "Obec nemovitosti"
 				= text_field_tag :realty_adress_village, params[:realty_adress_village], class: "form-control input-sm"
-			.form-group
-				= label_tag :date_of_last_paymnet_from, "Datum přijetí poslední úhrady od"
-				= text_field_tag :date_of_last_paymnet_from, params[:date_of_last_paymnet_from], class: "form-control input-sm datapicker"
 		.col-xl-2
 			.form-group
 				= label_tag :monthly_rent_min, "Výše nájmu od"
@@ -36,9 +33,6 @@
 			.form-group
 				= label_tag :state, "Stav nájemní smlouvy"
 				= select_tag :state, options_for_select([["K podpisu", "entry"], ["Aktivní", "actions"], ["Dluh", "debt"],["Doplaceno", "added"], ["Ukončeno", "ended"]], params[:state]), {include_blank: true, class: "form-control input-sm selectpicker",data: {"live-search": true} , multiple: true}
-			.form-group
-				= label_tag :date_of_last_paymnet_to, "Datum přijetí poslední úhrady do"
-				= text_field_tag :date_of_last_paymnet_to, params[:date_of_last_paymnet_to], class: "form-control input-sm datapicker"
 		.col-xl-3
 			.form-group
 				= label_tag :rent_to_start, "Datum konce nájemní smlouvy od"
