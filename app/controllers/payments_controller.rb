@@ -5,7 +5,10 @@ class PaymentsController < ApplicationController
   # GET /payments
   # GET /payments.json
   def index
-    @payments = Payment.order(payment_date: :desc).joins(leasing_contract: :realty).decorate
+    authorize Payment
+    @payments =  IndexFilter::IndexServices.new(Payment.order(payment_date: :desc),params).perform
+    @payments = @payments.decorate
+    @sel_leasing_contracts_id = Payment.group(:leasing_contract_id).pluck(:leasing_contract_id).uniq.map{|a| [a,a]}
   end
 
   # GET /payments/1
@@ -73,6 +76,6 @@ class PaymentsController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def payment_params
-      params.require(:payment).permit(:amount, :payment_date, :leasing_contract_id, :kind)
+      params.require(:payment).permit!
     end
 end

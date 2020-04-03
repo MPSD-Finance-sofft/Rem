@@ -35,4 +35,8 @@ class Payment < ApplicationRecord
 		end
 		result
 	end
+
+  scope :paid_day_from, -> (date) {where("payment_date >= ?", date.to_date)}
+  scope :paid_day_to, -> (date) {where("payment_date <= ?", date.to_date)}
+  scope :for_leasing_contract, -> (leasing_contract_id) {where(leasing_contract_id: leasing_contract_id)}
 end
