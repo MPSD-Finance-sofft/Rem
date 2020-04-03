@@ -12,6 +12,9 @@
 					.form-group
 						= label_tag :username, 'Username'
 						= text_field_tag :username,  params[:username], class: "form-control input-sm"
+					.form-group
+						= label_tag :user_ares, "Ares"
+						= select_tag :user_ares, options_for_select(Ares.group(:nace).map{|a| [a.full_name, a.nace]}, params[:user_ares]), {include_blank: true, class: "form-control input-sm",data: {"live-search": true}, multiple: true }
 				.col-xl-2
 					.form-group
 						= label_tag :permission_fo_user, "Role"
