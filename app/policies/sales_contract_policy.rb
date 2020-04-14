@@ -1,18 +1,18 @@
 class SalesContractPolicy < ApplicationPolicy
 
   def index?
-   user.admin?
+   user.user_or_admin?
   end
 
   def show?
-    user.admin?
+    user.user_or_admin?
   end
 
   def update?
-    user.admin?
+    user.user_or_admin?
   end
 
   def destroy?
-    user.admin?
+    user.user_or_admin?
   end
 end
