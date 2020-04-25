@@ -1,0 +1,77 @@
+- title "Výkaz uživatele "
+div.container-fluid
+	ol.breadcrumb
+    	li.breadcrumb-item
+			b
+				| Výkaz 
+    	li.breadcrumb-item
+			| uživatele
+.col-xl-12.col-lg-12
+	.card.shadow.mb-4
+		.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+			h6.m-0.font-weight-bold.text-primary Filter 
+    	.card-body
+    		= form_tag(users_jobs_for_user_reports_path(), {method: :get}) do
+	    		.form-group
+					= label_tag :user_id, "V péči"
+					= select_tag :user_id, options_for_select(User.admin_and_user.uniq.map{|a| [User.find_by_id(a).try(:all_name),a.id]}, params[:user_id]), {include_blank: true, class: "form-control input-sm",data: {"live-search": true} }
+				.form-group
+					= label_tag :date_from, "Datum od"
+					= text_field_tag :date_from, params[:date_from], class: "datapicker form-control input-sm"
+				.form-group
+					= label_tag :date_to, "Datum do"
+					= text_field_tag :date_to, params[:date_to], class: "datapicker form-control input-sm"
+				.form-group
+					= submit_tag "Vyhledat"
+- unless @report.blank?
+	.col-xl-12.col-lg-12
+		.card.shadow.mb-4
+			.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+	      		h6.m-0.font-weight-bold.text-primary Výkaz aktivity
+	      		div.col-md-2.nopadding.text-right.panel-title
+	    	.card-body
+	    		card.shadow.mb-4
+					.a href="#colapseCreatedAccord" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="colapseCreatedAccord"
+	      				h6.m-0.font-weight-bold.text-dark
+	      					| Vytvořeno žádostí: #{@report[:created_accords].size}
+	  			    .collapse id="colapseCreatedAccord"
+	    				.card-body
+	    					- @report[:created_accords].each do |accord_id|
+	    						= link_to accord_id, accord_path(accord_id)
+	    						|  
+	    		card.shadow.mb-4
+					.a href="#colapseelEboratedAccord" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="colapseelEboratedAccord"
+	      				h6.m-0.font-weight-bold.text-dark
+	      					| Rozpracováno žádostí: #{@report[:eborated_accord].size}
+	  			    .collapse id="colapseelEboratedAccord"
+	    				.card-body
+	    					- @report[:eborated_accord].each do |accord_id|
+	    						= link_to accord_id, accord_path(accord_id)
+	    						|  
+	    		card.shadow.mb-4
+					.a href="#colapseelrefuse_or_dowload_accords" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="colapseelrefuse_or_dowload_accords"
+	      				h6.m-0.font-weight-bold.text-dark
+	      					| Zamítnuto/Stáhnuto žádostí: #{@report[:refuse_or_dowload_accords].size}
+	  			    .collapse id="colapseelrefuse_or_dowload_accords"
+	    				.card-body
+	    					- @report[:refuse_or_dowload_accords].each do |accord_id|
+	    						= link_to accord_id, accord_path(accord_id)
+	    						|  
+	    		card.shadow.mb-4
+					.a href="#colapsein_terrain" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="colapsein_terrain"
+	      				h6.m-0.font-weight-bold.text-dark
+	      					| V terénu žádostí: #{@report[:in_terain_accords].size}
+	  			    .collapse id="colapsein_terrain"
+	    				.card-body
+	    					- @report[:in_terain_accords].each do |accord_id|
+	    						= link_to accord_id, accord_path(accord_id)
+	    						|  
+	    		card.shadow.mb-4
+					.a href="#colapseto_sign_accords" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="colapseto_sign_accords"
+	      				h6.m-0.font-weight-bold.text-dark
+	      					| Přeáno ke schválení žádostí: #{@report[:to_sign_accords].size}
+	  			    .collapse id="colapseto_sign_accords"
+	    				.card-body
+	    					- @report[:to_sign_accords].each do |accord_id|
+	    						= link_to accord_id, accord_path(accord_id)
+	    						|  

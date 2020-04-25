@@ -1,4 +1,5 @@
 class Report
+
 	def self.colums(user)
 		Report::colums_for_user_perrmision(user).map{|a,b| [b,a]}
 	end
@@ -12,4 +13,8 @@ class Report
 			User.filtering_attributes_agent
 		end
 	end
+
+  def self.users_job_actity(user, date_from, date_to)
+    Reports::UserAccord::users_job_actity(user, date_from, date_to)
+  end
 end

@@ -12,7 +12,7 @@ class SalesContractsController < ApplicationController
   # GET /sales_contracts/1.json
   def show
     authorize @sales_contract
-     Activity.create(true_user_id: user_masquerade_owner.try(:id), user_id: current_user.id, what: "Smlouva o prodeji číslo: #{@sales_contract.id}", objet: "SalesContract", object_id: @sales_contract.id)
+    Activity.create(true_user_id: user_masquerade_owner.try(:id), user_id: current_user.id, what: "Smlouva o prodeji číslo: #{@sales_contract.id}", objet: "SalesContract", object_id: @sales_contract.id)
   end
 
   # GET /sales_contracts/new

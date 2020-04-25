@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     collection do 
       get :agents
       get :users_jobs
+      get :users_jobs_for_user
     end
   end
   resources :revision_types

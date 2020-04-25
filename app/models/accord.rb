@@ -127,6 +127,7 @@ class Accord < ApplicationRecord
 	scope :number_accord, -> (number_accord) {where(number:  number_accord)}
 	scope :user_id, -> (user_id) {where(user_id:  user_id)}
 	scope :agent_id, -> (agent_id) {where(agent_id:  agent_id)}
+  scope :created_by, -> (user_id) {where(creator_id:  user_id)}
 	scope :contract_number, -> (contract_number) {where(contract_number:  contract_number)}
 	scope :kind, -> (kind) {where(kind:  kind)}
 	scope :state, -> (state) {where(state:  state)}

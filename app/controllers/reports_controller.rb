@@ -17,4 +17,10 @@ class ReportsController < ApplicationController
 		@users = User.admin_and_user
 	end
 
+
+  def users_jobs_for_user
+    @user = User.find_by_id (params[:user_id])
+    @report = Report::users_job_actity(@user, params[:date_from],params[:date_to])
+  end
+
 end
