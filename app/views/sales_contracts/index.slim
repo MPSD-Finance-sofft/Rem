@@ -23,6 +23,20 @@ div.container-fluid
       table.table
         tr
           th Číslo prodejní smlouvy
+          th.text-right Datum prodeje
+          th.text-right Datum přijetí platby
+          th Nemovitosti
+          th Klienti
         - @sales_contracts.each do |sales_contracts|
           tr
             td = link_to sales_contracts.id, sales_contract_path(sales_contracts)
+            td.text-right = sales_contracts.date_of_sale_realty
+            td.text-right.text-nowrap  = sales_contracts.amount
+            td
+              - sales_contracts.clients.each do |client|
+                = client.full_name
+                br
+            td
+              - sales_contracts.realty.each do |realty|
+                = realty.address.try(:index_name)
+                br
