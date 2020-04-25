@@ -25,12 +25,14 @@ div.container-fluid
           th Číslo prodejní smlouvy
           th.text-right Datum prodeje
           th.text-right Datum přijetí platby
+          th.text-right Částka
           th Nemovitosti
           th Klienti
         - @sales_contracts.each do |sales_contracts|
           tr
             td = link_to sales_contracts.id, sales_contract_path(sales_contracts)
             td.text-right = sales_contracts.date_of_sale_realty
+            td.text-right.text-nowrap  = sales_contracts.date_of_receipt_of_payment
             td.text-right.text-nowrap  = sales_contracts.amount
             td
               - sales_contracts.clients.each do |client|
