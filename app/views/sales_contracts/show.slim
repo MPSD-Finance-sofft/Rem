@@ -6,8 +6,8 @@ div.container-fluid
 		li.breadcrumb-item
 			| Prodejní smlouva č.
 			= @sales_contract.id
-			|  pro žádost č.
-			= link_to @sales_contract.accord_id, accord_path(@sales_contract.accord_id)
+			|  pro smlouvu č.
+			= link_to @sales_contract.accord.try(:contract_number), accord_path(@sales_contract.accord_id)
 	= render partial: "sales_contracts/show/action"
 	= render partial: "sales_contracts/show/data"
 	= render partial: "sales_contracts/show/client"

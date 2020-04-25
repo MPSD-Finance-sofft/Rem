@@ -25,6 +25,10 @@ class PenbDecorator < ApplicationDecorator
  		Penb.energy_classes.keys.map{|a| [energy_class_to_text(a), a]}
  	end
 
+  def date_to
+    object.date_to
+  end
+
 
  	def energy_class_to_text(energy_class)
  		case energy_class

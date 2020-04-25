@@ -18,6 +18,8 @@ class AccordsClientDecorator < ApplicationDecorator
  					"Nájemce"
  			when 'tenant'
  					"Žadatel"
+      when 'new_owner'
+          "Nový vlastník"
  			else
  					"nedefinovaný typ vlastnictví"
 		end
