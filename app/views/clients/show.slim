@@ -60,11 +60,11 @@ div.container-fluid
       h6.m-0.font-weight-bold.text-primary Prodejní smlouvy klienta
     .card-body 
       table.table
-        -@client.sales_contract_clients.decorate.each do |lc|
+        -@client.sales_contract_clients.decorate.each do |sc|
           tr
-            td = lc.created_at
-            td = lc.relationship
-            td = link_to lc.leasing_contract_id, leasing_contract_path(lc.leasing_contract)
+            td = sc.created_at
+            td = sc.relationship
+            td = link_to sc.sales_contract_id, sales_contract_path(sc.sales_contract_id)
 
   .card.shadow.mb-4
     .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
