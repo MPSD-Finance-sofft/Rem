@@ -75,6 +75,6 @@ class SalesContractsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sales_contract_params
-      params.require(:sales_contract).permit(:accord_id, :date_of_sale_realty, :amount, :date_of_receipt_of_payment, :user_id, :sate, :kind)
+      params.require(:sales_contract).permit!
     end
 end
