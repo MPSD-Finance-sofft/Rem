@@ -141,9 +141,9 @@ class User < ApplicationRecord
 
 	def self.user_can_permision(user)
 		if user.agent? || user.manager?
-			User.can_sign_in.subordinates(user).or(User.where(id: (user.id)))
+		  User.can_sign_in.subordinates(user).or(User.where(id: (user.id)))
 		else
-			User.order(username: :desc).can_sign_in.select(&:not_runing_notice?)
+			User.order(username: :desc).select(&:not_runing_notice?)
 		end
 	end
 
