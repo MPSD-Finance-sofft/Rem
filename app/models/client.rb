@@ -11,6 +11,7 @@ class Client < ApplicationRecord
   has_many :email, through: :client_email
   has_many :accords_client
   has_many :leasing_contract_clients
+  has_many :sales_contract_clients
 
   accepts_nested_attributes_for :permanent_address,  reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :contact_address,  reject_if: :all_blank, allow_destroy: true
@@ -45,6 +46,10 @@ class Client < ApplicationRecord
       ac.save
     end
     second_client.leasing_contract_clients.each do |ac|
+      ac.client_id = self.id
+      ac.save
+    end
+    second_client.sales_contract_clients.each do |ac|
       ac.client_id = self.id
       ac.save
     end
