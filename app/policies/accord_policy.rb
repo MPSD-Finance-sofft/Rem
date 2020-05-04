@@ -2,7 +2,7 @@ class AccordPolicy < ApplicationPolicy
 
     def show?
         if user.manager? || user.agent?
-            (record.agent.try(:superior_id) == user.id) || (record.agent_id == user.id) || (record.last_active_terrains.try(:agent_id) == user.id)
+            (record.agent.try(:superior_id) == user.id) || (record.agent_id == user.id) || (record.last_active_terrains.try(:agent_id) == user.id) || Accord.where(id: record.id).accord_for_manager(user).count > 0
         elsif user.user? || user.admin?
             true
         else
