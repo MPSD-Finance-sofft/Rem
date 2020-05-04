@@ -26,7 +26,7 @@ div.container-fluid
 				.col-xl-2
 					.form-group
 						= label_tag :objet, "Object"
-						= select_tag :objet, options_for_select([['Uživatel', 'User'],['Žádost', 'Accord'], ['Nájemní smlouva', 'LeasingContract']], params[:objet]), {include_blank: true, class: "form-control input-sm",data: {"live-search": true}, multiple: true }
+						= select_tag :objet, options_for_select([['Uživatel', 'User'],['Žádost', 'Accord'], ['Nájemní smlouva', 'LeasingContract'], ['Smlouva o prodeji', 'SalesContract']], params[:objet]), {include_blank: true, class: "form-control input-sm",data: {"live-search": true}, multiple: true }
 					.form-group
 						= label_tag :object_id, "Object id"
 						= text_field_tag :object_id, params[:object_id], class: "form-control input-sm"
