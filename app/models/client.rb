@@ -40,7 +40,7 @@ class Client < ApplicationRecord
   end
 
   def joins_clients(second_client)
-    self.update self.diff_without_nil(second_client, DIFF_ATTRIBUTES)
+    self.update self.usseles_client(second_client, DIFF_ATTRIBUTES)
     second_client.accords_client.each do |ac|
       ac.client_id = self.id
       ac.save
@@ -64,7 +64,7 @@ class Client < ApplicationRecord
   end
 
   def usseles_client?
-    self.accords_client.blank? && self.leasing_contract_clients.blank?
+    self.accords_client.blank? && self.leasing_contract_clients.blank? && self.sales_contract_clients.blank?
   end
 
   def self.remove_usseles_clients
