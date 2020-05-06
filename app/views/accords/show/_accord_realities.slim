@@ -14,40 +14,39 @@
                   tr
                     th Typ nemovitosti
                     td =realty.realty_type
+                  - unless current_user.tipster?
                     th Číslo bytové jednotky
                     td = realty.flat_number
                     th Zastavěná plocha
                     td = realty.build_up_area
-                  tr
-                    th Výkupní cena
-                    td = realty.purchase_price
-                    th Dispozice
-                    td = realty.disposition_text
-                    th Plocha pozemku
-                    td = realty.land_plot
-                  tr
-                    th Odhad tržní ceny
-                    td = realty.price_estimation
-                    th Reálný počet nadzemních podlaží
-                    td = realty.real_number_abovegroud_floors
-                    th Spoluvlastnický podíl
-                    td = realty.part_number
-                  tr
-                    th Lokalita
-                    td = realty.location
-                    th List vlastnictví
-                    td = realty.property_sheet
-                    th Typ vlastnictví 
-                    td =realty.type_ownership
-                  tr
-                    th Katastrální území
-                    td =realty.catastral_territory
-                    th Záznam na LV
-                    td =realty.record_on_lvs      
-                    th Datum kolaudace nemovitosti
-                    td = realty.date_of_final_building_approval   
-                  tr
-                    th Číslo parcely    
-                    td = realty.parcel_number 
-                    
-             
+                    tr
+                      th Výkupní cena
+                      td = realty.purchase_price
+                      th Dispozice
+                      td = realty.disposition_text
+                      th Plocha pozemku
+                      td = realty.land_plot
+                    tr
+                      th Odhad tržní ceny
+                      td = realty.price_estimation
+                      th Reálný počet nadzemních podlaží
+                      td = realty.real_number_abovegroud_floors
+                      th Spoluvlastnický podíl
+                      td = realty.part_number
+                    tr
+                      th Lokalita
+                      td = realty.location
+                      th List vlastnictví
+                      td = realty.property_sheet
+                      th Typ vlastnictví
+                      td =realty.type_ownership
+                    tr
+                      th Katastrální území
+                      td =realty.catastral_territory
+                      th Záznam na LV
+                      td =realty.record_on_lvs
+                      th Datum kolaudace nemovitosti
+                      td = realty.date_of_final_building_approval
+                    tr
+                      th Číslo parcely
+                      td = realty.parcel_number
