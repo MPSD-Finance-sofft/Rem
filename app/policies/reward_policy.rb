@@ -1,7 +1,7 @@
 class RewardPolicy < ApplicationPolicy
 
     def show?       
-        if user.agent?
+        if user.agent? || user.tipster?
             (record.user_id == user.id)
         elsif user.manager?
             (record.user.try(:superior_id) == user.id) || (record.user_id == user.id)
@@ -39,7 +39,7 @@ class RewardPolicy < ApplicationPolicy
       			scope.all
     		elsif user.manager?
             	scope.subordinates_rewards(user).or(scope.for_user(user))
-        	elsif user.agent?
+        	elsif user.agent? || user.tipster?
         		scope.for_user(user)
         	end
     	end

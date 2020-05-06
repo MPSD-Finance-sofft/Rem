@@ -3,6 +3,8 @@ class AccordPolicy < ApplicationPolicy
     def show?
         if user.manager? || user.agent?
             (record.agent.try(:superior_id) == user.id) || (record.agent_id == user.id) || (record.last_active_terrains.try(:agent_id) == user.id) || Accord.where(id: record.id).accord_for_manager(user).count > 0
+        elsif user.tipster?
+            record.agent_id == user.id
         elsif user.user? || user.admin?
             true
         else
@@ -36,8 +38,10 @@ class AccordPolicy < ApplicationPolicy
     		if user.admin? || user.user?
       			scope.includes(:owner).includes(realty: :address).includes(agent: :superior).includes(:clients)
     		elsif user.manager? || user.agent?
-            	scope.accord_for_manager(user).includes(:owner).includes(realty: :address).includes(agent: :superior).includes(:clients)
-        	end
+            scope.accord_for_manager(user).includes(:owner).includes(realty: :address).includes(agent: :superior).includes(:clients)
+        elsif user.tipster?
+            scope.agent_id(user).includes(:owner).includes(realty: :address).includes(agent: :superior).includes(:clients)
+        end
     	end
   	end
 end

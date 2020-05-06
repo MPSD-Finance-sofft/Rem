@@ -29,9 +29,10 @@ div.col-md-12
 				.form-group
 			    	= f.label :kind, "Typ žádosti"
 					= f.select :kind, f.object.select_kind,{},{class: "selectpicker form-control", "data-live-search" => "true"}
-				.form-group
-			    	= f.label :agency_commission, "Zprostředkovatelská provize"
-					= f.text_field :agency_commission,{class: "form-control", type:"number", step:"any"}
+				- unless current_user.tipster?
+					.form-group
+				    	= f.label :agency_commission, "Zprostředkovatelská provize"
+						= f.text_field :agency_commission,{class: "form-control", type:"number", step:"any"}
 				.form-group
 			    	= f.label :purchase_price, "Předpokládaná výkupní cena"
 					= f.text_field :purchase_price,{class: "form-control", type:"number", step:"any"}

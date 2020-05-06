@@ -3,8 +3,9 @@ class FileBoard < ApplicationRecord
 
 	def self.show_by_permission(permission)
 		return 	FileBoard.all if permission == "admin" || permission == "user"
-		return 	FileBoard.for_manager if permission == "manager" 
-		return 	FileBoard.for_permmision("agent") if permission == "agent" 
+		return 	FileBoard.for_manager if permission == "manager"
+		return 	FileBoard.for_permmision("agent") if permission == "agent"
+    return  Board.for_permmision("tipster") if permission == "tipster"
 	end
 
 	enum permission: [:agent, :manager, :user, :admin]

@@ -6,6 +6,7 @@ class Board < ApplicationRecord
 		return 	Board.all if permission == "admin" || permission == "user"
 		return 	Board.for_manager if permission == "manager" 
 		return 	Board.for_permmision("agent") if permission == "agent" 
+    return  Board.for_permmision("tipster") if permission == "tipster" 
 	end
 
 	scope :for_permmision, -> (permision) {where(permission: permision)}

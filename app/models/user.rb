@@ -69,6 +69,10 @@ class User < ApplicationRecord
 		self.permission.try(:kind) == "manager" 
 	end
 
+  def tipster?
+    self.permission.try(:kind) == "tipster" 
+  end
+
 	def can_login?
 		self.can_sign_in
 	end
@@ -98,7 +102,7 @@ class User < ApplicationRecord
 	end
 
 	def self.can_create_accord(user)
-		if user.agent? || user.manager?
+		if user.agent? || user.manager? || user.tipster?
 			User.can_sign_in.subordinates(user).or(User.can_sign_in.where(id: (user.id)))
 		else
 			User.manager_and_agents.can_sign_in.select(&:not_runing_notice?)

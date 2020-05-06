@@ -1,7 +1,7 @@
 class InvoicePolicy < ApplicationPolicy
 
     def show?       
-        if user.agent?
+        if user.agent? || user.tipster?
             (record.agent.try(:id) == user.id)
         elsif user.manager?
             (record.agent.try(:superior_id) == user.id) || (record.agent.try(:id) == user.id)
@@ -39,7 +39,7 @@ class InvoicePolicy < ApplicationPolicy
       			scope.all
     		elsif user.manager?
             	scope.subordinates_invoices(user).or(scope.for_user(user))
-        	elsif user.agent?
+        	elsif user.agent? || user.tipster?
         		scope.for_user(user)
         	end
     	end

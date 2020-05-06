@@ -17,12 +17,14 @@
       a.nav-link href="/accords?utf8=✓&state%5B%5D=state_new&state%5B%5D=state_eleboration&state%5B%5D=in_terrain&state%5B%5D=returned&state%5B%5D=to_sign"
         i.fas.fa-fw.fa-table
         span Žádosti
-      a.nav-link href="/contracts" 
-        i.fas.fa-fw.fa-table
-        span Smlouvy 
-      a.nav-link href="/leasing_contracts?utf8=✓&state%5B%5D=entry&state%5B%5D=actions&state%5B%5D=debt" 
-        i.fas.fa-fw.fa-table
-        span Nájemní smlouvy
+      - unless current_user.tipster?
+        a.nav-link href="/contracts" 
+          i.fas.fa-fw.fa-table
+          span Smlouvy 
+      - unless current_user.tipster?
+        a.nav-link href="/leasing_contracts?utf8=✓&state%5B%5D=entry&state%5B%5D=actions&state%5B%5D=debt" 
+          i.fas.fa-fw.fa-table
+          span Nájemní smlouvy
       - if current_user.user_or_admin?
         a.nav-link href="/sales_contracts"
           i.fas.fa-fw.fa-table
@@ -37,7 +39,7 @@
       a.nav-link href="/invoices" 
         i.fas.fa-fw.fa-receipt
         span Faktury
-    - unless current_user.agent?
+    - if current_user.user_or_admin? || current_user.manager?
       li.nav-item
         a.nav-link.collapsed aria-controls="headingExport" aria-expanded="true" data-target="#headingExport" data-toggle="collapse" href="#" data-remote="true"
           i.fas.fa-file-export

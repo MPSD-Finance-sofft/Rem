@@ -1,9 +1,11 @@
 class UserPolicy < ApplicationPolicy
 	def index?
+    return false if user.tipster?
     true
   end
 
   def update?
+    return false if user.tipster?
     user.admin? || user.user? || record.id == user.id
   end
 
@@ -36,6 +38,8 @@ class UserPolicy < ApplicationPolicy
             scope.subordinates(user).or(scope.id(user)).order(username: :desc)
         elsif user.user?
             scope.all_without_user.order(username: :desc)
+        else
+          scope.where("1=2")
         end
     	end
   end

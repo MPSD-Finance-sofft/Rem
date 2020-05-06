@@ -5,7 +5,7 @@ class LeasingContractPolicy < ApplicationPolicy
   end
 
 	def show?
-        if user.agent?
+        if user.agent? || user.tipster?
             false
         elsif user.manager?
             (record.accord.agent.try(:superior_id) == user.id) || (record.accord.agent_id == user.id)
@@ -37,13 +37,12 @@ class LeasingContractPolicy < ApplicationPolicy
     end
 
     class Scope < Scope
-
         def resolve
             if user.admin? || user.user?
                 scope.joins(:accord).includes(:user).includes(:clients).includes(realty: :address).includes(:payments).includes(:repayments)
             elsif user.manager?
                 scope.subordinates_accords(user).or(scope.agents_accords(user))
-            elsif user.agent?
+            elsif user.agent? || user.tipster?
                 scope.where("1=0")
             end
         end

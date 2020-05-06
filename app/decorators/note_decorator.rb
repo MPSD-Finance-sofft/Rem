@@ -18,7 +18,7 @@ class NoteDecorator < ApplicationDecorator
         Note.permissions.keys.map{|a| [permission_to_text(a), a]}
       elsif user.manager?
         [["Pro Agenta","agent"],["Pro Managera","manager"]]
-      elsif user.agent?
+      elsif user.agent? || user.tipster?
         [["Pro Agenta","agent"]]
     end
   end

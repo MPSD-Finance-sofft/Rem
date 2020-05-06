@@ -21,7 +21,7 @@ class NotePolicy < ApplicationPolicy
       			scope.order(created_at: :desc).for_accord(accord_id).all
     		elsif user.manager?
             	scope.order(created_at: :desc).for_accord(accord_id).for_manager
-        	elsif user.agent?
+        	elsif user.agent? || user.tipster?
         		scope.order(created_at: :desc).for_accord(accord_id).for_agent
         	elsif user.user?
             	scope.order(created_at: :desc).for_accord(accord_id).all
