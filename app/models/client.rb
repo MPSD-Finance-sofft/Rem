@@ -40,7 +40,7 @@ class Client < ApplicationRecord
   end
 
   def joins_clients(second_client)
-    self.update self.usseles_client(second_client, DIFF_ATTRIBUTES)
+    self.update self.diff_without_nil(second_client, DIFF_ATTRIBUTES)
     second_client.accords_client.each do |ac|
       ac.client_id = self.id
       ac.save
