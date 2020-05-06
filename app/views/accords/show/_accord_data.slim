@@ -17,8 +17,12 @@
             td = @accord.contract_number
             th Vytvořil
             td = @accord.creator_name
-            th Zaměstnanec u podpisu
-            td = @accord.agent_in_signature_name
+            - unless current_user.tipster?
+                th Zaměstnanec u podpisu
+                td = @accord.agent_in_signature_name
+            - else
+                th
+                td
           tr
             th Stav žádosti
             td = @accord.state
@@ -32,12 +36,20 @@
             td = @accord.kind
             th V péči uživatele
             td = @accord.owner_name 
-            th Předpokládané datum předání nemovitosti
-            td = @accord.excepted_date_of_transfer
+            - unless current_user.tipster?
+                th Předpokládané datum předání nemovitosti
+                td = @accord.excepted_date_of_transfer
+            - else
+                th
+                td
           tr
             th
             th
             th V péči uživatele Tel.
             td= @accord.owner_name_tel 
-            th Skutečné datum předání nemovitosti
-            td = @accord.date_of_transfer
+            - unless current_user.tipster?
+                th Skutečné datum předání nemovitosti
+                td = @accord.date_of_transfer
+            - else
+                th
+                td
