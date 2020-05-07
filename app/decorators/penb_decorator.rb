@@ -29,6 +29,9 @@ class PenbDecorator < ApplicationDecorator
     object.date_to
   end
 
+  def date_to
+    format_date(object.date_to)
+  end
 
  	def energy_class_to_text(energy_class)
  		case energy_class
