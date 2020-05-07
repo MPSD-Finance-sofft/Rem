@@ -78,11 +78,13 @@ div.container-fluid
                 br
                 = version.created_at
             .card-body
-              table
+              table.table
+                  tr
+                    th Co
+                    th Z
+                    th Na
                   - version.changeset.each do |change|
                     tr
                       td =change.first
                       td =change.last.first
                       td =change.last.last
-          
-       
