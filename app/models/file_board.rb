@@ -8,7 +8,7 @@ class FileBoard < ApplicationRecord
     return  Board.for_permmision("tipster") if permission == "tipster"
 	end
 
-	enum permission: [:agent, :manager, :user, :admin]
+	enum permission: [:agent, :manager, :user, :admin, :tipster]
 
 
 	scope :for_agent, ->  {where(permission: "agent")}
