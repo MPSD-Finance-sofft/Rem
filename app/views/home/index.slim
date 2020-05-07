@@ -44,8 +44,8 @@ div
         h6.m-0.font-weight-bold.text-primary Nástěnka
       div class="collapse" id="colapseFileBoard"
         .card-body
-          - FileBoard.validity.show_by_permission(current_user.permission.try(:kind)).each do |board|
-            = link_to board.text, rails_blob_path(board.file, disposition: 'attachment')
+          - FileBoard.validity.show_by_permission(current_user.permission.try(:kind)).each do |file_board|
+            = link_to file_board.text, rails_blob_path(file_board.file, disposition: 'attachment')
             br
   .float-right.w-50.p-1
     .card.shadow.mb-4

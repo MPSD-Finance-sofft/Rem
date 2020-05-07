@@ -5,7 +5,7 @@ class FileBoard < ApplicationRecord
 		return 	FileBoard.all if permission == "admin" || permission == "user"
 		return 	FileBoard.for_manager if permission == "manager"
 		return 	FileBoard.for_permmision("agent") if permission == "agent"
-    return  Board.for_permmision("tipster") if permission == "tipster"
+    return  FileBoard.for_permmision("tipster") if permission == "tipster"
 	end
 
 	enum permission: [:agent, :manager, :user, :admin, :tipster]
