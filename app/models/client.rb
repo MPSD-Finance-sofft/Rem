@@ -64,7 +64,7 @@ class Client < ApplicationRecord
   end
 
   def usseles_client?
-    self.accords_client.blank? && self.leasing_contract_clients.blank? && self.sales_contract_clients.blank?
+    accords_client.blank? && leasing_contract_clients.blank? && sales_contract_clients.blank?
   end
 
   def self.remove_usseles_clients
