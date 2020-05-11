@@ -40,7 +40,7 @@ table.table
            		- accord.leasing_contracts.each do |lc|
            			= link_to lc.id, leasing_contract_path(lc.id)
            			br
-           	td nechápu co má být
+           	td = accord.all_leasig_contract_rent_to_max
            	th.pushase_price.text-nowrap.text-right
            		= accord.all_leasig_contract_repayments
            	th.pushase_price.text-nowrap.text-right

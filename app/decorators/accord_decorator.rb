@@ -193,4 +193,12 @@ class AccordDecorator < ApplicationDecorator
     end
     format_number sum
   end
+
+  def all_leasig_contract_rent_to_max
+    dates = []
+    object.leasing_contracts.each do |lc|
+      dates << lc.rent_to
+    end
+    format_date dates.max
+  end
 end
