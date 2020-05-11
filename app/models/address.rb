@@ -5,7 +5,11 @@ class Address < ApplicationRecord
 	end
 
 	def index_name
-		"#{self.street.to_s} #{self.number.to_s} #{self.ev_number.to_s}, #{self.zip.to_s} #{self.village.to_s}"
+    if street == village
+      "#{self.street.to_s} #{self.number.to_s} #{self.ev_number.to_s}, #{self.zip.to_s}"
+    else
+		  "#{self.street.to_s} #{self.number.to_s} #{self.ev_number.to_s}, #{self.zip.to_s} #{self.village.to_s}"
+    end
 	end
 
 	def number

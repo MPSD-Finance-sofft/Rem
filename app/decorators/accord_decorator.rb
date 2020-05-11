@@ -201,4 +201,8 @@ class AccordDecorator < ApplicationDecorator
     end
     format_date dates.max
   end
+
+  def all_expenses_sum_real_amount
+    format_number object.expenses.sum(:real_amount)
+  end
 end

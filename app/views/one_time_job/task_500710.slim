@@ -50,7 +50,7 @@ div.container-fluid
 		                	= realty.address.try(:index_name)
 		                	br
 		            td.text-nowrap = accord.date_of_signature
-		            td.pushase_price.text-nowrap.text-right = accord.expenses.sum(:real_amount)
+		            td.pushase_price.text-nowrap.text-right = accord.all_expenses_sum_real_amount
 		            td.pushase_price.text-nowrap.text-right = accord.purchase_price
 		            td.pushase_price.text-nowrap.text-right = accord.repurchase
 		           	td
