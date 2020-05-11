@@ -1,10 +1,5 @@
 Rails.application.routes.draw do
   resources :full_notes
-  resources :one_time_job do
-    collection do
-      get :task_500710
-    end
-  end
   resources :sales_contracts
   resources :reason_refusal_types
   resources :document_types
@@ -39,7 +34,11 @@ Rails.application.routes.draw do
   resources :terrains, only: [:create, :update]
   resources :file_boards
   resources :event_types
-  resources :contracts, only: :index
+  resources :contracts, only: :index do 
+    collection do 
+      get :without_sales_contract
+    end
+  end
   resources :dispositions
   resources :leasing_contract_realties
   resources :leasing_contract_clients
