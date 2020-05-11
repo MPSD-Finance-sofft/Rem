@@ -180,7 +180,7 @@ class AccordDecorator < ApplicationDecorator
 
   def all_leasig_contract_payments
     sum = 0
-    object.leasing_contracts do |lc|
+    object.leasing_contracts.each do |lc|
       sum = sum + lc.payments.sum(:amount)
     end
     format_number sum
@@ -188,7 +188,7 @@ class AccordDecorator < ApplicationDecorator
 
   def all_leasig_contract_repayments
     sum = 0
-    object.leasing_contracts do |lc|
+    object.leasing_contracts.each do |lc|
       sum = sum + lc.repayments.sum(:amount)
     end
     format_number sum

@@ -35,8 +35,8 @@ table.table
             td.pushase_price.text-nowrap.text-right = accord.expenses.sum(:real_amount)
             td.pushase_price.text-nowrap.text-right = accord.purchase_price
            	td
-           		- accord.leasing_contracts do |lc|
-           			= link_to lc.id, leasig_contract_path(lc.id)
+           		- accord.leasing_contracts.each do |lc|
+           			= link_to lc.id, leasing_contract_path(lc.id)
            			br
            	td nechápu co má být
            	th.pushase_price.text-nowrap.text-right
