@@ -8,6 +8,7 @@ table.table
     	th Datum podpisu
     	th Náklady
     	th Výkupní cena
+    	th Zpětná koupě
     	th Nájemní smlouvy
     	th Datum předpokládaného ukončení poslední nájemní smlouvy
     	th Předepsáno u nájemních smluv
@@ -34,6 +35,7 @@ table.table
             td = accord.date_of_signature
             td.pushase_price.text-nowrap.text-right = accord.expenses.sum(:real_amount)
             td.pushase_price.text-nowrap.text-right = accord.purchase_price
+            td.pushase_price = accord.repurchase
            	td
            		- accord.leasing_contracts.each do |lc|
            			= link_to lc.id, leasing_contract_path(lc.id)
