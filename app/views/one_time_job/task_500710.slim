@@ -1,47 +1,64 @@
-table.table
-	tr
-    	th Číslo smlouvy
-    	th Klienti
-    	th Mobil
-    	th Email
-    	th Adresa nemovitosti
-    	th Datum podpisu
-    	th Náklady
-    	th Výkupní cena
-    	th Zpětná koupě
-    	th Nájemní smlouvy
-    	th Datum předpokládaného ukončení poslední nájemní smlouvy
-    	th Předepsáno u nájemních smluv
-    	th Vyinkasováno u nájemních smluv
-    - @contract_without_sales_contract.decorate.each do |accord|
-    	tr
-    		td = link_to accord.contract_number, accord_path(accord.id)
-    		td 
-    			- accord.clients.each do |client|
-            		= client.full_name
-                	br
-            td
-            	- accord.clients.each do |client|
-            		= client.mobile.first.try(:phone_number)
-            		br
-           	td
-            	- accord.clients.each do |client|
-            		= client.email.first.try(:email_address)
-            		br
-           	td 
-              	- accord.realty.each do |realty|
-                	= realty.address.try(:index_name)
-                	br
-            td = accord.date_of_signature
-            td.pushase_price.text-nowrap.text-right = accord.expenses.sum(:real_amount)
-            td.pushase_price.text-nowrap.text-right = accord.purchase_price
-            td.pushase_price.text-nowrap.text-right = accord.repurchase
-           	td
-           		- accord.leasing_contracts.each do |lc|
-           			= link_to lc.id, leasing_contract_path(lc.id)
-           			br
-           	td = accord.all_leasig_contract_rent_to_max
-           	th.pushase_price.text-nowrap.text-right
-           		= accord.all_leasig_contract_repayments
-           	th.pushase_price.text-nowrap.text-right
-           		= accord.all_leasig_contract_payments
+- title "Přehled smluv "
+div.container-fluid
+  ol.breadcrumb
+    li.breadcrumb-item
+      b
+        | Smlouvy
+    li.breadcrumb-item
+      | vlastněných nemovitostí se zpětnou koupí
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary Přehled Smluv
+    .card-body
+		p
+			b 
+				| Počet vyhledaných smluv: 
+				= @contract_without_sales_contract.size
+		table.table
+			tr
+		    	th Číslo smlouvy
+		    	th Klienti
+		    	th Mobil
+		    	th Email
+		    	th Adresa nemovitosti
+		    	th Datum podpisu
+		    	th Náklady
+		    	th Výkupní cena
+		    	th Zpětná koupě
+		    	th Nájemní smlouvy
+		    	th Datum předpokládaného ukončení poslední nájemní smlouvy
+		    	th Předepsáno u nájemních smluv
+		    	th Vyinkasováno u nájemních smluv
+		    - @contract_without_sales_contract.decorate.each do |accord|
+		    	tr
+		    		td = link_to accord.contract_number, accord_path(accord.id)
+		    		td 
+		    			- accord.clients.each do |client|
+		            		= client.full_name
+		                	br
+		            td
+		            	- accord.clients.each do |client|
+		            		= client.mobile.first.try(:phone_number)
+		            		br
+		           	td
+		            	- accord.clients.each do |client|
+		            		= client.email.first.try(:email_address)
+		            		br
+		           	td 
+		              	- accord.realty.each do |realty|
+		                	= realty.address.try(:index_name)
+		                	br
+		            td = accord.date_of_signature
+		            td.pushase_price.text-nowrap.text-right = accord.expenses.sum(:real_amount)
+		            td.pushase_price.text-nowrap.text-right = accord.purchase_price
+		            td.pushase_price.text-nowrap.text-right = accord.repurchase
+		           	td
+		           		- accord.leasing_contracts.each do |lc|
+		           			= link_to lc.id, leasing_contract_path(lc.id)
+		           			br
+		           	td = accord.all_leasig_contract_rent_to_max
+		           	th.pushase_price.text-nowrap.text-right
+		           		= accord.all_leasig_contract_repayments
+		           	th.pushase_price.text-nowrap.text-right
+		           		= accord.all_leasig_contract_payments
