@@ -10,7 +10,7 @@ div.container-fluid
   .card.shadow.mb-4
     .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
       h6.m-0.font-weight-bold.text-primary Přehled Smluv
-    .card-body
+    .card-body style="overflow: auto; display:inline-block"
 		p
 			b 
 				| Počet vyhledaných smluv: 
@@ -33,7 +33,7 @@ div.container-fluid
 		    - @contract_without_sales_contract.decorate.each do |accord|
 		    	tr
 		    		td = link_to accord.contract_number, accord_path(accord.id)
-		    		td 
+		    		td.text-nowrap 
 		    			- accord.clients.each do |client|
 		            		= client.full_name
 		                	br
@@ -45,11 +45,11 @@ div.container-fluid
 		            	- accord.clients.each do |client|
 		            		= client.email.first.try(:email_address)
 		            		br
-		           	td 
+		           	td.text-nowrap
 		              	- accord.realty.each do |realty|
 		                	= realty.address.try(:index_name)
 		                	br
-		            td = accord.date_of_signature
+		            td.text-nowrap = accord.date_of_signature
 		            td.pushase_price.text-nowrap.text-right = accord.expenses.sum(:real_amount)
 		            td.pushase_price.text-nowrap.text-right = accord.purchase_price
 		            td.pushase_price.text-nowrap.text-right = accord.repurchase
