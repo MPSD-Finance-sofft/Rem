@@ -30,7 +30,21 @@ div.container-fluid
 		    	th Datum předpokládaného ukončení poslední nájemní smlouvy
 		    	th Předepsáno u nájemních smluv
 		    	th Vyinkasováno u nájemních smluv
-		    - @contract_without_sales_contract.decorate.each do |accord|
+		   	tr
+		    	th Sum:
+		    	th
+		    	th
+		    	th
+		    	th
+		    	th
+		    	th.text-nowrap.text-right = @all_expense
+		    	th.text-nowrap.text-right = @purchase_price
+		    	th.text-nowrap.text-right = @repurchase
+		    	th
+		    	th
+		    	th.text-nowrap.text-right = @repurchase
+		    	th.text-nowrap.text-right = @all_leasig_contract_payments
+		    - @contract_without_sales_contract.each do |accord|
 		    	tr
 		    		td = link_to accord.contract_number, accord_path(accord.id)
 		    		td.text-nowrap 
@@ -50,15 +64,29 @@ div.container-fluid
 		                	= realty.address.try(:index_name)
 		                	br
 		            td.text-nowrap = accord.date_of_signature
-		            td.pushase_price.text-nowrap.text-right = accord.all_expenses_sum_real_amount
-		            td.pushase_price.text-nowrap.text-right = accord.purchase_price
-		            td.pushase_price.text-nowrap.text-right = accord.repurchase
+		            td.text-nowrap.text-right = accord.all_expenses_sum_real_amount
+		            td.text-nowrap.text-right = accord.purchase_price
+		            td.text-nowrap.text-right = accord.repurchase
 		           	td
 		           		- accord.leasing_contracts.each do |lc|
 		           			= link_to lc.id, leasing_contract_path(lc.id)
 		           			br
 		           	td = accord.all_leasig_contract_rent_to_max
-		           	th.pushase_price.text-nowrap.text-right
+		           	td.text-nowrap.text-right
 		           		= accord.all_leasig_contract_repayments
-		           	th.pushase_price.text-nowrap.text-right
+		           	td.text-nowrap.text-right
 		           		= accord.all_leasig_contract_payments
+		    tr
+		    	th Sum:
+		    	th
+		    	th
+		    	th
+		    	th
+		    	th
+		    	th.text-nowrap.text-right = @all_expense
+		    	th.text-nowrap.text-right = @purchase_price
+		    	th.text-nowrap.text-right = @repurchase
+		    	th
+		    	th
+		    	th.text-nowrap.text-right = @repurchase
+		    	th.text-nowrap.text-right = @all_leasig_contract_payments

@@ -85,6 +85,22 @@
                 | Úhrady
     - if current_user.admin?
       li.nav-item
+        a.nav-link.collapsed aria-controls="headingOverviewContract" aria-expanded="true" data-target="#headingOverviewContract" data-toggle="collapse" href="#" data-remote="true"
+          i.fas.fa-book-dead
+          span Přehledy pro smlouvy
+        #headingOverviewContract.collapse aria-labelledby="headingOverviewContract" data-parent="#accordionFirstSidebar" 
+          .bg-white.py-2.collapse-inner.rounded
+            h6.collapse-header Přehledy v  aplikace:
+            a.collapse-item href="/contracts/without_sales_contract"
+              | Vlastněných 
+              br
+              | nemovitostí 
+              br
+              | se zpětnou 
+              br
+              | koupí
+    - if current_user.admin?
+      li.nav-item
         a.nav-link.collapsed aria-controls="headingOverview" aria-expanded="true" data-target="#headingOverview" data-toggle="collapse" href="#" data-remote="true"
           i.fas.fa-book-dead
           span Přehledy
