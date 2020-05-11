@@ -12,7 +12,7 @@ class ContractsController < ApplicationController
 
   def without_sales_contract
     return redirect_to root_path, alert: "Nemáte potřebná oprávnění" unless current_user.admin?
-    Activity.create(true_user_id: user_masquerade_owner.try(:id),user_id: current_user.id, what: "Přehled smlouvy bez smlouvy o prodeji se zpětnou koupí", objet: "task_500710")
+    Activity.create(true_user_id: user_masquerade_owner.try(:id),user_id: current_user.id, what: "Přehled smlouvy bez smlouvy o prodeji se zpětnou koupí", objet: "without_sales_contract_with_repurchase")
     contract =  Accord.contract.pluck(:id)
     contract_with_sales_contract = Accord.with_sales_contract.pluck(:id)
     @contract_without_sales_contract =  Accord.where(id: contract.reject{|x| contract_with_sales_contract.include?(x)})
