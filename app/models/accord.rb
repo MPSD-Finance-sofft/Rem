@@ -27,6 +27,7 @@ class Accord < ApplicationRecord
 	has_many :month_advences, :dependent => :destroy
 	has_many :terrains, :dependent => :destroy
 	has_many :planned_prices, :dependent => :destroy
+  has_many :sales_contracts, :dependent => :destroy
 	has_one :reward, :dependent => :destroy
 	has_many :accord_reason_refusals, :dependent => :destroy
 	belongs_to :creator, foreign_key: 'creator_id', class_name: 'User',  required: true
@@ -122,6 +123,7 @@ class Accord < ApplicationRecord
 
 	scope :subordinates_accords, -> (user) {where(agent_id: [User.where(superior_id: user.id).pluck(:id)])}
 	scope :agents_accords, -> (user) {where(agent_id:  user.id)}
+  scope :with_sales_contract, -> {joins(:sales_contracts)}
 	scope :agent_terrain, -> (user) {where(agent_terrain_id:  user.id)}
 	scope :agent_signature, -> (id) {where(agent_in_signature_id:  id)}
 	scope :number_accord, -> (number_accord) {where(number:  number_accord)}

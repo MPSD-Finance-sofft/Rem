@@ -1,0 +1,45 @@
+table.table
+	tr
+    	th Číslo smlouvy
+    	th Klienti
+    	th Mobil
+    	th Email
+    	th Adresa nemovitosti
+    	th Datum podpisu
+    	th Náklady
+    	th Výkupní cena
+    	th Nájemní smlouvy
+    	th Datum předpokládaného ukončení poslední nájemní smlouvy
+    	th Předepsáno u nájemních smluv
+    	th Vyinkasováno u nájemních smluv
+    - @contract_without_sales_contract.decorate.each do |accord|
+    	tr
+    		td = link_to accord.contract_number, accord_path(accord.id)
+    		td 
+    			- accord.clients.each do |client|
+            		= client.full_name
+                	br
+            td
+            	- accord.clients.each do |client|
+            		= client.mobile.first.try(:phone_number)
+            		br
+           	td
+            	- accord.clients.each do |client|
+            		= client.email.first.try(:email_address)
+            		br
+           	td 
+              	- accord.realty.each do |realty|
+                	= realty.address.try(:index_name)
+                	br
+            td = accord.date_of_signature
+            td.pushase_price.text-nowrap.text-right = accord.expenses.sum(:real_amount)
+            td.pushase_price.text-nowrap.text-right = accord.purchase_price
+           	td
+           		- accord.leasing_contracts do |lc|
+           			= link_to lc.id, leasig_contract_path(lc.id)
+           			br
+           	td nechápu co má být
+           	th.pushase_price.text-nowrap.text-right
+           		= accord.all_leasig_contract_repayments
+           	th.pushase_price.text-nowrap.text-right
+           		= accord.all_leasig_contract_payments

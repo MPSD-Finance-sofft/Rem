@@ -177,4 +177,20 @@ class AccordDecorator < ApplicationDecorator
     end
     result
   end
+
+  def all_leasig_contract_payments
+    sum = 0
+    object.leasing_contracts do |lc|
+      sum = sum + lc.payments.sum(:amount)
+    end
+    format_number sum
+  end  
+
+  def all_leasig_contract_repayments
+    sum = 0
+    object.leasing_contracts do |lc|
+      sum = sum + lc.repayments.sum(:amount)
+    end
+    format_number sum
+  end
 end

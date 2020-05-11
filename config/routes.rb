@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   resources :full_notes
+  resources :one_time_job do
+    collection do
+      get :task_500710
+    end
+  end
   resources :sales_contracts
   resources :reason_refusal_types
   resources :document_types
