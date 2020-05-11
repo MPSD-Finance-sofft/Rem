@@ -16,7 +16,7 @@ class ContractsController < ApplicationController
     contract =  Accord.contract.pluck(:id)
     contract_with_sales_contract = Accord.with_sales_contract.pluck(:id)
     @contract_without_sales_contract =  Accord.where(id: contract.reject{|x| contract_with_sales_contract.include?(x)})
-    @contract_without_sales_contract = @contract_without_sales_contract.where("repurchase > 0").decorate
+    @contract_without_sales_contract = @contract_without_sales_contract.where("repurchase > 0").order(:date_of_signature).decorate
     @all_expense = number_to_currency(@contract_without_sales_contract.sum{|a| a.expenses.sum(:real_amount)}, unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
     @purchase_price = number_to_currency(@contract_without_sales_contract.sum{|a| a.object_purchase_price}, unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
     @repurchase = number_to_currency(@contract_without_sales_contract.sum{|a| a.object_repurchase}, unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
