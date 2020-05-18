@@ -47,7 +47,7 @@ end
 
 every 24.hour do
 	runner "User::company_name_from_ares", :environment => 'production'
-ende
+end
 
 very 24.hour do
   runner "Address::synthesis_address", :environment => 'production'
