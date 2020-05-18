@@ -2,6 +2,7 @@ class AccordValidator < ActiveModel::Validator
 
 	def validate(record)
 		max_agency_commission(record)
+    check_agency_commission(record)
 		state(record)
 		kind(record)
 		purchase_price(record)
@@ -13,6 +14,10 @@ class AccordValidator < ActiveModel::Validator
 	def max_agency_commission(record)
 		record.errors.add(:agency_commission, "Maximální výše provize je 5%") if record.agency_commission.to_f > 5
 	end
+
+  def check_agency_commission(record)
+    record.errors.add(:agency_commission, "Tipař nemuže mít zprostředkovatelkou provizi")  if record.agent.try(:tipster?) && record.agency_commission.to_f != 0
+  end
 
 	def state(record)
 		record.errors.add(:state, "Stav je povinný") if record.state.blank?

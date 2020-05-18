@@ -5,6 +5,8 @@ class Reward < ApplicationRecord
 	belongs_to :invoice, required: false
 	belongs_to :agent, foreign_key: 'user_id', class_name: 'User'
 
+  validate :check_agency_commission
+
 	def create_reward(accord)
 		self.accord_id= accord.id
 		self.user_id = accord.agent_id
@@ -21,6 +23,10 @@ class Reward < ApplicationRecord
 	def purchase_price
 		accord.purchase_price
 	end
+
+  def check_agency_commission
+    errors.add(:agency_commission, "Tipař nemuže mít zprostředkovatelkou provizi")  if agent.tipster? && agency_commission.to_f != 0
+  end
 
 	scope :invoice, -> (invoice_id) {where(invoice_id: invoice_id)}
 	scope :for_user, -> (user_id) {where(user_id: user_id)}

@@ -71,14 +71,14 @@ class Accord < ApplicationRecord
 	end
 
 	def agency_commission_price
-    	self.reward ?  self.reward.agency_commission.to_f : self.purchase_price.to_f * (self.agency_commission.to_f / 100)
-  	end
+    self.reward ?  self.reward.agency_commission.to_f : self.purchase_price.to_f * (self.agency_commission.to_f / 100)
+  end
 
-  	def contract?
-  		self.state == "contract"
-  	end
+  def contract?
+  	self.state == "contract"
+  end
 
-  	def persons
+  def persons
 		self.clients.where(type: "Person")
 	end
 
