@@ -25,6 +25,7 @@ div.container-fluid
           th village
           th district
           th Odkazy
+          th Úprava
         - @addresses.each do |address|
           tr class="text-dark"
             td = address.street
@@ -43,3 +44,4 @@ div.container-fluid
            			| Trvalé bydliště klienta
            		- address.contact_address_client.each do |client|
            			| Kontaktní adresa klienta
+            td = link_to "upravit", edit_address_path(address)

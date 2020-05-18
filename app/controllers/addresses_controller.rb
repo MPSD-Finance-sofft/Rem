@@ -5,7 +5,7 @@ class AddressesController < ApplicationController
   # GET /add_addresses.json
   def index
     return redirect_to root_path, alert: "Nemáte potřebná oprávnění" unless current_user.admin?
-    @addresses = Address.order(:district).order(:village)
+    @addresses = Address.includes(:user_address).includes(:realties).includes(:permanent_address_client).includes(:contact_address_client).order(:district).order(:village)
   end
 
   # GET /add_addresses/1
@@ -25,7 +25,7 @@ class AddressesController < ApplicationController
   # POST /add_addresses
   # POST /add_addresses.json
   def create
-    @address = Address.new(add_address_params)
+    @address = Address.new(address_params)
 
     respond_to do |format|
       if @address.save
@@ -43,7 +43,7 @@ class AddressesController < ApplicationController
   def update
     respond_to do |format|
       if @address.update(address_params)
-        format.html { redirect_to @address, notice: 'Address was successfully updated.' }
+        format.html { redirect_to addresses_url, notice: 'Address was successfully updated.' }
         format.json { render :show, status: :ok, location: @address }
       else
         format.html { render :edit }
@@ -69,7 +69,7 @@ class AddressesController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def add_address_params
+    def address_params
       params.require(:address).permit(:street, :village, :zip, :district, :region, :accord_id, :number)
     end
 end

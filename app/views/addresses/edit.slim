@@ -1,0 +1,30 @@
+= form_with(model: @address, local: true) do |form|
+  - if @address.errors.any?
+    #error_explanation
+      h2
+        = pluralize(@address.errors.count, "error")
+        | prohibited this @address from being saved:
+      ul
+        - @address.errors.full_messages.each do |message|
+          li= message
+  .field
+    = form.label :street
+    = form.text_field :street, {class:" form-control" }
+  .field
+    = form.label :number
+    = form.text_field :number, {class:" form-control" }
+  .field
+    = form.label :ev_number
+    = form.text_area :ev_number, {class:"form-control"}
+  .field
+    = form.label :zip
+    = form.text_area :zip, {class:"form-control"}
+  .field
+    = form.label :village
+    = form.text_area :village, {class:"form-control"}
+  .field
+    = form.label :district
+    = form.text_area :district, {class:"form-control"}
+  .
+    = form.submit
+
