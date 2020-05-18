@@ -1,0 +1,45 @@
+- title "Přehled adres"
+div.container-fluid
+  ol.breadcrumb
+    li.breadcrumb-item
+      b
+        | Adresy
+    li.breadcrumb-item
+      | Přehled adres
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary Přehled adres
+      div.col-md-2.nopadding.text-right.panel-title
+    .card-body
+      p
+        b 
+          | Počet unikátních adres v systému: 
+          = @addresses.size
+      table.table style="overflow: auto; display:inline-block"
+        tr.text-dark
+          th street
+          th number
+          th ev_number
+          th zip
+          th village
+          th district
+          th Odkazy
+        - @addresses.each do |address|
+          tr class="text-dark"
+            td = address.street
+            td = address.number
+            td = address.ev_number
+            td = address.zip
+            td = address.village
+            td = address.district
+           	td 
+           		- address.user_address.each do |user_adres|
+           			= link_to user_adres.user.try(:all_name), card_user_path(user_adres.user)
+           			|  
+           		- address.realties.each do |realty|
+           			| Nemovitost 
+           		- address.permanent_address_client.each do |client|
+           			| Trvalé bydliště klienta
+           		- address.contact_address_client.each do |client|
+           			| Kontaktní adresa klienta

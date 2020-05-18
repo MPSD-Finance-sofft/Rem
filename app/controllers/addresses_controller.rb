@@ -4,7 +4,8 @@ class AddressesController < ApplicationController
   # GET /add_addresses
   # GET /add_addresses.json
   def index
-    @addresses = Address.all
+    return redirect_to root_path, alert: "Nemáte potřebná oprávnění" unless current_user.admin?
+    @addresses = Address.order(:district).order(:village)
   end
 
   # GET /add_addresses/1

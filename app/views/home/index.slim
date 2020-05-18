@@ -24,7 +24,7 @@ div
         h6.m-0.font-weight-bold.text-primary Novinky Aplikace
       div class="collapse " id="colapseBoard"
         .card-body
-          - Board.validity.show_by_permission(current_user.permission.try(:kind)).each do |board|
+          - Board.order(created_at: :desc).validity.show_by_permission(current_user.permission.try(:kind)).decorate.each do |board|
             p
               = board.date
               |

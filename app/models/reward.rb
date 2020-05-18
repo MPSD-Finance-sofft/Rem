@@ -15,9 +15,8 @@ class Reward < ApplicationRecord
 		self.claim_date = accord.date_of_ownership
 	end
 
-	
 	def invoice_date
-		self.invoice.try(:created_at) 
+		self.invoice.try(:created_at)
 	end
 
 	def purchase_price
