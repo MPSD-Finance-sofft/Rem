@@ -24,7 +24,10 @@ div.container-fluid
           th zip
           th village
           th district
-          th Odkazy
+          th users
+          th žádosti
+          th trvalé adresy klientu
+          th contantkní adresy klientů
           th Úprava
         - @addresses.each do |address|
           tr class="text-dark"
@@ -35,13 +38,20 @@ div.container-fluid
             td = address.village
             td = address.district
            	td 
-           		- address.user_address.each do |user_adres|
-           			= link_to user_adres.user.try(:all_name), card_user_path(user_adres.user)
-           			|  
-           		- address.realties.each do |realty|
-           			| Nemovitost 
-           		- address.permanent_address_client.each do |client|
-           			| Trvalé bydliště klienta
-           		- address.contact_address_client.each do |client|
-           			| Kontaktní adresa klienta
+              - address.user_address.each do |user_adres|
+                = link_to user_adres.user.try(:all_name), card_user_path(user_adres.user)
+                |  
+            td
+              - address.realties.each do |realty|
+                - realty.accords.each do |accord|
+                  = link_to accord.id, accord_url(accord)
+                  |  
+            td
+              - address.permanent_address_client.each do |client|
+                = link_to client.full_name, client_url(client)
+                |  
+            td
+              - address.contact_address_client.each do |client|
+                = link_to client.full_name, client_url(client)
+                |  
             td = link_to "upravit", edit_address_path(address)
