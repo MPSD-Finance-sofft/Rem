@@ -4,7 +4,8 @@ class RealtiesController < ApplicationController
   # GET /realties
   # GET /realties.json
   def index
-    @realties = Realty.all
+    return redirect_to root_path, alert: "Nemáte potřebná oprávnění" unless current_user.admin?
+    @realties = Realty.includes(:address).order(:realty_type_id).decorate
   end
 
   # GET /realties/1

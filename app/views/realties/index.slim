@@ -1,0 +1,41 @@
+- title "Přehled nemovitosti"
+div.container-fluid
+  ol.breadcrumb
+    li.breadcrumb-item
+      b
+        | Nemovitosti
+    li.breadcrumb-item
+      | Přehled nemovitosti
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary Přehled nemovitosti
+      div.col-md-2.nopadding.text-right.panel-title
+    .card-body
+      p
+        b 
+          | Počet nemovitosti v systému: 
+          = @realties.size
+      table.table style="overflow: auto; display:inline-block"
+        tr.text-dark
+          th Adresa
+          th Typ
+          th Žádost
+          th Nájmení Smlouva
+          th Smlouva o prodeji
+        - @realties.each do |realty|
+          tr class="text-dark"
+            td = realty.address.try(:full_name)
+            td = realty.realty_type
+            td
+              - realty.accords.each do |accord|
+                = link_to accord.id, accord_path(accord.id)
+                |  
+            td
+              - realty.leasing_contracts.each do |leasig_contract|
+                = link_to leasig_contract.id, leasing_contract_path(leasig_contract.id)
+                |  
+            td
+              - realty.sales_contracts.each do |sales_contract|
+                = link_to sales_contract.id, sales_contract_path(sales_contract.id)
+                |  
