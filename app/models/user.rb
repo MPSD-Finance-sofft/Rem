@@ -164,11 +164,10 @@ class User < ApplicationRecord
 
 	def self.downalod_data_from_ares
 		list = []
-    Ares.delete_all
 		User.all.each do |user|
 			list << user.id if user.downalod_data_from_ares
 		end
-		#SchedulerLog.create(kind: 'UserDownloadDataFromAres', list: list) unless list.blank?
+		SchedulerLog.create(kind: 'UserDownloadDataFromAres', list: list) unless list.blank?
 	end
 
 	def self.company_name_from_ares
@@ -195,5 +194,5 @@ class User < ApplicationRecord
 	scope :manager,   ->{ joins(:permission).where('permissions.kind': 'manager') }
 	scope :can_sign_in, -> {where(can_sign_in: true)}
 	scope :all_without_user,   ->{ joins(:permission).where('permissions.kind': ['manager','user','agent']) }
-  scope :user_ares,   -> (nace) { joins(:ares).where('ares.nace': nace).distinct }
+  scope :user_ares,   -> (nace) { joins(:ares).where('ares.nace_name': nace).distinct }
 end

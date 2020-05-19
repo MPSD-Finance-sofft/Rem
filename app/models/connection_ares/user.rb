@@ -13,13 +13,18 @@ module ConnectionAres::User
 
 		trades = trades_help['Obor_cinnosti']
 
-		return false if self.ares.count == trades.size
+    full_trades = []
+    full_trades << trades
+    full_trades << new_trades(body)
+    full_trades = full_trades.flatten
 
-		Ares.where(user_id: self.id).delete_all
+		return false if self.ares.count == full_trades.size
 
-		trades.each do |trade|
-			Ares.create(user_id: self.id, nace: trade["K"], nace_name: trade["T"])
-		end
+		remove_from_ares
+
+    full_trades.each do |trade|
+  		Ares.create(user_id: self.id, nace: trade["K"], nace_name: trade["T"])
+    end
 		true
 	end
 
@@ -55,5 +60,34 @@ module ConnectionAres::User
 		body['Ares_odpovedi']['Odpoved']['VBAS']
 	end
 
+  def new_trades(body)
+    return false if body["PPI"].blank?
+
+    pp = body["PPI"]["PP"]
+
+    return false if pp.blank?
+
+    result = []
+    if pp.kind_of?(Array)
+      trades = pp.last["T"]
+      if trades.kind_of?(Array)
+        trades.each do |a|
+          result << {'K': 'Vázaná živnost', 'T': a}.stringify_keys unless a.blank?
+        end
+      else
+        result << {'K': 'Vázaná živnost', 'T': trades}.stringify_keys
+      end
+    else
+      trades = pp["T"]
+      if trades.kind_of?(Array)
+        trades.each do |a|
+          result <<{'K': 'Vázaná živnost', 'T': a}.stringify_keys unless a.blank?
+        end
+      else
+        result <<{'K': 'Vázaná živnost', 'T': trades}.stringify_keys
+      end
+    end
+    result
+  end
 
 end
