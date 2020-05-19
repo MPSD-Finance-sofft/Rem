@@ -172,10 +172,11 @@ class User < ApplicationRecord
 
 	def self.company_name_from_ares
 		list = []
-		 User.all.each do |user|
+		 Ares.delete_all
+     User.all.each do |user|
 			list << user.id if user.change_name_company
 		end
-		SchedulerLog.create(kind: 'UserChangeCompynNameFromAres', list: list) unless list.blank?
+		#SchedulerLog.create(kind: 'UserChangeCompynNameFromAres', list: list) unless list.blank?
 	end
 
 	scope :my_subordinates, -> (user) {where(superior_id: user.id)}
