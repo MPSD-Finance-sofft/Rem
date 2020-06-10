@@ -193,6 +193,6 @@ class User < ApplicationRecord
   scope :manager_and_agents_and_tipster,   ->{ joins(:permission).where('permissions.kind': ['manager','agent', 'tipster']) }
 	scope :manager,   ->{ joins(:permission).where('permissions.kind': 'manager') }
 	scope :can_sign_in, -> {where(can_sign_in: true)}
-	scope :all_without_user,   ->{ joins(:permission).where('permissions.kind': ['manager','user','agent']) }
+	scope :all_without_user,   ->{ joins(:permission).where('permissions.kind': ['manager','user','agent', 'tipster']) }
   scope :user_ares,   -> (nace) { joins(:ares).where('ares.nace_name': nace).distinct }
 end
