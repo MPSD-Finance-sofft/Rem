@@ -105,7 +105,7 @@ class User < ApplicationRecord
 		if user.agent? || user.manager? || user.tipster?
 			User.can_sign_in.subordinates(user).or(User.can_sign_in.where(id: (user.id)))
 		else
-			User.manager_and_agents.can_sign_in.select(&:not_runing_notice?)
+			User.manager_and_agents_and_tipster.can_sign_in.select(&:not_runing_notice?)
 		end
 	end
 
