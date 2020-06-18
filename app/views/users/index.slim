@@ -30,6 +30,7 @@ div.container-fluid
 					th Datum poslední navedené žádosti
 					th Počet žádostí
 					th Počet smluv
+					th Může se přihlásit
 			tbody
 				- @users.each do |user|
 					tr
@@ -53,3 +54,4 @@ div.container-fluid
 						td = user.date_of_last_create_accord
 						td = link_to user.count_accord, accords_path(agent_id: user.id)
 						td = link_to user.count_contract, contracts_path(agent_id: user.id)
+						td = check(user.can_sign_in)
