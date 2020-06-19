@@ -4,7 +4,7 @@ class ExpensePolicy < ApplicationPolicy
 		attr_reader :user, :scope, :accord_id
 
     def index?
-      user.admin? || user.user?
+      user.user_or_admin?
     end
 
 		def initialize(accord_id, user, scope)

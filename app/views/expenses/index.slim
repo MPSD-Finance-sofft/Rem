@@ -25,7 +25,7 @@ div.container-fluid
         tbody
           - @expenses.each do |expense|
             tr
-              td = link_to expense.accord_id, accord_path(expense.accord_id)
+              td.text-nowrap = link_to "#{expense.accord_id} (#{expense.accord.decorate.state})", accord_path(expense.accord_id)
               td.text-nowrap
                 - expense.accord.address.each do |address|
                   = address.try(:index_name)

@@ -9,6 +9,7 @@ class PaymentsController < ApplicationController
     @payments =  IndexFilter::IndexServices.new(Payment.order(payment_date: :desc),params).perform
     @payments = @payments.decorate
     @sel_leasing_contracts_id = Payment.group(:leasing_contract_id).pluck(:leasing_contract_id).uniq.map{|a| [a,a]}
+    Activity.create(true_user_id: user_masquerade_owner.try(:id),user_id: current_user.id, what: "Přehled úhrad pro nájemní smlouvy", objet: "payment")
   end
 
   # GET /payments/1
