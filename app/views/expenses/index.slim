@@ -11,6 +11,10 @@ div.container-fluid
       h6.m-0.font-weight-bold.text-primary Přehled nákladů
       div.col-md-2.nopadding.text-right.panel-title
     .card-body
+      p
+        b 
+          | Počet nákladů: 
+          = @expenses.size
       table.table style="overflow: auto; display:inline-block"
         thead
           tr
@@ -22,7 +26,6 @@ div.container-fluid
             th Datum předpokládaného termínu vyplacení
             th Datum skutečného termínu vyplacení
             th Popis
-        tbody
           - @expenses.each do |expense|
             tr
               td.text-nowrap = link_to "#{expense.accord_id} (#{expense.accord.decorate.state})", accord_path(expense.accord_id)
@@ -31,7 +34,7 @@ div.container-fluid
                   = address.try(:index_name)
                   br
               td.text-nowrap = expense.expense_type
-              td.text-nowrap.text-right = expense.real_amount
+              td.text-nowrap.text-right = expense.amount
               td.text-nowrap.text-right = expense.real_amount
               td.text-nowrap.text-right = expense.date_of_excepted_payment
               td.text-nowrap.text-right = expense.payout_day
