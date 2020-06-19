@@ -1,0 +1,38 @@
+div.container-fluid
+  ol.breadcrumb
+    li.breadcrumb-item
+      b
+        | 
+    li.breadcrumb-item
+      | Přehled nákladů
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary Přehled nákladů
+      div.col-md-2.nopadding.text-right.panel-title
+    .card-body
+      table.table style="overflow: auto; display:inline-block"
+        thead
+          tr
+            th Žádost
+            th Adresa nemovitosti
+            th Typ nákladu
+            th Částka
+            th Skutečná částka
+            th Datum předpokládaného termínu vyplacení
+            th Datum skutečného termínu vyplacení
+            th Popis
+        tbody
+          - @expenses.each do |expense|
+            tr
+              td = link_to expense.accord_id, accord_path(expense.accord_id)
+              td.text-nowrap
+                - expense.accord.address.each do |address|
+                  = address.try(:index_name)
+                  br
+              td.text-nowrap = expense.expense_type
+              td.text-nowrap.text-right = expense.real_amount
+              td.text-nowrap.text-right = expense.real_amount
+              td.text-nowrap.text-right = expense.date_of_excepted_payment
+              td.text-nowrap.text-right = expense.payout_day
+              td = expense.description

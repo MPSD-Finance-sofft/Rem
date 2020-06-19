@@ -87,7 +87,7 @@ class Notification < ApplicationRecord
 		notification = Notification.new
 		notification.object = "LeasingContract"
 		notification.object_id = object_id
-		notification.text = "Na nájmení smlouvu #{leasing_contract.id} ve stavu #{leasing_contract.state} klienta #{leasing_contract.first_client_full_name} (týkající se nemovitosti #{leasing_contract.first_realty_address} byla přidána poznámka. Tuto poznámku zapsal #{notice.autor} #{notice.created_at}"
+		notification.text = "Na nájemní smlouvu #{leasing_contract.id} ve stavu #{leasing_contract.state} klienta #{leasing_contract.first_client_full_name} (týkající se nemovitosti #{leasing_contract.first_realty_address} byla přidána poznámka. Tuto poznámku zapsal #{notice.autor} #{notice.created_at}"
 		notification.active = true
 		notification
 	end

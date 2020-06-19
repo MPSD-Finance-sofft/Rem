@@ -10,6 +10,7 @@ class Accord < ApplicationRecord
 	has_many :accords_clients, :dependent => :destroy
 
 	has_many :realty, through: :accords_realty
+  has_many :address, foreign_key: 'address_id', class_name: 'Address', through: :realty
 	has_many :clients, through: :accords_clients
 	has_many :commitments, :dependent => :destroy
 	has_many :expenses, :dependent => :destroy

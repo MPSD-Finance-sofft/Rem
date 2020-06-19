@@ -9,7 +9,7 @@
 				= text_field_tag :paid_day_to, params[:paid_day_to], class: "form-control input-sm datapicker"
 		.col-xl-2
 			.form-group
-				= label_tag :for_leasing_contract, "Číslo nájmení smlouvy"
+				= label_tag :for_leasing_contract, "Číslo nájemní smlouvy"
 				= select_tag :for_leasing_contract, options_for_select(@sel_leasing_contracts_id, params[:for_leasing_contract]), {include_blank: true, class: "form-control input-sm", data: {"live-search": true} , multiple: true}
 			.form-group.float-right
 				= submit_tag "Vyhledat"

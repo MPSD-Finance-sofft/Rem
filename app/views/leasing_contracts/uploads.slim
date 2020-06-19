@@ -23,7 +23,7 @@
 						ul
 							- @leasing_contract.errors.full_messages.each do |message|
 								li= message
-		    	= f.label :uploads, "Přílohy k nájmení smlouvě"
+		    	= f.label :uploads, "Přílohy k nájemní smlouvě"
 				= f.file_field :uploads, multiple: true, direct_upload: true
 				= f.submit
 			- @leasing_contract.uploads.each do |file|

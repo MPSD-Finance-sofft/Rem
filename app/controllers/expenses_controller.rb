@@ -4,7 +4,7 @@ class ExpensesController < ApplicationController
   # GET /expenses
   # GET /expenses.json
   def index
-    @expenses = Expense.all
+    @expenses = Expense.includes(accord: :address).includes(:expense_type).decorate
   end
 
   # GET /expenses/1

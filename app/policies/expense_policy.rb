@@ -3,6 +3,10 @@ class ExpensePolicy < ApplicationPolicy
 	class Scope 
 		attr_reader :user, :scope, :accord_id
 
+    def index?
+      user.admin? || user.user?
+    end
+
 		def initialize(accord_id, user, scope)
 			@user = user
 			@accord_id = accord_id
