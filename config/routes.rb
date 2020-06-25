@@ -76,6 +76,11 @@ Rails.application.routes.draw do
   resources :expenses
   resources :commitment_types
   resources :expense
+  resources :commitments do
+    collection do
+      get :full_index
+    end
+  end
   resources :clients
   resources :realties
   resources :realty_types
@@ -85,7 +90,7 @@ Rails.application.routes.draw do
       get :new_user
       post :create_user
     end
-    member do 
+    member do
       get :card
       get :change_color
     end

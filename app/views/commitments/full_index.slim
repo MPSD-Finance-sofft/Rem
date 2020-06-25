@@ -1,0 +1,41 @@
+div.container-fluid
+  ol.breadcrumb
+    li.breadcrumb-item
+      b
+        | 
+    li.breadcrumb-item
+      | Přehled závazků
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary Přehled závazků
+      div.col-md-2.nopadding.text-right.panel-title
+    .card-body
+      p
+        b 
+          | Počet závazků: 
+          = @commitments.size
+      table.table style="overflow: auto; display:inline-block"
+        thead
+          tr
+            th Žádost
+            th Adresa nemovitosti
+            th Typ nákladu
+            th Částka
+            th Skutečná částka
+            th Datum předpokládaného termínu vyplacení
+            th Datum skutečného termínu vyplacení
+            th Popis
+          - @commitments.each do |commitment|
+            tr
+              td.text-nowrap = link_to "#{commitment.accord_id} (#{commitment.accord.decorate.state})", accord_path(commitment.accord_id)
+              td.text-nowrap
+                - commitment.accord.address.each do |address|
+                  = address.try(:index_name)
+                  br
+              td.text-nowrap = commitment.commitment_type
+              td.text-nowrap.text-right = commitment.amount
+              td.text-nowrap.text-right = commitment.real_amount
+              td.text-nowrap.text-right = commitment.date_of_excepted_payment
+              td.text-nowrap.text-right = commitment.payout_day
+              td = commitment.description
