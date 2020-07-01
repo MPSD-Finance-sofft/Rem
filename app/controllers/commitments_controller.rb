@@ -19,7 +19,8 @@ class CommitmentsController < ApplicationController
 
   def full_index
     return redirect_to root_path, alert: "Nemáte potřebná oprávnění" if  !(current_user.admin? || current_user.user?)
-    @commitments = Commitment.includes(accord: :address).includes(:commitment_type).order(accord_id: :desc).decorate
+    @commitments = Commitment.includes(accord: :address).includes(:commitment_type).order(accord_id: :desc)
+    @commitments =  IndexFilter::IndexServices.new(@commitments,params).perform.decorate
     Activity.create(true_user_id: user_masquerade_owner.try(:id),user_id: current_user.id, what: "Přehled závazků", objet: "commitments")
   end
 

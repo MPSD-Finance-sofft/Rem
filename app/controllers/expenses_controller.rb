@@ -5,7 +5,8 @@ class ExpensesController < ApplicationController
   # GET /expenses.json
   def index
     return redirect_to root_path, alert: "Nemáte potřebná oprávnění" if  !(current_user.admin? || current_user.user?)
-    @expenses = Expense.includes(accord: :address).includes(:expense_type).order(accord_id: :desc).decorate
+    @expenses = Expense.includes(accord: :address).includes(:expense_type).order(accord_id: :desc)
+    @expenses =  IndexFilter::IndexServices.new(@expenses,params).perform.decorate
     Activity.create(true_user_id: user_masquerade_owner.try(:id),user_id: current_user.id, what: "Přehled nákladů", objet: "expense")
   end
 

@@ -1,0 +1,8 @@
+= form_tag(full_index_commitments_path(), {method: :get}) do
+	.row.p-3
+		.col-xl-2
+			.form-group
+				= label_tag :for_type, "Typ"
+				= select_tag :for_type, options_for_select(CommitmentType.select([:id,:description]).map{|a| [a.description,a.id]}, params[:for_type]), {include_blank: true, class: "form-control input-sm",data: {"live-search": true}, multiple: true }
+			.form-group.float-right
+				= submit_tag "Vyhledat"

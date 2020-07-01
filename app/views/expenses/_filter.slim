@@ -1,0 +1,8 @@
+= form_tag(expenses_path(), {method: :get}) do
+	.row.p-3
+		.col-xl-2
+			.form-group
+				= label_tag :expense_type_id, "Typ"
+				= select_tag :expense_type_id, options_for_select(ExpenseType.select([:id,:name]).map{|a| [a.name,a.id]}, params[:expense_type_id]), {include_blank: true, class: "form-control input-sm",data: {"live-search": true}, multiple: true }
+			.form-group.float-right
+				= submit_tag "Vyhledat"
