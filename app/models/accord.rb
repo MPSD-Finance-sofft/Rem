@@ -122,14 +122,27 @@ class Accord < ApplicationRecord
 		Accord.state(Accord::ACTIVE_STATE).user_id(user.id).count
 	end
 
+  def self.user_id(user_id)
+    if user_id == 'bez pečovatele'
+      where(user_id: nil)
+    else
+      where(user_id:  user_id)
+    end
+  end
+
+  def self.agent_id(agent_id)
+    if agent_id == 'bez agenta'
+      where(agent_id: nil)
+    else
+      where(agent_id:  agent_id)
+    end
+  end
 	scope :subordinates_accords, -> (user) {where(agent_id: [User.where(superior_id: user.id).pluck(:id)])}
 	scope :agents_accords, -> (user) {where(agent_id:  user.id)}
   scope :with_sales_contract, -> {joins(:sales_contracts)}
 	scope :agent_terrain, -> (user) {where(agent_terrain_id:  user.id)}
 	scope :agent_signature, -> (id) {where(agent_in_signature_id:  id)}
 	scope :number_accord, -> (number_accord) {where(number:  number_accord)}
-	scope :user_id, -> (user_id) {where(user_id:  user_id)}
-	scope :agent_id, -> (agent_id) {where(agent_id:  agent_id)}
   scope :created_by, -> (user_id) {where(creator_id:  user_id)}
 	scope :contract_number, -> (contract_number) {where(contract_number:  contract_number)}
 	scope :kind, -> (kind) {where(kind:  kind)}

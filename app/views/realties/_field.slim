@@ -20,7 +20,7 @@
 								= f.label :type_ownership, 'Typ vlastnictví'
 								= f.select :type_ownership, f.object.select_type_ownership,{include_blank: true,selected: f.object.object_type_ownership},{class: "selectpicker form-control input-sm", "data-live-search" => "true"}
 							.form-group
-								= f.label :record_on_lvs, 'Záznam na LV' 
+								= f.label :record_on_lvs, 'Záznam na LV'
 								= f.collection_select :record_on_lv_ids, RecordOnLv.all, :id, :kind_to_s, {}, {multiple: true,class: "selectpicker form-control", "data-live-search" => "true"}
 							.form-group
 								= f.label :price_estimation, "Odhad tržní ceny"

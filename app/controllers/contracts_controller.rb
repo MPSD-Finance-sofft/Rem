@@ -1,8 +1,8 @@
 class ContractsController < ApplicationController
   include ActionView::Helpers::NumberHelper
 	def index
-		@accords = policy_scope(Accord).state("contract").order(date_of_signature: :desc)
-    @accords =  IndexFilter::IndexServices.new(@accords,params).perform
+		@accord_for_filter = policy_scope(Accord).state("contract").order(date_of_signature: :desc)
+    @accords =  IndexFilter::IndexServices.new(@accord_for_filter,params).perform
     @accords = @accords.decorate
     respond_to do |format|
       format.html
