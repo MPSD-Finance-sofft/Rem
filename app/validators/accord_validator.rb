@@ -12,7 +12,7 @@ class AccordValidator < ActiveModel::Validator
 	end
 
 	def max_agency_commission(record)
-		record.errors.add(:agency_commission, "Maximální výše provize je 5%") if record.agency_commission.to_f > 5
+		record.errors.add(:agency_commission, "Maximální výše provize je 10%") if record.agency_commission.to_f > 10
 	end
 
   def check_agency_commission(record)
