@@ -49,7 +49,7 @@ div.container-fluid
 						span aria-hidden="true"  &times;
 				.modal-body
 					= form_with(model: Invoice, local: true) do |f|
-						= select_tag :agent_id , options_for_select(User.agents.user_can_permision(current_user).map{|a| [a.all_name,a.id]}), data: {"live-search": true}
+						= select_tag :agent_id , options_for_select(User.agents_and_tipster.user_can_permision(current_user).map{|a| [a.all_name,a.id]}), data: {"live-search": true}
 						.modal-footer
 							button.btn.btn-secondary data-dismiss="modal" type="button"  Close
 							button.btn.btn-primary type="submit"  Odešli

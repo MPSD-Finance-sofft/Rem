@@ -191,6 +191,7 @@ class User < ApplicationRecord
 	scope :admin_and_user,   ->{ joins(:permission).where('permissions.kind': ['admin','user']) }
 	scope :manager_and_agents,   ->{ joins(:permission).where('permissions.kind': ['manager','agent']) }
   scope :manager_and_agents_and_tipster,   ->{ joins(:permission).where('permissions.kind': ['manager','agent', 'tipster']) }
+  scope :agents_and_tipster,   ->{ joins(:permission).where('permissions.kind': ['agent', 'tipster']) }
 	scope :manager,   ->{ joins(:permission).where('permissions.kind': 'manager') }
 	scope :can_sign_in, -> {where(can_sign_in: true)}
 	scope :all_without_user,   ->{ joins(:permission).where('permissions.kind': ['manager','user','agent', 'tipster']) }
