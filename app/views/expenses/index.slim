@@ -25,6 +25,7 @@ div.container-fluid
         thead
           tr
             th Žádost
+            th Smlouva
             th Adresa nemovitosti
             th Typ nákladu
             th Částka
@@ -35,6 +36,7 @@ div.container-fluid
           - @expenses.each do |expense|
             tr
               td.text-nowrap = link_to "#{expense.accord_id} (#{expense.accord.decorate.state})", accord_path(expense.accord_id)
+              td.text-nowrap = expense.accord.contract_number
               td.text-nowrap
                 - expense.accord.address.each do |address|
                   = address.try(:index_name)

@@ -25,6 +25,7 @@ div.container-fluid
         thead
           tr
             th Žádost
+            th Smlouva
             th Adresa nemovitosti
             th Typ závazků
             th Částka
@@ -35,6 +36,7 @@ div.container-fluid
           - @commitments.each do |commitment|
             tr
               td.text-nowrap = link_to "#{commitment.accord_id} (#{commitment.accord.decorate.state})", accord_path(commitment.accord_id)
+              td.text-nowrap = commitment.accord.contract_number
               td.text-nowrap
                 - commitment.accord.address.each do |address|
                   = address.try(:index_name)

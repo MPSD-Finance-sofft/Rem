@@ -100,7 +100,9 @@
               br
               | koupí
             a.collapse-item href="/expenses"
-                | Náklady
+                | Náklady 
+            a.collapse-item href="/commitments/full_index"
+                | Závazky
     - if current_user.admin?
       li.nav-item
         a.nav-link.collapsed aria-controls="headingOverview" aria-expanded="true" data-target="#headingOverview" data-toggle="collapse" href="#" data-remote="true"
