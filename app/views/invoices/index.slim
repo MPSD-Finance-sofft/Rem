@@ -13,6 +13,10 @@ div.container-fluid
     		button.btn.btn-primary data-target="#exampleModalCenter" data-toggle="modal" type="button"
         		| Vytvoř faktury
     .card-body
+    	p
+        	b 
+          		| Počet faktur: 
+          	= @invoices.size
 		table.table
 			tr
 				th
