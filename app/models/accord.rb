@@ -123,19 +123,11 @@ class Accord < ApplicationRecord
 	end
 
   def self.user_id(user_id)
-    if user_id == 'bez pečovatele'
-      where(user_id: nil)
-    else
-      where(user_id:  user_id)
-    end
+    where(user_id: user_id.map{|a| a == 'bez pečovatele' ? nil : a})
   end
 
   def self.agent_id(agent_id)
-    if agent_id == 'bez agenta'
-      where(agent_id: nil)
-    else
-      where(agent_id:  agent_id)
-    end
+    where(agent_id: agent_id.map{|a| a == 'bez agenta' ? nil : a})
   end
 	scope :subordinates_accords, -> (user) {where(agent_id: [User.where(superior_id: user.id).pluck(:id)])}
 	scope :agents_accords, -> (user) {where(agent_id:  user.id)}

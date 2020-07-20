@@ -4,8 +4,8 @@ class AccordsController < ApplicationController
   # GET /accords
   # GET /accords.json
   def index
-    @accords = policy_scope(Accord).order(created_at: :desc)
-    @accords =  IndexFilter::IndexServices.new(@accords,params).perform
+    @accord_for_filter = policy_scope(Accord).order(date_of_signature: :desc)
+    @accords =  IndexFilter::IndexServices.new(@accord_for_filter,params).perform
     @accords = @accords.decorate
     respond_to do |format|
       format.html
