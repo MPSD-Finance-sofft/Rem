@@ -38,7 +38,7 @@ class InvoicePolicy < ApplicationPolicy
     		if user.admin? || user.user?
       			scope.all
     		elsif user.manager?
-            	scope.subordinates_invoices(user).or(scope.for_user(user))
+            	scope.subordinates_invoices(user).or(scope.for_user(user)).distinct
         	elsif user.agent? || user.tipster?
         		scope.for_user(user)
         	end
