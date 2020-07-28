@@ -40,7 +40,7 @@ class AccordPolicy < ApplicationPolicy
     		elsif user.manager? || user.agent?
             scope.accord_for_manager(user).includes(:owner).includes(realty: :address).includes(agent: :superior).includes(:clients)
         elsif user.tipster?
-            scope.agent_id(user).includes(:owner).includes(realty: :address).includes(agent: :superior).includes(:clients)
+            scope.agents_accords(user).includes(:owner).includes(realty: :address).includes(agent: :superior).includes(:clients)
         end
     	end
   	end

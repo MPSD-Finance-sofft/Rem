@@ -1,4 +1,5 @@
 class Address < ApplicationRecord
+  has_paper_trail ignore: [:updated_at, :id]
 	has_many :user_address
   has_many :realties
   has_many :permanent_address_client, class_name: 'Client', foreign_key: 'permanent_address_id'
