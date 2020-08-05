@@ -188,13 +188,13 @@
           = form.hidden_field :accord_id, :value => @accord.id
           = form.hidden_field :register_type, :value => 'NRKI a BRKI'
           .form-group.text-dark
-            = form.label :client_ids, 'Datum proplacení'
+            = form.label :client_ids, 'Klienti'
             = form.select :client_ids, @accord.clients.map{|client| [client.full_name, client.id]},{},{class: "selectpicker form-control", "data-live-search" => "true", multiple: true}
           .form-group.text-dark
             = form.label :payout_date, 'Datum proplacení'
             = form.text_field :payout_date, class: "form-control datapicker"
           .form-group.text-dark
-            = form.label :delivery_date, 'Datum proplacení'
+            = form.label :delivery_date, 'Datum doručení'
             = form.text_field :delivery_date, class: "form-control datapicker"
           .modal-footer
             button.btn.btn-secondary data-dismiss="modal" type="button"  Close
