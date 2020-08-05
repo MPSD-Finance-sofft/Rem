@@ -15,7 +15,7 @@ class RealtyDecorator < ApplicationDecorator
  			when nil
  				''
  			when 'part'
- 					"Podílné"
+ 					"Podílové"
  			when 'exclusiv'
  					"Výlučné"
  			when 'sjm'
