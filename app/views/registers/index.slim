@@ -28,10 +28,8 @@ div.container-fluid
           th Typ registru
           th Žádost elektronicky
           th Žádost papírově
-          th Plná moc papírově
           th Plná moc elektronicky
-          th Výpis z registru elektronicky
-          th Výpis z registru papírově
+          th Plná moc papírově
           th Datum doručení
           th Datum proplacení
           th Datum vytvoření
@@ -44,8 +42,8 @@ div.container-fluid
           	td = register.register_type
           	td.check data-electronic_request="#{register.electronic_request}" = check(register.electronic_request)
           	td.check data-paper_request="#{register.paper_request}" = check(register.paper_request)
+            td.check data-electronic_extract="#{register.electronic_extract}" = check(register.electronic_extract)
           	td.check data-paper_extract="#{register.paper_extract}" = check(register.paper_extract)
-          	td.check data-electronic_extract="#{register.electronic_extract}" = check(register.electronic_extract)
           	td.check data-warrant_electronic="#{register.warrant_electronic}" = check(register.warrant_electronic)
           	td.check data-warrant_paper="#{register.warrant_paper}" = check(register.warrant_paper)
           	td = register.delivery_date
