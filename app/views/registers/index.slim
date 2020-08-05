@@ -47,9 +47,9 @@ div.container-fluid
           	td.check data-warrant_electronic="#{register.warrant_electronic}" = check(register.warrant_electronic)
           	td.check data-warrant_paper="#{register.warrant_paper}" = check(register.warrant_paper)
           	td = register.delivery_date
-			td = register.payout_date
-			td = register.created_at
-			td = register.user.all_name
+            td = register.payout_date
+            td = register.created_at
+            td = register.user.all_name
 javascript:
   var check_to_s;
   $(document).on('click', '.check', function(e) {

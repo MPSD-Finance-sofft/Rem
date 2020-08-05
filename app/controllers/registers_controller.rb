@@ -4,7 +4,7 @@ class RegistersController < ApplicationController
   # GET /registers
   # GET /registers.json
   def index
-    @registers = Register.decorate
+    @registers = Register.order(created_at: :desc).decorate
   end
 
   # GET /registers/1
