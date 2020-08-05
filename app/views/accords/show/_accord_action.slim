@@ -12,6 +12,8 @@
             = link_to "Zrušení provizního nároku", reward_path(id: @accord.reward) , {:method=> :delete, class: 'btn btn-sm btn-info m-1 text-white', type: 'buttom'}
           = link_to 'Nová nájemní smlouva', new_leasing_contract_path(accord_id: @accord.id), {class: 'btn btn-sm btn-info m-1', type: 'buttom'}
           = link_to 'Nová smlouva o prodeji', new_sales_contract_path(accord_id: @accord.id), {class: 'btn btn-sm btn-info m-1', type: 'buttom'}
+          button.btn.btn-sm.btn-info.m-1 data-target="#AddRegister" data-toggle="modal" type="button" 
+            | Nový registr pro klienta
         = link_to "Generování zápočtu", accord_commitments_path(accord_id: @accord.id,format: 'pdf') , { class: 'btn btn-sm btn-info m-1 text-white', type: 'buttom'}
         button.btn.btn-sm.btn-info.m-1.float-right type="button"  id='show_all'
           | Zobraz vše
@@ -170,6 +172,30 @@
           .form-group.text-dark
             = form.label :estimated_selling_price, 'Prodejní cena'
             = form.text_field :estimated_selling_price, class: "form-control "
+          .modal-footer
+            button.btn.btn-secondary data-dismiss="modal" type="button"  Close
+            button.btn.btn-primary type="submit"  Odešli
+
+#AddRegister.modal.fade aria-hidden="true" aria-labelledby="AddRegisterTitle" role="dialog" tabindex="-1" 
+  .modal-dialog.modal-dialog-centered role="document" 
+    .modal-content
+      .modal-header
+        h5#exampleModalLongTitle.modal-title.text-dark Přidání plánu cen
+        button.close aria-label="Close" data-dismiss="modal" type="button" 
+          span aria-hidden="true"  &times;
+      .modal-body
+        = form_with(model: Register.new.decorate, local: true) do |form|
+          = form.hidden_field :accord_id, :value => @accord.id
+          = form.hidden_field :register_type, :value => 'NRKI a BRKI'
+          .form-group.text-dark
+            = form.label :client_ids, 'Datum proplacení'
+            = form.select :client_ids, @accord.clients.map{|client| [client.full_name, client.id]},{},{class: "selectpicker form-control", "data-live-search" => "true", multiple: true}
+          .form-group.text-dark
+            = form.label :payout_date, 'Datum proplacení'
+            = form.text_field :payout_date, class: "form-control datapicker"
+          .form-group.text-dark
+            = form.label :delivery_date, 'Datum proplacení'
+            = form.text_field :delivery_date, class: "form-control datapicker"
           .modal-footer
             button.btn.btn-secondary data-dismiss="modal" type="button"  Close
             button.btn.btn-primary type="submit"  Odešli

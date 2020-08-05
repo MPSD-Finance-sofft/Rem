@@ -1,0 +1,33 @@
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    a href="#colapseRegisters" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="colapseRegisters"
+      h6.m-0.font-weight-bold.text-primary Registry
+    .collapse id="colapseRegisters"
+      .card-body
+      	table.table 
+	        tr
+	          th Klient
+	          th Typ
+	          th Žádost elektronicky
+	          th Žádost papírově
+	          th Plná moc elektronicky
+	          th Plná moc papírově
+	          th Výpis z registru elektronicky
+	          th Výpis z registru papírově
+	          th Datum doručení
+	          th Datum proplacení
+	          th Datum vytvoření
+      		- @registers.each do |register|
+      			tr id="#{register.id}"
+      				td = register.client.full_name
+      				td = register.register_type
+					td.check data-done="#{register.electronic_request}" = check(register.electronic_request)
+					td.check data-done="#{register.paper_request}" = check(register.paper_request)
+					td.check data-done="#{register.electronic_extract}" = check(register.electronic_extract)
+					td.check data-done="#{register.paper_extract}" = check(register.paper_extract)
+					td
+					td
+					td = register.delivery_date
+					td = register.payout_date
+					td = register.created_at
+					

@@ -1,0 +1,31 @@
+- title "Úprava registru č. " + @register.id.to_s
+div.container-fluid
+	ol.breadcrumb
+		li.breadcrumb-item
+			b
+				= link_to 'Registry', registers_path()
+		li.breadcrumb-item
+			| úprava registru č.
+			= @register.id
+	div.panel-body.no-padding
+        = form_with(model: @register.decorate, local: true) do |f|
+			- if @register.errors.any?
+				#error_explanation
+				h2
+		    		= pluralize(@register.errors.count, "error")
+		    		| prohibited this register from being saved:
+				ul
+		    		- @register.errors.full_messages.each do |message|
+		      			li= message
+			.card.shadow.mb-4
+			    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+					h6.m-0.font-weight-bold.text-primary Data registru
+				.card-body
+						.form-group
+							= f.label :delivery_date, "Datum doručení"
+							= f.text_field :delivery_date, class: "form-control datapicker"						
+						.form-group
+							= f.label :payout_date, "Datum vyplacení"
+							= f.text_field :payout_date, class: "form-control datapicker"						
+						.action
+				    		= f.submit "Odešli" , class: "btn btn-default", type: "submit"

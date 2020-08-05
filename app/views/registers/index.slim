@@ -1,0 +1,88 @@
+- title "Přehled registrů "
+div.container-fluid
+  ol.breadcrumb
+    li.breadcrumb-item
+      b
+        | Registry
+    li.breadcrumb-item
+      | Přehled Registrů
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary Filter 
+    .card-body
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary Přehled registrů
+    .card-body
+      p
+        b 
+          | Počet vyhledaných registrů: 
+          = @registers.size
+      table.table 
+        tr.text-dark
+          th Číslo registru
+          th Číslo žádosti
+          th Klient
+          th Typ registru
+          th Žádost elektronicky
+          th Žádost papírově
+          th Plná moc papírově
+          th Plná moc elektronicky
+          th Výpis z registru elektronicky
+          th Výpis z registru papírově
+          th Datum doručení
+          th Datum proplacení
+          th Datum vytvoření
+          th Vytvořil
+        - @registers.each do |register|
+          tr.text-dark id="#{register.id}"
+          	td = link_to register.id, edit_register_path(register)
+          	td = link_to register.accord_id, accord_path(register.accord)
+          	td = link_to register.client.full_name, client_path(register.client)
+          	td = check(register.register_type)
+          	td.check data-electronic_request="#{register.electronic_request}" = check(register.electronic_request)
+          	td.check data-paper_request="#{register.paper_request}" = check(register.paper_request)
+          	td.check data-paper_extract="#{register.paper_extract}" = check(register.paper_extract)
+          	td.check data-electronic_extract="#{register.electronic_extract}" = check(register.electronic_extract)
+          	td.check data-warrant_electronic="#{register.warrant_electronic}" = check(register.warrant_electronic)
+          	td.check data-warrant_paper="#{register.warrant_paper}" = check(register.warrant_paper)
+          	td = register.delivery_date
+			td = register.payout_date
+			td = register.created_at
+			td = register.user.all_name
+javascript:
+  var check_to_s;
+  $(document).on('click', '.check', function(e) {
+    var id = this.closest('tr').id
+    var key = Object.keys($(this).first().data())[0]
+    var a = $(this).data(key)
+    var attributes = {};
+    attributes[key] = !a
+    return $.ajax({
+      url: '/registers/' + id + '.json',
+      type: 'PUT',
+      data: {
+        'register': {
+          id: id,
+          attributes,}
+      },
+      success: function(data, textStatus, jqXHR) {
+        pre_tr = $("tr[id=" + id +"]")
+        td = pre_tr.find("[data-" + key + "]")
+        td.find('i').first().remove();
+        td.append(check_to_s(!a));
+        },
+    });
+  });
+
+  function check_to_s(check) {
+    if (check) {
+      text = '<i class="fa fa-check" style="color:green"></i>'
+    }
+    else {
+      text = '<i class="fa fa-times" style="color:red"></i>'
+    }
+    return text;
+  };

@@ -11,6 +11,7 @@ class ClientsController < ApplicationController
   # GET /clients/1.json
   def show
     authorize @client
+    @registers = @client.registers.decorate
     Activity.create(true_user_id: user_masquerade_owner.try(:id),user_id: current_user.id, what: "Klient číslo: #{@client.full_name}", objet: "Client", object_id: @client.id)
   end
 

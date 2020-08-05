@@ -26,6 +26,7 @@ div class="#{@accord.object_state} text-dark"
       = render partial: "accords/show/reward"
       = render partial: "accords/show/accord_realities"
       = render partial: "accords/show/accords_clients"
+      = render partial: "accords/show/accords_clients_registers" unless @registers.blank? && current_user.user_or_admin?
       = render partial: "accords/show/accords_revisions" unless @revisions.blank?
       = render partial: "accords/show/accords_commitments" unless @commitments.blank?
       = render partial: "accords/show/accords_expense" unless @expenses.blank?

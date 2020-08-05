@@ -31,6 +31,7 @@ class Accord < ApplicationRecord
   has_many :sales_contracts, :dependent => :destroy
 	has_one :reward, :dependent => :destroy
 	has_many :accord_reason_refusals, :dependent => :destroy
+  has_many :registers, :dependent => :destroy
 	belongs_to :creator, foreign_key: 'creator_id', class_name: 'User',  required: true
 	belongs_to :owner, foreign_key: 'user_id', class_name: 'User' ,  required: false
 	belongs_to :agent, foreign_key: 'agent_id', class_name: 'User' ,  required: false
