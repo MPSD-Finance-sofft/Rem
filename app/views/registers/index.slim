@@ -41,7 +41,7 @@ div.container-fluid
           	td = link_to register.id, edit_register_path(register)
           	td = link_to register.accord_id, accord_path(register.accord)
           	td = link_to register.client.full_name, client_path(register.client)
-          	td = check(register.register_type)
+          	td = register.register_type
           	td.check data-electronic_request="#{register.electronic_request}" = check(register.electronic_request)
           	td.check data-paper_request="#{register.paper_request}" = check(register.paper_request)
           	td.check data-paper_extract="#{register.paper_extract}" = check(register.paper_extract)
