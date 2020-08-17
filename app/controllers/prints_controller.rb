@@ -6,7 +6,7 @@ class PrintsController < ApplicationController
     @realty_adres = @accord.realty.first.address
     respond_to do |format|
       format.pdf do
-        render  pdf: "dorucenka", :page_height => '4.9in', :page_width => '6.9in', :encoding => 'UTF-8'
+        render  pdf: "dorucenka", :page_height => '4.9in', :page_width => '6.9in', :encoding => 'UTF-8', :margin => { :top => 0, :bottom => 0, :left => 0, :right => 0}
       end
     end
   end
