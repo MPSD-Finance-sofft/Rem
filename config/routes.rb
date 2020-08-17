@@ -6,6 +6,11 @@ Rails.application.routes.draw do
   resources :document_types
   resources :scheduler_logs
   resources :revisions
+  resources :prints do 
+    collection do 
+      get :delivery_notes
+    end
+  end
   resources :reports do 
     collection do 
       get :agents

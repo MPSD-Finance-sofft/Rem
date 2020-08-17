@@ -1,0 +1,53 @@
+ - @clients.each do |client|
+	div style="margin: auto; width: 70%;"
+	  b
+	    | REOL Financial s.r.o.
+	  br
+	  b
+	    | Hněvotínská 241/52
+	  br
+	  b
+	    | 779 00 Olomouc
+	  br
+	  br
+	div style="margin: auto; width: 70%;"
+	  b
+	    = client.name
+	    |  
+	    = client.last_name
+	  br
+	  b
+	    = @realty_adres.print_address
+	  br
+	  b
+	    = @realty_adres.zip
+	    |  
+	    = @realty_adres.village
+	  br
+	  br
+	div style="margin: auto; width: 70%; margin-top: 20px;"
+	  b
+	    | REOL Financial s.r.o.
+	  br
+	  b
+	    | Hněvotínská 241/52
+	  br
+	  b
+	    | 779 00 Olomouc
+	  br
+	  br
+	  br
+	div style="margin: auto; width: 70%;margin-top: 20px;"
+	  b
+	    = client.name
+	    |  
+	    = client.last_name
+	  br
+	  b
+	    = @realty_adres.print_address
+	  br
+	  b
+	    = @realty_adres.zip
+	    |  
+	    = @realty_adres.village
+	div style="display:block; clear:both; page-break-after:always;"

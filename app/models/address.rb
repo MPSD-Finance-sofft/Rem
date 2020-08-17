@@ -17,6 +17,10 @@ class Address < ApplicationRecord
     end
 	end
 
+  def print_address
+      "#{self.street.to_s} #{self.number.to_s} #{self.ev_number.to_s}".html_safe
+  end
+
 	def number
 		number = self.attributes["number"]
 		if number.split("/").size != 2

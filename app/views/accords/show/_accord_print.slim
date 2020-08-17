@@ -1,0 +1,8 @@
+- if current_user.user_or_admin?
+	.col-xl-12.col-lg-12
+	  .card.shadow.mb-4
+	    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+	      h6.m-0.font-weight-bold.text-primary Tiskové sestavy
+	    .card-body
+	    	= link_to "Generování zápočtu", accord_commitments_path(accord_id: @accord.id,format: 'pdf') , { class: 'btn btn-sm btn-info m-1 text-white', type: 'buttom'}
+	    	= link_to "Generování obálek",delivery_notes_prints_path(accord_id: @accord.id,format: 'pdf') , { class: 'btn btn-sm btn-info m-1 text-white', type: 'buttom'}
