@@ -94,6 +94,4 @@ class RealtyDecorator < ApplicationDecorator
  	def disposition_text
  		object.disposition.try(:name)
  	end
-
- 	
 end

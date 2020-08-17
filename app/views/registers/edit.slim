@@ -22,10 +22,10 @@ div.container-fluid
 					h6.m-0.font-weight-bold.text-primary Data registru
 				.card-body
 						.form-group
-							= f.label :delivery_date, "Datum doručení"
-							= f.text_field :delivery_date, class: "form-control datapicker"						
+							= f.label :payout_date, "Datum proplacení"
+							= f.text_field :payout_date, class: "form-control datapicker"
 						.form-group
-							= f.label :payout_date, "Datum vyplacení"
-							= f.text_field :payout_date, class: "form-control datapicker"						
+							= f.label :delivery_date, "Datum doručení"
+							= f.text_field :delivery_date, class: "form-control datapicker"
 						.action
 				    		= f.submit "Odešli" , class: "btn btn-default", type: "submit"
