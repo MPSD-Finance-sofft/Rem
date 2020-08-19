@@ -85,6 +85,10 @@ class LeasingContract < ApplicationRecord
 		self.repayments.includes(:repayment_payment).repayment_date_today.not_paid.sum{|a| a.missing_to_pay}
 	end
 
+  def prepaid
+    self.repayments.includes(:repayment_payment).prepaid.sum{|a| a.amount}
+  end
+
 	def start_date_debt
 		self.repayments.includes(:repayment_payment).repayment_date_today.not_paid.first.try(:repayment_date)
 	end

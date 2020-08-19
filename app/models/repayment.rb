@@ -25,6 +25,10 @@ class Repayment < ApplicationRecord
 		missing_to_pay == 0
 	end
 
+  def prepaid?
+    missing_to_pay == 0 && repayment_date > Date.today
+  end
+
 	def missing_to_pay
 		amount.to_f - repayment_payment.sum(:amount).to_f
 	end
@@ -32,6 +36,10 @@ class Repayment < ApplicationRecord
 	def self.not_paid
 		select{|a| !a.paid?}
 	end
+
+  def self.prepaid
+    select{|a| a.prepaid?}
+  end
 
 	def self.for_year(year)
 		result = {}
