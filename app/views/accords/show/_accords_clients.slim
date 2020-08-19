@@ -7,17 +7,19 @@
             - unless @accord.persons.blank?
                 table.table
                     tr
+                        th | Vztah k nemovitosti
                         th | Jméno
                         th | Přijmení
-                        th | Rodné číslo  
-                        th | Číslo OP       
-                        th | Vztah    
-                        th | Mobil           
-                        th | Email            
-                        th | Kontaktní adresa   
+                        th | Rodné číslo
+                        th | Číslo OP
+                        th | Stav
+                        th | Mobil
+                        th | Email
+                        th | Kontaktní adresa
                     - @accord.persons.each do |client|
                         - client = client.decorate
                         tr
+                            td= client.accords_client.for_accord(@accord).first.decorate.relationship
                             td=link_to client.name, client_path(client)
                             td=client.last_name
                             td=client.personal_identification_number
@@ -35,16 +37,20 @@
             - unless @accord.companies.blank?
                 table.table
                     tr
-                        th | Jméno
-                        th | Ičo
+                        th | Vztah k nemovitosti
+                        th | Obchodní firma
+                        th | IČO
+                        th | Datová schránka
                         th | Mobil  
                         th | Email
                         th | Kontaktní adresa
                     - @accord.companies.each do |client|
                         - client = client.decorate
                         tr
+                            td= client.accords_client.for_accord(@accord).first.decorate.relationship
                             td=link_to client.name, client_path(client)
                             td=client.identity_card_number
+                            td=client.data_box
                             td
                                 - client.mobile.each do |mobil|
                                     =mobil.phone_number

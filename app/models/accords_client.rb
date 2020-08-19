@@ -8,4 +8,5 @@ class AccordsClient < ApplicationRecord
 	accepts_nested_attributes_for :client,  reject_if: :all_blank, allow_destroy: true
 
 	validates :relationship, :inclusion => {:in => relationships.keys}
+  scope :for_accord, -> (accord) {where(accord_id:  accord.id)}
 end
