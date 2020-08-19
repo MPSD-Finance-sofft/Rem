@@ -1,0 +1,30 @@
+table.table style="font-size: 55%; display:inline-block; border-collapse: collapse;"
+	tr style="border: 1px solid black;"
+	  th Číslo žádosti
+	  th Typ
+	  th Přijato
+	  th Stav
+	  th Výkupní cena
+	  th Klienti
+	  th Adresy nemovitostí
+	  th Agent
+	  th Nadřízený Agenta
+	  th V péči
+	- @accords.each do |accord|
+	  tr style="border: 1px solid black; text-align: right;"
+	    td = accord.number
+	    td = accord.kind
+	    td style="text-align: left; white-space: nowrap;" = accord.created_at_time
+	    td = accord.state
+	    td = accord.purchase_price
+	    td 
+	      - accord.clients.each do |client|
+	        = client.full_name
+	        br
+	    td 
+	      - accord.realty.each do |realty|
+	        = realty.address.try(:index_name)
+	        br
+	    td = accord.agent_name
+	    td = accord.agent_superior
+	    td = accord.owner_name

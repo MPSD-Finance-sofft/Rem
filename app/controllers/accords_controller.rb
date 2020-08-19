@@ -4,12 +4,16 @@ class AccordsController < ApplicationController
   # GET /accords
   # GET /accords.json
   def index
+    request.format = 'pdf' if params[:commit] == 'PDF'
     @accord_for_filter = policy_scope(Accord).order(created_at: :desc)
     @accords =  IndexFilter::IndexServices.new(@accord_for_filter,params).perform
     @accords = @accords.decorate
     respond_to do |format|
       format.html
       format.json
+      format.pdf do
+        render  pdf: "index",:encoding => 'UTF-8', :margin => { :top => 0, :bottom => 0, :left => 0, :right => 0}
+      end
     end
   end
 
