@@ -14,7 +14,7 @@ class LeasingContract < ApplicationRecord
 
 	belongs_to :accord
 	belongs_to :user,  required: false
-  belongs_to :agent,  required: false
+  belongs_to :agent,  foreign_key: 'agent_id', class_name: 'User' ,  required: false
 	has_many_attached :uploads
 
 	accepts_nested_attributes_for :repayments,  reject_if: :all_blank, allow_destroy: true

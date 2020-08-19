@@ -114,6 +114,10 @@ class LeasingContractDecorator < ApplicationDecorator
     	object.user.try(:all_name)
   	end
 
+    def agent
+      object.agent.try(:all_name)
+    end
+
   	def last_recalculation
   		format_date_time object.last_recalculation
   	end
