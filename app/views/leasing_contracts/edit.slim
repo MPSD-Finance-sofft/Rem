@@ -25,7 +25,7 @@ div class="#{@leasing_contract.object_state}"
 				= form.label :user_id, "V péči"
 				= form.select :user_id, User::user_can_sign_id.map{|a| [a.all_name, a.id]},{include_blank: true, selected: form.object.user_id},{class: "selectpicker form-control", "data-live-search" => "true"}
 			.form-group
-				= form.label :agent_id, "V péči agenta"
+				= form.label :agent_id, "ve správě managera "
 				= form.select :agent_id, User::user_can_sign_id.manager.map{|a| [a.all_name, a.id]},{include_blank: true, selected: form.object.user_id},{class: "selectpicker form-control", "data-live-search" => "true"}
 			.form-group
     			= form.label :kind, "Typ"

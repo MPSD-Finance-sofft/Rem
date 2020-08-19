@@ -44,7 +44,7 @@
 				= label_tag :user_id, "V péči"
 				= select_tag :user_id, options_for_select(LeasingContract.pluck(:user_id).uniq.map{|a| [User.find_by_id(a).try(:all_name),a]}, params[:user_id]), {include_blank: true, class: "form-control input-sm",data: {"live-search": true}, multiple: true }
 			.form-group
-				= label_tag :agent_id, "V péči agenta"
+				= label_tag :agent_id, "ve správě managera "
 				= select_tag :agent_id,  options_for_select(['bez agenta'] + @leasing_contract_for_filter.pluck(:agent_id).uniq.map{|a| [User.find_by_id(a).try(:all_name),a]}, params[:agent_id]), { class: "form-control input-sm",data: {"live-search": true}, multiple: true }
 			.form-group.float-right
 				= submit_tag "Vyhledat"
