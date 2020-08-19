@@ -14,6 +14,7 @@ class LeasingContract < ApplicationRecord
 
 	belongs_to :accord
 	belongs_to :user,  required: false
+  belongs_to :agent,  required: false
 	has_many_attached :uploads
 
 	accepts_nested_attributes_for :repayments,  reject_if: :all_blank, allow_destroy: true
@@ -193,6 +194,10 @@ class LeasingContract < ApplicationRecord
     Repayment::for_year_prepaid(year)
   end
 
+  def self.agent_id(agent_id)
+    where(agent_id: agent_id.map{|a| a == 'bez agenta' ? nil : a})
+  end
+
 	scope :for_accord, -> (accord_id) {where(accord_id: accord_id)}
 	scope :contract_number, -> (contract_number) {where(id:  contract_number)}
 	scope :state, -> (state) {where(state:  state)}
@@ -209,6 +214,7 @@ class LeasingContract < ApplicationRecord
 	scope :rent_to_end, -> (date) {where("leasing_contracts.rent_to <= ?", date.to_date)}
 	scope :subordinates_accords, -> (user) {joins(:accord).where('accords.agent_id': [User.where(superior_id: user.id).pluck(:id)])}
 	scope :agents_accords, -> (user) {joins(:accord).where('accords.agent_id':  user.id)}
+  scope :agents_in_care, -> (user) {joins(:accord).where('leasing_contracts.agent_id':  user.id)}
   scope :should_be_paid,-> (month,year) {joins(:repayments).where('repayments.repayment_date': Date.new(year,month,1)..Date.new(year,month,1).end_of_month)}
   scope :date_of_last_paymnet_from, -> (date) {joins(:payments).where('payments.payment_date >= ?', date)}
   scope :date_of_last_paymnet_to, -> (date) {joins(:payments).where('payments.payment_date <= ?', date)}

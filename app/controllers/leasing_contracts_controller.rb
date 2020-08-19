@@ -6,6 +6,7 @@ class LeasingContractsController < ApplicationController
   def index
     authorize LeasingContract
     @leasing_contracts = policy_scope(LeasingContract).order(rent_from: :desc)
+    @leasing_contract_for_filter = @leasing_contracts
     template = LeasingContracts::IndexServices.new(params).perform
     @year = params[:year].to_i ||= 2020
     @leasing_contracts =  IndexFilter::IndexServices.new(@leasing_contracts,params).perform
