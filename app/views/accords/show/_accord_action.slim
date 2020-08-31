@@ -14,7 +14,6 @@
           = link_to 'Nová smlouva o prodeji', new_sales_contract_path(accord_id: @accord.id), {class: 'btn btn-sm btn-info m-1', type: 'buttom'}
         button.btn.btn-sm.btn-info.m-1 data-target="#AddRegister" data-toggle="modal" type="button" 
           | Nový registr pro klienta
-        = link_to "Generování zápočtu", accord_commitments_path(accord_id: @accord.id,format: 'pdf') , { class: 'btn btn-sm btn-info m-1 text-white', type: 'buttom'}
         button.btn.btn-sm.btn-info.m-1.float-right type="button"  id='show_all'
           | Zobraz vše
         br
