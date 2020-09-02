@@ -15,4 +15,8 @@ class SalesContractPolicy < ApplicationPolicy
   def destroy?
     user.user_or_admin?
   end
+
+  def report?
+    user.user_or_admin?
+  end
 end

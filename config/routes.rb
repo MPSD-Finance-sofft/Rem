@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   resources :registers
   resources :full_notes
-  resources :sales_contracts
+  resources :sales_contracts do
+    collection do 
+      get :report
+    end
+  end
   resources :reason_refusal_types
   resources :document_types
   resources :scheduler_logs

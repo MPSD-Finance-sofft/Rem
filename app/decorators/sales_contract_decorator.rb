@@ -15,4 +15,24 @@ class SalesContractDecorator < ApplicationDecorator
   def user
     object.user.try(:all_name)
   end
+
+  def purchase_price
+    format_number object.accord.purchase_price
+  end
+
+  def all_expenses
+    format_number object.accord.expenses.sum(:amount)
+  end
+
+  def all_leasing_contract
+   sum = 0
+   object.accord.leasing_contracts do |a|
+    sum += a.payments.sum(:amount)
+   end
+   format_number sum
+  end
+
+  def date_of_signature
+    format_date object.accord.date_of_signature
+  end
 end

@@ -1,0 +1,40 @@
+div.container-fluid
+  ol.breadcrumb
+    li.breadcrumb-item
+      b
+        | Smlouvy o prodeji
+    li.breadcrumb-item
+      | Přehled pro prodané smluvy
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary = link_to 'Smlouvy o prodeji smlouva', sales_contracts_path
+    .card-body
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary Přehled pro prodané smluvy
+    .card-body
+      p
+          b
+            | Počet vyhledaných smluv:
+            = @sales_contracts.size
+      table.table
+        tr
+          th Číslo prodejní smlouvy
+          th.text-right Datum prodeje
+          th.text-right Datum podpisu
+          th.text-right Částka
+          th.text-right Výkupní cena
+          th.text-right Náklady
+          th.text-right Nájemní smlouvy
+        - @sales_contracts.each do |sales_contracts|
+          tr
+            td = link_to sales_contracts.id, sales_contract_path(sales_contracts)
+            td.text-right = sales_contracts.date_of_sale_realty
+            td.text-right = sales_contracts.date_of_signature
+            td.text-right.text-nowrap  = sales_contracts.amount
+            td.text-right.text-nowrap  = sales_contracts.purchase_price
+            td.text-right.text-nowrap  = sales_contracts.all_expenses
+            td.text-right.text-nowrap  = sales_contracts.all_leasing_contract
+            

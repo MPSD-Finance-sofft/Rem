@@ -67,6 +67,11 @@ class SalesContractsController < ApplicationController
     end
   end
 
+  def report
+    authorize SalesContract
+    @sales_contracts = SalesContract.order(date_of_sale_realty: :desc).decorate
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_sales_contract

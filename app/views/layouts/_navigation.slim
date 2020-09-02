@@ -103,6 +103,8 @@
                 | Náklady 
             a.collapse-item href="/commitments/full_index"
                 | Závazky
+            a.collapse-item href="/sales_contracts/report"
+              | Prodané smlouvy
     - if current_user.admin?
       li.nav-item
         a.nav-link.collapsed aria-controls="headingOverview" aria-expanded="true" data-target="#headingOverview" data-toggle="collapse" href="#" data-remote="true"
