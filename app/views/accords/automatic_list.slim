@@ -1,0 +1,50 @@
+div.container-fluid
+  ol.breadcrumb
+    li.breadcrumb-item
+      b
+        | Žádosti
+    li.breadcrumb-item
+      | Přehled pro žádosti
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+    .card-body
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary Přehled pro žádosti které se automaticky doplnují
+    .card-body
+      p
+          b
+            | Počet vyhledaných žádostí:
+            = @accords.size
+      table.table style="overflow: auto; display:inline-block"
+        tr.text-dark
+          th Číslo žádosti
+          th Typ
+          th Přijato
+          th Stav
+          th Výkupní cena
+          th Klienti
+          th Adresy nemovitostí
+          th Agent
+          th Nadřízený Agenta
+          th V péči
+        - @accords.each do |accord|
+          tr class="#{accord.object_state} text-dark"
+            td = link_to accord.number, accord_path(accord.id)
+            td = accord.kind
+            td = accord.created_at_time
+            td = accord.state
+            td.pushase_price.text-nowrap.text-right = accord.purchase_price
+            td 
+              - accord.clients.each do |client|
+                = client.full_name
+                br
+            td 
+              - accord.realty.each do |realty|
+                = realty.address.try(:index_name)
+                br
+            td = accord.agent_name
+            td = accord.agent_superior
+            td = accord.owner_name

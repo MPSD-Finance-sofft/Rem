@@ -113,6 +113,7 @@ Rails.application.routes.draw do
   resources :accords do
     collection do
       get :changes
+      get :automatic_list
     end
     member do
       get :uploads

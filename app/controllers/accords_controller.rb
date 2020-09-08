@@ -143,6 +143,10 @@ class AccordsController < ApplicationController
     end
   end
 
+  def automatic_list
+    @accords = Accord.automatic_add_energy.or(Accord.automatic_svj).decorate
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_accord
