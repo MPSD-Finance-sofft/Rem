@@ -15,9 +15,9 @@ div class="#{@accord.object_state} text-dark"
           = @accord.state
           | , v péči uživatele 
           = @accord.owner_name
-          - unless @accord.automatik_add_energy.blank?
+          - if @accord.automatik_add_energy.present? || @accord.automatic_svj.present?
             i
-              |  Žádost má nastavené automatické přidávání energii
+              |  Žádost má nastavené automatické přidávání
     .col-xl-12.accord_show.bg-primary
       = render partial: "accords/show/accord_action"
       = render partial: "accords/show/accord_print"

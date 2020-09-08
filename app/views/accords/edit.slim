@@ -31,6 +31,9 @@ div.container-fluid
 					    	= f.label :automatik_add_energy, "Automatické doplnování enerigii"
 							= f.check_box :automatik_add_energy, class: "form-control"
 						.form-group
+					    	= f.label :automatic_svj, "Automatické doplnování svj"
+							= f.check_box :automatic_svj, class: "form-control"
+						.form-group
 					    	= f.label :kind, "Druh žádosti"
 							= f.select :kind, f.object.select_kind,{selected: f.object.object_kind},{class: "selectpicker form-control", "data-live-search" => "true"}
 						.form-group

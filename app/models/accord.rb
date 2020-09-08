@@ -137,6 +137,16 @@ class Accord < ApplicationRecord
         a = true if e.duplicate
       end
 
+      unless a.nil?
+        list << accord.id
+      end
+    end
+    SchedulerLog.create(kind: 'AccordEnergies', list: list) unless list.blank?
+  end
+
+  def self.automatic_add_month_advances
+    list = []
+    Accord.automatic_svj.each do |accord|
       e = accord.month_advences.last
       unless e.nil?
         a = true if e.duplicate
@@ -146,7 +156,7 @@ class Accord < ApplicationRecord
         list << accord.id
       end
     end
-    SchedulerLog.create(kind: 'AccordEnergies', list: list) unless list.blank?
+    SchedulerLog.create(kind: 'AccordMonthAdvances', list: list) unless list.blank?
   end
 
 	def self.count_account_total_unfinished_state(user)
@@ -161,6 +171,7 @@ class Accord < ApplicationRecord
     where(agent_id: agent_id.map{|a| a == 'bez agenta' ? nil : a})
   end
   scope :automatic_add_energy, -> {where(automatik_add_energy: true)}
+  scope :automatic_svj, -> {where(automatic_svj: true)}
 	scope :subordinates_accords, -> (user) {where(agent_id: [User.where(superior_id: user.id).pluck(:id)])}
 	scope :agents_accords, -> (user) {where(agent_id:  user.id)}
   scope :with_sales_contract, -> {joins(:sales_contracts)}
