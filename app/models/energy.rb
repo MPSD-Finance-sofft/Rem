@@ -8,7 +8,7 @@ class Energy < ApplicationRecord
   def duplicate
     return false if self.date_of.month == Date.today.month
     e = self.dup
-    e.date_of = self.date_of + 1.month
+    e.date_of = self.date_of + 1.month unless self.date_od.nil?
     e.payment_day = self.payment_day + 1.month
     e.save
   end
