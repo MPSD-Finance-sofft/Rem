@@ -24,19 +24,17 @@ div.container-fluid
           th Typ
           th Přijato
           th Stav
-          th Výkupní cena
           th Klienti
           th Adresy nemovitostí
-          th Agent
-          th Nadřízený Agenta
           th V péči
+          th Automatické energie
+          th AUtomatické svj
         - @accords.each do |accord|
           tr class="#{accord.object_state} text-dark"
             td = link_to accord.number, accord_path(accord.id)
             td = accord.kind
             td = accord.created_at_time
             td = accord.state
-            td.pushase_price.text-nowrap.text-right = accord.purchase_price
             td 
               - accord.clients.each do |client|
                 = client.full_name
@@ -45,6 +43,6 @@ div.container-fluid
               - accord.realty.each do |realty|
                 = realty.address.try(:index_name)
                 br
-            td = accord.agent_name
-            td = accord.agent_superior
             td = accord.owner_name
+            td = check(accord.automatik_add_energy)
+            td = check(accord.automatic_svj)
