@@ -3,5 +3,14 @@ class Energy < ApplicationRecord
 	include RemoveWhiteSpiceFromNumberInput::Price
 	include EnergiesEnum
 	belongs_to :distributor
+
+  def duplicate
+    return false if self.date_of.month == Date.today.month
+    e = self.dup
+    e.date_of = self.date_of + 1.month
+    e.payment_day = self.payment_day + 1.month
+    e.save
+  end
+
 	scope :for_accord, -> (accord_id) {where(accord_id: accord_id)}
 end

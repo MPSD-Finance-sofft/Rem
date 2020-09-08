@@ -52,3 +52,7 @@ end
 every 24.hour do
   runner "Address::synthesis_address", :environment => 'production'
 end
+
+every 24.hour do
+  runner "Accord::automatic_add_energy_task", :environment => 'production'
+end

@@ -119,6 +119,31 @@ class Accord < ApplicationRecord
 		!(self.object_attributes_valuee_in_between(arr,'state') & ACTIVE_STATE).blank?
 	end
 
+  def self.automatic_add_energy_task
+    list = []
+    Accord.automatic_add_energy.each do |accord|
+      e = accord.eletricities.last
+      unless e.nil?
+        a = true if e.duplicate 
+      end
+
+      e = accord.gas_energies.last
+      unless e.nil?
+        a = true if e.duplicate 
+      end
+
+      e = accord.water_energies.last
+      unless e.nil?
+        a = true if e.duplicate 
+      end
+
+      unless a.nil?
+        list << accord.id
+      end
+    end
+    SchedulerLog.create(kind: 'AccordEnergies', list: list) unless list.blank?
+  end
+
 	def self.count_account_total_unfinished_state(user)
 		Accord.state(Accord::ACTIVE_STATE).user_id(user.id).count
 	end
@@ -130,6 +155,7 @@ class Accord < ApplicationRecord
   def self.agent_id(agent_id)
     where(agent_id: agent_id.map{|a| a == 'bez agenta' ? nil : a})
   end
+  scope :automatic_add_energy, -> {where(automatik_add_energy: true)}
 	scope :subordinates_accords, -> (user) {where(agent_id: [User.where(superior_id: user.id).pluck(:id)])}
 	scope :agents_accords, -> (user) {where(agent_id:  user.id)}
   scope :with_sales_contract, -> {joins(:sales_contracts)}
