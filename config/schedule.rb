@@ -56,3 +56,7 @@ end
 every 24.hour do
   runner "Accord::automatic_add_energy_task", :environment => 'production'
 end
+
+every 24.hour do
+  runner "Accord::automatic_add_month_advances", :environment => 'production'
+end
