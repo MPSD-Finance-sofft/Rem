@@ -6,7 +6,7 @@ class EnergyDecorator < ApplicationDecorator
   	end
 	
 	def kind
-		kind_to_text(object.kind)
+		kind_to_text(object.type)
  	end
 
  	def select_kind_energy
@@ -16,14 +16,14 @@ class EnergyDecorator < ApplicationDecorator
 
  	def kind_to_text(kind)
  		case kind
- 			when 'electricity'
+ 			when 'Eletricity'
  					"Elektřina"
- 			when 'gas'
+ 			when 'GasEnergy'
  					"Plyn"
- 			when 'water'
+ 			when 'WaterEnergy'
  					"Voda"
  			else
- 					"nedefinovaný typ vlastnictví"
+ 					"nedefinovaný typ energie"
 		end
  	end
 

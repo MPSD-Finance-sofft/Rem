@@ -3,6 +3,7 @@ class Energy < ApplicationRecord
 	include RemoveWhiteSpiceFromNumberInput::Price
 	include EnergiesEnum
 	belongs_to :distributor
+  belongs_to :accord
 
   def duplicate
     return false if self.date_of.month == Date.today.month

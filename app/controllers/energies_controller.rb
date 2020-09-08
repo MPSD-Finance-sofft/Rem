@@ -4,7 +4,7 @@ class EnergiesController < ApplicationController
   # GET /energies
   # GET /energies.json
   def index
-    @energies = Energy.all
+    @energies = Energy.joins(accord: :realty).includes(:distributor).order(payment_day: :desc).decorate
   end
 
   # GET /energies/1

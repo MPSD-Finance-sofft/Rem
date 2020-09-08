@@ -1,0 +1,35 @@
+div.container-fluid
+  ol.breadcrumb
+    li.breadcrumb-item
+      b
+        | Energie
+    li.breadcrumb-item
+      | Přehled energií
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary Přehled energií
+    .card-body
+      table.table
+        tr
+          th
+            | Žádost
+          th
+            | Typ
+          th
+            | Datum žádosti
+          th
+            | Distributor
+          th
+            | Výše zálohy
+          th
+            | Datum úhrady
+        - @energies.each do |energy|
+          tr
+            td.text-nowrap
+              = link_to energy.accord.realty.last.address.try(:index_name), accord_path(energy.accord_id)
+            td=energy.kind
+            td=energy.date_of
+            td=energy.distributor
+            td=energy.price
+            td=energy.payment_day
