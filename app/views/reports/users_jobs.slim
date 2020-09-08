@@ -17,7 +17,7 @@ div.container-fluid
 			.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
 				h6.m-0.font-weight-bold.text-primary Celkem žádostí v péči
 			.card-body
-				= pie_chart @users.map{|a| [a.all_name, Accord.user_id(a).count]}.select{|a| a.last != 0}
+				= pie_chart @users.map{|a| [a.all_name, Accord.user_id_without_blank(a).count]}.select{|a| a.last != 0}
 	.col-xl-5
 		.card.shadow.mb-4
 			.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
@@ -40,7 +40,7 @@ div.container-fluid
 			.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
 				h6.m-0.font-weight-bold.text-primary Celkem ks smluv
 			.card-body
-				= pie_chart @users.map{|a| [a.all_name, Accord.state('contract').user_id(a.id).count]}.select{|a| a.last != 0}
+				= pie_chart @users.map{|a| [a.all_name, Accord.state('contract').user_id_without_blank(a).count]}.select{|a| a.last != 0}
 	.col-xl-5
 		.card.shadow.mb-4
 			.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between

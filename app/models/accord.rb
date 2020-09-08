@@ -150,7 +150,7 @@ class Accord < ApplicationRecord
   end
 
 	def self.count_account_total_unfinished_state(user)
-		Accord.state(Accord::ACTIVE_STATE).user_id(user.id).count
+		Accord.state(Accord::ACTIVE_STATE).user_id_without_blank(user).count
 	end
 
   def self.user_id(user_id)
@@ -165,6 +165,7 @@ class Accord < ApplicationRecord
 	scope :agents_accords, -> (user) {where(agent_id:  user.id)}
   scope :with_sales_contract, -> {joins(:sales_contracts)}
 	scope :agent_terrain, -> (user) {where(agent_terrain_id:  user.id)}
+  scope :user_id_without_blank, -> (user) {where(user_id:  user.id)}
 	scope :agent_signature, -> (id) {where(agent_in_signature_id:  id)}
 	scope :number_accord, -> (number_accord) {where(number:  number_accord)}
   scope :created_by, -> (user_id) {where(creator_id:  user_id)}
