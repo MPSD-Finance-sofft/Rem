@@ -22,19 +22,30 @@ div.container-fluid
       table.table
         tr
           th Číslo prodejní smlouvy
+          th.text-right Datum nákupu
           th.text-right Datum prodeje
-          th.text-right Datum podpisu
-          th.text-right Částka
           th.text-right Výkupní cena
+          th.text-right Prodejní cena
           th.text-right Náklady
+          th.text-right Energie
+          th.text-right Svj
           th.text-right Nájemní smlouvy
+          th.text-right Počet dní
+          th.text-right Zisk
+          th.text-right Výnos
+
         - @sales_contracts.each do |sales_contracts|
           tr
             td = link_to sales_contracts.id, sales_contract_path(sales_contracts)
-            td.text-right = sales_contracts.date_of_sale_realty
             td.text-right = sales_contracts.date_of_signature
-            td.text-right.text-nowrap  = sales_contracts.amount
+            td.text-right = sales_contracts.date_of_sale_realty
             td.text-right.text-nowrap  = sales_contracts.purchase_price
+            td.text-right.text-nowrap  = sales_contracts.amount
             td.text-right.text-nowrap  = sales_contracts.all_expenses
+            td.text-right.text-nowrap  = sales_contracts.sum_energies
+            td.text-right.text-nowrap  = sales_contracts.svj
             td.text-right.text-nowrap  = sales_contracts.all_leasing_contract
+            td.text-right = sales_contracts.days
+            td.text-right = sales_contracts.profit
+            td.text-right = sales_contracts.income
             

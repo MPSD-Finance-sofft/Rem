@@ -25,14 +25,51 @@ class SalesContractDecorator < ApplicationDecorator
   end
 
   def all_leasing_contract
-   sum = 0
-   object.accord.leasing_contracts.each  do |a|
-    sum = sum + a.payments.sum(:amount).to_f
-   end
-   format_number sum
+   format_number object_all_leasig_contract
+  end
+
+  def object_all_leasig_contract
+    sum = 0
+    object.accord.leasing_contracts.each  do |a|
+      sum = sum + a.payments.sum(:amount).to_f
+    end
+    sum
   end
 
   def date_of_signature
     format_date object.accord.date_of_signature
   end
+
+  def days
+    (object.date_of_sale_realty - object.accord.date_of_signature).to_i
+  end
+
+  def profit
+    format_number profit_object
+  end
+
+  def profit_object
+    object.amount - object.accord.purchase_price - object.accord.expenses.sum(:amount) + object_all_leasig_contract - object_sum_energies - object_svj
+  end
+
+  def income
+    ((profit_object / object.accord.purchase_price) * 100).round(2).to_s + "%"
+  end
+
+  def object_sum_energies
+    object.accord.energies.sum(:price)
+  end
+
+  def sum_energies
+    format_number object_sum_energies
+  end
+
+  def object_svj
+    object.accord.month_advences.sum(:price)
+  end
+
+  def svj
+    format_number object_svj
+  end
+
 end

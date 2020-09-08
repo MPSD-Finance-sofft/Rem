@@ -1,6 +1,6 @@
 class ApplicationDecorator < Draper::Decorator
   include ActionView::Helpers::NumberHelper
-  	
+
   def format_date(date) 
   	date.strftime('%d.%m.%Y') unless date.blank?
   end

@@ -69,7 +69,7 @@ class SalesContractsController < ApplicationController
 
   def report
     authorize SalesContract
-    @sales_contracts = SalesContract.order(date_of_sale_realty: :desc).decorate
+    @sales_contracts = SalesContract.includes(accord: :expenses).includes(accord: :leasing_contracts).order(date_of_sale_realty: :desc).decorate
   end
 
   private
