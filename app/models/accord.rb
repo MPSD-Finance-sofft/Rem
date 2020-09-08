@@ -124,17 +124,22 @@ class Accord < ApplicationRecord
     Accord.automatic_add_energy.each do |accord|
       e = accord.eletricities.last
       unless e.nil?
-        a = true if e.duplicate 
+        a = true if e.duplicate
       end
 
       e = accord.gas_energies.last
       unless e.nil?
-        a = true if e.duplicate 
+        a = true if e.duplicate
       end
 
       e = accord.water_energies.last
       unless e.nil?
-        a = true if e.duplicate 
+        a = true if e.duplicate
+      end
+
+      e = accord.month_advences.last
+      unless e.nil?
+        a = true if e.duplicate
       end
 
       unless a.nil?
