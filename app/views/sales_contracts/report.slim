@@ -33,6 +33,8 @@ div.container-fluid
           th.text-right Počet dní
           th.text-right Zisk
           th.text-right Výnos
+          th.text-right p.a.
+
 
         - @sales_contracts.each do |sales_contracts|
           tr
@@ -48,4 +50,5 @@ div.container-fluid
             td.text-right = sales_contracts.days
             td.text-right = sales_contracts.profit
             td.text-right = sales_contracts.income
+            td.text-right = sales_contracts.pa
             

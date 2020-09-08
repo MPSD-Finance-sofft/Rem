@@ -72,4 +72,8 @@ class SalesContractDecorator < ApplicationDecorator
     format_number object_svj
   end
 
+  def pa
+    (((profit_object / object.accord.purchase_price) * 100).round(2)/days * 365).round(2).to_s + "%"
+  end
+
 end

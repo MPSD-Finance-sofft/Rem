@@ -70,6 +70,7 @@ class SalesContractsController < ApplicationController
   def report
     authorize SalesContract
     @sales_contracts = SalesContract.includes(accord: :expenses).includes(accord: :leasing_contracts).order(date_of_sale_realty: :desc).decorate
+    Activity.create(true_user_id: user_masquerade_owner.try(:id), user_id: current_user.id, what: "Přehled prodaných smluv", objet: "SalesContract")
   end
 
   private
