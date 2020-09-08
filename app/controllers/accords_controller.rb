@@ -145,6 +145,7 @@ class AccordsController < ApplicationController
 
   def automatic_list
     @accords = Accord.automatic_add_energy.or(Accord.automatic_svj).decorate
+    Activity.create(true_user_id: user_masquerade_owner.try(:id), user_id: current_user.id, what: "Žádosti s automatickým doplnováním", objet: "Accords")
   end
 
   private
