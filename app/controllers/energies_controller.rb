@@ -5,6 +5,7 @@ class EnergiesController < ApplicationController
   # GET /energies.json
   def index
     @energies = Energy.joins(accord: :realty).includes(:distributor).order(payment_day: :desc).decorate
+    Activity.create(true_user_id: user_masquerade_owner.try(:id), user_id: current_user.id, what: "Přehled energií", objet: "Energy")
   end
 
   # GET /energies/1
