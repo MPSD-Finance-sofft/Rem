@@ -35,6 +35,7 @@ div.container-fluid
           th Agent
           th Nadřízený Agenta
           th V péči
+          th Řeší v terénu
         - @accords.each do |accord|
           tr class="#{accord.object_state} text-dark"
             td = link_to accord.number, accord_path(accord.id)
@@ -53,3 +54,4 @@ div.container-fluid
             td = accord.agent_name
             td = accord.agent_superior
             td = accord.owner_name
+            td = accord.agent_in_terain_name

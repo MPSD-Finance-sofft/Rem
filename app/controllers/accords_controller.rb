@@ -5,7 +5,7 @@ class AccordsController < ApplicationController
   # GET /accords.json
   def index
     request.format = 'pdf' if params[:commit] == 'PDF'
-    @accord_for_filter = policy_scope(Accord).order(created_at: :desc)
+    @accord_for_filter = policy_scope(Accord).includes(:terrains).order(created_at: :desc)
     @accords =  IndexFilter::IndexServices.new(@accord_for_filter,params).perform
     @accords = @accords.decorate
     respond_to do |format|

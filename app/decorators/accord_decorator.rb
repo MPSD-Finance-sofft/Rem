@@ -229,4 +229,8 @@ class AccordDecorator < ApplicationDecorator
     end
     sum
   end
+
+  def agent_in_terain_name
+    object.terrains.active.last.try(:agent).try(:all_name)
+  end
 end
