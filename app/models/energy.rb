@@ -13,5 +13,20 @@ class Energy < ApplicationRecord
     e.save
   end
 
+  def self.chart_for_year(year= 2020)
+    electricity = {}
+    Eletricity.where("payment_day <= ? AND payment_day > ?", Date.new(year,12,31), Date.new(year,1,1)).select("created_at, month(payment_day) as month, year(payment_day) as year, sum(price) as amount").group(:month,:year).each do |a|
+      electricity.merge!("#{Date.new(a.year, a.month,1)}": a.amount)
+    end
+    water_energy = {}
+    WaterEnergy.where("payment_day <= ? AND payment_day > ?", Date.new(year,12,31), Date.new(year,1,1)).select("created_at, month(payment_day) as month, year(payment_day) as year, sum(price) as amount").group(:month,:year).each do |a|
+      water_energy.merge!("#{Date.new(a.year, a.month,1)}": a.amount)
+    end
+    gas_energy = {}
+    GasEnergy.where("payment_day <= ? AND payment_day > ?", Date.new(year,12,31), Date.new(year,1,1)).select("created_at, month(payment_day) as month, year(payment_day) as year, sum(price) as amount").group(:month,:year).each do |a|
+      gas_energy.merge!("#{Date.new(a.year, a.month,1)}": a.amount)
+    end
+    result=[{name: 'Elektřina', data: electricity}, {name: 'Plyn', data: gas_energy}, {name: 'Voda', data: water_energy}]
+  end
 	scope :for_accord, -> (accord_id) {where(accord_id: accord_id)}
 end

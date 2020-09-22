@@ -10,6 +10,67 @@ div.container-fluid
     .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
       h6.m-0.font-weight-bold.text-primary Přehled energií
     .card-body
+      = line_chart @chart, download: true
+      br
+      br
+      table.table
+        tr
+          th
+          th.text-nowrap.text-right Leden
+          th.text-nowrap.text-right Únor
+          th.text-nowrap.text-right Březen
+          th.text-nowrap.text-right Duben
+          th.text-nowrap.text-right Květen
+          th.text-nowrap.text-right Červen
+          th.text-nowrap.text-right Červenec
+          th.text-nowrap.text-right Srpen
+          th.text-nowrap.text-right Září
+          th.text-nowrap.text-right Říjen
+          th.text-nowrap.text-right Listopad
+          th.text-nowrap.text-right Prosinec
+        tr
+          td Elektřina
+          td.text-nowrap.text-right =number_to_currency(@chart.first[:data][:"2020-01-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+          td.text-nowrap.text-right =number_to_currency(@chart.first[:data][:"2020-02-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+          td.text-nowrap.text-right =number_to_currency(@chart.first[:data][:"2020-03-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+          td.text-nowrap.text-right =number_to_currency(@chart.first[:data][:"2020-04-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+          td.text-nowrap.text-right =number_to_currency(@chart.first[:data][:"2020-05-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+          td.text-nowrap.text-right =number_to_currency(@chart.first[:data][:"2020-06-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+          td.text-nowrap.text-right =number_to_currency(@chart.first[:data][:"2020-07-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+          td.text-nowrap.text-right =number_to_currency(@chart.first[:data][:"2020-08-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+          td.text-nowrap.text-right =number_to_currency(@chart.first[:data][:"2020-09-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+          td.text-nowrap.text-right =number_to_currency(@chart.first[:data][:"2020-10-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+          td.text-nowrap.text-right =number_to_currency(@chart.first[:data][:"2020-11-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+          td.text-nowrap.text-right =number_to_currency(@chart.first[:data][:"2020-12-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+        tr
+          td Plyn
+          td.text-nowrap.text-right =number_to_currency(@chart.second[:data][:"2020-01-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+          td.text-nowrap.text-right =number_to_currency(@chart.second[:data][:"2020-02-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+          td.text-nowrap.text-right =number_to_currency(@chart.second[:data][:"2020-03-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+          td.text-nowrap.text-right =number_to_currency(@chart.second[:data][:"2020-04-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+          td.text-nowrap.text-right =number_to_currency(@chart.second[:data][:"2020-05-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+          td.text-nowrap.text-right =number_to_currency(@chart.second[:data][:"2020-06-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+          td.text-nowrap.text-right =number_to_currency(@chart.second[:data][:"2020-07-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+          td.text-nowrap.text-right =number_to_currency(@chart.second[:data][:"2020-08-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+          td.text-nowrap.text-right =number_to_currency(@chart.second[:data][:"2020-09-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+          td.text-nowrap.text-right =number_to_currency(@chart.second[:data][:"2020-10-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+          td.text-nowrap.text-right =number_to_currency(@chart.second[:data][:"2020-11-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+          td.text-nowrap.text-right =number_to_currency(@chart.second[:data][:"2020-12-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+        tr
+          td Voda
+          td.text-nowrap.text-right =number_to_currency(@chart.last[:data][:"2020-01-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+          td.text-nowrap.text-right =number_to_currency(@chart.last[:data][:"2020-02-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+          td.text-nowrap.text-right =number_to_currency(@chart.last[:data][:"2020-03-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+          td.text-nowrap.text-right =number_to_currency(@chart.last[:data][:"2020-04-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+          td.text-nowrap.text-right =number_to_currency(@chart.last[:data][:"2020-05-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+          td.text-nowrap.text-right =number_to_currency(@chart.last[:data][:"2020-06-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+          td.text-nowrap.text-right =number_to_currency(@chart.last[:data][:"2020-07-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+          td.text-nowrap.text-right =number_to_currency(@chart.last[:data][:"2020-08-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+          td.text-nowrap.text-right =number_to_currency(@chart.last[:data][:"2020-09-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+          td.text-nowrap.text-right =number_to_currency(@chart.last[:data][:"2020-10-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+          td.text-nowrap.text-right =number_to_currency(@chart.last[:data][:"2020-11-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+          td.text-nowrap.text-right =number_to_currency(@chart.last[:data][:"2020-12-01"], unit: "Kč", separator: ",", delimiter: " ", format: "%n %u",  precision: 0)
+    .card-body
       table.table
         tr
           th
