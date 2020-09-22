@@ -50,6 +50,7 @@ Rails.application.routes.draw do
     end
   end
   resources :dispositions
+  resources :month_advences
   resources :leasing_contract_realties
   resources :leasing_contract_clients
   resources :invoices
