@@ -86,7 +86,7 @@ class LeasingContract < ApplicationRecord
 	end
 
   def prepaid
-    self.repayments.includes(:repayment_payment).prepaid.sum{|a| a.amount}
+    self.repayments.includes(:repayment_payment).prepaid.sum{|a| a.amount.to_f}
   end
 
 	def start_date_debt
