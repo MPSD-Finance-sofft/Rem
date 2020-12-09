@@ -32,6 +32,8 @@ div.container-fluid
           th Klient
           th Adresa Nemovitosti
           th V péči
+          - if current_user.admin?
+            th Kupní cena
         - @leasing_contracts.each do |leasing_contract|
           tr class="#{leasing_contract.object_state} text-dark"
             td = link_to leasing_contract.id, leasing_contract_path(leasing_contract)
@@ -50,4 +52,6 @@ div.container-fluid
                 = realty.address.try(:index_name)
                 br
             td = leasing_contract.user
+            - if current_user.admin?
+              td.text-right.text-nowrap = leasing_contract.purchase_price
             

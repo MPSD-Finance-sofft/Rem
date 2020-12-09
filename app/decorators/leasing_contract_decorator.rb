@@ -141,4 +141,8 @@ class LeasingContractDecorator < ApplicationDecorator
     def object_last_paymentrate
       object.date_last_payment
     end
+
+    def purchase_price
+      format_number(object.accord.purchase_price.to_f)
+    end
 end
