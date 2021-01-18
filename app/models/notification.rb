@@ -111,6 +111,16 @@ class Notification < ApplicationRecord
 		notification.save
 	end
 
+  def self.notification_for_admin_count_contracts_for_accords(user, agent)
+    notification = Notification.new
+    notification.object = "User"
+    notification.object_id = agent.id
+    notification.text = "U agenta #{agent.all_name} , byla změněna výše provize #{agent.commission_for_count_accords}"
+    notification.active = true
+    notification.user_id = user.id
+    notification.save
+  end
+
 	scope :for_user, -> (user_id) {where(user_id:  user_id)}
 	scope :active, -> {where(active:  true)}
 	scope :active_state, ->(active) {where(active:  active)}

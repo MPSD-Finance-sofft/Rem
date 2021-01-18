@@ -78,6 +78,7 @@ class AccordsController < ApplicationController
     authorize @accord
     respond_to do |format|
       if @accord.update(accord_params)
+        notifaction_admin_on_change_agent_commision
         format.html { redirect_to @accord, notice: 'Accord was successfully updated.' }
         format.json { render :show, status: :ok, location: @accord }
       else
@@ -158,5 +159,13 @@ class AccordsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def accord_params
        params.require(:accord).permit!
+    end
+
+    def notifaction_admin_on_change_agent_commision
+      count_contract = @accord.agent.try(:count_contract)
+
+      if @accord.state_changed? && @accord.contract? && (count_contract == '10' || count_contract == '50')
+        Notification::notification_for_admin_count_contracts_for_accords(User.find(18720), @accord.agent)
+      end
     end
 end
