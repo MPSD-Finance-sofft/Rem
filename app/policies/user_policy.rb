@@ -5,7 +5,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def update?
-    return false if user.tipster?
+    #return false if user.tipster?
     user.admin? || user.user? || record.id == user.id
   end
 
