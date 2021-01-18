@@ -69,7 +69,11 @@ class Accord < ApplicationRecord
 	ACTIVE_STATE = ['state_new', 'state_eleboration', 'in_terrain', 'returned', 'to_sign']
 
 	def commission_for_the_contract
-		self.reward ? self.reward.commission_for_the_contract.to_f : self.purchase_price.to_f * 0.03 
+    if self.reward
+      self.reward.commission_for_the_contract.to_f
+    else
+      self.purchase_price.to_f * self.agent.try(:commission_for_count_accords).to_f
+    end
 	end
 
 	def agency_commission_price

@@ -143,6 +143,17 @@ class User < ApplicationRecord
 		super
 	end
 
+  def commission_for_count_accords
+    accords_count = self.agent_accords.where('accords.state': 'contract').count
+    if accords_count < 10
+      0.03
+    elsif accords_count < 50
+      0.04
+    else
+      0.05
+    end
+  end
+
 	def self.user_can_permision(user)
 		if user.agent? || user.manager?
 		  User.can_sign_in.subordinates(user).or(User.where(id: (user.id)))
