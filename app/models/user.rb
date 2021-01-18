@@ -163,10 +163,13 @@ class User < ApplicationRecord
 	end
 
 	def self.all_subordinates(user)
+    n = []
 		User.my_subordinates(user).each do |subordinate|
-			next if User.my_subordinates(subordinate).blank? || subordinate == user
-			return User.my_subordinates(user) + User::all_subordinates(subordinate)
+			n << subordinate
+      next if User.my_subordinates(subordinate).blank? || subordinate == user
+			n << User::all_subordinates(subordinate)
 		end
+    n.flatten
 	end
 
 	def self.subordinates(user)
