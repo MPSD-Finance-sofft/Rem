@@ -51,5 +51,5 @@ div.container-fluid
 						td.font-weight-bold=user.name_company
 						td.font-weight-bold=user.superior
 						td = user.date_of_last_create_accord
-						td = link_to user.count_accord, accords_path(agent_id: user.id)
-						td = link_to user.count_contract, contracts_path(agent_id: user.id)
+						td = link_to user.count_accord, accords_path(agent_id: [user.id])
+						td = link_to user.count_contract, contracts_path(agent_id: [user.id])
