@@ -5,7 +5,7 @@ class User < ApplicationRecord
 	include ConnectionAres::User
 	attr_accessor :current_user
 	validates_with UserValidator
-	has_paper_trail ignore: [:updated_at, :id, :encrypted_password]
+	has_paper_trail ignore: [:updated_at, :id, :encrypted_password, :remember_created_at]
   	# Include default devise modules. Others available are:
   	# :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   	devise :database_authenticatable, :recoverable, :rememberable, :masqueradable, authentication_keys: [:username]

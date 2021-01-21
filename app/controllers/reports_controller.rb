@@ -23,4 +23,8 @@ class ReportsController < ApplicationController
     @report = Report::users_job_actity(@user, params[:date_from],params[:date_to])
   end
 
+  def users_changes
+    @versions = PaperTrail::Version.where(item_type: "User").where(event: "update").order(created_at: :desc)
+  end
+
 end

@@ -1,0 +1,33 @@
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    h6.m-0.font-weight-bold.text-primary class="d-block card-header py-3"
+      | Změny agentů a tipařu od agentů
+    .card-body
+      table.table
+        tr
+          th Datum vytvoření
+          th Číslo změny
+          th Změnil
+          th Změny
+        - @versions.each do |version|
+          - user = User.where(id: version.whodunnit).last
+          - if !user.nil? && !user.admin? && !user.user?
+            tr
+              td = version.created_at.strftime('%d.%m.%Y %T')
+              td = version.id
+              td = User.where(id: version.whodunnit).last.try(:all_name)
+              td
+                - version.changeset.each do |change|
+                  - unless change.last.first.blank? && change.last.last.blank?
+                    =change.first
+                    |  
+                    - if change.last.first.blank? 
+                      | nil 
+                    else
+                      = change.last.first
+                    |  
+                    - if change.last.last.blank? 
+                      | nil  
+                    else
+                      = change.last.last
+                    br

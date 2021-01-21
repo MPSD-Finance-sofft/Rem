@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       get :agents
       get :users_jobs
       get :users_jobs_for_user
+      get :users_changes
     end
   end
   resources :revision_types
