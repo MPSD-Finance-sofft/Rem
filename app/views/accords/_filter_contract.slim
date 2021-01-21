@@ -1,0 +1,74 @@
+= form_tag(contracts_path(), {method: :get}) do 
+  .row.p-3
+    .col-xl-2
+      .form-group
+        = label_tag :number_accord, "Číslo žádosti"
+        = text_field_tag :number_accord, params[:number_accord], class: "form-control input-sm"
+      .form-group
+        = label_tag :contract_number, "Číslo smlouvy"
+        = text_field_tag :contract_number, params[:contract_number], class: "form-control input-sm"
+      .form-group
+        = label_tag :start_created_at, "Přijato od"
+        = text_field_tag :start_created_at, params[:start_created_at], class: "datapicker form-control input-sm"
+      .form-group
+        = label_tag :state, "Stav žádosti"
+        = select_tag :state, options_for_select([["Nový", "state_new"], ["Rozpracováno", "state_eleboration"], ["v terénu", "in_terrain"],["Vrácená", "returned"], ["Ke schválení", "to_sign"],["Smlouva", "contract"],["Zamítnutá", "refuse"],["Stažená", "dowload"]], params[:state]), {include_blank: true, class: "form-control input-sm selectpicker",data: {"live-search": true} , multiple: true}
+      .form-group
+        = label_tag :contract_without_sales_contract, "Bez smlouvy o prodeji"
+        br
+        = check_box_tag :contract_without_sales_contract, params['contract_without_sales_contract'], params['contract_without_sales_contract']
+    .col-xl-2
+      .form-group
+        = label_tag :kind, "Typ žádosti"
+        = select_tag :kind, options_for_select([["Výkup", "buyout"], ["Dražba", "auction"], ["Insolvenční výkup", "insolvency_buyout"]], params[:kind]), {include_blank: true, class: "form-control input-sm",data: {"live-search": true}, multiple: true }
+      .form-group
+        = label_tag :user_id, "V péči"
+        = select_tag :user_id, options_for_select(@accords.pluck(:user_id).uniq.map{|a| [User.find_by_id(a).try(:all_name),a]}, params[:user_id]), {include_blank: true, class: "form-control input-sm",data: {"live-search": true}, multiple: true }
+      .form-group
+        = label_tag :end_created_at, "Přijato do"
+        = text_field_tag :end_created_at, params[:end_created_at], class: "datapicker form-control input-sm"
+      .form-group
+        = label_tag :client_personal_identification_number, "Rodné číslo klienta"
+        = text_field_tag :client_personal_identification_number, params[:client_personal_identification_number], class: "form-control input-sm"
+    .col-xl-2 
+      .form-group
+        = label_tag :date_to_terrain_start, "Posláno do terénu od"
+        = text_field_tag :date_to_terrain_start, params[:date_to_terrain_start], class: "form-control input-sm datapicker"
+      .form-group
+        = label_tag :date_end_terrain_start, "Vráceno z terénu od  "
+        = text_field_tag :date_end_terrain_start, params[:date_end_terrain_start], class: "form-control input-sm datapicker"
+      .form-group
+        = label_tag :agent_id, "Agent"
+        = select_tag :agent_id,  options_for_select(['bez agenta'] + @accord_for_filter.pluck(:agent_id).uniq.map{|a| [User.find_by_id(a).try(:all_name),a]}, params[:agent_id]), { class: "form-control input-sm",data: {"live-search": true}, multiple: true }
+      .form-group
+        = label_tag :client_name, "Jméno klienta"
+        = text_field_tag :client_name, params[:client_name],class: "form-control input-sm"
+    .col-xl-2
+      .form-group
+        = label_tag :date_to_terrain_end, "Posláno do terénu do"
+        = text_field_tag :date_to_terrain_end, params[:date_to_terrain_end], class: "form-control input-sm datapicker"
+      .form-group
+        = label_tag :date_end_terrain_end, "Vráceno z terénu do"
+        = text_field_tag :date_end_terrain_end, params[:date_end_terrain_end], class: "form-control input-sm datapicker"
+      .form-group
+        = label_tag :superior_id, "Přímý nadřízený agenta"
+        = select_tag :superior_id, options_for_select(User.where(id: Accord.pluck(:agent_id)).pluck(:superior_id).uniq.map{|a| [User.find_by_id(a).try(:all_name),a]}, params[:superior_id]), {include_blank: true, class: "form-control input-sm",data: {"live-search": true}, multiple: true}
+      .form-group
+        = label_tag :client_last_name, "Příjmení  klienta"
+        = text_field_tag :client_last_name, params[:client_last_name], class: "form-control input-sm"
+    .col-xl-2
+      .form-group
+        = label_tag :agent_in_terrain, "V terénu zpracovává"
+        = select_tag :agent_in_terrain, options_for_select( User.manager.map{|a| [a.all_name, a.id]}, params[:agent_in_terrain]) ,{include_blank: true, class: "form-control input-sm", data: {"live-search": true}, multiple: true}
+      .form-group
+        = label_tag :realty_type, "Typ nemovitosti"
+        = select_tag :realty_type, options_for_select(RealtyType.select([:id,:name]).map{|a| [a.name,a.id]}, params[:realty_type]), {include_blank: true, class: "form-control input-sm",data: {"live-search": true} ,multiple: true}
+      .form-group
+        = label_tag :realty_adress_street, "Ulice nemovitosti"
+        = text_field_tag :realty_adress_street, params[:realty_adress_street], class: "form-control input-sm"
+      .form-group
+        = label_tag :realty_adress_village, "Obec nemovitosti"
+        = text_field_tag :realty_adress_village, params[:realty_adress_village], class: "form-control input-sm"
+      .form-group.float-right
+        = submit_tag "Vyhledat"
+        = submit_tag "PDF"

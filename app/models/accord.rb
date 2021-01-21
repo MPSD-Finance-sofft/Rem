@@ -174,6 +174,13 @@ class Accord < ApplicationRecord
   def self.agent_id(agent_id)
     where(agent_id: agent_id.map{|a| a == 'bez agenta' ? nil : a})
   end
+
+  def self.contract_without_sales_contract(test)
+    contract =  Accord.contract.pluck(:id)
+    contract_with_sales_contract = Accord.with_sales_contract.pluck(:id)
+    Accord.where(id: contract.reject{|x| contract_with_sales_contract.include?(x)})
+  end
+
   scope :automatic_add_energy, -> {where(automatik_add_energy: true)}
   scope :automatic_svj, -> {where(automatic_svj: true)}
 	scope :subordinates_accords, -> (user) {where(agent_id: [User.where(superior_id: user.id).pluck(:id)])}
