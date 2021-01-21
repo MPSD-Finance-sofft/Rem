@@ -14,16 +14,19 @@ class ReportsController < ApplicationController
 	end
 
 	def users_jobs
+    return redirect_to root_path, alert: "Nemáte potřebná oprávnění" unless current_user.admin?
 		@users = User.admin_and_user
 	end
 
 
   def users_jobs_for_user
+    return redirect_to root_path, alert: "Nemáte potřebná oprávnění" unless current_user.admin?
     @user = User.find_by_id (params[:user_id])
     @report = Report::users_job_actity(@user, params[:date_from],params[:date_to])
   end
 
   def users_changes
+    return redirect_to root_path, alert: "Nemáte potřebná oprávnění" unless current_user.admin?
     @versions = PaperTrail::Version.where(item_type: "User").where(event: "update").order(created_at: :desc)
     @versions = @versions + PaperTrail::Version.where(item_type: "Address").where(item_id: Address.joins(:user_address).pluck("address_id")).where(event: "update").where(whodunnit: User.manager_and_agents_and_tipster.pluck(:id))
     @versions = @versions + PaperTrail::Version.where(item_type: "Mobile").where(item_id: Mobile.joins(:client_mobiles).pluck("mobile_id")).where(event: "update").where(whodunnit: User.manager_and_agents_and_tipster.pluck(:id))
