@@ -11,7 +11,7 @@
           th Změny
         - @versions.each do |version|
           - user = User.where(id: version.whodunnit).last
-          - if !user.nil? && !user.admin? && !user.user?
+          - if !user.nil? && !user.admin? && !user.user? && !version.object_changes.nil?
             tr
               td = version.created_at.strftime('%d.%m.%Y %T')
               td = version.id
@@ -19,15 +19,20 @@
               td
                 - version.changeset.each do |change|
                   - unless change.last.first.blank? && change.last.last.blank?
-                    =change.first
+                    b
+                      =change.first
                     |  
                     - if change.last.first.blank? 
-                      | nil 
+                      span.text-danger
+                        | nil 
                     else
-                      = change.last.first
+                      span.text-danger
+                        = change.last.first
                     |  
-                    - if change.last.last.blank? 
-                      | nil  
+                    - if change.last.last.blank?
+                      span.text-success
+                        | nil  
                     else
-                      = change.last.last
+                      span.text-success
+                        = change.last.last
                     br
