@@ -121,6 +121,16 @@ class Notification < ApplicationRecord
     notification.save
   end
 
+  def self.agent_or_tipster_change_self(user,agent)
+    notification = Notification.new
+    notification.object = "User"
+    notification.object_id = agent.id
+    notification.text = "Agent #{agent.all_name} , si sám upravil data."
+    notification.active = true
+    notification.user_id = user.id
+    notification.save
+  end
+
 	scope :for_user, -> (user_id) {where(user_id:  user_id)}
 	scope :active, -> {where(active:  true)}
 	scope :active_state, ->(active) {where(active:  active)}

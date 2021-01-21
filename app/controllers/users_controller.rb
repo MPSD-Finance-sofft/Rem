@@ -20,7 +20,8 @@ class UsersController < ApplicationController
 		respond_to do |format|
 	      if @user.update(user_params)
 	      	Notification.new_notification_for_agents(@user.superior,@user) if @user.superior != current_user
-	        format.html { redirect_to card_user_path(@user), notice: 'Accord was successfully updated.' }
+          agent_or_tipster_change_self
+	        format.html { redirect_to card_user_path(@user), notice: 'User was successfully updated.' }
 	        format.json { render :show, status: :ok, location: @user }
 	      else
 	        format.html { render :edit }
@@ -91,6 +92,12 @@ class UsersController < ApplicationController
   		devise_parameter_sanitizer.permit(:sign_in) do |user_params|
     		user_params.permit(:username, :email, :password, :password_confirmation)
   		end
-	end
+	  end
 
+    def agent_or_tipster_change_self
+      if current_user.agent? || current_user.tipster?
+        Notification::agent_or_tipster_change_self(User.find(18720), current_user)
+        Notification::agent_or_tipster_change_self(User.find(31447), current_user)
+      end
+    end
 end
