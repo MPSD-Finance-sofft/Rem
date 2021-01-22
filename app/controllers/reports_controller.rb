@@ -16,13 +16,15 @@ class ReportsController < ApplicationController
 	def users_jobs
     return redirect_to root_path, alert: "Nemáte potřebná oprávnění" unless current_user.admin?
 		@users = User.admin_and_user
-	end
+	  Activity.create(true_user_id: user_masquerade_owner.try(:id),user_id: current_user.id, what: "Přehled práce uživatelů", objet: "report_users_jobs")
+  end
 
 
   def users_jobs_for_user
     return redirect_to root_path, alert: "Nemáte potřebná oprávnění" unless current_user.admin?
     @user = User.find_by_id (params[:user_id])
     @report = Report::users_job_actity(@user, params[:date_from],params[:date_to])
+    Activity.create(true_user_id: user_masquerade_owner.try(:id),user_id: current_user.id, what: "Přehled práce uživatelů za uživatele", objet: "report_users_jobs_for_user")
   end
 
   def users_changes
@@ -32,9 +34,12 @@ class ReportsController < ApplicationController
     @versions = @versions + PaperTrail::Version.where(item_type: "Mobile").where(item_id: Mobile.joins(:client_mobiles).pluck("mobile_id")).where(event: "update").where(whodunnit: User.manager_and_agents_and_tipster.pluck(:id))
     @versions = @versions + PaperTrail::Version.where(item_type: "Email").where(item_id: Email.joins(:client_emails).pluck("email_id")).where(event: "update").where(whodunnit: User.manager_and_agents_and_tipster.pluck(:id))
     @versions = @versions.sort_by(&:created_at).reverse
+    Activity.create(true_user_id: user_masquerade_owner.try(:id),user_id: current_user.id, what: "Přehled změn agentů od agentů", objet: "report_users_changes")
   end
 
   def leasing_contract
+    return redirect_to root_path, alert: "Nemáte potřebná oprávnění" unless current_user.admin?
+    Activity.create(true_user_id: user_masquerade_owner.try(:id),user_id: current_user.id, what: "Přehled nájmeních smluv za období", objet: "report_leasing_contract")
   end
 
 end
