@@ -12,15 +12,15 @@ module Reports::LeasingContracts
   end
 
   def count_leasing_contract_from_period(from, to )
-    LeasingContract.where.not(accord_id: sales_contract_from_period(from, to)).where("rent_from >= ? AND rent_to >= ?",from, to).count
+    LeasingContract.where.not(accord_id: sales_contract_from_period(from, to)).where("rent_from <= ? AND rent_from >= ? AND rent_to >= ?",to, from, to).count
   end
 
   def sum_purchace_price_leasing_contract_from_period(from, to)
-    LeasingContract.where.not(accord_id: sales_contract_from_period(from, to)).where("rent_from >= ? AND rent_to >= ?",from, to).joins(:accord).sum(:purchase_price)
+    LeasingContract.where.not(accord_id: sales_contract_from_period(from, to)).where("rent_from <= ? AND rent_from >= ? AND rent_to >= ? ",to, from, to).joins(:accord).sum(:purchase_price)
   end
 
   def sum_monthly_rent_leasing_contract_from_period(from, to)
-    LeasingContract.where.not(accord_id: sales_contract_from_period(from, to)).where("rent_from >= ? AND rent_to >= ?",from, to).sum(:monthly_rent)
+    LeasingContract.where.not(accord_id: sales_contract_from_period(from, to)).where("rent_from <= ? AND rent_from >= ? AND rent_to >= ?",to, from, to).sum(:monthly_rent)
   end 
 
   def sum_payments_rent_leasing_contract_from_period(from, to)
