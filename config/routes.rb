@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       get :users_jobs
       get :users_jobs_for_user
       get :users_changes
+      get :leasing_contract
     end
   end
   resources :revision_types

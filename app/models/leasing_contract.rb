@@ -3,6 +3,7 @@ class LeasingContract < ApplicationRecord
 	include LeasingContractsEnum
 	include LeasingContract::RepaymentCalendar
 	include RemoveWhiteSpiceFromNumberInput::LeasingContract
+  extend Reports::LeasingContracts
 
 	has_many :payments, -> {order 'payment_date asc'}, :dependent => :destroy
 	has_many :repayments, -> {order 'repayment_date asc'},  :dependent => :destroy

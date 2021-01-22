@@ -1,0 +1,26 @@
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    h6.m-0.font-weight-bold.text-primary class="d-block card-header py-3"
+      | Přehled nájmů
+    .card-body
+      table.table
+        tr
+          th Měsíc
+          th Rok
+          th Počet vlastněných nemovitostí 
+          th Kupní cena vlastněných nemovitostí
+          th Počet pronajímaných nemovitostí
+          th Kupní cena pronajímaných nemovitostí
+          th Výše předepsaných nájmů
+          th Došlé úhrady
+        - LeasingContract.accords_by_month.each do |date|
+          tr
+            td = date.first.month
+            td = date.first.year
+            td = LeasingContract::count_purchace_price_for_period(date.first, date.first + 1.month)
+            td = LeasingContract::sum_purchace_price_for_period(date.first, date.first + 1.month)
+            td = LeasingContract::count_leasing_contract_from_period(date.first, date.first + 1.month)
+            td = LeasingContract::sum_purchace_price_leasing_contract_from_period(date.first, date.first + 1.month)
+            td = LeasingContract::sum_monthly_rent_leasing_contract_from_period(date.first, date.first + 1.month)
+            td = LeasingContract::sum_payments_rent_leasing_contract_from_period(date.first, date.first + 1.month)
+           

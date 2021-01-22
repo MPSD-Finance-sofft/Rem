@@ -34,4 +34,7 @@ class ReportsController < ApplicationController
     @versions = @versions.sort_by(&:created_at).reverse
   end
 
+  def leasing_contract
+  end
+
 end
