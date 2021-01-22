@@ -38,12 +38,21 @@
           th Výše předepsaných nájmů
           th Došlé úhrady
         - LeasingContract.accords_by_year.each do |date|
-          tr
-            td.text-nowrap.text-right = date.first.year
-            td.text-nowrap.text-right = LeasingContract::count_purchace_price_for_period("1.11.2016".to_date, date.first + 1.year)
-            td.text-nowrap.text-right = LeasingContract::sum_purchace_price_for_period("1.11.2016".to_date, date.first + 1.year)
-            td.text-nowrap.text-right = LeasingContract::count_leasing_contract_from_period("1.11.2016".to_date, date.first + 1.year)
-            td.text-nowrap.text-right = LeasingContract::sum_purchace_price_leasing_contract_from_period("1.11.2016".to_date, date.first + 1.year)
-            td.text-nowrap.text-right = LeasingContract::sum_monthly_rent_leasing_contract_from_period("1.11.2016".to_date, date.first + 1.year)
-            td.text-nowrap.text-right = LeasingContract::sum_payments_rent_leasing_contract_from_period(date.first, date.first + 1.year)
+          - if date.first.year != Date.today.year
+            tr
+              td.text-nowrap.text-right = date.first.year
+              td.text-nowrap.text-right = LeasingContract::count_purchace_price_for_period("1.1.2016".to_date, date.first + 1.year)
+              td.text-nowrap.text-right = LeasingContract::sum_purchace_price_for_period("1.1.2016".to_date, date.first + 1.year)
+              td.text-nowrap.text-right = LeasingContract::count_leasing_contract_from_period("1.1.2016".to_date, date.first + 1.year)
+              td.text-nowrap.text-right = LeasingContract::sum_purchace_price_leasing_contract_from_period("1.1.2016".to_date, date.first + 1.year)
+              td.text-nowrap.text-right = LeasingContract::sum_monthly_rent_leasing_contract_from_period("1.1.2016".to_date, date.first + 1.year)
+              td.text-nowrap.text-right = LeasingContract::sum_payments_rent_leasing_contract_from_period(date.first, date.first + 1.year)
+          - else
+              td.text-nowrap.text-right Dnes
+              td.text-nowrap.text-right = LeasingContract::count_purchace_price_for_period("1.1.2016".to_date, Date.today)
+              td.text-nowrap.text-right = LeasingContract::sum_purchace_price_for_period("1.1.2016".to_date, Date.today)
+              td.text-nowrap.text-right = LeasingContract::count_leasing_contract_from_period("1.1.2016".to_date, Date.today)
+              td.text-nowrap.text-right = LeasingContract::sum_purchace_price_leasing_contract_from_period("1.1.2016".to_date, Date.today)
+              td.text-nowrap.text-right = LeasingContract::sum_monthly_rent_leasing_contract_from_period("1.1.2016".to_date, Date.today)
+              td.text-nowrap.text-right = LeasingContract::sum_payments_rent_leasing_contract_from_period(date.first, Date.today)
            
