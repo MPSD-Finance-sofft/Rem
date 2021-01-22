@@ -17,10 +17,10 @@
           tr
             td = date.first.month
             td = date.first.year
-            td = LeasingContract::count_purchace_price_for_period(date.first, date.first + 1.month)
-            td = LeasingContract::sum_purchace_price_for_period(date.first, date.first + 1.month)
-            td = LeasingContract::count_leasing_contract_from_period(date.first, date.first + 1.month)
-            td = LeasingContract::sum_purchace_price_leasing_contract_from_period(date.first, date.first + 1.month)
-            td = LeasingContract::sum_monthly_rent_leasing_contract_from_period(date.first, date.first + 1.month)
+            td = LeasingContract::count_purchace_price_for_period("1.11.2016".to_date, date.first + 1.month)
+            td = LeasingContract::sum_purchace_price_for_period("1.11.2016".to_date, date.first + 1.month)
+            td = LeasingContract::count_leasing_contract_from_period("1.11.2016".to_date, date.first + 1.month)
+            td = LeasingContract::sum_purchace_price_leasing_contract_from_period("1.11.2016".to_date, date.first + 1.month)
+            td = LeasingContract::sum_monthly_rent_leasing_contract_from_period("1.11.2016".to_date, date.first + 1.month)
             td = LeasingContract::sum_payments_rent_leasing_contract_from_period(date.first, date.first + 1.month)
            
