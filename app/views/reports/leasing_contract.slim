@@ -3,8 +3,8 @@
     h6.m-0.font-weight-bold.text-primary class="d-block card-header py-3"
       | Přehled nájmů
     .card-body
-      table.table
-        tr
+      table.table style="overflow: auto; display:inline-block"
+        tr.text-dark
           th Měsíc
           th Rok
           th Počet vlastněných nemovitostí 
@@ -15,12 +15,12 @@
           th Došlé úhrady
         - LeasingContract.accords_by_month.each do |date|
           tr
-            td = date.first.month
-            td = date.first.year
-            td = LeasingContract::count_purchace_price_for_period("1.11.2016".to_date, date.first + 1.month)
-            td = LeasingContract::sum_purchace_price_for_period("1.11.2016".to_date, date.first + 1.month)
-            td = LeasingContract::count_leasing_contract_from_period("1.11.2016".to_date, date.first + 1.month)
-            td = LeasingContract::sum_purchace_price_leasing_contract_from_period("1.11.2016".to_date, date.first + 1.month)
-            td = LeasingContract::sum_monthly_rent_leasing_contract_from_period("1.11.2016".to_date, date.first + 1.month)
-            td = LeasingContract::sum_payments_rent_leasing_contract_from_period(date.first, date.first + 1.month)
+            td.text-nowrap.text-right = date.first.month
+            td.text-nowrap.text-right = date.first.year
+            td.text-nowrap.text-right = LeasingContract::count_purchace_price_for_period("1.11.2016".to_date, date.first + 1.month)
+            td.text-nowrap.text-right = LeasingContract::sum_purchace_price_for_period("1.11.2016".to_date, date.first + 1.month)
+            td.text-nowrap.text-right = LeasingContract::count_leasing_contract_from_period("1.11.2016".to_date, date.first + 1.month)
+            td.text-nowrap.text-right = LeasingContract::sum_purchace_price_leasing_contract_from_period("1.11.2016".to_date, date.first + 1.month)
+            td.text-nowrap.text-right = LeasingContract::sum_monthly_rent_leasing_contract_from_period("1.11.2016".to_date, date.first + 1.month)
+            td.text-nowrap.text-right = LeasingContract::sum_payments_rent_leasing_contract_from_period(date.first, date.first + 1.month)
            
