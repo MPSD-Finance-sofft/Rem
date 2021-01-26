@@ -35,6 +35,10 @@ class Address < ApplicationRecord
 		zip.insert(3, " ") if !zip.blank? && zip.size >= 3
 	end
 
+  def zip=(values)
+    self[:zip] = values.gsub(/[[:space:]]/, '')
+  end
+
   def usseles?
     Address.reflections.values.map {|reflection| send(reflection.name)}.flatten.compact.blank?
   end
