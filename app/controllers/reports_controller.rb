@@ -31,8 +31,8 @@ class ReportsController < ApplicationController
     return redirect_to root_path, alert: "Nemáte potřebná oprávnění" unless current_user.admin?
     @versions = PaperTrail::Version.where(item_type: "User").where(event: "update").order(created_at: :desc)
     @versions = @versions + PaperTrail::Version.where(item_type: "Address").where(item_id: Address.joins(:user_address).pluck("address_id")).where(event: "update").where(whodunnit: User.manager_and_agents_and_tipster.pluck(:id))
-    @versions = @versions + PaperTrail::Version.where(item_type: "Mobile").where(item_id: Mobile.joins(:client_mobiles).pluck("mobile_id")).where(event: "update").where(whodunnit: User.manager_and_agents_and_tipster.pluck(:id))
-    @versions = @versions + PaperTrail::Version.where(item_type: "Email").where(item_id: Email.joins(:client_emails).pluck("email_id")).where(event: "update").where(whodunnit: User.manager_and_agents_and_tipster.pluck(:id))
+    @versions = @versions + PaperTrail::Version.where(item_type: "Mobile").where(item_id: Mobile.joins(:user_mobiles).pluck("mobile_id")).where(event: "update").where(whodunnit: User.manager_and_agents_and_tipster.pluck(:id))
+    @versions = @versions + PaperTrail::Version.where(item_type: "Email").where(item_id: Email.joins(:user_emails).pluck("email_id")).where(event: "update").where(whodunnit: User.manager_and_agents_and_tipster.pluck(:id))
     @versions = @versions.sort_by(&:created_at).reverse
     Activity.create(true_user_id: user_masquerade_owner.try(:id),user_id: current_user.id, what: "Přehled změn agentů od agentů", objet: "report_users_changes")
   end
