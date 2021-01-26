@@ -123,16 +123,26 @@
               | Activity
             a.collapse-item href="/events/all_list"
               | Události
-            a.collapse-item href="/reports/users_jobs"
-              | Práce uživatelů
-            a.collapse-item href="/reports/users_jobs_for_user"
-              | Práce uživatelů k datu
             a.collapse-item href="/scheduler_logs"
               | Přepočty
             a.collapse-item href="/addresses"
               | Adresy
+    - if current_user.admin?
+      li.nav-item
+        a.nav-link.collapsed aria-controls="headingOverviewUser" aria-expanded="true" data-target="#headingOverviewUser" data-toggle="collapse" href="#" data-remote="true"
+          i.fas.fa-book-dead
+          span Přehledy uživatelů
+        #headingOverviewUser.collapse aria-labelledby="headingOverviewUser" data-parent="#accordionFirstSidebar" 
+          .bg-white.py-2.collapse-inner.rounded
+            h6.collapse-header Přehledy práce uživatelů:
+            a.collapse-item href="/reports/users_jobs"
+              | Práce uživatelů
+            a.collapse-item href="/reports/users_jobs_for_user"
+              | Práce uživatelů k datu
             a.collapse-item href="/reports/users_changes"
-              | Změny agentů a tipařu od agentů
+              | Změny agentů 
+              br
+              |a tipařu od agentů
       /! Nav Item - Utilities Collapse Menu
       li.nav-item
         a.nav-link.collapsed aria-controls="collapseUtilities" aria-expanded="true" data-target="#collapseUtilities" data-toggle="collapse" href="#" data-remote="true"
