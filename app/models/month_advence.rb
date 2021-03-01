@@ -12,7 +12,7 @@ class MonthAdvence < ApplicationRecord
     e.save
   end
 
-  def self.chart_for_year(year= 2020)
+  def self.chart_for_year(year= 2021)
     month_advence = {}
     MonthAdvence.where("date_of_payment <= ? AND date_of_payment > ?", Date.new(year,12,31), Date.new(year,1,1)).select("created_at, month(date_of_payment) as month, year(date_of_payment) as year, sum(price) as amount").group(:month,:year).each do |a|
       month_advence.merge!("#{Date.new(a.year, a.month,1)}": a.amount)
