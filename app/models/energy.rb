@@ -13,7 +13,7 @@ class Energy < ApplicationRecord
     e.save
   end
 
-  def self.chart_for_year(year= 2020)
+  def self.chart_for_year(year= 2021)
     electricity = {}
     Eletricity.where("payment_day <= ? AND payment_day > ?", Date.new(year,12,31), Date.new(year,1,1)).select("created_at, month(payment_day) as month, year(payment_day) as year, sum(price) as amount").group(:month,:year).each do |a|
       electricity.merge!("#{Date.new(a.year, a.month,1)}": a.amount)
