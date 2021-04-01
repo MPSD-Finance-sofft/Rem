@@ -14,8 +14,8 @@ div.container-fluid
         		| Vytvoř faktury
     .card-body
     	p
-        	b 
-          		| Počet faktur: 
+        	b
+          		| Počet faktur:
           		= @invoices.size
 		table.table
 			tr
@@ -30,7 +30,7 @@ div.container-fluid
 				th Datum vyplaceni faktury
 				th
 			- @invoices.each do |invoice|
-				= form_for invoice, url: invoice_path(invoice), method: 'put' do |f|
+				= form_for invoice, url: invoice_path(invoice), method: :put do |f|
 					tr
 						td = link_to "pdf", invoice_path(id: invoice.id, format: :pdf)
 						td = invoice.period
