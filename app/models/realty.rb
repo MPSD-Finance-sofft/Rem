@@ -4,7 +4,7 @@ class Realty < ApplicationRecord
 	include RemoveWhiteSpiceFromNumberInput::Realty
 	validates_with RealtyValidator
 
-    has_many :accords_realty
+    has_many :accords_realty, :dependent => :destroy
     has_many :leasing_contract_realty
     has_many :sales_contract_realty
 
