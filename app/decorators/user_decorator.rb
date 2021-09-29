@@ -89,6 +89,10 @@ class UserDecorator < ApplicationDecorator
  		format_date object.agent_accords.joins(:terrains).last.try(:last_terrains).try(:date_to_terrain)
  	end
 
+  def last_date_lost_cooperation
+    format_date object.last_date_lost_cooperation
+  end
+
  	def agent_accords_signature_count
  		object.agent_accords_signature.count
  	end

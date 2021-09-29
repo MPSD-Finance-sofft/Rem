@@ -1,6 +1,7 @@
 class Cooperation < ApplicationRecord
 	belongs_to :or_request, class_name: "User", :dependent => :destroy
 	belongs_to :type_of_notice
+  belongs_to :agent, class_name: "User",  foreign_key: "agent_id"
 
 	validates :date_of_notice, :day_count, presence: true
 

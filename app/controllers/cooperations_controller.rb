@@ -4,7 +4,9 @@ class CooperationsController < ApplicationController
   # GET /cooperations
   # GET /cooperations.json
   def index
-    @cooperations = Cooperation.all
+    authorize Cooperation
+    agents_without_cooperation = User.agents.order(:can_sign_in).select{|a| !a.last_date_lost_cooperation}
+    @agents = User.agents.select{|a| a.last_date_lost_cooperation}.sort_by(&:last_date_lost_cooperation).reverse + agents_without_cooperation
   end
 
   # GET /cooperations/1

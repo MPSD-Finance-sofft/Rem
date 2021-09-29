@@ -134,6 +134,10 @@ class User < ApplicationRecord
 		Time.now - date_of_last_create_accord <= 60.day
 	end
 
+  def last_date_lost_cooperation
+    self.cooperations.last.try(:date_lost_cooperation)
+  end
+
 	def date_of_last_contract
 		self.agent_accords.state('contract').last.try(:date_of_signature)
 	end

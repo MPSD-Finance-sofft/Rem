@@ -1,0 +1,35 @@
+div.container-fluid
+  ol.breadcrumb
+    li.breadcrumb-item
+      b
+        |
+    li.breadcrumb-item
+      | Přehled spolupráce agentů
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary Přehled spolupráce agentů
+    .card-body
+      p
+          b
+            | Počet vyhledaných uživatelů:
+            = @agents.size
+      table.table
+        thead
+          tr
+            th Jméno
+            th Může se přihlásit
+            th Datum navázání spolupráce
+            th Datum ukončení spolupráce
+        tbody
+          -  @agents.each do |user|
+            - user = user.decorate
+            tr
+              td= link_to user.all_name, card_user_path(user)
+              td
+                - if user.can_login?
+                  i class="fa fa-unlock" style="color:green"
+                - else
+                  i class="fa fa-lock " style="color:red"
+              td= user.date_of_cooperation
+              td= user.last_date_lost_cooperation
