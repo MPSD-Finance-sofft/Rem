@@ -5,8 +5,10 @@ class CooperationsController < ApplicationController
   # GET /cooperations.json
   def index
     authorize Cooperation
-    agents_without_cooperation = User.agents.order(:can_sign_in).select{|a| !a.last_date_lost_cooperation}
-    @agents = User.agents.select{|a| a.last_date_lost_cooperation}.sort_by(&:last_date_lost_cooperation).reverse + agents_without_cooperation
+    agents_without_cooperation = User.agents.includes(:cooperations).order(:can_sign_in).select{|a| !a.last_date_lost_cooperation}
+    @agents = User.agents.includes(:cooperations).select{|a| a.last_date_lost_cooperation}.sort_by(&:last_date_lost_cooperation).reverse + agents_without_cooperation
+
+    @agents_with_cooperation = User.agents.includes(:cooperations).order(:can_sign_in).where("date_of_cooperation <= ?", "1.9.2021".to_date).select{|a| a.can_sign_in}
   end
 
   # GET /cooperations/1
