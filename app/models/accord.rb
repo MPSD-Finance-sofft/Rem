@@ -172,7 +172,7 @@ class Accord < ApplicationRecord
   end
 
   def self.agent_id(agent_id)
-    where(agent_id: agent_id.map{|a| a == 'bez agenta' ? nil : a})
+    where(agent_id: agent_id.map{|a| a == 'bez agenta' ? nil : a}.map{|a| a == 'jen agenti' ? User.all.pluck(:id) : a })
   end
 
   def self.contract_without_sales_contract(test)
