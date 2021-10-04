@@ -1,0 +1,36 @@
+table.table style="font-size: 55%; display:inline-block; border-collapse: collapse;"
+  thead
+    tr
+      th Role
+      th
+      th Datum spolupráce
+      th Username
+      th Agent
+      th Společnost agenta
+      th Nadřízený
+      th Datum poslední navedené žádosti
+      th Počet žádostí
+      th Počet smluv
+  tbody
+    - @users.each do |user|
+      tr
+        td =user.permission_to_s
+        td
+          - if user.can_login?
+            = link_to masquerade_path(user) do
+              i class="fa fa-unlock" style="color:green"
+          - else
+              i class="fa fa-lock " style="color:red"
+          =link_to edit_user_path(user) do
+            i class="fas fa-user-edit"
+          a href="mailto:#{user.first_email_to_s}"
+            i class="fas fa-at"
+        td = user.date_of_cooperation
+        td.font-weight-bold
+          = link_to user.username, card_user_path(user)
+        td = link_to user.all_name, card_user_path(user)
+        td.font-weight-bold=user.name_company
+        td.font-weight-bold=user.superior
+        td = user.date_of_last_create_accord
+        td = link_to user.count_accord, accords_path(agent_id: [user.id])
+        td = link_to user.count_contract, contracts_path(agent_id: [user.id])

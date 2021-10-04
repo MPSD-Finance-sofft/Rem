@@ -2,11 +2,19 @@ class UsersController < ApplicationController
 	before_action :set_user, only: [:card, :edit, :update, :changes]
 	
 	def index
+    request.format = 'pdf' if params[:commit] == 'PDF'
 		@users = policy_scope(User)
 		authorize @users
 		@filter_users = @users
 		@company = @filter_users.map{|a| [a.name_company,a.name_company]}.uniq
 		@users =  IndexFilter::IndexServices.new(@users,params).perform.decorate
+    respond_to do |format|
+      format.html
+      format.json
+      format.pdf do
+        render  pdf: "index",:encoding => 'UTF-8', :margin => { :top => 0, :bottom => 0, :left => 0, :right => 0}
+      end
+    end
 	end
 
 	def edit

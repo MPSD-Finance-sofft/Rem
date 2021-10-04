@@ -25,5 +25,11 @@
 					.form-group
 						= label_tag :company, "Společnost Agenta"
 						= select_tag :company, options_for_select(@company, params[:company]), {include_blank: true, class: "form-control input-sm",data: {"live-search": true}, multiple: true }
+				.col-xl-2
+					.form-group
+						= label_tag :can_sign_in, "Jen aktivní"
+						br
+						= check_box_tag :can_sign_in, params['can_sign_in'], params['can_sign_in']
 					.form-group.float-right
 						= submit_tag "Vyhledat"
+						= submit_tag "PDF"
