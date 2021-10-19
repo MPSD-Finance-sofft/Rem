@@ -5,7 +5,7 @@ class SalesContractsController < ApplicationController
   # GET /sales_contracts.json
   def index
     authorize SalesContract
-    @sales_contracts = SalesContract.order(date_of_sale_realty: :desc).decorate
+    @sales_contracts = SalesContract.order(date_of_receipt_of_payment: :desc).decorate
   end
 
   # GET /sales_contracts/1
