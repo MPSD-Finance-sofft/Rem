@@ -14,6 +14,7 @@
             th Může se přihlásit
             th Datum navázání spolupráce
             th Datum ukončení spolupráce
+            th Email
         tbody
           -  @agents_with_cooperation.each do |user|
             - user = user.decorate
@@ -50,6 +51,7 @@ div.container-fluid
             th Může se přihlásit
             th Datum navázání spolupráce
             th Datum ukončení spolupráce
+            th Email
         tbody
           -  @agents.each do |user|
             - user = user.decorate
@@ -62,3 +64,4 @@ div.container-fluid
                   i class="fa fa-lock " style="color:red"
               td= user.date_of_cooperation
               td= user.last_date_lost_cooperation
+              td= user.email
