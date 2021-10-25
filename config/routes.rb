@@ -112,6 +112,7 @@ Rails.application.routes.draw do
         patch :uploads
       end
     end
+    resources :agent_notes, only: [:new,:create, :destroy]
   end
   resources :accords do
     collection do

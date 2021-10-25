@@ -14,6 +14,7 @@ div.col-md-12
 	    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
 	      h6.m-0.font-weight-bold.text-primary Karta nadřízeného
 	    = render partial: "superior_card", locals:{superior: @superior}
+	= render partial: "agent_note" unless @agentNotes.blank?
 	= render partial: "ares" unless @ares.blank?
 	= render partial: "history_of_superiors", locals:{user: @user}
 	.col-xl-6.col-lg-6

@@ -30,6 +30,7 @@ class User < ApplicationRecord
 	has_many :terrains, class_name: "Terrain", foreign_key: "agent_id"
 	has_many :user_documents
 	has_many :ares, class_name: "Ares", foreign_key: "user_id"
+  has_many :agent_notes
 
 	accepts_nested_attributes_for :permission,  reject_if: :all_blank, allow_destroy: true
 	accepts_nested_attributes_for :user_mobile,  reject_if: :all_blank, allow_destroy: true
