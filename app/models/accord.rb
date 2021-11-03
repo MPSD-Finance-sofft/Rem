@@ -207,10 +207,10 @@ class Accord < ApplicationRecord
 	scope :superior_id, -> (superior_id) {joins(:agent).where("users.superior_id": superior_id)}
 	scope :realty_adress_street, -> (street) {joins(realty: :address).where("addresses.street LIKE ?", "%#{street}%")}
 	scope :realty_adress_village, -> (village) {joins(realty: :address).where("addresses.village LIKE ?","%#{village}%")}
-	scope :date_to_terrain_start, -> (date) {joins(:terrains).distinct.where("terrains.date_to_terrain > ?", date.to_date)}
-	scope :date_to_terrain_end, -> (date) {joins(:terrains).distinct.where("terrains.date_to_terrain < ?", date.to_date)}
-	scope :date_end_terrain_start, -> (date) {joins(:terrains).distinct.where("terrains.date_end_terrain > ?", date.to_date)}
-	scope :date_end_terrain_end, -> (date) {joins(:terrains).distinct.where("terrains.date_end_terrain < ?", date.to_date)}
+	scope :date_to_terrain_start, -> (date) {joins(:terrains).distinct.where("terrains.date_to_terrain >= ?", date.to_date)}
+	scope :date_to_terrain_end, -> (date) {joins(:terrains).distinct.where("terrains.date_to_terrain <= ?", date.to_date)}
+	scope :date_end_terrain_start, -> (date) {joins(:terrains).distinct.where("terrains.date_end_terrain >= ?", date.to_date)}
+	scope :date_end_terrain_end, -> (date) {joins(:terrains).distinct.where("terrains.date_end_terrain <= ?", date.to_date)}
 	scope :agent_in_terrain, -> (agent) {joins(:terrains).distinct.where("terrains.agent_id": agent)}
 	scope :accord_for_manager, -> (manager) {eager_load(:terrains).where("terrains.agent_id = ? OR accords.agent_id = ? OR accords.agent_id IN (?)", manager.id,manager.id,User.subordinates(manager).pluck(:id))}
 end
