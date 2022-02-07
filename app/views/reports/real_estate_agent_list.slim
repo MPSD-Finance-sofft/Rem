@@ -8,19 +8,16 @@
           th Oprávnění
           th
           th Agent
+          th OM
           th Má živnost
         - @users.each do |user|
           tr
             td =user.permission_to_s
             td
               - if user.can_login?
-                = link_to masquerade_path(user) do
                   i class="fa fa-unlock" style="color:green"
               - else
                   i class="fa fa-lock " style="color:red"
-              =link_to edit_user_path(user) do
-                i class="fas fa-user-edit"
-              a href="mailto:#{user.first_email_to_s}"
-                i class="fas fa-at"
-            td = link_to user.all_name, card_user_path(user)
+            td = user.all_name
+            td =user.superior
             td = check(user.ares.pluck(:nace_name).include?("Realitní zprostředkování"))

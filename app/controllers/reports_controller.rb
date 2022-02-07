@@ -1,4 +1,5 @@
 class ReportsController < ApplicationController
+  layout 'simple', only: :real_estate_agent_list
 
 	def agents
 		request.format = 'csv' if params[:commit] == 'CSV'
