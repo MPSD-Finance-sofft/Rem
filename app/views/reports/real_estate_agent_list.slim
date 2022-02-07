@@ -1,0 +1,26 @@
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    h6.m-0.font-weight-bold.text-primary class="d-block card-header py-3"
+      | Přehled agentů s živnostní realitní zprostředkování
+    .card-body
+      table.table style="overflow: auto; display:inline-block"
+        tr.text-dark
+          th Oprávnění
+          th
+          th Agent
+          th Má živnost
+        - @users.each do |user|
+          tr
+            td =user.permission_to_s
+            td
+              - if user.can_login?
+                = link_to masquerade_path(user) do
+                  i class="fa fa-unlock" style="color:green"
+              - else
+                  i class="fa fa-lock " style="color:red"
+              =link_to edit_user_path(user) do
+                i class="fas fa-user-edit"
+              a href="mailto:#{user.first_email_to_s}"
+                i class="fas fa-at"
+            td = link_to user.all_name, card_user_path(user)
+            td = check(user.ares.pluck(:nace_name).include?("Realitní zprostředkování"))

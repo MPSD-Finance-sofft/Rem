@@ -42,4 +42,10 @@ class ReportsController < ApplicationController
     Activity.create(true_user_id: user_masquerade_owner.try(:id),user_id: current_user.id, what: "Přehled nájmeních smluv za období", objet: "report_leasing_contract")
   end
 
+  def real_estate_agent_list
+    return redirect_to root_path, alert: "Nemáte potřebná oprávnění" unless current_user.admin?
+    @users = User.agents.includes(:ares).includes(:permission).includes(:email).order(can_sign_in: :desc).decorate
+    Activity.create(true_user_id: user_masquerade_owner.try(:id),user_id: current_user.id, what: "Přehled agentů s živnostní realitní zprostředkování", objet: "real_estate_agent_list")
+  end
+
 end
