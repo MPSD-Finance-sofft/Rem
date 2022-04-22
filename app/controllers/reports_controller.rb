@@ -49,4 +49,9 @@ class ReportsController < ApplicationController
     Activity.create(true_user_id: user_masquerade_owner.try(:id),user_id: current_user.id, what: "Přehled agentů s živnostní realitní zprostředkování", objet: "real_estate_agent_list")
   end
 
+  def created_contracts_from_agents
+     return redirect_to root_path, alert: "Nemáte potřebná oprávnění" if !current_user.user? && !current_user.admin?
+     @users = User.agents.includes(:agent_accords, :permission).order(can_sign_in: :desc).decorate
+     Activity.create(true_user_id: user_masquerade_owner.try(:id),user_id: current_user.id, what: "Přehled agentů počet navedených smluv a žádostí", objet: "created_contracts_from_agents")
+  end
 end

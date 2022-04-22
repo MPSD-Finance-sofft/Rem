@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       get :users_changes
       get :leasing_contract
       get :real_estate_agent_list
+      get :created_contracts_from_agents
     end
   end
   resources :revision_types
