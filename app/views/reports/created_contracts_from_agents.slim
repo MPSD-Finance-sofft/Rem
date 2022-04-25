@@ -1,7 +1,7 @@
 .col-xl-12.col-lg-12
   .card.shadow.mb-4
     h6.m-0.font-weight-bold.text-primary class="d-block card-header py-3"
-      | Počet naveneých smluv a žádostí od roku 2020
+      | Počet naveneých smluv a žádostí od roku 1.4.2020
     .card-body
       table.table style="overflow: auto; display:inline-block"
         tr.text-dark
@@ -9,10 +9,12 @@
           th
           th Agent
           th OM
+          th Jméno společnosti
+          th Datum narození
+          th Datum navázání spolupráce
+          th Datum navedení poslední žádosti
           th Navedených žádostí od 1.1.2020
-          th Navedených žádostí za celou dobu
           th Navedených smluv od 1.1.2020
-          th Navedených smluv za celou dobu
         - @users.each do |user|
           tr
             td =user.permission_to_s
@@ -23,7 +25,9 @@
                   i class="fa fa-lock " style="color:red"
             td = user.all_name
             td = user.superior
-            td = user.agent_accords.where("accords.created_at >= ?", "1.1.2020".to_date).count
-            td = user.agent_accords.count
-            td = user.agent_accords.where("accords.created_at >= ?", "1.1.2020".to_date).state('contract').count
-            td = user.count_contract
+            td = user.name_company
+            td = user.birthdate
+            td = user.date_of_cooperation
+            td = user.date_of_last_create_accord
+            td = user.agent_accords.where("accords.created_at >= ?", "1.4.2020".to_date).count
+            td = user.agent_accords.where("accords.created_at >= ?", "1.4.2020".to_date).state('contract').count
