@@ -30,4 +30,4 @@
             td = user.date_of_cooperation
             td = user.date_of_last_create_accord
             td = user.agent_accords.where("accords.created_at >= ?", "1.4.2020".to_date).count
-            td = user.agent_accords.where("accords.created_at >= ?", "1.4.2020".to_date).state('contract').count
+            td = user.agent_accords.where("accords.date_of_signature >= ?", "1.4.2020".to_date).state('contract').count
