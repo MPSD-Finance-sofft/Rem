@@ -23,6 +23,7 @@ div.container-fluid
             th Role
             th Zájemce
             th Společnost agenta
+            th Nadřízený
             th Datum vyvotření
             th Vytvořil
 
@@ -32,5 +33,6 @@ div.container-fluid
               td =user.permission_to_s
               td = link_to user.all_name, card_user_path(user)
               td.font-weight-bold=user.name_company
+              td = user.superior
               td = user.created_at
               td = user.creator
