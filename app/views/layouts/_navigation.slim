@@ -34,6 +34,10 @@
         a.nav-link href="/users" 
           i.fas.fa-fw.fa-user
           span Agenti  
+      - unless current_user.tipster?
+        a.nav-link href="/users/candidates"
+          i.fas.fa-fw.fa-user
+          span Zájemci
       a.nav-link href="/rewards" 
         i.fas.fa-fw.fa-receipt
         span Provize

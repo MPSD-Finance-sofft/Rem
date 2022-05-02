@@ -18,25 +18,16 @@ div.container-fluid
         thead
           tr
             th Role
-            th
-            th Username
-            th Agent
+            th Zájemce
             th Společnost agenta
+            th Datum vyvotření
+            th Vytvořil
+
         tbody
           - @users.each do |user|
             tr
               td =user.permission_to_s
-              td
-                - if user.can_login?
-                  = link_to masquerade_path(user) do
-                    i class="fa fa-unlock" style="color:green"
-                - else
-                    i class="fa fa-lock " style="color:red"
-                =link_to edit_user_path(user) do
-                  i class="fas fa-user-edit"
-                a href="mailto:#{user.first_email_to_s}"
-                  i class="fas fa-at"
-              td.font-weight-bold
-                = link_to user.username, card_user_path(user)
               td = link_to user.all_name, card_user_path(user)
               td.font-weight-bold=user.name_company
+              td = user.created_at
+              td = user.creator

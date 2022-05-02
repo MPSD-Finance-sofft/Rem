@@ -163,6 +163,10 @@ class User < ApplicationRecord
     end
   end
 
+  def creator
+    User.where(id: Version.where(event: 'create').where(item_type: 'User').where(item_id: self).first.whodunnit).first.try(:all_name)
+  end
+
 	def self.user_can_permision(user)
 		if user.agent? || user.manager?
 		  User.can_sign_in.subordinates(user).or(User.where(id: (user.id)))
