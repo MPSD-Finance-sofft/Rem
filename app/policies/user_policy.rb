@@ -30,7 +30,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def candidates?
-    user.admin? || user.user?
+    user.admin? || user.user? || user.manager?
   end
 
  	class Scope < Scope
