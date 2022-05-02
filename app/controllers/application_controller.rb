@@ -18,6 +18,10 @@ class ApplicationController < ActionController::Base
 				sign_out current_user 
 				redirect_to root_path, alert: "Nemáte potřebná oprávnění"
 			end
+      if current_user.candidate?
+        sign_out current_user
+        redirect_to root_path, alert: "Nemáte potřebná oprávnění"
+      end
 		end
 	end 
 	def set_raven_context

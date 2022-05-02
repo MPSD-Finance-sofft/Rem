@@ -103,6 +103,7 @@ Rails.application.routes.draw do
     collection do
       get :changes
       get :new_user
+      get :candidates
       post :create_user
     end
     member do

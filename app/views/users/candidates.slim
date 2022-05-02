@@ -1,0 +1,42 @@
+div.container-fluid
+  ol.breadcrumb
+    li.breadcrumb-item
+      b
+        | Zájemci
+    li.breadcrumb-item
+      | Přehled zájemců
+
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+    .card-body
+      p
+        b
+          | Počet zájemců:
+          = @users.size
+      table.table style="overflow: auto; display:inline-block"
+        thead
+          tr
+            th Role
+            th
+            th Username
+            th Agent
+            th Společnost agenta
+        tbody
+          - @users.each do |user|
+            tr
+              td =user.permission_to_s
+              td
+                - if user.can_login?
+                  = link_to masquerade_path(user) do
+                    i class="fa fa-unlock" style="color:green"
+                - else
+                    i class="fa fa-lock " style="color:red"
+                =link_to edit_user_path(user) do
+                  i class="fas fa-user-edit"
+                a href="mailto:#{user.first_email_to_s}"
+                  i class="fas fa-at"
+              td.font-weight-bold
+                = link_to user.username, card_user_path(user)
+              td = link_to user.all_name, card_user_path(user)
+              td.font-weight-bold=user.name_company

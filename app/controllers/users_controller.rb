@@ -17,6 +17,12 @@ class UsersController < ApplicationController
     end
 	end
 
+  def candidates
+    authorize current_user
+    @users = User.candidates.decorate
+    @company = @users.map{|a| [a.name_company,a.name_company]}.uniq
+  end
+
 	def edit
 		authorize @user
 		@user = @user.decorate
@@ -85,8 +91,7 @@ class UsersController < ApplicationController
     @user = current_user.decorate
   end
 
-
- 	private
+ private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])

@@ -74,6 +74,10 @@ class User < ApplicationRecord
     self.permission.try(:kind) == "tipster" 
   end
 
+  def candidate?
+    self.permission.try(:kind) == "candidate"
+  end
+
 	def can_login?
 		self.can_sign_in
 	end
@@ -205,6 +209,7 @@ class User < ApplicationRecord
 	scope :subordinates_id, -> (user_id) {where(superior_id: user_id)}
 	scope :permission_fo_user, -> (permission) {joins(:permission).where('permissions.kind': permission)}
 	scope :agents,   ->{ joins(:permission).where('permissions.kind': 'agent') }
+  scope :candidates,   ->{ joins(:permission).where('permissions.kind': 'candidate') }
 	scope :permission_user,   ->{ joins(:permission).where('permissions.kind': 'user') }
 	scope :manager_and_user,   ->{ joins(:permission).where('permissions.kind': ['manager','user']) }
 	scope :admin_and_user,   ->{ joins(:permission).where('permissions.kind': ['admin','user']) }
