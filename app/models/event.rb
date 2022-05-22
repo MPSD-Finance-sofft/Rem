@@ -16,7 +16,7 @@ class Event < ApplicationRecord
     def self.create_birthday
       User.can_sign_in.manager_and_agents_and_tipster.where("birthdate IS NOT NULL").each do |user|
         date = Date.new(2022, user.birthdate.month, user.birthdate.day)
-        e = Event.new(user_id: 1, title: "Narozeniny", creator_id: 1, creator_id: user.id, start: date, end: date, text: "Narozeniny #{user.all_name}", color: "#791a3e")
+        e = Event.new(user_id: 18720, title: "Narozeniny", creator_id: 1, creator_id: user.id, start: date, end: date, text: "Narozeniny #{user.all_name}", color: "#f5f542")
         e.save
       end
     end
