@@ -1,0 +1,23 @@
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    h6.m-0.font-weight-bold.text-primary class="d-block card-header py-3"
+      | Přehled narozenin uživatelů
+    .card-body
+      table.table style="overflow: auto; display:inline-block"
+        tr.text-dark
+          th Oprávnění
+          th
+          th Agent
+          th OM
+          th Narozeniny
+        - @users.each do |user|
+          tr
+            td =user.permission_to_s
+            td
+              - if user.can_login?
+                  i class="fa fa-unlock" style="color:green"
+              - else
+                  i class="fa fa-lock " style="color:red"
+            td = user.all_name
+            td = user.superior
+            td = user.birthdate

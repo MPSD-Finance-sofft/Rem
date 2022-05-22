@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       get :leasing_contract
       get :real_estate_agent_list
       get :created_contracts_from_agents
+      get :birthday
     end
   end
   resources :revision_types

@@ -60,7 +60,7 @@ class UsersController < ApplicationController
  		@superior = @user.try(:superior).try(:decorate)
  		@user = @user.decorate
  		@ares = @user.ares
-    @agentNotes = @user.agent_notes.order(created_at: :desc).decorate if current_user.user_or_admin?
+    @agentNotes = @user.agent_notes.order(created_at: :desc).decorate if current_user.user_or_manager?
  		respond_to do |format|
 	        format.html {Activity.create(true_user_id: user_masquerade_owner.try(:id), user_id: current_user.id, what: "Zobrazení uživatele login: #{@user.username}", objet: "User", object_id: @user.id)}
 	        format.json {@user}

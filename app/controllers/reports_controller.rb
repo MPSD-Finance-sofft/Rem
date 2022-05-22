@@ -54,4 +54,9 @@ class ReportsController < ApplicationController
      @users = User.agents.includes(:agent_accords, :permission).order(can_sign_in: :desc).decorate
      Activity.create(true_user_id: user_masquerade_owner.try(:id),user_id: current_user.id, what: "Přehled agentů počet navedených smluv a žádostí", objet: "created_contracts_from_agents")
   end
+
+  def birthday
+    return redirect_to root_path, alert: "Nemáte potřebná oprávnění" if !current_user.admin?
+    @users = User.can_sign_in.manager_and_agents_and_tipster.order("extract(month from birthdate) ASC").order("extract(month from birthdate) ASC").decorate
+  end
 end

@@ -12,6 +12,14 @@ class Event < ApplicationRecord
   	def event_text_with_accord(accord_id)
   		#self.title = self.title + "<a href='/accords/#{accord_id}'>Žádost</a>"
   	end
+
+    def self.create_birthday
+      User.can_sign_in.manager_and_agents_and_tipster.where("birthdate IS NOT NULL").each do |user|
+        date = Date.new(2022, user.birthdate.month, user.birthdate.day)
+        e = Event.new(user_id: 1, title: "Narozeniny", creator_id: 1, creator_id: user.id, start: date, end: date, text: "Narozeniny #{user.all_name}", color: "#791a3e")
+        e.save
+      end
+    end
 	scope :for_user, -> (user_id) {where(user_id:  user_id)} 
   scope :subordinates_events, -> (user) {where(user_id: [User.where(superior_id: user.id).pluck(:id)])}
   scope :done, -> (done) {where(done:  done)} 
