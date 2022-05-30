@@ -4,7 +4,7 @@ class BoardsController < ApplicationController
   # GET /boards
   # GET /boards.json
   def index
-    @boards = Board.all.decorate
+    @boards = Board.order(date: :desc).decorate
   end
 
   # GET /boards/1
