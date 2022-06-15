@@ -1,6 +1,6 @@
 threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 }
 threads threads_count, threads_count
-
+daemonize true
 # Specifies the `environment` that Puma will run in.
 # Defaults to development
 rails_env = ENV.fetch("RAILS_ENV") { "development" }
