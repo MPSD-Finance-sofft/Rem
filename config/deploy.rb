@@ -1,5 +1,4 @@
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.11.1"
 
 set :application, "rem"
 set :repo_url, "ssh://git.sitd.cz/opt/git_repos/echo/rem.git"
@@ -36,8 +35,6 @@ namespace :puma do
       execute "mkdir #{shared_path}/tmp/pids -p"
     end
   end
-
-  before :start, :make_dirs
 end
 
 namespace :deploy do

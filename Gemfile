@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.1'
+ruby '2.6.5'
 
 gem 'rails', '~> 5.2.2'
 #gem 'sqlite3', '~> 1.3.6'
@@ -60,6 +60,7 @@ group :development do
   gem 'capistrano-rails', require: false
   gem 'capistrano-bundler', require: false
   gem 'capistrano-rake', require: false
+  gem 'capistrano-rbenv', github: 'capistrano/rbenv', require: false
 end
 
 group :assets do
