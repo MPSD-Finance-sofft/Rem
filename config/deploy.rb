@@ -50,17 +50,7 @@ namespace :deploy do
     end
   end
 
-  namespace :deploy do
-    desc 'Restart application'
-    task :restart do
-      on roles(:app) do
-        execute "#{fetch(:rbenv_prefix)} pumactl -P ~/app/current/tmp/pids/puma.pid phased-restart"
-      end
-    end
-  end
-
   before :starting,     :check_revision
-  after 'deploy:publishing', 'deploy:restart'
 end
 
 # ps aux | grep puma    # Get puma pid
