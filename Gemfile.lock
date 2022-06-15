@@ -226,6 +226,9 @@ GEM
       pry (~> 0.13)
     puma (5.6.4)
       nio4r (~> 2.0)
+    puma-daemon (0.1.2)
+      puma (>= 5.0)
+      rack
     pundit (2.2.0)
       activesupport (>= 3.0.0)
     racc (1.6.0)
@@ -380,7 +383,8 @@ DEPENDENCIES
   pry-rails
   pry-rescue
   pry-stack_explorer
-  puma
+  puma (~> 5)
+  puma-daemon
   pundit
   rails (~> 5.2.2)
   rails-erd
