@@ -19,7 +19,7 @@ if %w[production].member?(rails_env)
   state_path "#{shared_dir}/pids/puma.state"
 
   # Change to match your CPU core count
-  workers ENV.fetch("WEB_CONCURRENCY") { 2 }
+  workers ENV.fetch("WEB_CONCURRENCY") { 4 }
 
   preload_app!
 
