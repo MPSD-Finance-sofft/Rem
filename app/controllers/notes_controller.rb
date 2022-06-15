@@ -57,6 +57,14 @@ class NotesController < ApplicationController
     end
   end
 
+  def index
+    authorize Note
+    @notes_for_filter = Note.order(created_at: :desc).all.includes(:accord).includes(:user)
+    @notes_for_filter = IndexFilter::IndexServices.new(@notes_for_filter,params).perform
+    @notes = @notes_for_filter.limit(1000).decorate
+    Activity.create(true_user_id: user_masquerade_owner.try(:id), user_id: current_user.id, what: "Vyhledávání v poznámkách", objet: "NotesIndex")
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_note

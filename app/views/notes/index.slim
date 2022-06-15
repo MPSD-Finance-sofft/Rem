@@ -1,0 +1,29 @@
+.col-xl-12.col-lg-12
+  .card.shadow.mb-4
+    .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+      h6.m-0.font-weight-bold.text-primary Filter
+    .card-body
+      = render 'filter'
+  .card.shadow.mb-4
+    a href="#colapseNote" class="d-block card-header py-3" role="button"
+      h6.m-0.font-weight-bold.text-primary Poznámky
+    .card-body
+      p
+        b
+          | Počet vyhledaných poznámek:&nbsp;
+          = @notes.size
+      table.table style="overflow: auto; display:inline-block"
+        tr
+          th | Čas
+          th | Autor
+          th | Žádost
+          th | Text
+          th
+        - @notes.each do |note|
+          - text_color = note.text_color(current_user)
+          tr style="background-color:#{note.user_color(current_user)}" class="text-dark"
+            td style="color:#{text_color}" = note.created_at
+            td style="color:#{text_color}" = note.autor
+            td style="color:#{text_color}" = link_to "#{note.accord_id}(#{note.accord_state})", accord_path(note.accord_id)
+            td style="color:#{text_color}" = note.description.html_safe
+            td = link_to 'Remove', note, method: :delete, data: { confirm: 'Are you sure?' }

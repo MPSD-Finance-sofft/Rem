@@ -87,7 +87,7 @@ Rails.application.routes.draw do
   resources :distributors
   resources :energies
   resources :expert_evidences
-  resources :notes, except: [:index]
+  resources :notes
   resources :expense_types
   resources :expenses
   resources :commitment_types

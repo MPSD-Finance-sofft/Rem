@@ -2,7 +2,11 @@ class NoteDecorator < ApplicationDecorator
   delegate_all
 
   def autor
-  	User.find_by_id(object.user_id).try(:last_name)
+  	object.user.try(:last_name)
+  end
+
+  def accord_state
+    object.accord.decorate.state
   end
 
   def created_at

@@ -44,6 +44,10 @@
       a.nav-link href="/invoices" 
         i.fas.fa-fw.fa-receipt
         span Faktury
+      - if current_user.user_or_admin?
+        a.nav-link href="/notes"
+          i.fas.fa-fw.fa-receipt
+          span Vyhledávání v poznámkách
     - if current_user.user_or_admin? || current_user.manager?
       li.nav-item
         a.nav-link.collapsed aria-controls="headingExport" aria-expanded="true" data-target="#headingExport" data-toggle="collapse" href="#" data-remote="true"

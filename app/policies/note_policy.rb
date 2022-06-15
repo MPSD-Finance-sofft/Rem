@@ -1,10 +1,12 @@
 class NotePolicy < ApplicationPolicy
-        
+  def index?
+   user.admin? || user.user?
+  end
 
-        def destroy? 
-            return true if user.admin?
-            record.user_id == user.id
-        end
+  def destroy?
+      return true if user.admin?
+      record.user_id == user.id
+  end
 
 
 	class Scope 
