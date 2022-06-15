@@ -15,11 +15,16 @@ class Event < ApplicationRecord
 
     def self.create_birthday
       User.can_sign_in.manager_and_agents_and_tipster.where("birthdate IS NOT NULL").each do |user|
-        date = Date.new(2022, user.birthdate.month, user.birthdate.day)
-        e = Event.new(user_id: 18720, title: "Narozeniny", creator_id: 1, creator_id: user.id, start: date, end: date, text: "Narozeniny #{user.all_name}", color: "#f5f542")
-        e.save
+        date = Date.new(Date.today.year, user.birthdate.month, user.birthdate.day)
+
+        if Event.where(title: "Narozeniny").where(creator_id: user.id).where(start: date.beginning_of_day..date.end_of_day).blank?
+          Event.create(user_id: 1, title: "Narozeniny", creator_id: user.id, start: date, end: date, text: "Narozeniny #{user.all_name}", color: "#f5f542")
+          Event.create(user_id: 18720, title: "Narozeniny", creator_id: user.id, start: date, end: date, text: "Narozeniny #{user.all_name}", color: "#f5f542")
+          Event.create(user_id: 31523, title: "Narozeniny", creator_id: user.id, start: date, end: date, text: "Narozeniny #{user.all_name}", color: "#f5f542")
+        end
       end
     end
+
 	scope :for_user, -> (user_id) {where(user_id:  user_id)} 
   scope :subordinates_events, -> (user) {where(user_id: [User.where(superior_id: user.id).pluck(:id)])}
   scope :done, -> (done) {where(done:  done)} 

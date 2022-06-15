@@ -60,3 +60,7 @@ end
 every 24.hour do
   runner "Accord::automatic_add_month_advances", :environment => 'production'
 end
+
+every 24.hour do
+  runner "Event::create_birthday", :environment => 'production'
+end
