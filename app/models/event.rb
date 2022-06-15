@@ -9,7 +9,7 @@ class Event < ApplicationRecord
   belongs_to :user, class_name: "User"
 
   def all_day_event?
-    self.start == self.start.midnight && self.end == self.end.midnight ? true : false
+    self.start == self.start.midnight && self.end == self.end.midnight
   end
 
   def event_text_with_accord(accord_id)

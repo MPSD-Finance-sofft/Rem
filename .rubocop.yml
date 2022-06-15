@@ -1,0 +1,622 @@
+require:
+  - rubocop-performance
+  - rubocop-rails
+
+AllCops:
+  TargetRubyVersion: 3.0
+  UseCache: true
+  MaxFilesInCache: 5000
+  CacheRootDirectory: tmp/cache
+  NewCops: disable
+  Exclude:
+    - 'app/jobs/data_migration/*'
+    - 'bin/*'
+    - 'config/deploy/**/*'
+    - 'config/locales/pluralization/*'
+    - 'db/migrate/*'
+    - 'db/seeds/all.rb'
+    - 'db/schema.rb'
+    - 'lib/core_ext/active_job_logging.rb'
+    - 'lib/core_ext/elasticsearch.rb'
+    - 'lib/tasks/elasticsearch.rake'
+    - 'tmp/**/*'
+    - 'test/teaspoon_env.rb'
+    - 'vendor/**/*'
+
+Bundler/OrderedGems:
+  Enabled: false
+
+Layout/AccessModifierIndentation:
+  EnforcedStyle: outdent
+
+Layout/ArgumentAlignment:
+  Exclude:
+    - 'app/models/tax_return/vat_control_statement.rb'
+    - 'app/models/tax_return/moss.rb'
+    - 'app/models/tax_return/income_tax/epo_xml_builder.rb'
+    - 'app/models/tax_return/vat_return.rb'
+    - 'test/controllers/api/v2/expenses_controller_test.rb'
+    - 'test/controllers/api/v2/generators_controller_test.rb'
+    - 'test/controllers/api/v2/invoices_controller_test.rb'
+    - 'test/controllers/generators_controller_test.rb'
+    - 'test/controllers/recurring_generators_controller_test.rb'
+    - 'test/integration/general_stories_test.rb'
+    - 'test/models/reports/yearly_report_test.rb'
+
+Layout/CaseIndentation:
+  IndentOneStep: true
+
+Layout/EmptyLineAfterGuardClause:
+  Enabled: false
+
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: false
+
+Layout/EmptyLineBetweenDefs:
+  AllowAdjacentOneLineDefs: true
+
+Layout/ExtraSpacing:
+  Exclude:
+    - 'test/**/*'
+    - 'config/routes.rb'
+    - 'app/models/country.rb'
+    - 'app/models/tax_office.rb'
+    - 'app/models/subscription.rb'
+    - 'app/models/currency.rb'
+    - 'app/models/tax_return/control_statement.rb'
+
+Layout/FirstArrayElementIndentation:
+  EnforcedStyle: consistent
+
+Layout/HashAlignment:
+  Enabled: false
+  Exclude:
+    - 'test/models/expense_test.rb'
+    - 'test/models/invoice_test.rb'
+    - 'test/models/line_test.rb'
+
+Layout/LineLength:
+  Enabled: false
+
+Layout/MultilineHashBraceLayout:
+  Exclude:
+    - 'app/models/tax_return/vat_recapitulative_statement.rb'
+    - 'app/models/tax_return/income_tax/epo_xml_builder.rb'
+    - 'app/models/tax_return/vat_return.rb'
+
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+
+Layout/SpaceAroundOperators:
+  Enabled: false
+
+Layout/SpaceBeforeFirstArg:
+  Enabled: false
+
+Layout/SpaceInsideArrayLiteralBrackets:
+  Exclude:
+    - 'app/models/country.rb'
+
+Layout/SpaceInsidePercentLiteralDelimiters:
+  Enabled: false
+
+Lint/AmbiguousOperator:
+  Enabled: false
+
+Lint/AmbiguousOperatorPrecedence:
+  Enabled: false
+
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: false
+
+Lint/DuplicateBranch:
+  Enabled: false
+
+Lint/DuplicateElsifCondition:
+  Enabled: true
+
+Lint/DuplicateRegexpCharacterClassElement: # (new in 1.1)
+  Enabled: true
+
+Lint/EmptyBlock: # (new in 1.1)
+  Enabled: true
+
+Lint/MissingCopEnableDirective:
+  Enabled: false
+
+Lint/MixedRegexpCaptureTypes:
+  Enabled: false
+
+Lint/NonDeterministicRequireOrder:
+  Enabled: false
+
+Lint/NoReturnInBeginEndBlocks: # (new in 1.2)
+  Enabled: true
+
+Lint/RaiseException:
+  Enabled: true
+
+Lint/SendWithMixinArgument:
+  Enabled: false
+
+Lint/StructNewOverride:
+  Enabled: true
+
+Lint/ToEnumArguments: # (new in 1.1)
+  Enabled: true
+
+Lint/ToJSON:
+  Enabled: false
+
+Lint/UnmodifiedReduceAccumulator: # (new in 1.1)
+  Enabled: true
+
+Lint/SymbolConversion:
+  Enabled: true
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/BlockNesting:
+  Max: 4
+  Exclude:
+    - 'app/models/account.rb'
+
+Metrics/ClassLength:
+  Enabled: false
+
+Metrics/CyclomaticComplexity:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Metrics/ModuleLength:
+  Enabled: false
+
+Metrics/ParameterLists:
+  Enabled: false
+
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+Naming/AccessorMethodName:
+  Enabled: false
+
+Naming/MemoizedInstanceVariableName:
+  Enabled: false
+
+Naming/MethodName:
+  EnforcedStyle: snake_case
+
+Naming/MethodParameterName:
+  Enabled: false
+
+Naming/VariableNumber:
+  Enabled: false
+
+Performance/AncestorsInclude:
+  Enabled: false
+
+Performance/BigDecimalWithNumericArgument:
+  Enabled: false
+
+Performance/BlockGivenWithExplicitBlock:
+  Enabled: true
+
+Performance/Casecmp:
+  Enabled: false
+
+Performance/RangeInclude:
+  Enabled: false
+
+Performance/RedundantMerge:
+  Enabled: false
+
+Performance/RedundantSortBlock:
+  Enabled: true
+
+Performance/RedundantSplitRegexpArgument:
+  Enabled: true
+
+Performance/RedundantStringChars:
+  Enabled: false
+
+Performance/RegexpMatch:
+  Enabled: false
+
+Performance/ReverseFirst:
+  Enabled: true
+
+Performance/SortReverse:
+  Enabled: true
+
+Performance/Squeeze:
+  Enabled: true
+
+Performance/StringIdentifierArgument:
+  Enabled: false
+
+Performance/StringInclude:
+  Enabled: true
+
+Performance/StringReplacement:
+  Enabled: false
+
+Performance/Sum: # (new in 1.8)
+  Enabled: true
+
+Rails/ActiveRecordCallbacksOrder:
+  Enabled: false
+
+Rails/AfterCommitOverride: # (new in 2.8)
+  Enabled: true
+
+Rails/AssertNot:
+  Enabled: false
+
+Rails/Delegate:
+  Enabled: false
+
+Rails/DuplicateAssociation:
+  Enabled: true
+
+Rails/DurationArithmetic:
+  Enabled: true
+
+Rails/DynamicFindBy:
+  Whitelist:
+    - find_by_sql
+    - find_by_registration_no
+    - find_by_name
+    - find_by_email
+
+Rails/FindBy:
+  Enabled: false
+
+Rails/FindById:
+  Enabled: true
+
+Rails/HasManyOrHasOneDependent:
+  Exclude:
+    - 'app/models/account.rb'
+    - 'app/models/subject.rb'
+    - 'app/models/user.rb'
+
+Rails/I18nLocaleAssignment:
+  Enabled: false
+
+Rails/I18nLocaleTexts:
+  Enabled: true
+  Exclude:
+    - 'app/controllers/admin/*'
+    - 'app/models/admin_access_log.rb'
+    - 'app/mailers/external_mailer.rb'
+
+Rails/Inquiry:
+  Enabled: true
+
+Rails/InverseOf:
+  Enabled: false
+
+Rails/LexicallyScopedActionFilter:
+  Exclude:
+    - 'app/controllers/api/v2/base_controller.rb'
+    - 'app/controllers/api/v3/base_controller.rb'
+
+Rails/MailerName:
+  Enabled: true
+
+Rails/MatchRoute:
+  Enabled: false
+
+Rails/NegateInclude:
+  Enabled: false
+
+Rails/Output:
+  Exclude:
+    - 'db/seeds.rb'
+    - 'lib/scripts/**/*'
+
+Rails/OutputSafety:
+  Enabled: false
+
+Rails/Pluck:
+  Enabled: true
+
+Rails/PluckInWhere:
+  Enabled: true
+
+Rails/Present:
+  Exclude:
+    - 'lib/eet/**/*.rb'
+    - 'lib/gopay/**/*.rb'
+
+Rails/RakeEnvironment:
+  Enabled: false
+
+Rails/RenderInline:
+  Enabled: true
+
+Rails/RenderPlainText:
+  Enabled: true
+
+Rails/RequestReferer:
+  EnforcedStyle: referrer
+
+Rails/ShortI18n:
+  Enabled: true
+
+Rails/SkipsModelValidations:
+  Enabled: false
+
+Rails/SquishedSQLHeredocs: # (new in 2.8)
+  Enabled: true
+
+Rails/TimeZone:
+  Exclude:
+    - 'lib/tasks/locales.rake' # locales.rake is outside of rails env so Time.zone is nil
+
+Rails/UniqueValidationWithoutIndex:
+  Enabled: false
+
+Rails/UnknownEnv:
+  Environments:
+    - development
+    - test
+    - staging
+    - production
+
+Rails/WhereEquals:
+  Enabled: true
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Rails/Validation:
+  Enabled: false
+
+Rails/WhereExists:
+  Enabled: true
+
+Rails/WhereNot: # (new in 2.8)
+  Enabled: true
+
+Style/AccessorGrouping:
+  Enabled: false
+
+Style/Alias:
+  EnforcedStyle: prefer_alias_method
+
+Style/ArgumentsForwarding: # (new in 1.1)
+  Enabled: true
+
+Style/ArrayCoercion:
+  Enabled: true
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/BisectedAttrAccessor:
+  Enabled: false
+
+Style/CaseLikeIf:
+  Enabled: true
+
+Style/ClassVars:
+  Enabled: false
+
+Style/CollectionCompact: # (new in 1.2)
+  Enabled: true
+
+# Not default check - has to be enabled
+Style/DateTime:
+  Enabled: true
+
+Style/Documentation:
+  Enabled: false
+
+Style/DocumentDynamicEvalDefinition:
+  Enabled: false
+
+Style/DoubleNegation:
+  Enabled: false
+
+Style/EmptyCaseCondition:
+  Enabled: false
+
+Style/EmptyElse:
+  EnforcedStyle: empty
+
+Style/EmptyMethod:
+  Exclude:
+    - 'app/controllers/**/*'
+
+Style/ExpandPathArguments:
+  Enabled: false
+
+Style/ExplicitBlockArgument:
+  Enabled: false
+
+Style/ExponentialNotation:
+  Enabled: true
+
+Style/FileWrite:
+  Enabled: true
+
+Style/FormatStringToken:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: always_true
+
+Style/GuardClause:
+  Enabled: false
+
+Style/HashAsLastArrayItem:
+  Enabled: false
+
+# Not default check - has to be enabled
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashLikeCase:
+  Enabled: false
+
+# Not default check - has to be enabled
+Style/HashTransformKeys:
+  Enabled: true
+
+# Not default check - has to be enabled
+Style/HashTransformValues:
+  Enabled: true
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Style/IfUnlessModifierOfIfUnless:
+  Enabled: false
+
+Style/IfWithBooleanLiteralBranches:
+  Enabled: true
+
+Style/KeywordParametersOrder:
+  Enabled: false
+
+Style/MultilineIfModifier:
+  Exclude:
+    - 'app/models/exporter/expense_isdoc_builder.rb'
+    - 'app/models/exporter/isdoc_builder.rb'
+    - 'app/models/exporter/pohoda_builder.rb'
+    - 'app/models/invoice/search.rb'
+
+Style/MutableConstant:
+  Enabled: false
+
+Style/NegatedIf:
+  Enabled: false
+
+Style/NegatedIfElseCondition: # (new in 1.2)
+  Enabled: true
+
+Style/NestedModifier:
+  Enabled: false
+
+Style/Next:
+  Enabled: false
+
+Style/NumericLiterals:
+  Enabled: false
+
+Style/NumericPredicate:
+  Enabled: false
+
+Style/OptionalBooleanParameter:
+  Enabled: false
+
+Style/ParallelAssignment:
+  Enabled: false
+
+Style/PercentLiteralDelimiters:
+  Enabled: false
+
+Style/QuotedSymbols:
+  EnforcedStyle: double_quotes
+
+Style/RedundantArgument:
+  Enabled: false
+
+Style/RedundantAssignment:
+  Enabled: false
+
+Style/RedundantBegin:
+  Enabled: false
+
+Style/RedundantFetchBlock:
+  Enabled: true
+
+Style/RedundantFileExtensionInRequire:
+  Enabled: true
+
+Style/RedundantInitialize:
+  Enabled: true
+
+Style/RedundantRegexpCharacterClass:
+  Enabled: true
+
+Style/RedundantRegexpEscape:
+  Enabled: false
+
+Style/RedundantSelf:
+  Enabled: false
+
+Style/RedundantSelfAssignmentBranch:
+  Enabled: true
+
+Style/RedundantSort:
+  Enabled: false
+
+Style/RegexpLiteral:
+  AllowInnerSlashes: true
+
+Style/RescueModifier:
+  Enabled: false
+
+Style/RescueStandardError:
+  Enabled: false
+
+Style/SelectByRegexp:
+  Enabled: true
+
+Style/Semicolon:
+  Exclude:
+    - 'test/models/invoice_test.rb'
+
+Style/SignalException:
+  Enabled: false
+
+# TODO: Enable this check later
+Style/SlicingWithRange:
+  Enabled: false
+
+Style/StringChars:
+  Enabled: true
+
+Style/StringLiterals:
+  Enabled: false
+
+Style/SwapValues: # (new in 1.1)
+  Enabled: true
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/SymbolProc:
+  IgnoredMethods:
+    - respond_to
+    - respond_with
+    - define_method
+
+Style/TernaryParentheses:
+  Enabled: false
+
+Style/TrailingCommaInArrayLiteral:
+  Exclude:
+    - 'app/models/tax_office.rb'
+
+Style/TrailingCommaInHashLiteral:
+  Exclude:
+    - 'app/models/country.rb'
+
+Style/WordArray:
+  EnforcedStyle: percent
+  MinSize: 3
+  Exclude:
+    - app/models/country.rb
+    - app/models/currency.rb
+
+Style/ZeroLengthPredicate:
+  Enabled: false
