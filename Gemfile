@@ -5,7 +5,8 @@ ruby '2.6.5'
 
 gem 'rails', '~> 5.2.2'
 #gem 'sqlite3', '~> 1.3.6'
-gem 'puma'
+gem 'puma-daemon', require: false
+gem 'puma',  '~> 5'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
