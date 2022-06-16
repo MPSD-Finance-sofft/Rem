@@ -1,6 +1,7 @@
 class NoteLeasingContract < ApplicationRecord
 	include NoteEnum
 	belongs_to :leasing_contract, foreign_key: :accord_id, class_name: "LeasingContract"
+	belongs_to :user
 
 	before_save :ad_default_color
 	after_save :add_notification

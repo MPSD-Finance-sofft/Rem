@@ -1,7 +1,7 @@
 class Note < ApplicationRecord
 	include NoteEnum
 	belongs_to :accord
-  belongs_to :user
+  	belongs_to :user
 
 	before_save :ad_default_color
 	after_save :add_notification
