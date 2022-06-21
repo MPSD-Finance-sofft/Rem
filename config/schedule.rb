@@ -18,6 +18,8 @@ set :output, "#{path}/log/cron.log"
 set :bundle_command, 'bundle exec'
 job_type :runner, "cd :path && :bundle_command rails runner -e :environment ':task' :output"
 
+job_type :rbenv_runer, %Q{export PATH=/home/dep_rem/.rbenv/shims:/home/dep_rem/.rbenv/bin:/usr/bin:$PATH; eval "$(rbenv init -)"; \
+	cd :path && :bundle_command :runner_command -e :environment ':task' :output }
 # every 1.minute do
 # 	runner "User::nevim", :environment => 'production'
 # end
@@ -31,11 +33,11 @@ every 1.hour do
 end
 
 every 1.hour do
-	runner "LeasingContract::recalculation_payments", :environment => 'production'
+	rbenv_runer "LeasingContract::recalculation_payments", :environment => 'production'
 end
 
 every 1.hour do
-	runner "LeasingContract::change_state", :environment => 'production'
+	rbenv_runer "LeasingContract::change_state", :environment => 'production'
 end
 
 every 24.hour do
