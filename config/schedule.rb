@@ -25,11 +25,11 @@ job_type :rbenv_runer, %Q{export PATH=/home/dep_rem/.rbenv/shims:/home/dep_rem/.
 # end
 # Learn more: http://github.com/javan/whenever
 every 1.hour do
-	runner "Client::duplicate_clients", :environment => 'production'
+	rbenv_runer "Client::duplicate_clients", :environment => 'production'
 end
 
 every 1.hour do
-	runner "RepaymentPayment::remove_ussles", :environment => 'production'
+	rbenv_runer "RepaymentPayment::remove_ussles", :environment => 'production'
 end
 
 every 1.hour do
@@ -41,29 +41,29 @@ every 1.hour do
 end
 
 every 24.hour do
-	runner "Activity::delete_duplicate", :environment => 'production'
+	rbenv_runer "Activity::delete_duplicate", :environment => 'production'
 end
 
 every 24.hour do
-	runner "User::downalod_data_from_ares", :environment => 'production'
+	rbenv_runer "User::downalod_data_from_ares", :environment => 'production'
 end
 
 every 24.hour do
-	runner "User::company_name_from_ares", :environment => 'production'
+	rbenv_runer "User::company_name_from_ares", :environment => 'production'
 end
 
 every 24.hour do
-  runner "Address::synthesis_address", :environment => 'production'
+	rbenv_runer "Address::synthesis_address", :environment => 'production'
 end
 
 every 24.hour do
-  runner "Accord::automatic_add_energy_task", :environment => 'production'
+	rbenv_runer "Accord::automatic_add_energy_task", :environment => 'production'
 end
 
 every 24.hour do
-  runner "Accord::automatic_add_month_advances", :environment => 'production'
+	rbenv_runer "Accord::automatic_add_month_advances", :environment => 'production'
 end
 
 every 24.hour do
-  runner "Event::create_birthday", :environment => 'production'
+	rbenv_runer "Event::create_birthday", :environment => 'production'
 end
