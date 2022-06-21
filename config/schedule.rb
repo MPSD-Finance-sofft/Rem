@@ -16,8 +16,8 @@ set :chronic_options, hours24: true
 set :environment, ENV['RAILS_ENV']
 set :output, "#{path}/log/cron.log"
 set :bundle_command, 'bundle exec'
-job_type :runner, %Q{export PATH=/opt/rbenv/shims:/opt/rbenv/bin:/usr/bin:$PATH; eval "$(rbenv init -)"; \
-	cd :path && bundle exec rake :task --silent :output }
+job_type :runner, "cd :path && :bundle_command rails runner -e :environment ':task' :output"
+
 # every 1.minute do
 # 	runner "User::nevim", :environment => 'production'
 # end
