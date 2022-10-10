@@ -17,13 +17,17 @@ class Event < ApplicationRecord
   end
 
   def self.create_birthday
+    Event.where(title: "Narozeniny").delete_all
+
     User.can_sign_in.manager_and_agents_and_tipster.where.not(birthdate: nil).find_each do |user|
       date = Date.new(Date.today.year, user.birthdate.month, user.birthdate.day)
 
       if Event.where(title: "Narozeniny").where(creator_id: user.id).where(start: date.beginning_of_day..date.end_of_day).blank?
-        Event.create(user_id: 1, title: "Narozeniny", creator_id: user.id, start: date, end: date, text: "Narozeniny #{user.all_name}", color: "#f5f542")
-        Event.create(user_id: 18720, title: "Narozeniny", creator_id: user.id, start: date, end: date, text: "Narozeniny #{user.all_name}", color: "#f5f542")
-        Event.create(user_id: 31523, title: "Narozeniny", creator_id: user.id, start: date, end: date, text: "Narozeniny #{user.all_name}", color: "#f5f542")
+        Event.transaction do
+          Event.create(user_id: 18720, title: "Narozeniny", creator_id: user.id, start: date, end: date, text: "Narozeniny #{user.all_name}", color: "#f5f542")
+          Event.create(user_id: 31523, title: "Narozeniny", creator_id: user.id, start: date, end: date, text: "Narozeniny #{user.all_name}", color: "#f5f542")
+          Event.create(user_id: 1, title: "Narozeniny", creator_id: user.id, start: date, end: date, text: "Narozeniny #{user.all_name}", color: "#f5f542")
+        end
       end
     end
   end
