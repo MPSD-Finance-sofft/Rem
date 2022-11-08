@@ -53,7 +53,7 @@ every 24.hour do
 end
 
 every 24.hour do
-	rbenv_runer "Address::synthesis_address", :environment => 'production'
+	#rbenv_runer "Address::synthesis_address", :environment => 'production'
 end
 
 every 24.hour do
