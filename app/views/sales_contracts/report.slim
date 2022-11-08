@@ -37,7 +37,7 @@ div.container-fluid
 
 
         - @sales_contracts.each do |sales_contracts|
-          tr class="#{'bg-danger text-dark' if sales_contracts.realty.count > 1 && !sales_contracts.all_sales_prices_filled_in?}"
+          tr class="#{'bg-danger text-dark' if sales_contracts.accord.realty.count > 1 && !sales_contracts.all_sales_prices_filled_in?}"
             td = link_to sales_contracts.id, sales_contract_path(sales_contracts)
             td.text-right = sales_contracts.date_of_signature
             td.text-right = sales_contracts.date_of_sale_realty
