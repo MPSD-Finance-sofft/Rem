@@ -9,7 +9,7 @@ div.container-fluid
 .col-xl-12.col-lg-12
   .card.shadow.mb-4
     .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
-      h6.m-0.font-weight-bold.text-primary Filter 
+      h6.m-0.font-weight-bold.text-primary Filter
     .card-body
       = render 'filter'
 .col-xl-12.col-lg-12
@@ -20,9 +20,11 @@ div.container-fluid
         = link_to 'Nová žádost', new_accord_path
     .card-body
       p
-        b 
-          | Počet vyhledaných žádostí: 
+        b
+          | Počet vyhledaných žádostí:
           = @accords.size
+      .digg_pagination.col-xl-12.col-lg-12
+        = will_paginate @accords
       table.table style="overflow: auto; display:inline-block"
         tr.text-dark
           th Číslo žádosti
@@ -43,11 +45,11 @@ div.container-fluid
             td = accord.created_at_time
             td = accord.state
             td.pushase_price.text-nowrap.text-right = accord.purchase_price
-            td 
+            td
               - accord.clients.each do |client|
                 = client.full_name
                 br
-            td 
+            td
               - accord.realty.each do |realty|
                 = realty.address.try(:index_name)
                 br
@@ -55,3 +57,7 @@ div.container-fluid
             td = accord.agent_superior
             td = accord.owner_name
             td = accord.agent_in_terain_name
+      .digg_pagination.col-xl-12.col-lg-12
+				.page_info
+					= page_entries_info @accords, entry_name: 'Žádosti'
+				= will_paginate @accords

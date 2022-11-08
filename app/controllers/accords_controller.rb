@@ -7,7 +7,8 @@ class AccordsController < ApplicationController
     request.format = 'pdf' if params[:commit] == 'PDF'
     @accord_for_filter = policy_scope(Accord).includes(:terrains).order(created_at: :desc)
     @accords =  IndexFilter::IndexServices.new(@accord_for_filter,params).perform
-    @accords = @accords.decorate
+    @all_accords = @accords
+    @accords = @accords.paginate(page: params[:page]).decorate
     respond_to do |format|
       format.html
       format.json
@@ -50,7 +51,7 @@ class AccordsController < ApplicationController
   end
 
   # GET /accords/1/edit
-  def edit  
+  def edit
     authorize @accord
   end
 

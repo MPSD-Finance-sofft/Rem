@@ -1,4 +1,4 @@
-= form_tag(accords_path(), {method: :get}) do 
+= form_tag(accords_path(), {method: :get}) do
 	.row.p-3
 		.col-xl-2
 			.form-group
@@ -26,7 +26,7 @@
 			.form-group
 				= label_tag :client_personal_identification_number, "Rodné číslo klienta"
 				= text_field_tag :client_personal_identification_number, params[:client_personal_identification_number], class: "form-control input-sm"
-		.col-xl-2	
+		.col-xl-2
 			.form-group
 				= label_tag :date_to_terrain_start, "Posláno do terénu od"
 				= text_field_tag :date_to_terrain_start, params[:date_to_terrain_start], class: "form-control input-sm datapicker"
@@ -72,26 +72,26 @@
 			table.table.text-dark
 				tr.state_new
 					th Nová
-					td = @accords.select{|a| a.object_state == 'state_new'}.size
+					td = @all_accords.select{|a| a.state == 'state_new'}.size
 				tr.state_eleboration
 					th Rozpracovaná
-					td = @accords.select{|a| a.object_state == 'state_eleboration'}.size
+					td = @all_accords.select{|a| a.state == 'state_eleboration'}.size
 				tr.in_terrain
 					th V terénu
-					td = @accords.select{|a| a.object_state == 'in_terrain'}.size
+					td = @all_accords.select{|a| a.state == 'in_terrain'}.size
 				tr.returned
 					th Vrácená
-					td = @accords.select{|a| a.object_state == 'returned'}.size
+					td = @all_accords.select{|a| a.state == 'returned'}.size
 				tr.to_sign
 					th Ke schválení
-					td = @accords.select{|a| a.object_state == 'to_sign'}.size
+					td = @all_accords.select{|a| a.state == 'to_sign'}.size
 				tr.contract
 					th Smlouva
-					td = @accords.select{|a| a.object_state == 'contract'}.size
+					td = @all_accords.select{|a| a.state == 'contract'}.size
 				tr.refuse
 					th Zamítnutá
-					td = @accords.select{|a| a.object_state == 'refuse'}.size
+					td = @all_accords.select{|a| a.state == 'refuse'}.size
 				tr.dowload
 					th Stažená
-					td = @accords.select{|a| a.object_state == 'dowload'}.size
-		
+					td = @all_accords.select{|a| a.state == 'dowload'}.size
+

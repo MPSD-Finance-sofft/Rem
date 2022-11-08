@@ -1,4 +1,5 @@
 class Accord < ApplicationRecord
+	self.per_page = 100
 	has_paper_trail ignore: [:updated_at, :id]
 	include AccordsEnum
 	include RemoveWhiteSpiceFromNumberInput::Accord
@@ -72,7 +73,7 @@ class Accord < ApplicationRecord
 		if self.reward
 		  self.reward.commission_for_the_contract.to_f
 		elsif self.agent.try(:commission).to_f > 0
-		  self.purchase_price.to_f * ( self.agent.commission.to_f / 100 ) 
+		  self.purchase_price.to_f * ( self.agent.commission.to_f / 100 )
 		else
 		  self.purchase_price.to_f * self.agent.try(:commission_for_count_accords).to_f
 		end
