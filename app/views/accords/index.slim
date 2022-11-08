@@ -22,7 +22,7 @@ div.container-fluid
       p
         b
           | Počet vyhledaných žádostí:
-          = @accords.size
+          = @all_accords.size
       .digg_pagination.col-xl-12.col-lg-12
         = will_paginate @accords
       table.table style="overflow: auto; display:inline-block"
