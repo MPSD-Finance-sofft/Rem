@@ -17,7 +17,7 @@ class SalesContractDecorator < ApplicationDecorator
   end
 
   def purchase_price
-    format_number object.accord.purchase_price
+    format_number object.purchase_price
   end
 
   def all_expenses

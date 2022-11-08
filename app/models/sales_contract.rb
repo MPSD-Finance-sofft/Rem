@@ -38,5 +38,22 @@ class SalesContract < ApplicationRecord
   def companies
     self.clients.where(type: "Company")
   end
+
+  def purchase_price
+    if realty.count > 1
+      purchase_price_by_realty
+    else
+      accord.purchase_price
+    end
+  end
+
+  def purchase_price_by_realty
+    self.sales_contract_realty.map{|scr| scr.realty.purchase_price}.sum
+  end
+
+  def all_sales_prices_filled_in?
+    self.sales_contract_realty.select{|a| a.realty.purchase_price.blank? || a.realty.purchase_price == 0 }.blank?
+  end
+
   scope :for_accord, -> (accord_id) {where(accord_id: accord_id)}
 end
