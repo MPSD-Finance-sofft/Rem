@@ -6,7 +6,7 @@
 				| prohibited this @sales_contract from being saved:
 			ul
 				- @sales_contract.errors.full_messages.each do |message|
-				li= message
+					li= message
 	= render partial: "sales_contracts/form", locals: {form: form}
 	.form-group
 		= render partial: "sales_contract_clients", locals: {f: form}

@@ -9,6 +9,7 @@
 				.card.shadow.mb-4
 				.card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
 					h6.m-0.font-weight-bold.text-primary =realty.address_fullname
+					p = link_to 'Odebrat', sales_contract_sales_contract_realty_path(sales_contract_id: @sales_contract.id, id: realty.sales_contract_realty.where(sales_contract_id: @sales_contract.id).last.id), method: :delete, class: 'btn btn-primary btn-sm'
 				.card-body
 					table.table
 	                  tr
@@ -37,12 +38,12 @@
 	                    td = realty.location
 	                    th List vlastnictví
 	                    td = realty.property_sheet
-	                    th Typ vlastnictví 
+	                    th Typ vlastnictví
 	                    td =realty.type_ownership
 	                  tr
 	                    th Katastrální území
 	                    td =realty.catastral_territory
 	                    th Záznam na LV
-	                    td =realty.record_on_lvs      
+	                    td =realty.record_on_lvs
 	                    th Datum kolaudace nemovitosti
 	                    td = realty.date_of_final_building_approval
