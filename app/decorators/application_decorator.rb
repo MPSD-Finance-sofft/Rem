@@ -1,7 +1,11 @@
 class ApplicationDecorator < Draper::Decorator
   include ActionView::Helpers::NumberHelper
 
-  def format_date(date) 
+  def self.collection_decorator_class
+    PaginatingDecorator
+  end
+
+  def format_date(date)
   	date.strftime('%d.%m.%Y') unless date.blank?
   end
 
@@ -24,11 +28,11 @@ class ApplicationDecorator < Draper::Decorator
   def month_to_czech_text(month_number)
       case month_number
         when 1
-          'Leden' 
+          'Leden'
         when 2
-          'Únor' 
+          'Únor'
         when 3
-          'Březen' 
+          'Březen'
         when 4
           'Duben'
         when 5
@@ -49,5 +53,5 @@ class ApplicationDecorator < Draper::Decorator
           'Prosinec'
       end
   end
-
 end
+

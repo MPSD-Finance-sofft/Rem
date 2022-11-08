@@ -42,6 +42,7 @@ gem "sentry-raven"
 gem 'redis'
 gem 'whenever', '~> 0.9.7'
 gem "chartkick"
+gem 'will_paginate'
 
 group :development, :test do
   gem 'byebug', platform: :mri

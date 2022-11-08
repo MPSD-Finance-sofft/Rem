@@ -16,6 +16,7 @@
  *= require daterangepicker
  *= require sb-admin-2
  *= require sb-admin-2.min
+ *= require pagination
  *= require select
  *= require trix
  *= require_tree .
@@ -28,7 +29,7 @@
 @import 'font_awesome5_webfont';
 @import 'font_awesome5.css';
 /* direct_uploads.css */
- 
+
 .direct-upload {
   display: inline-block;
   position: relative;
@@ -39,11 +40,11 @@
   font-size: 11px;
   line-height: 13px;
 }
- 
+
 .direct-upload--pending {
   opacity: 0.6;
 }
- 
+
 .direct-upload__progress {
   position: absolute;
   top: 0;
@@ -54,15 +55,15 @@
   transition: width 120ms ease-out, opacity 60ms 60ms ease-in;
   transform: translate3d(0, 0, 0);
 }
- 
+
 .direct-upload--complete .direct-upload__progress {
   opacity: 0.4;
 }
- 
+
 .direct-upload--error {
   border-color: red;
 }
- 
+
 input[type=file][data-direct-upload-url][disabled] {
   display: none;
 }

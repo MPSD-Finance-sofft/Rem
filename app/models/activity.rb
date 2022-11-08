@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Activity < ApplicationRecord
+  self.per_page = 1000
   has_paper_trail ignore: [:updated_at]
   belongs_to :user
   belongs_to :true_user, class_name: 'User', optional: true

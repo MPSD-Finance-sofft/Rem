@@ -342,6 +342,7 @@ GEM
       chronic (>= 0.6.3)
     wicked_pdf (2.6.3)
       activesupport
+    will_paginate (3.3.1)
     zeitwerk (2.6.0)
 
 PLATFORMS
@@ -403,6 +404,7 @@ DEPENDENCIES
   web-console
   whenever (~> 0.9.7)
   wicked_pdf
+  will_paginate
 
 RUBY VERSION
    ruby 2.6.5p114
