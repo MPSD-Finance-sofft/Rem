@@ -14,15 +14,15 @@ class SalesContract < ApplicationRecord
   accepts_nested_attributes_for :sales_contract_realty,  reject_if: :all_blank, allow_destroy: true
 
   after_create :add_realty
-  after_create :add_client
+  # after_create :add_client
 
-
-  def add_client
-    self.accord.accords_clients.each do |accords_client|
-      client = accords_client.client
-      SalesContractClient.create(client_id: client.id, sales_contract_id: self.id, relationship: accords_client.relationship)
-    end
-  end
+  # Lachová 9.11.2022 to chtěla zrušit že je to naprd
+  # def add_client
+    #self.accord.accords_clients.each do |accords_client|
+    #  client = accords_client.client
+    #  SalesContractClient.create(client_id: client.id, sales_contract_id: self.id, relationship: accords_client.relationship)
+    #end
+  # end
 
   def add_realty
     self.accord.accords_realty.each do |accords_realty|
