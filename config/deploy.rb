@@ -50,7 +50,17 @@ namespace :deploy do
     end
   end
 
-  before :starting,     :check_revision
+  desc "Clear crontab"
+  task :clear_crontab do
+    on roles(:app) do
+      within release_path do
+        execute :bundle, :exec, :whenever, "--clear-crontab", fetch(:application)
+      end
+    end
+  end
+
+  before :starting, :check_revision
+  after  :deploy,  'deploy:clear_crontab'
 end
 
 # ps aux | grep puma    # Get puma pid
