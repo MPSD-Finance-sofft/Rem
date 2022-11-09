@@ -40,7 +40,7 @@ class SalesContract < ApplicationRecord
   end
 
   def purchase_price
-    if realty.count > 1
+    if accord.realty.count > 1
       purchase_price_by_realty
     else
       accord.purchase_price
