@@ -49,11 +49,11 @@ class SalesContractDecorator < ApplicationDecorator
   end
 
   def profit_object
-    object.amount - object.accord.purchase_price - object.accord.expenses.sum(:amount) + object_all_leasig_contract - object_sum_energies - object_svj
+    object.amount - object.purchase_price - object.accord.expenses.sum(:amount) + object_all_leasig_contract - object_sum_energies - object_svj
   end
 
   def income
-    ((profit_object / object.accord.purchase_price) * 100).round(2).to_s + "%"
+    ((profit_object / object.purchase_price) * 100).round(2).to_s + "%"
   end
 
   def object_sum_energies
@@ -73,7 +73,7 @@ class SalesContractDecorator < ApplicationDecorator
   end
 
   def pa
-    (((profit_object / object.accord.purchase_price) * 100).round(2)/days * 365).round(2).to_s + "%"
+    (((profit_object / object.purchase_price) * 100).round(2)/days * 365).round(2).to_s + "%"
   end
 
 end
