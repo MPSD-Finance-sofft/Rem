@@ -94,4 +94,8 @@ class RealtyDecorator < ApplicationDecorator
  	def disposition_text
  		object.disposition.try(:name)
  	end
+
+	def address_name_with_type
+		"[#{realty_type}, #{object.flat_number}] #{address_fullname}"
+	end
 end

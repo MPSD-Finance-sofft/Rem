@@ -9,9 +9,13 @@ tr.nested-fields
 		= f.text_field :real_amount, class: "form-control expense_real_amount text-right"
 	td
 		= f.text_field :date_of_excepted_payment, class: "form-control datapicker"
-	td	
+	td
 		= f.text_field :payout_day, class: "form-control datapicker"
-	td				
+	td
 		= f.text_field :description, class: "form-control"
+	- if @accord.realty.count > 1
+		td
+			= f.select :realty_id, @accord.realty.map{|a| [a.address_name_with_type,a.id]},{include_blank: true},{class: "selectpicker form-control", "data-live-search" => "true"}
+
 	td
 		= link_to_remove_association "Odstranění nákladu", f, class: 'btn btn-primary btn-danger'
