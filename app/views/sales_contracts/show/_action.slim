@@ -6,5 +6,6 @@
 		.card-body
 			- if current_user.user_or_admin?
 				= link_to "Úprava", edit_sales_contract_path(@sales_contract.id),{class: 'btn btn-info btn-sm m-1 text-white', type: 'buttom'}
-				button.btn.btn-info.btn-sm.m-1 data-target="#exampleModalCenter" data-toggle="modal" type="button" 
-					| Přidej poznámku 
+				button.btn.btn-info.btn-sm.m-1 data-target="#exampleModalCenter" data-toggle="modal" type="button"
+					| Přidej poznámku
+				= link_to "Přidání další výkupní smlouvy", new_sales_contract_sales_contract_accord_path(sales_contract_id: @sales_contract.id),{class: 'btn btn-info btn-sm m-1 text-white', type: 'buttom'}

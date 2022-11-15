@@ -6,6 +6,7 @@ class SalesContract < ApplicationRecord
   belongs_to :user
   has_many :sales_contract_clients, :dependent => :destroy
   has_many :sales_contract_realty, :dependent => :destroy
+  has_many :sales_contract_accords, :dependent => :destroy
 
   has_many :realty, through: :sales_contract_realty
   has_many :clients, through: :sales_contract_clients
@@ -24,8 +25,9 @@ class SalesContract < ApplicationRecord
     #end
   # end
 
-  def add_realty
-    self.accord.accords_realty.each do |accords_realty|
+  def add_realty(contract = nil)
+    contract = self.accord if contract.nil?
+    contract.accords_realty.each do |accords_realty|
       realty = accords_realty.realty
       SalesContractRealty.create(realty_id: realty.id, sales_contract_id: self.id)
     end

@@ -1,9 +1,12 @@
 .col-xl-12.col-lg-12
   .card.shadow.mb-4
-    a href="#colapseLeasing" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="colapseLeasing"
+    a href="#colapseSales" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="colapseSales"
       h6.m-0.font-weight-bold.text-primary Prodejní smlouvy
-    .collapse id="colapseLeasing"
+    .collapse id="colapseSales"
   		.card-body
   			- @sales_contracts.each do |sales|
   				= link_to "Smlouva o prodeji č. #{sales}", sales_contract_path(sales)
   				br
+        - SalesContractAccord.where(accord_id: @accord.id).each do |sales|
+          = link_to "Smlouva o prodeji č. #{sales.sales_contract_id}", sales_contract_path(sales.sales_contract_id)
+          br

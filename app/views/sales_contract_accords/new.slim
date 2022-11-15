@@ -1,0 +1,15 @@
+= form_with(model: [@sales_contract,@sales_contract_accord], local: true) do |form|
+	- if @sales_contract_accord.errors.any?
+		#error_explanation
+			h2
+				= pluralize(@sales_contract_accord.errors.count, "error")
+				| prohibited this @sales_contract from being saved:
+			ul
+				- @sales_contract_accord.errors.full_messages.each do |message|
+				li= message
+	.card-body
+		.form-group
+			= label_tag :accord_id, "Smlouvy"
+			= select_tag :accord_id, options_for_select(@accords, params[:accord_id]), {include_blank: true, class: "form-control input-sm",data: {"live-search": true}, multiple: false }
+		.action
+			= form.submit

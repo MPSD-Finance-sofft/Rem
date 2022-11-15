@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       get :report
     end
     resources :sales_contract_realties, only: [:destroy]
+    resources :sales_contract_accords, only: [:new, :create, :destroy]
   end
 
   resources :reason_refusal_types
