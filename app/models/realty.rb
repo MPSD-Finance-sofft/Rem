@@ -14,6 +14,7 @@ class Realty < ApplicationRecord
     has_many :accords, through: :accords_realty
     has_many :leasing_contracts, through: :leasing_contract_realty
     has_many :sales_contracts, through: :sales_contract_realty
+    has_many :expenses
     belongs_to :disposition, required: false
   	belongs_to :realty_type, required: false
   	belongs_to :address, required: false

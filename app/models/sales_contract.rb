@@ -55,5 +55,13 @@ class SalesContract < ApplicationRecord
     self.sales_contract_realty.select{|a| a.realty.purchase_price.blank? || a.realty.purchase_price == 0 }.blank?
   end
 
+  def expenses_by_realty
+    if realty.count > 1
+      realty.map{|r| r.expenses}.sum
+    else
+      accord.expenses.sum(:amount)
+    end
+  end
+
   scope :for_accord, -> (accord_id) {where(accord_id: accord_id)}
 end
