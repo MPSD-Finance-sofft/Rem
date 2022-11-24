@@ -21,7 +21,7 @@ class SalesContractDecorator < ApplicationDecorator
   end
 
   def all_expenses
-    format_number object.accord.expenses.sum(:amount)
+    format_number object.expenses_by_realty
   end
 
   def all_leasing_contract
@@ -49,7 +49,7 @@ class SalesContractDecorator < ApplicationDecorator
   end
 
   def profit_object
-    object.amount - object.purchase_price - object.accord.expenses.sum(:amount) + object_all_leasig_contract - object_sum_energies - object_svj
+    object.amount - object.purchase_price - object.expenses_by_realty + object_all_leasig_contract - object_sum_energies - object_svj
   end
 
   def income
