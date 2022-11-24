@@ -30,7 +30,7 @@ class SalesContractDecorator < ApplicationDecorator
 
   def object_all_leasig_contract
     sum = 0
-    object.accord.leasing_contracts.each  do |a|
+    object.realty.leasing_contracts.each  do |a|
       sum = sum + a.payments.sum(:amount).to_f
     end
     sum
