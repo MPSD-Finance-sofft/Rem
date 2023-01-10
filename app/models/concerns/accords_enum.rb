@@ -1,7 +1,7 @@
 module AccordsEnum extend ActiveSupport::Concern
-	
-	included do 
+
+	included do
 		enum state: [:state_new, :state_eleboration,:in_terrain, :to_sign, :contract, :refuse, :dowload, :returned]
-		enum kind: [:buyout, :auction, :insolvency_buyout]
+		enum kind: [:buyout, :auction, :insolvency_buyout, :buyout_with_easement]
 	end
 end

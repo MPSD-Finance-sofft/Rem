@@ -3,7 +3,7 @@ class AccordDecorator < ApplicationDecorator
 
   	decorates_association :realty
   	decorates_association :notes
-  	
+
   	def object_state
   		object.state
   	end
@@ -56,6 +56,8 @@ class AccordDecorator < ApplicationDecorator
  					"Dražba"
  			when 'insolvency_buyout'
  					"Insolvenční výkup"
+      when 'buyout_with_easement'
+          "Výkup s břemenem"
  			else
  					"nedefinovaný typ žádosti"
 		end
@@ -67,7 +69,7 @@ class AccordDecorator < ApplicationDecorator
 
  	def first_client_full_name
 		object.clients.first.try(:full_name)
- 	end 
+ 	end
 
   def first_realty_address
     object.realty.first.try(:address).try(:index_name)
@@ -80,12 +82,12 @@ class AccordDecorator < ApplicationDecorator
   def created_at_time
      format_date_time(object.created_at)
   end
-  
- 	def creator_name 
+
+ 	def creator_name
  		object.creator.try(:all_name)
  	end
 
- 	def owner_name 
+ 	def owner_name
  		object.owner.try(:all_name)
  	end
 
@@ -96,7 +98,7 @@ class AccordDecorator < ApplicationDecorator
   def agent_name
     object.agent.try(:all_name)
   end
-  
+
   def agent_in_signature_name
     object.agent_in_signature.try(:all_name)
   end
@@ -131,7 +133,7 @@ class AccordDecorator < ApplicationDecorator
   def purchase_price
     format_number(object.purchase_price.to_f)
   end
-  
+
   def object_purchase_price
     object.purchase_price
   end
@@ -154,7 +156,7 @@ class AccordDecorator < ApplicationDecorator
 
   def date_of_signature
     format_date object.date_of_signature
-  end 
+  end
 
   def date_of_ownership
     format_date object.date_of_ownership
@@ -192,7 +194,7 @@ class AccordDecorator < ApplicationDecorator
       sum = sum + lc.payments.sum(:amount)
     end
     format_number sum
-  end  
+  end
 
   def all_leasig_contract_repayments
     sum = 0
