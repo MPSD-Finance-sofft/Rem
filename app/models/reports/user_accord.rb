@@ -13,22 +13,26 @@ module Reports::UserAccord
   end
 
   def self.eborated_accords_find(user, date_from, date_to)
+    date_to = date_to + 1.day
     versions = Version.where(whodunnit: user).where(item_type: "Accord").where(event: "update").where(created_at: date_from..date_to)
     attribut_changes(versions, 'state').select{|user_id, states, time, id|  states.last == 2}.map{|a| a.last}.uniq.select{|a| Accord.exists?(a)}
   end
 
 
   def self.refuse_or_dowload_accords_find(user, date_from, date_to)
+    date_to = date_to + 1.day
     versions = Version.where(whodunnit: user).where(item_type: "Accord").where(event: "update").where(created_at: date_from..date_to)
     attribut_changes(versions, 'state').select{|user_id, states, time, id|  states.last == 5 || states.last == 6}.map{|a| a.last}.uniq.select{|a| Accord.exists?(a)}
-  end 
+  end
 
   def self.in_terrain_accords_find(user, date_from, date_to)
-    versions = Version.where(whodunnit: user).where(item_type: "Accord").where(event: "update").where(created_at: date_from..date_to)
+    date_to = date_to + 1.day
+    versions = Version.where(whodunnit: user).where(item_type: "Accord").where(event: "update").where("created_at >= ?", date_from).where("created_at <= ?", date_to)
     attribut_changes(versions, 'state').select{|user_id, states, time, id|  states.last == 2}.map{|a| a.last}.uniq.select{|a| Accord.exists?(a)}
-  end  
+  end
 
   def self.to_sign_accords_accords_find(user, date_from, date_to)
+    date_to = date_to + 1.day
     versions = Version.where(whodunnit: user).where(item_type: "Accord").where(event: "update").where(created_at: date_from..date_to)
     attribut_changes(versions, 'state').select{|user_id, states, time, id|  states.last == 3}.map{|a| a.last}.uniq.select{|a| Accord.exists?(a)}
   end
