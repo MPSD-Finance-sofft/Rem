@@ -3,11 +3,11 @@ div.container-fluid
 	ol.breadcrumb
 		li.breadcrumb-item
 			b
-				= link_to 'Žádosti', accords_path() 
+				= link_to 'Žádosti', accords_path()
 		li.breadcrumb-item
 			| úprava žádosti č.
 			= link_to @accord.number, accord_path(@accord)
-			|  ,klienta 
+			|  ,klienta
 			= @accord.first_client_full_name
     div id="collaplast" class="panel-collapse"
 		div.panel-body.no-padding
@@ -30,6 +30,13 @@ div.container-fluid
 						.form-group
 					    	= f.label :automatik_add_energy, "Automatické doplnování enerigii"
 							= f.check_box :automatik_add_energy, class: "form-control"
+						.form-group
+					    	= f.label :automatic_electricities, "Automatické doplnování elektřiny"
+								= f.check_box :automatic_electricities, class: "form-control"
+								= f.label :automatic_gases, "Automatické doplnování plynu"
+								= f.check_box :automatic_gases, class: "form-control"
+								= f.label :automatic_waters, "Automatické doplnování vody"
+								= f.check_box :automatic_waters, class: "form-control"
 						.form-group
 					    	= f.label :automatic_svj, "Automatické doplnování svj"
 							= f.check_box :automatic_svj, class: "form-control"

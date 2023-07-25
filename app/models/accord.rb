@@ -129,20 +129,26 @@ class Accord < ApplicationRecord
   def self.automatic_add_energy_task
     list = []
     Accord.automatic_add_energy.each do |accord|
-      e = accord.eletricities.last
-      unless e.nil?
-        a = true if e.duplicate
-      end
+			if accord.automatic_electricities?
+				e = accord.eletricities.last
+				unless e.nil?
+					a = true if e.duplicate
+				end
+			end
 
-      e = accord.gas_energies.last
-      unless e.nil?
-        a = true if e.duplicate
-      end
+			if accord.automatic_gases?
+				e = accord.gas_energies.last
+				unless e.nil?
+					a = true if e.duplicate
+				end
+			end
 
-      e = accord.water_energies.last
-      unless e.nil?
-        a = true if e.duplicate
-      end
+			if accord.automatic_waters?
+				e = accord.water_energies.last
+				unless e.nil?
+					a = true if e.duplicate
+				end
+			end
 
       unless a.nil?
         list << accord.id
