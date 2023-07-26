@@ -59,7 +59,7 @@ class SalesContract < ApplicationRecord
 
   def expenses_by_realty
     if accord.realty.count > 1
-      realty.map{|r| r.expenses}.sum
+      realty.map{|r| r.expenses.sum(:amount)}.sum
     else
       accord.expenses.sum(:amount)
     end
