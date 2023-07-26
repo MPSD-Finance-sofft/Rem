@@ -35,7 +35,7 @@ class SalesContractDecorator < ApplicationDecorator
         sum = sum + a.payments.sum(:amount).to_f
       end
     end
-    sum
+    sum.sum
   end
 
   def date_of_signature
