@@ -59,19 +59,19 @@ class User < ApplicationRecord
 	end
 
 	def user?
-		self.permission.try(:kind) == "user" 
+		self.permission.try(:kind) == "user"
 	end
 
 	def agent?
-		self.permission.try(:kind) == "agent" 
+		self.permission.try(:kind) == "agent"
 	end
 
 	def manager?
-		self.permission.try(:kind) == "manager" 
+		self.permission.try(:kind) == "manager"
 	end
 
   def tipster?
-    self.permission.try(:kind) == "tipster" 
+    self.permission.try(:kind) == "tipster"
   end
 
   def candidate?
@@ -119,7 +119,7 @@ class User < ApplicationRecord
 	end
 
 	def self.user_can_sign_id
-		User.manager_and_user.can_sign_in
+		User.admin_and_user.can_sign_in
 	end
 
 	def count_accord
