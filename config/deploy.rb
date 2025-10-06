@@ -24,7 +24,7 @@ set :whenever_environment, ->{ fetch(:rails_env) }
 set :whenever_identifier,  ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
 
 # Server definice
-server '192.168.3.150', user: 'deploy', roles: %w{app db web}
+server '192.168.3.150', user: 'dep_rem', roles: %w{app db web}
 
 namespace :puma do
   desc 'Create Directories for Puma Pids and Socket'
