@@ -4,10 +4,6 @@
 set :application, "rem"
 set :repo_url, "https://github.com/MPSD-Finance-sofft/Rem.git"
 
-# Definice stage
-set :stages, %w(production production_circolus)
-set :default_stage, "production"
-
 set :puma_threads,    [4, 16]
 set :puma_workers,    0
 
@@ -26,6 +22,9 @@ set :puma_init_active_record, false
 set :whenever_roles,  :app
 set :whenever_environment, ->{ fetch(:rails_env) }
 set :whenever_identifier,  ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
+
+# Server definice
+server '192.168.3.150', user: 'deploy', roles: %w{app db web}
 
 namespace :puma do
   desc 'Create Directories for Puma Pids and Socket'
