@@ -1,4 +1,4 @@
-# config/deploy.rb
+# config/deploy/production_circolus.rb
 # config valid for current version and patch releases of Capistrano
 
 set :application, "rem"
@@ -13,14 +13,14 @@ set :linked_files, %w(config/database.yml)
 
 set :pty,             true
 set :use_sudo,        false
-set :stage,           :production
+set :stage,           :production_circolus
 set :deploy_via,      :remote_cache
 set :deploy_to, '/opt/apps/rem'
-set :puma_bind,       "tcp://0.0.0.0:3000"  # Production na portu 3000
-set :puma_state,      "#{shared_path}/tmp/pids/puma_production.state"
-set :puma_pid,        "#{shared_path}/tmp/pids/puma_production.pid"
-set :puma_access_log, "#{release_path}/log/puma_production.error.log"
-set :puma_error_log,  "#{release_path}/log/puma_production.access.log"
+set :puma_bind,       "tcp://0.0.0.0:4000"  # Circolus na portu 4000
+set :puma_state,      "#{shared_path}/tmp/pids/puma_circolus.state"
+set :puma_pid,        "#{shared_path}/tmp/pids/puma_circolus.pid"
+set :puma_access_log, "#{release_path}/log/puma_circolus.error.log"
+set :puma_error_log,  "#{release_path}/log/puma_circolus.access.log"
 set :ssh_options,     { forward_agent: true, user: fetch(:user), keys: %w(~/.ssh/id_rsa.pub) }
 set :puma_preload_app, true
 set :puma_worker_timeout, nil
