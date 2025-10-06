@@ -13,19 +13,15 @@ set :linked_files, %w(config/database.yml)
 
 set :pty,             true
 set :use_sudo,        false
+set :stage,           :production
 set :deploy_via,      :remote_cache
-set :deploy_to, '/opt/apps/rem'
-
-# Upravené SSH options bez multiplex
-set :ssh_options,     { 
-  forward_agent: true, 
-  user: fetch(:user), 
-  keys: %w(~/.ssh/id_rsa.pub),
-  keepalive: true,
-  keepalive_interval: 30,
-  keepalive_maxcount: 3
-}
-
+set :deploy_to,       '/opt/apps/rem'  # Production složka
+set :puma_bind,       "tcp://0.0.0.0:3000"
+set :puma_state,      "#{shared_path}/tmp/pids/puma_production.state"
+set :puma_pid,        "#{shared_path}/tmp/pids/puma_production.pid"
+set :puma_access_log, "#{release_path}/log/puma_production.error.log"
+set :puma_error_log,  "#{release_path}/log/puma_production.access.log"
+set :ssh_options,     { forward_agent: true, user: fetch(:user), keys: %w(~/.ssh/id_rsa.pub) }
 set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, false
@@ -58,20 +54,5 @@ namespace :deploy do
     end
   end
 
-  # Dočasně zakomentujte whenever task
-  # desc "Clear crontab"
-  # task :clear_crontab do
-  #   on roles(:app) do
-  #     within release_path do
-  #       execute :bundle, :exec, :whenever, "--clear-crontab", fetch(:application)
-  #     end
-  #   end
-  # end
-
   before :starting, :check_revision
-  # after  :deploy,  'deploy:clear_crontab'
 end
-
-# ps aux | grep puma    # Get puma pid
-# kill -s SIGUSR2 pid   # Restart puma
-# kill -s SIGTERM pid   # Stop puma

@@ -1,5 +1,6 @@
 # config/deploy/production_circolus.rb
 set :stage, :production_circolus
+set :deploy_to, '/opt/apps/rem_circolus'  # Circolus složka
 set :puma_bind, "tcp://0.0.0.0:4000"
 set :puma_state, "#{shared_path}/tmp/pids/puma_circolus.state"
 set :puma_pid, "#{shared_path}/tmp/pids/puma_circolus.pid"
