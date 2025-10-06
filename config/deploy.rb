@@ -1,7 +1,7 @@
 # config valid for current version and patch releases of Capistrano
 
 set :application, "rem"
-set :repo_url, "ssh://git.sitd.cz/opt/git_repos/echo/rem.git"
+set :repo_url, "ssh:git@github.com:MPSD-Finance-sofft/Rem.git"
 
 set :puma_threads,    [4, 16]
 set :puma_workers,    0
