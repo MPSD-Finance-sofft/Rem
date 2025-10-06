@@ -16,16 +16,14 @@ set :use_sudo,        false
 set :deploy_via,      :remote_cache
 set :deploy_to, '/opt/apps/rem'
 
-# Přidejte tyto řádky pro opakované použití SSH připojení
+# Upravené SSH options bez multiplex
 set :ssh_options,     { 
   forward_agent: true, 
   user: fetch(:user), 
   keys: %w(~/.ssh/id_rsa.pub),
   keepalive: true,
   keepalive_interval: 30,
-  keepalive_maxcount: 3,
-  multiplex: true,
-  multiplex_timeout: 30
+  keepalive_maxcount: 3
 }
 
 set :puma_preload_app, true
