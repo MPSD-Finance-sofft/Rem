@@ -15,7 +15,19 @@ set :pty,             true
 set :use_sudo,        false
 set :deploy_via,      :remote_cache
 set :deploy_to, '/opt/apps/rem'
-set :ssh_options,     { forward_agent: true, user: fetch(:user), keys: %w(~/.ssh/id_rsa.pub) }
+
+# Přidejte tyto řádky pro opakované použití SSH připojení
+set :ssh_options,     { 
+  forward_agent: true, 
+  user: fetch(:user), 
+  keys: %w(~/.ssh/id_rsa.pub),
+  keepalive: true,
+  keepalive_interval: 30,
+  keepalive_maxcount: 3,
+  multiplex: true,
+  multiplex_timeout: 30
+}
+
 set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, false
@@ -48,17 +60,18 @@ namespace :deploy do
     end
   end
 
-  desc "Clear crontab"
-  task :clear_crontab do
-    on roles(:app) do
-      within release_path do
-        execute :bundle, :exec, :whenever, "--clear-crontab", fetch(:application)
-      end
-    end
-  end
+  # Dočasně zakomentujte whenever task
+  # desc "Clear crontab"
+  # task :clear_crontab do
+  #   on roles(:app) do
+  #     within release_path do
+  #       execute :bundle, :exec, :whenever, "--clear-crontab", fetch(:application)
+  #     end
+  #   end
+  # end
 
   before :starting, :check_revision
-  after  :deploy,  'deploy:clear_crontab'
+  # after  :deploy,  'deploy:clear_crontab'
 end
 
 # ps aux | grep puma    # Get puma pid
