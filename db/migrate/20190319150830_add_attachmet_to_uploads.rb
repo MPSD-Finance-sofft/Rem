@@ -1,11 +1,21 @@
+# db/migrate/20190319150830_add_attachmet_to_uploads.rb
 class AddAttachmetToUploads < ActiveRecord::Migration[5.2]
   def self.up
     change_table :uploads do |t|
-      t.attachment :file
+      # Místo t.attachment :file použijte:
+      t.string :file_file_name
+      t.string :file_content_type
+      t.integer :file_file_size
+      t.datetime :file_updated_at
     end
   end
 
   def self.down
-    remove_attachment :uploads, :file
-end
+    change_table :uploads do |t|
+      t.remove :file_file_name
+      t.remove :file_content_type
+      t.remove :file_file_size
+      t.remove :file_updated_at
+    end
+  end
 end
