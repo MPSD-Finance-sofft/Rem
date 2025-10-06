@@ -12,7 +12,7 @@ app_dir = File.expand_path("../..", __FILE__)
 directory app_dir
 shared_dir = "#{app_dir}/tmp"
 
-if %w[production].member?(rails_env)
+if %w[production production_circolus].member?(rails_env)
   # Logging
   stdout_redirect "#{app_dir}/log/puma.stdout.log", "#{app_dir}/log/puma.stderr.log", true
 
@@ -25,8 +25,12 @@ if %w[production].member?(rails_env)
 
   preload_app!
 
-  # Set up socket location
-  bind "unix://#{shared_dir}/sockets/puma.sock"
+  # Set up socket location - změňte na TCP pro production_circolus
+  if rails_env == "production_circolus"
+    bind "tcp://0.0.0.0:#{ENV.fetch('PORT') { 4000 }}"
+  else
+    bind "unix://#{shared_dir}/sockets/puma.sock"
+  end
 
   before_fork do
     # app does not use database, uncomment when needed
