@@ -7,6 +7,3 @@
   			- @sales_contracts.each do |sales|
   				= link_to "Smlouva o prodeji č. #{sales}", sales_contract_path(sales)
   				br
-        - SalesContractAccord.where(accord_id: @accord.id).each do |sales|
-          = link_to "Smlouva o prodeji č. #{sales.sales_contract_id}", sales_contract_path(sales.sales_contract_id)
-          br

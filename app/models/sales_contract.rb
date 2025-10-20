@@ -65,5 +65,8 @@ class SalesContract < ApplicationRecord
     end
   end
 
-  scope :for_accord, -> (accord_id) {where(accord_id: accord_id)}
+  scope :for_accord, -> (accord_id) { 
+    left_joins(:sales_contract_accords)
+      .where("sales_contracts.accord_id = ? OR sales_contract_accords.accord_id = ?", accord_id, accord_id)
+  }
 end
