@@ -4,19 +4,21 @@
       h6.m-0.font-weight-bold.text-primary Poznámky
     .collapse id="colapseNote"
       .card-body
-        table.table style="overflow: auto; display:inline-block"
+        table.table style="table-layout: fixed; width: 100%;"
           tr
-            th | Čas
-            th | Autor
-            th | Text
-            th
+            th style="width: 12%;" | Čas
+            th style="width: 12%;" | Autor
+            th style="width: 60%;" | Text
+            th style="width: 16%;"
           - @notes.each do |note|
             - text_color = note.text_color(current_user)
             tr style="background-color:#{note.user_color(current_user)}" class="text-dark"
               td style="color:#{text_color}" = note.created_at
               td style="color:#{text_color}" = note.autor
-              td style="color:#{text_color}" = note.description.html_safe
-              td = link_to 'Remove', note, method: :delete, data: { confirm: 'Are you sure?' }
+              td style="color:#{text_color}; word-wrap: break-word; white-space: pre-wrap;" = note.description.html_safe
+              td
+                = link_to 'Edit', edit_note_path(note), class: 'btn btn-sm btn-primary mr-1'
+                = link_to 'Remove', note, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
 javascript: 
   $(document).ready(function() {
       $('.color').each(function(){

@@ -12,18 +12,20 @@
         b
           | Počet vyhledaných poznámek:&nbsp;
           = @notes.size
-      table.table style="overflow: auto; display:inline-block"
+      table.table style="table-layout: fixed; width: 100%;"
         tr
-          th | Čas
-          th | Autor
-          th | Žádost
-          th | Text
-          th
+          th style="width: 12%;" | Čas
+          th style="width: 10%;" | Autor
+          th style="width: 10%;" | Žádost
+          th style="width: 52%;" | Text
+          th style="width: 16%;"
         - @notes.each do |note|
           - text_color = note.text_color(current_user)
           tr style="background-color:#{note.user_color(current_user)}" class="text-dark"
             td style="color:#{text_color}" = note.created_at
             td style="color:#{text_color}" = note.autor
             td style="color:#{text_color}" = link_to "#{note.accord_id}(#{note.accord_state})", accord_path(note.accord_id)
-            td style="color:#{text_color}" = note.description.html_safe
-            td = link_to 'Remove', note, method: :delete, data: { confirm: 'Are you sure?' }
+            td style="color:#{text_color}; word-wrap: break-word; white-space: pre-wrap;" = note.description.html_safe
+            td
+              = link_to 'Edit', edit_note_path(note), class: 'btn btn-sm btn-primary mr-1'
+              = link_to 'Remove', note, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
